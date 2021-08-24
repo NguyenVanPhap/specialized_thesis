@@ -1,0 +1,417 @@
+<!--<c:url value="${pageContext.request.contextPath}/resources" var="url"></c:url>-->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity">
+
+<!-- <div th:with="url=${pageContext.request.contextPath}/resources}"> -->
+
+<head>
+	<!-- Basic -->
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<!-- Mobile Metas -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+	<!-- Site Metas -->
+	<meta name="keywords" content="" />
+	<meta name="description" content="" />
+	<meta name="author" content="" />
+
+	<title>Adward</title>
+
+	<!-- bootstrap core css -->
+	<link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.css}" />
+	<!-- progress barstle -->
+	<link rel="stylesheet" th:href="@{/css/css-circular-prog-bar.css}">
+	<!-- fonts style -->
+	<link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
+	<!-- font wesome stylesheet -->
+	<link rel="stylesheet" th:href="@{https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css}">
+	<!-- Custom styles for this template -->
+	<!-- responsive style -->
+	<link th:href="@{/css/responsive.css}" rel="stylesheet" />
+	<link rel="stylesheet" th:href="@{/css/css-circular-prog-bar.css}">
+
+	<link th:href="@{/css/style.css}" rel="stylesheet" />
+
+</head>
+
+<body>
+
+	<header>
+		<div th:replace="client/include/header::header"> </div>
+	</header>
+	<!-- <jsp:include page="/WEB-INF/pages/client/include/header.jsp"></jsp:include> -->
+
+
+
+	<!-- end header section -->
+	<!-- vehicle section -->
+	<section class="vehicle_section layout_padding" style="padding-top: 0px;">
+		<div class="container">
+			<div class="layout_padding-top" style="padding-top: 0px;">
+				<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+					<div class="carousel-inner">
+						<div class="carousel-item active">
+							<div class="vehicle_img-box ">
+								<img th:src="@{/images/category1.png}" alt="" class="img-fluid w-100">
+							</div>
+						</div>
+						<div class="carousel-item">
+							<div class="vehicle_img-box ">
+								<img th:src="@{/images/bus.png}" alt="" class="img-fluid w-100">
+							</div>
+						</div>
+						<div class="carousel-item">
+							<div class="vehicle_img-box ">
+								<img th:src="@{/images/kidss.jpg}" alt="" class="img-fluid w-100">
+							</div>
+						</div>
+					</div>
+					<a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+						<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+						<span class="sr-only">Previous</span>
+					</a>
+					<a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+						<span class="carousel-control-next-icon" aria-hidden="true"></span>
+						<span class="sr-only">Next</span>
+					</a>
+				</div>
+			</div>
+
+		</div>
+	</section>
+
+
+
+	<!-- teacher section -->
+	<section class="teacher_section layout_padding-bottom">
+		<div class="container">
+			<h2 class="main-heading ">
+				AWARD
+			</h2>
+			<p class="text-center">
+				Hết sức - Hết lòng - Hết tâm trí
+			</p>
+			<div class="teacher_container layout_padding2">
+				<div class="card-deck">
+					<div class="card">
+						<img class="card-img-top" th:src="@{/images/category1.png}" alt="Card image cap">
+						<div class="card-body">
+							<h5 class="card-title">Học từ vựng, ngữ pháp</h5>
+							<div class="d-flex justify-content-center mt-3">
+								<a href="" class="call_to-btn  ">
+
+									<span>
+										See More
+									</span>
+									<img th:src="@{/images/right-arrow.png}" alt="">
+								</a>
+							</div>
+						</div>
+					</div>
+					<div class="card">
+						<img class="card-img-top" th:src="@{/images/category2.png}" alt="Card image cap">
+						<div class="card-body">
+							<h5 class="card-title">Bài tập phần nghe, đọc</h5>
+							<div class="d-flex justify-content-center mt-3">
+								<a href="" class="call_to-btn  ">
+
+									<span>
+										See More
+									</span>
+									<img th:src="@{/images/right-arrow.png}" alt="">
+								</a>
+							</div>
+						</div>
+
+					</div>
+					<div class="card">
+						<img class="card-img-top" th:src="@{/images/category3.png}" alt="Card image cap">
+						<div class="card-body">
+							<h5 class="card-title">Đề thi thử</h5>
+							<div class="d-flex justify-content-center mt-3">
+								<a href="" class="call_to-btn  ">
+
+									<span>
+										See More
+									</span>
+									<img th:src="@{/images/right-arrow.png}" alt="">
+								</a>
+							</div>
+						</div>
+
+					</div>
+
+
+				</div>
+			</div>
+
+
+
+		</div>
+	</section>
+
+	<!-- teacher section -->
+	<!-- about section -->
+	<section class="about_section ">
+		<div class="container">
+			<h2 class="main-heading ">
+				Hi, we're AWARD
+			</h2>
+			<p class="text-center">
+				11 năm kinh nghiệm giảng dạy TOEIC, IELTS, VNU-EPT,
+				Tiếng Anh Giao tiếp, Tiếng Anh căn bản cho người mất gốc và Tiếng Anh Thiếu nhi với phương châm
+				"Hết sức - Hết lòng - Hết tâm trí" cho trên 350.000 học viên. Thầy cô mong muốn mang đến các khóa học
+				Tiếng Anh chất lượng cao,
+				chi phí hợp lý và quan trọng nhất là hiệu quả đối với nhu cầu của học viên.
+			</p>
+			<div class="about_img-box ">
+				<img th:src="@{/images/kids.jpg}" alt="" class="img-fluid w-100">
+			</div>
+
+		</div>
+	</section>
+
+
+	<!-- about section -->
+
+	<!-- vehicle section -->
+	<!-- client section -->
+	<section class="client_section layout_padding">
+		<div class="container">
+			<h2 class="main-heading ">
+				Our Students Feedback
+			</h2>
+
+
+			<section class="vehicle_section layout_padding" style="padding-top: 0px;">
+				<div class="container">
+					<div class="layout_padding-top" style="padding-top: 0px;">
+						<div id="carouselExampleControls1" class="carousel slide" data-ride="carousel">
+							<div class="carousel-inner">
+								<div class="carousel-item active">
+									<div class="vehicle_img-box ">
+										<div class="layout_padding2">
+											<div class="client_container d-flex flex-column">
+												<div class="client_detail d-flex align-items-center">
+													<div class="client_img-box ">
+														<img th:src="@{/images/student.png}" alt="">
+													</div>
+													<div class="client_detail-box">
+														<h4>
+															Duy phương
+														</h4>
+														<span>
+
+														</span>
+													</div>
+												</div>
+												<div class="client_text mt-4">
+													<p>
+														"Em được biết cô qua 1 người bạn giới thiệu website Award. Ban
+														đầu em cũng ko quan tâm lắm
+														vì bây giờ các trang web học tiếng anh rất nhiều.
+														em nghĩ trang web của cô cũng chỉ là những trang web bình thường
+														ko có gì đắc biệt.
+														Nhưng, khi em truy cập vào trang web ,em dần dần muốn tìm hiểu
+														về trang web rồi em bị cuốn
+														hút bởi những kinh nghiệm học và thi TOEIC của website.
+														"
+													</p>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="carousel-item">
+									<div class="vehicle_img-box ">
+										<div class="layout_padding2">
+											<div class="client_container d-flex flex-column">
+												<div class="client_detail d-flex align-items-center">
+													<div class="client_img-box ">
+														<img th:src="@{/images/student.png}" alt="">
+													</div>
+													<div class="client_detail-box">
+														<h4>
+															Duy phương
+														</h4>
+														<span>
+
+														</span>
+													</div>
+												</div>
+												<div class="client_text mt-4">
+													<p>
+														"Em được biết cô qua 1 người bạn giới thiệu website Award. Ban
+														đầu em cũng ko quan tâm lắm
+														vì bây giờ các trang web học tiếng anh rất nhiều.
+														em nghĩ trang web của cô cũng chỉ là những trang web bình thường
+														ko có gì đắc biệt.
+														Nhưng, khi em truy cập vào trang web ,em dần dần muốn tìm hiểu
+														về trang web rồi em bị cuốn
+														hút bởi những kinh nghiệm học và thi TOEIC của website.
+														"
+													</p>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="carousel-item">
+									<div class="vehicle_img-box ">
+										<div class="layout_padding2">
+											<div class="client_container d-flex flex-column">
+												<div class="client_detail d-flex align-items-center">
+													<div class="client_img-box ">
+														<img th:src="@{/images/student.png}" alt="">
+													</div>
+													<div class="client_detail-box">
+														<h4>
+															Duy phương
+														</h4>
+														<span>
+
+														</span>
+													</div>
+												</div>
+												<div class="client_text mt-4">
+													<p>
+														"Em được biết cô qua 1 người bạn giới thiệu website Award. Ban
+														đầu em cũng ko quan tâm lắm
+														vì bây giờ các trang web học tiếng anh rất nhiều.
+														em nghĩ trang web của cô cũng chỉ là những trang web bình thường
+														ko có gì đắc biệt.
+														Nhưng, khi em truy cập vào trang web ,em dần dần muốn tìm hiểu
+														về trang web rồi em bị cuốn
+														hút bởi những kinh nghiệm học và thi TOEIC của website.
+														"
+													</p>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<a class="carousel-control-prev" href="#carouselExampleControls1" role="button"
+								data-slide="prev">
+								<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+								<span class="sr-only">Previous</span>
+							</a>
+							<a class="carousel-control-next" href="#carouselExampleControls1" role="button"
+								data-slide="next">
+								<span class="carousel-control-next-icon" aria-hidden="true"></span>
+								<span class="sr-only">Next</span>
+							</a>
+						</div>
+					</div>
+
+				</div>
+			</section>
+
+		</div>
+	</section>
+
+
+
+
+	<!-- client section -->
+
+	<!-- contact section -->
+
+	<section class="contact_section layout_padding-bottom">
+		<div class="container">
+
+			<h2 class="main-heading">
+				Contact Now
+
+			</h2>
+			<p class="text-center">
+				reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+
+			</p>
+			<div class="">
+				<div class="contact_section-container">
+					<div class="row">
+						<div class="col-md-6 mx-auto">
+							<div class="contact-form">
+								<form action="">
+									<div>
+										<input type="text" placeholder="Name">
+									</div>
+									<div>
+										<input type="text" placeholder="Phone Number">
+									</div>
+									<div>
+										<input type="email" placeholder="Email">
+									</div>
+									<div>
+										<input type="text" placeholder="Message" class="input_message">
+									</div>
+									<div class="d-flex justify-content-center">
+										<button type="submit" class="btn_on-hover">
+											Send
+										</button>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</section>
+
+
+	<!-- end contact section -->
+
+	<section class="landing_section">
+		<iframe
+			src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3918.4843009459532!2d106.76973361449345!3d10.850721392271168!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752763f23816ab%3A0x282f711441b6916f!2zVHLGsOG7nW5nIMSQ4bqhaSBo4buNYyBTxrAgcGjhuqFtIEvhu7kgdGh14bqtdCBUaMOgbmggcGjhu5EgSOG7kyBDaMOtIE1pbmg!5e0!3m2!1svi!2s!4v1628496955613!5m2!1svi!2s"
+			width="100%" height="20%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+	</section>
+
+
+
+
+
+
+	<!-- admission section -->
+
+
+	<!-- landing section -->
+	<section class="landing_section ">
+		<div class="container">
+
+
+			<p class="landing_detail text-center">
+				Giờ làm việc <br>
+				Sáng: 7h - 11h30<br>
+				Chiều: 13 - 20h<br>
+				Thứ Hai đến Thứ Bảy<br>
+				(Trung tâm nghỉ làm việc Chủ nhật và các ngày lễ)<br>
+			</p>
+
+		</div>
+	</section>
+
+	<!-- end landing section -->
+
+
+
+
+	<!-- footer section -->
+	<section class="container-fluid footer_section">
+		<p>
+			Copyright &copy; 2019 All Rights Reserved By
+			<a href="https://html.design/">Free Html Templates</a>
+		</p>
+	</section>
+	<!-- footer section -->
+
+	<script type="text/javascript" th:src="@{/js/jquery-3.4.1.min.js}"></script>
+	<script type="text/javascript" th:src="@{/js/bootstrap.js}"></script>
+
+
+</body>
+
+</html>

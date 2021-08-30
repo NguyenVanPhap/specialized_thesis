@@ -1,6 +1,7 @@
 <!--<c:url value="${pageContext.request.contextPath}/resources" var="url"></c:url>-->
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity">
 
 <!-- <div th:with="url=${pageContext.request.contextPath}/resources}"> -->
 
@@ -46,23 +47,51 @@
 	<!-- end header section -->
 	<!-- vehicle section -->
 	<section class="vehicle_section layout_padding" style="padding-top: 0px;">
-		<div class="container">
+		<div class="container-fluid">
 			<div class="layout_padding-top" style="padding-top: 0px;">
 				<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
 					<div class="carousel-inner">
+						
 						<div class="carousel-item active">
 							<div class="vehicle_img-box ">
-								<img th:src="@{/images/category1.png}" alt="" class="img-fluid w-100">
+								<div class="container">
+									<div class="row">
+										<div class="col">
+											<img th:src="@{/images/kidss.jpg}" alt=""
+												class="img-fluid w-100 carousel-img">
+										</div>
+										<div class="col">
+
+											<h1>Đào tạo chất lượng</h1>
+											<p class="lead">Chúng tôi cung cấp cho các bạn những kiến
+												thức tốt nhất.</p>
+											<a class="btn btn-large btn-primary openModalFunction" href="#"
+												id="modal1">Xem
+												ngay</a>
+										</div>
+									</div>
+								</div>
 							</div>
 						</div>
 						<div class="carousel-item">
 							<div class="vehicle_img-box ">
-								<img th:src="@{/images/bus.png}" alt="" class="img-fluid w-100">
-							</div>
-						</div>
-						<div class="carousel-item">
-							<div class="vehicle_img-box ">
-								<img th:src="@{/images/kidss.jpg}" alt="" class="img-fluid w-100">
+								<div class="container">
+									<div class="row">
+										<div class="col">
+											<img th:src="@{/images/category1.png}" alt=""
+												class="img-fluid w-100 carousel-img">
+										</div>
+										<div class="col">
+
+											<h1>Đào tạo chất lượng</h1>
+											<p class="lead">Chúng tôi cung cấp cho các bạn những kiến
+												thức tốt nhất.</p>
+											<a class="btn btn-large btn-primary openModalFunction" href="#"
+												id="modal1">Xem
+												ngay</a>
+										</div>
+									</div>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -79,7 +108,6 @@
 
 		</div>
 	</section>
-
 
 
 	<!-- teacher section -->
@@ -160,7 +188,8 @@
 			<p class="text-center">
 				11 năm kinh nghiệm giảng dạy TOEIC, IELTS, VNU-EPT,
 				Tiếng Anh Giao tiếp, Tiếng Anh căn bản cho người mất gốc và Tiếng Anh Thiếu nhi với phương châm
-				"Hết sức - Hết lòng - Hết tâm trí" cho trên 350.000 học viên. Thầy cô mong muốn mang đến các khóa học
+				"Hết sức - Hết lòng - Hết tâm trí" cho trên 350.000 học viên. Thầy cô mong muốn mang đến các khóa
+				học
 				Tiếng Anh chất lượng cao,
 				chi phí hợp lý và quan trọng nhất là hiệu quả đối với nhu cầu của học viên.
 			</p>
@@ -207,12 +236,15 @@
 												</div>
 												<div class="client_text mt-4">
 													<p>
-														"Em được biết cô qua 1 người bạn giới thiệu website Award. Ban
+														"Em được biết cô qua 1 người bạn giới thiệu website Award.
+														Ban
 														đầu em cũng ko quan tâm lắm
 														vì bây giờ các trang web học tiếng anh rất nhiều.
-														em nghĩ trang web của cô cũng chỉ là những trang web bình thường
+														em nghĩ trang web của cô cũng chỉ là những trang web bình
+														thường
 														ko có gì đắc biệt.
-														Nhưng, khi em truy cập vào trang web ,em dần dần muốn tìm hiểu
+														Nhưng, khi em truy cập vào trang web ,em dần dần muốn tìm
+														hiểu
 														về trang web rồi em bị cuốn
 														hút bởi những kinh nghiệm học và thi TOEIC của website.
 														"
@@ -241,12 +273,15 @@
 												</div>
 												<div class="client_text mt-4">
 													<p>
-														"Em được biết cô qua 1 người bạn giới thiệu website Award. Ban
+														"Em được biết cô qua 1 người bạn giới thiệu website Award.
+														Ban
 														đầu em cũng ko quan tâm lắm
 														vì bây giờ các trang web học tiếng anh rất nhiều.
-														em nghĩ trang web của cô cũng chỉ là những trang web bình thường
+														em nghĩ trang web của cô cũng chỉ là những trang web bình
+														thường
 														ko có gì đắc biệt.
-														Nhưng, khi em truy cập vào trang web ,em dần dần muốn tìm hiểu
+														Nhưng, khi em truy cập vào trang web ,em dần dần muốn tìm
+														hiểu
 														về trang web rồi em bị cuốn
 														hút bởi những kinh nghiệm học và thi TOEIC của website.
 														"
@@ -275,12 +310,15 @@
 												</div>
 												<div class="client_text mt-4">
 													<p>
-														"Em được biết cô qua 1 người bạn giới thiệu website Award. Ban
+														"Em được biết cô qua 1 người bạn giới thiệu website Award.
+														Ban
 														đầu em cũng ko quan tâm lắm
 														vì bây giờ các trang web học tiếng anh rất nhiều.
-														em nghĩ trang web của cô cũng chỉ là những trang web bình thường
+														em nghĩ trang web của cô cũng chỉ là những trang web bình
+														thường
 														ko có gì đắc biệt.
-														Nhưng, khi em truy cập vào trang web ,em dần dần muốn tìm hiểu
+														Nhưng, khi em truy cập vào trang web ,em dần dần muốn tìm
+														hiểu
 														về trang web rồi em bị cuốn
 														hút bởi những kinh nghiệm học và thi TOEIC của website.
 														"
@@ -379,7 +417,7 @@
 
 
 	<!-- landing section -->
-	<section class="landing_section ">
+	<!--<section class="landing_section ">
 		<div class="container">
 
 
@@ -392,7 +430,7 @@
 			</p>
 
 		</div>
-	</section>
+	</section>-->
 
 	<!-- end landing section -->
 

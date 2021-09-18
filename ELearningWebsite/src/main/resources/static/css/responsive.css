@@ -4,11 +4,11 @@
 
 
     .top_container {
-        height: auto;
+        height: 10%;
     }
 
     .top_container.sub_pages {
-        height: auto;
+        height: 10%;
     }
 
     .top_container.sub_pages::before {

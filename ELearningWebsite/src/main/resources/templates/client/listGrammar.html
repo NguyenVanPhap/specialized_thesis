@@ -43,6 +43,15 @@
 
 
 	<style type="text/css">
+		body {
+			background-color: #F0FFFF;
+		}
+
+		.myli li::marker {
+			content: "› ";
+			color: hotpink;
+		}
+
 		.hidden {
 			display: none;
 		}
@@ -109,18 +118,17 @@
 
 <body>
 
-	<header>
-		<div th:replace="client/include/header::header"> </div>
-		<input style="display:none;" id="baseUrl" value="${pageContext.request.contextPath}" />
-	</header>
+
+	<div th:replace="client/include/header::header"> </div>
+	<input style="display:none;" id="baseUrl" value="${pageContext.request.contextPath}" />
 
 
-	<div class="container">
+	<div class="container mybackground">
 		<!--PAGE TITLE-->
 		<div>
 			<div class="row">
 				<div class="col-sm-9">
-					<h4>DANH SÁCH BÀI GRAMMAR</h4>
+					<h5>DANH SÁCH BÀI GRAMMAR</h5>
 				</div>
 			</div>
 			<div class="row">
@@ -134,9 +142,7 @@
 				</div>
 			</div>
 		</div>
-		<br>
-		<br>
-		<br>
+		<hr class="myhr">
 		<!-- /. PAGE TITLE-->
 		<div id="resultsearchGrammar">
 
@@ -146,7 +152,7 @@
 						<h3>Không tìm thấy dữ liệu</h3>
 					</th:block>
 					<th:block th:each="list : ${listData}">
-						<div class="span5">
+						<div class="span5" >
 							<table>
 								<tr>
 									<td>
@@ -154,7 +160,7 @@
 									</td>
 									<td>
 										<div class="lead">
-											<h4 th:text="${list.tenbaigrammar}"></h4>
+											<h6 th:text="${list.tenbaigrammar}"></h4>
 										</div>
 										<div>
 											<a th:href="@{/detailGram?idGram=${list.baigrammarid}}" class="btn btn-primary">Chi tiết</a>
@@ -167,60 +173,61 @@
 					<br>
 				</div>
 				<div class="col-sm-3">
-					<div class="side-bar">
+					<div th:replace="client/include/sidebar::sidebar"> </div>
+					<!--<div class="side-bar" style="padding-left: 0px;height:100%">
 
-						<h3>DANH MỤC</h3>
-						<ul class="nav nav-list">
-							<li><a href="/webtoeic/listening">LUYỆN BÀI NGHE</a></li>
-							<li><a href="/webtoeic/reading">LUYỆN BÀI ĐỌC</a></li>
-							<li><a href="/webtoeic/listExam">THI THỬ</a></li>
-							<li><a href="/webtoeic/listGrammar">HỌC NGỮ PHÁP</a></li>
-							<li><a href="/webtoeic/listVocab">HỌC TỪ VỰNG</a></li>
-						</ul>
-					</div>
+						<h5>DANH MỤC</h5>
+						
+						<table style="padding-left: 0px;height:100% ">
+							<tr>
+								<td style="width:5% ;background-color: gainsboro;"></td>
+								<td style="vertical-align:top">
+									<ul class="nav-list" style="">
+										<li class="myli" ><a href="/webtoeic/listening">Luyện bài nghe</a></li>
+										<li class="myli"><a href="/webtoeic/reading">Luyện bài đọc</a> <br></li>
+										<li class="myli"><a href="/webtoeic/listExam">Bài thi thử</a></li>
+										<li class="myli"><a href="/webtoeic/listGrammar">Học ngữ pháp</a></li>
+										<li class="myli"><a href="/webtoeic/listVocab">Học từ vựng</a></li>
+									</ul>
+								</td>
+							</tr>
+						</table>
+						
+					</div>-->
 				</div>
 			</div>
 
 			<!--Pagination-->
-			<!--<c:if test="${listData.size() != 0}">
-
+			<th:block th:if="${listData.size() != 0}">
+			
 				<div class="paging">
-					<c:if test="${currentPage != 1}">
-						<a href="/webtoeic/listGrammar?page=${currentPage-1}">Back</a>
-					</c:if>
-					<c:if test="${currentPage == 1}">
-						<a class="current">1</a>
-					</c:if>
+					
+					<a class="page" style ="background-color: gray;" th:if="${listData.size() != 0}" th:href="@{/listGrammar?page=}+${currentPage-1}">Back</a>
+					<a  th:if="${currentPage == 1}"class="current page">1</a>
+					<a class="page" th:if ="${currentPage != 1}" th:href="@{/listGrammar?page=1}">1</a>
+					<th:block th:each="pag : ${pageList}">
+						<a th:if ="${currentPage == pag}"  class="current page" th:text="${pag}"></a>
+						<a th:if ="${currentPage != pag}" th:href="@{/listGrammar?page=}+${pag}" th:text="${pag}"></a>
+					</th:block>
+					<a style ="background-color: gray;" th:if="${currentPage != totalPage}" th:href="@{/listGrammar?page=}+${currentPage+1}" class="pageNext page">Next</a>
 
-					<c:if test="${currentPage != 1}">
-						<a href="/webtoeic/listGrammar?page=1">1</a>
-					</c:if>
-
-					<c:forEach var="pag" items="${pageList}" varStatus="loop">
-						<c:if test="${currentPage == pag}">
-							<a class="current">${pag}</a>
-						</c:if>
-						<c:if test="${currentPage != pag}">
-							<a href="/webtoeic/listGrammar?page=${pag}">${pag}</a>
-						</c:if>
-					</c:forEach>
-
-					<c:if test="${currentPage != totalPage}">
-						<a href="/webtoeic/listGrammar?page=${currentPage+1} " class="pageNext">Next</a>
-					</c:if>
 				</div>
-			</c:if>-->
-
+			</th:block>
+			
+			
+		<hr class="myhr">
+		<br>
 		</div>
 
 		<!--/.End Pagination-->
 	</div>
 	<br>
 	<br>
-	<br>
-	<br>
-	<br>
-	<br>
+		<!-- footer section -->
+	<section class="">
+		<div th:replace="client/include/footer::footer"> </div>
+	</section>
+	<!-- footer section -->
 </body>
 
 </html>

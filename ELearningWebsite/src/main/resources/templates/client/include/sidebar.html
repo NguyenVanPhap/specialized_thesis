@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+
+<body>
+
+	<div th:fragment="sidebar">
+		<div class="side-bar" style="padding-left: 0px;height:100%">
+
+			<h5>DANH MỤC</h5>
+
+			<table style="padding-left: 0px;height:100% ">
+				<tr>
+					<td style="width:5% ;background-color: gainsboro;"></td>
+					<td style="vertical-align:top">
+						<ul class="nav-list" style="">
+							<li class="myli"><a href="/webtoeic/listening">Luyện bài nghe</a></li>
+							<li class="myli"><a href="/webtoeic/reading">Luyện bài đọc</a> <br></li>
+							<li class="myli"><a href="/webtoeic/listExam">Bài thi thử</a></li>
+							<li class="myli"><a href="/webtoeic/listGrammar">Học ngữ pháp</a></li>
+							<li class="myli"><a href="/webtoeic/listVocab">Học từ vựng</a></li>
+						</ul>
+					</td>
+				</tr>
+			</table>
+
+		</div>
+	</div>
+</body>
+
+</html>

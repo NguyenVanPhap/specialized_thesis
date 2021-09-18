@@ -41,11 +41,11 @@
 											<b class="caret"></b>
 										</a>
 										<ul class="dropdown-menu">
-											<li><a class="nav-link" th:href="@{/webtoeic/listening/}">Luyện bài nghe</a>
+											<li><a class="nav-link" th:href="@{/listening/}">Luyện bài nghe</a>
 											</li>
-											<li><a class="nav-link" th:href="@{/webtoeic/reading/}">Luyện bài đọc</a>
+											<li><a class="nav-link" th:href="@{/reading/}">Luyện bài đọc</a>
 											</li>
-											<li><a class="nav-link" th:href="@{/webtoeic/listGrammar}">Ngữ pháp</a></li>
+											<li><a class="nav-link" th:href="@{/listGrammar}">Ngữ pháp</a></li>
 											<li><a class="nav-link" th:href="@{/listVocab}">Từ vựng</a></li>
 										</ul>
 									</li>
@@ -68,11 +68,6 @@
 
 										<li class="dropdown nav-item active">
 
-											<!--<a href="#" class="dropdown-toggle " data-toggle="dropdown">
-												<div th:text="${#authentication.name}"></div>
-												<b class="caret"></b>
-											</a> authentication.name-->
-											
 											<a th:text="${loggedInUser.hoTen}" class="dropdown-toggle nav-link" data-toggle="dropdown">
 												
 												<b class="caret"></b>

@@ -3,7 +3,15 @@ body {
   color: #48494a;
   background-image: url(../images/body-bg.jpg);
 }
-
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1040;
+  background-color: rgba(0,0,0,.0001) !important;
+}
 #sidebar {
   position: fixed;
   top: 50px;

@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+	<meta charset="ISO-8859-1">
+	<title>Danh sách bài Grammar</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<!-- Mobile Metas -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+	<!-- Site Metas -->
+	<meta name="keywords" content="" />
+	<meta name="description" content="" />
+	<meta name="author" content="" />
+
+
+	<script th:src="@{/js/html5shiv.js}"></script>
+	<script th:src="@{/js/jquery-1.js}"></script>
+	<!-- bootstrap core css -->
+	<link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.css}" />
+	<!-- progress barstle -->
+	<link rel="stylesheet" th:href="@{/css/css-circular-prog-bar.css}">
+	<!-- fonts style -->
+	<link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
+	<!-- font wesome stylesheet -->
+	<link rel="stylesheet" th:href="@{https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css}">
+	<!-- Custom styles for this template -->
+	<!-- responsive style -->
+	<link th:href="@{/css/responsive.css}" rel="stylesheet" />
+	<link rel="stylesheet" th:href="@{/css/css-circular-prog-bar.css}">
+
+	<link th:href="@{/css/style.css}" rel="stylesheet" />
+
+
+
+	<!-- jQuery library -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+	<!-- Latest compiled JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+
+	<style type="text/css">
+		.hidden {
+			display: none;
+		}
+
+		.error-message {
+			color: red;
+		}
+
+		.anchor {
+			display: block;
+			height: 115px;
+			/*same height as header*/
+			margin-top: -115px;
+			/*same height as header*/
+			visibility: hidden;
+		}
+
+		.imageGrammar {
+			float: left;
+			height: 150px;
+			width: 250px;
+			margin-bottom: 25px;
+		}
+	</style>
+	<script type="text/javascript">
+		function Search() {
+
+			var baseUrl = document.getElementById('baseUrl').value;
+			var xhttp;
+			var search = document.getElementById('searchGrammar').value;
+
+			//remove special letters
+			var convertSearch = search.replace(/[^a-zA-Z0-9 ]/g, "");
+
+			var url;
+			if (!search == ' ') {
+				url = baseUrl + "/searchGrammar/" + convertSearch;
+			}
+			else url = baseUrl + "/searchGrammar/all";
+
+
+			if (window.XMLHttpRequest) {
+				xhttp = new XMLHttpRequest();
+			}
+			else {
+				xhttp = new ActiveXObject("Microsoft.XMLHTTP");
+			}
+
+			xhttp.onreadystatechange = function () {
+				if (xhttp.readyState == 4) {
+					var data = xhttp.responseText;
+					document.getElementById("resultsearchGrammar").innerHTML = data;
+				}
+			}
+
+			xhttp.open("POST", url, true);
+			xhttp.send();
+
+		}
+	</script>
+
+
+</head>
+
+<body>
+
+	<header>
+		<div th:replace="client/include/header::header"> </div>
+		<input style="display:none;" id="baseUrl" value="${pageContext.request.contextPath}" />
+	</header>
+
+
+	<div class="container">
+		<!--PAGE TITLE-->
+		<div>
+			<div class="row">
+				<div class="col-sm-9">
+					<h4>DANH SÁCH BÀI GRAMMAR</h4>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-9">
+
+					<div>
+						<input type="text" class="form-control" id="searchGrammar" placeholder="Tìm kiếm bài grammar..."
+							style="width: 400px; margin-top:6px;" name="search" onkeyup="Search()">
+					</div>
+
+				</div>
+			</div>
+		</div>
+		<br>
+		<br>
+		<br>
+		<!-- /. PAGE TITLE-->
+		<div id="resultsearchGrammar">
+
+			<div class="row">
+				<div class="col-sm-9">
+					<th:block th:if="${#lists.size(listData) == 0 }">
+						<h3>Không tìm thấy dữ liệu</h3>
+					</th:block>
+					<th:block th:each="list : ${listData}">
+						<div class="span5">
+							<table>
+								<tr>
+									<td>
+										<img class="imageGrammar" th:src="@{/images/grammar/${list.anhbaigrammar}}">
+									</td>
+									<td>
+										<div class="lead">
+											<h4 th:text="${list.tenbaigrammar}"></h4>
+										</div>
+										<div>
+											<a th:href="@{/detailGram?idGram=${list.baigrammarid}}" class="btn btn-primary">Chi tiết</a>
+										</div>
+									</td>
+								</tr>
+							</table>							
+						</div>						
+					</th:block>				
+					<br>
+				</div>
+				<div class="col-sm-3">
+					<div class="side-bar">
+
+						<h3>DANH MỤC</h3>
+						<ul class="nav nav-list">
+							<li><a href="/webtoeic/listening">LUYỆN BÀI NGHE</a></li>
+							<li><a href="/webtoeic/reading">LUYỆN BÀI ĐỌC</a></li>
+							<li><a href="/webtoeic/listExam">THI THỬ</a></li>
+							<li><a href="/webtoeic/listGrammar">HỌC NGỮ PHÁP</a></li>
+							<li><a href="/webtoeic/listVocab">HỌC TỪ VỰNG</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+
+			<!--Pagination-->
+			<!--<c:if test="${listData.size() != 0}">
+
+				<div class="paging">
+					<c:if test="${currentPage != 1}">
+						<a href="/webtoeic/listGrammar?page=${currentPage-1}">Back</a>
+					</c:if>
+					<c:if test="${currentPage == 1}">
+						<a class="current">1</a>
+					</c:if>
+
+					<c:if test="${currentPage != 1}">
+						<a href="/webtoeic/listGrammar?page=1">1</a>
+					</c:if>
+
+					<c:forEach var="pag" items="${pageList}" varStatus="loop">
+						<c:if test="${currentPage == pag}">
+							<a class="current">${pag}</a>
+						</c:if>
+						<c:if test="${currentPage != pag}">
+							<a href="/webtoeic/listGrammar?page=${pag}">${pag}</a>
+						</c:if>
+					</c:forEach>
+
+					<c:if test="${currentPage != totalPage}">
+						<a href="/webtoeic/listGrammar?page=${currentPage+1} " class="pageNext">Next</a>
+					</c:if>
+				</div>
+			</c:if>-->
+
+		</div>
+
+		<!--/.End Pagination-->
+	</div>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+</body>
+
+</html>

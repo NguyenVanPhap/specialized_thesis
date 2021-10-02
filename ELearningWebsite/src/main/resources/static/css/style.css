@@ -5,6 +5,21 @@ body {
   /*background-color: #F0F8FF;*/
   background-image: url(../images/body-bg.jpg);
 }
+a:link {
+  color: black;
+}
+
+a:visited {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+a:active {
+  text-decoration: underline;
+}
 .logo_section {
   text-align: center;
 }
@@ -72,6 +87,12 @@ body {
 .btn_on-hover {
   transition: all 0.3s ease 0s;
 }
+.modal-content{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    margin-top: 20%;
+}
 .myhr {
 background-color: gainsboro;
   			height:30px;
@@ -98,10 +119,7 @@ a.page {
   color: #fff;
   transform: translateY(-7px);
 }
-.myhr{
-			width: ;
-			border-radius: 5px;
-		}
+
 .main-heading {
   color: #082465;
   font-weight: bold;

@@ -17,7 +17,7 @@
 			<header class="header_section">
 				<div class="container">
 					<nav class="navbar navbar-expand-lg custom_nav-container ">
-						<a class="navbar-brand" href="index.html">
+						<a class="navbar-brand" th:href="@{/}">
 							<img src="${url}/images/logo.png" alt="">
 							<span>
 								Adward
@@ -33,8 +33,11 @@
 							<div class="d-flex ml-auto flex-column flex-lg-row align-items-center">
 								<ul class="navbar-nav  ">
 									<li class="nav-item active">
-										<a class="nav-link" href="index.html"> Trang Chủ <span
+										<a class="nav-link" th:href="@{/}"> Trang Chủ <span
 												class="sr-only">(current)</span></a>
+									</li>
+									<li class="nav-item">
+										<a class="nav-link" th:href="@{/course}">Khóa học</a>
 									</li>
 									<li class="dropdown nav-item active">
 										<a class="dropdown-toggle nav-link" data-toggle="dropdown">Luyện Tập
@@ -50,6 +53,7 @@
 										</ul>
 									</li>
 
+									
 									<li class="nav-item">
 										<a class="nav-link" href="#">Contact Us</a>
 									</li>
@@ -68,13 +72,14 @@
 
 										<li class="dropdown nav-item active">
 
-											<a th:text="${loggedInUser.hoTen}" class="dropdown-toggle nav-link" data-toggle="dropdown">
-												
+											<a th:text="${loggedInUser.hoTen}" class="dropdown-toggle nav-link"
+												data-toggle="dropdown">
+
 												<b class="caret"></b>
 											</a>
 											<ul class="dropdown-menu">
 												<div th:if="${!nguoiDung.loginOauth2 }">
-													<li><a class="nav-link"th:href="@{/profile}">Tài
+													<li><a class="nav-link" th:href="@{/profile}">Tài
 															khoản</a></li>
 												</div>
 												<li><a class="nav-link" th:href="@{/signout}">Thoát</a></li>

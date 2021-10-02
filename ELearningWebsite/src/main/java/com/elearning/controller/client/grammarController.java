@@ -87,25 +87,25 @@ public class grammarController {
 
 	}
 
-	/*
-	 * @GetMapping("/detailGram") public String DetalVocab(@RequestParam int idGram,
-	 * Model model) {
-	 * 
-	 * BaiGrammar baigrammar = baigrammarService.getBaiGrammar(idGram).get(0);
-	 * 
-	 * List<CommentGrammar> listCmt =
-	 * commentgrammarService.findByBaiGrammar(baigrammar);
-	 * 
-	 * model.addAttribute("listcomment", listCmt);
-	 * 
-	 * model.addAttribute("countCmt", listCmt.size());
-	 * model.addAttribute("baigrammar", baigrammar);
-	 * model.addAttribute("idBaiGrammar", baigrammar.getBaigrammarid());
-	 * 
-	 * return "client/detailGrammar";
-	 * 
-	 * }
-	 */
+	@GetMapping("/detailGram")
+	public String DetalVocab(@RequestParam int idGram, Model model) {
+
+		BaiGrammar baigrammar = baigrammarService.getBaiGrammar(idGram).get(0);
+
+		/*
+		 * List<CommentGrammar> listCmt =
+		 * commentgrammarService.findByBaiGrammar(baigrammar);
+		 * 
+		 * model.addAttribute("listcomment", listCmt);
+		 * 
+		 * model.addAttribute("countCmt", listCmt.size());
+		 */
+		model.addAttribute("baigrammar", baigrammar);
+		model.addAttribute("idBaiGrammar", baigrammar.getBaigrammarid());
+
+		return "client/GrammarDetail";
+
+	}
 
 	/*
 	 * @RequestMapping(value =
@@ -138,19 +138,19 @@ public class grammarController {
 	@RequestMapping(value = "/searchGrammar/{search}", method = RequestMethod.POST)
 	public String searchVocab(Model model, @PathVariable("search") String search,
 			@RequestParam(defaultValue = "1") int page) {
- 
+
 		if (search.equals("all"))
-		
+
 		{
 			Page<BaiGrammar> list = baigrammarService.getBaiGrammar(page - 1, 4);
 			int totalPage = list.getTotalPages();
-			
+
 			model.addAttribute("totalPage", totalPage);
 			model.addAttribute("listData", list.getContent());
 			model.addAttribute("currentPage", page);
-	
+
 			List<Integer> pagelist = new ArrayList<Integer>();
-	
+
 			// Lap ra danh sach cac trang
 			if (page == 1 || page == 2) {
 				for (int i = 2; i <= 3 && i <= totalPage; i++) {
@@ -170,19 +170,17 @@ public class grammarController {
 				}
 				Collections.sort(pagelist);
 			}
-			
+
 			model.addAttribute("pageList", pagelist);
-			model.addAttribute("search",search);
-		
+			model.addAttribute("search", search);
+
 		}
 
-		else
-		{
+		else {
 			List<BaiGrammar> list = baigrammarService.searchListBaiGrammar(search);
 			model.addAttribute("listData", list);
-			model.addAttribute("search",search);
+			model.addAttribute("search", search);
 		}
-		
 
 		return "client/resultSearchGrammar";
 	}

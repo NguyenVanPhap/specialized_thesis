@@ -14,4 +14,9 @@ public class courseController {
 		return "client/list-course";
 
 	}
+	@GetMapping("/video")
+	public String video() {
+		return "client/videopage";
+
+	}
 }

@@ -41,11 +41,9 @@ public class SimpleAuthenticationSuccessHandler implements AuthenticationSuccess
 					e.printStackTrace();
 				}
 			} else {
-				
-				 throw new IllegalStateException(); 
+
+				throw new IllegalStateException();
 			}
 		});
-
 	}
-
 }

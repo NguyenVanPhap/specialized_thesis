@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import com.elearning.entities.BaiTapTuVung;
 import com.elearning.entities.NguoiDung;
 import com.elearning.entities.VaiTro;
-import com.elearning.service.NguoiDungService;
+import com.elearning.service.*;
 
 @Controller
 @RequestMapping("/admin")
@@ -26,6 +26,9 @@ public class AdminController {
 	
 	@Autowired
 	NguoiDungService nguoiDungService;
+	
+	@Autowired
+	BaiTapTuVungService baitaptuvungService;
 	
 	@ModelAttribute("loggedInUser")
 	public NguoiDung loggedInUser() {
@@ -42,6 +45,13 @@ public class AdminController {
 	@GetMapping("/grammar")
 	public String quanLyGrammar() {
 		return "admin/quanLyGrammar";
+	}
+	
+	@GetMapping("/vocab")
+	public String quanLyVocab(Model model) {
+		model.addAttribute("listVocab", baitaptuvungService.findAll());
+		model.addAttribute("baitaptuvung", new BaiTapTuVung());
+		return "admin/quanLyVocab";
 	}
 
 	public NguoiDung getSessionUser(HttpServletRequest request) {

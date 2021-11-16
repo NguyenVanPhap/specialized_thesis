@@ -1,4 +1,5 @@
 <!--<c:url value="${pageContext.request.contextPath}/resources" var="url"></c:url>-->
+
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity">
@@ -395,10 +396,10 @@
 				<div class="modal-body">
 
 					<div class="media">
-						<a class="pull-left"><img src="" class="media-object" /></a>
+						<a class="pull-left"><img src="" class="media-object"  /></a>
 						<div class="media-body">
 
-							<a  class="nav-link" style="color: black;" href="">Bài giảng ngữ pháp</a>
+							<a  class="nav-link" style="color: black;" th:href="@{/listGrammar}">Bài giảng ngữ pháp</a>
 
 						</div>
 					</div>
@@ -407,7 +408,7 @@
 						<a class="pull-left"><img src="" class="media-object" /></a>
 						<div class="media-body">
 
-							<a class="nav-link" style="color: black;" href=""> bài giảng từ vựng</a>
+							<a class="nav-link" style="color: black;" th:href="@{/listVocab}"> Bài giảng từ vựng</a>
 
 						</div>
 					</div>

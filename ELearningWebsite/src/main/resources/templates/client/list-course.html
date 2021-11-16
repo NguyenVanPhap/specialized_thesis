@@ -39,6 +39,14 @@
 	<!--<link rel="stylesheet" th:href="@{/css/bootstrap-theme.css}" media="screen">-->
 	<link rel='stylesheet' id='camera-css' th:href='@{/css/camera.css}' type='text/css' media='all'>
 
+	<style type="text/css">
+		.elementcontent {
+			-webkit-line-clamp: 3;
+			-webkit-box-orient: vertical;
+			overflow: hidden;
+			display: -webkit-box;
+		}
+	</style>
 </head>
 
 <body>
@@ -70,63 +78,25 @@
 			<h2><span>Khóa học mới</span></h2>
 			<div class="row">
 
-				<div class="col-lg-4 col-md-4 col-sm-12">
-					<div class="newsBox">
-						<div class="thumbnail">
-							<figure><img th:src="@{/images/news2.jpg}" alt=""></figure>
-							<div class="caption maxheight2">
-								<div class="box_inner">
-									<div class="box">
-										<p class="title">
-										<h5>Developer</h5>
-										</p>
-										<p>Lorem ipsum dolor sit amet, conc tetu er adipi scing. Praesent ves tibuum
-											molestie lacuiirhs.
-											Aenean.</p>
+				<th:block th:each="list : ${listData}">
+					<div class="col-lg-4 col-md-4 col-sm-12">
+						<div class="newsBox">
+							<div class="thumbnail">
+								<figure><img th:src="@{/images/news2.jpg}" alt=""></figure>
+								<div class="caption maxheight2">
+									<div class="box_inner">
+										<div class="box">
+											<p class="title">
+											<h5> <a th:href="@{course/detail?courseId=}+${list.getKhoaHocId()}" th:text="${list.getTenKhoaHoc()}"></a></h5>
+											</p>
+											<p class="elementcontent" th:text="${list.getContent()}"></p>
+										</div>
 									</div>
 								</div>
 							</div>
 						</div>
 					</div>
-				</div>
-				<div class="col-lg-4 col-md-4 col-sm-12">
-					<div class="newsBox">
-						<div class="thumbnail">
-							<figure><img th:src="@{/images/news3.jpg}" alt=""></figure>
-							<div class="caption maxheight2">
-								<div class="box_inner">
-									<div class="box">
-										<p class="title">
-										<h5>Photography </h5>
-										</p>
-										<p>Lorem ipsum dolor sit amet, conc tetu er adipi scing. Praesent ves tibuum
-											molestie lacuiirhs.
-											Aenean.</p>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-4 col-md-4 col-sm-12">
-					<div class="newsBox">
-						<div class="thumbnail">
-							<figure><img th:src="@{assets/images/news4.jpg}" alt=""></figure>
-							<div class="caption maxheight2">
-								<div class="box_inner">
-									<div class="box">
-										<p class="title">
-										<h5>Audio Editing</h5>
-										</p>
-										<p>Lorem ipsum dolor sit amet, conc tetu er adipi scing. Praesent ves tibuum
-											molestie lacuiirhs.
-											Aenean.</p>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
+				</th:block>
 			</div>
 		</div>
 	</section>

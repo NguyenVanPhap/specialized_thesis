@@ -46,12 +46,17 @@ public class AdminController {
 	public String quanLyGrammar() {
 		return "admin/quanLyGrammar";
 	}
-	
+
+	@GetMapping("/cources")
+	public String cources() {
+		return "admin/QuanLyKhoahoc";
+
 	@GetMapping("/vocab")
 	public String quanLyVocab(Model model) {
 		model.addAttribute("listVocab", baitaptuvungService.findAll());
 		model.addAttribute("vocabbulary", new Vocabulary());
 		return "admin/quanLyVocab";
+
 	}
 
 	public NguoiDung getSessionUser(HttpServletRequest request) {

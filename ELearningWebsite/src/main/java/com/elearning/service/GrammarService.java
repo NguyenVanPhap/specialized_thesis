@@ -8,11 +8,12 @@ import com.elearning.entities.Grammar;
 
 public interface GrammarService {
 	void save(Grammar baigrammar);
-	List<Grammar> getBaiGrammar(int id);
+	List<Grammar> getGrammar(int id);
 	
-	Page<Grammar> getBaiGrammar(int page, int limit);
+	Page<Grammar> getGrammar(int page, int limit);
 	
-	List<Grammar> getAllBaiGrammar();
+	List<Grammar> getAllGrammar();
+
 	void delete(int id);
 	
 	List<Grammar> searchListBaiGrammar(String search);

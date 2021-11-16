@@ -11,21 +11,25 @@ import javax.persistence.Table;
 @Table(name = "KhoaHoc")
 public class KhoaHoc {
 	@Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "khoahocid", nullable = false)
 	private Integer khoahocid;
-	
+
 	@Column(name = "tenkhoahoc")
 	private String tenkhoahoc;
-	
-	@Column(name = "anhkhoahoc")
-	private String anhkhoahoc;
-	
 
+	@Column(name = "targetuser")
+	private String targetuser;
 
+	@Column(name = "content")
+	private String content;
+	
+	
+	
 	public Integer getKhoaHocId() {
 		return khoahocid;
 	}
+
 	public void setKhoaHocId(Integer khoahocid) {
 		this.khoahocid = khoahocid;
 	}
@@ -33,29 +37,37 @@ public class KhoaHoc {
 	public String getTenKhoaHoc() {
 		return tenkhoahoc;
 	}
+
 	public void setTenKhoHoc(String tenkhoahoc) {
 		this.tenkhoahoc = tenkhoahoc;
 	}
 
-	public String getAnhKhoaHoc() {
-		return anhkhoahoc;
-	}
-	public void setAnhKhoaHoc(String anhkhoahoc) {
-		this.anhkhoahoc = anhkhoahoc;
-	}
 	public KhoaHoc() {
-		
+
 	}
 
-	public KhoaHoc(Integer khoahocid, String tenkhoahoc, String anhkhoahoc) {
+	public String getTargetUser() {
+		return targetuser;
+	}
+
+	public void setTargetUser(String targetuser) {
+		this.targetuser = targetuser;
+	}
+
+	
+	public String getContent() {
+		return content;
+	}
+
+	public void setContent(String content) {
+		this.content = content;
+	}
+
+	public KhoaHoc(Integer khoahocid, String tenkhoahoc, String targetuser) {
 		super();
 		this.khoahocid = khoahocid;
-		this.tenkhoahoc= tenkhoahoc;
-		this.anhkhoahoc = anhkhoahoc;
+		this.tenkhoahoc = tenkhoahoc;
+		this.targetuser = targetuser;
 	}
-
-
-	
-	
 
 }

@@ -22,18 +22,21 @@ public class GrammarServiceImpl implements GrammarService {
 	}
 	
 	@Override
-	public List<Grammar> getBaiGrammar(int id){
+
+	public List<Grammar> getGrammar(int id){
+
 		return baigrammarRepo.findByGrammarid(id);
 	}
 	
 	@Override
-	public Page<Grammar> getBaiGrammar(int page, int size){
+	public Page<Grammar> getGrammar(int page, int size){
+
 		return baigrammarRepo.findAll(PageRequest.of(page, size));
 		
 	}
 	
 	@Override
-	public List<Grammar>getAllBaiGrammar(){
+	public List<Grammar>getAllGrammar(){
 		return baigrammarRepo.findAll();
 	}
 	

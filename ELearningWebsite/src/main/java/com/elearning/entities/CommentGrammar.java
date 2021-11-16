@@ -46,6 +46,7 @@ public class CommentGrammar {
 	@JoinColumn(name="baigrammarid",nullable= false)
 	@OnDelete(action = OnDeleteAction.CASCADE)
 	@JsonIgnore
+
 	private Grammar grammar;
 
 	public Integer getCmtgrammarid() {
@@ -81,11 +82,12 @@ public class CommentGrammar {
 	}
 
 	public Grammar getBaigrammar() {
-		return grammar;
+		return baigrammar;
 	}
 
-	public void setBaigrammar(Grammar grammar) {
-		this.grammar = grammar;
+	public void setBaigrammar(Grammar baigrammar) {
+		this.baigrammar = baigrammar;
+
 	}
 
 	
@@ -102,7 +104,8 @@ public class CommentGrammar {
 	}
 	
 	public CommentGrammar(Integer cmtgrammarid, String cmtgrammarcontent, Date ngaycomment, NguoiDung nguoidung,
-			Grammar grammar) {
+			Grammar baigrammar) {
+
 		super();
 		this.cmtgrammarid = cmtgrammarid;
 		this.cmtgrammarcontent = cmtgrammarcontent;

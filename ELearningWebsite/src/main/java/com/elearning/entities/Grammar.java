@@ -11,44 +11,34 @@ import javax.persistence.Table;
 @Table(name = "grammar")
 public class Grammar {
 	@Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "grammarid", nullable = false)
 	private Integer grammarid;
-	
+
 	@Column(name = "grammarname")
 	private String grammarname;
-	
-	@Column(name = "grammarimage")
-	private String grammarimage;
-	
-	@Column(columnDefinition = "TEXT",name="content_HTML")
+
+	@Column(columnDefinition = "TEXT", name = "content_HTML")
 	private String contentHTML;
-	
-	@Column(columnDefinition = "TEXT",name="content_MarkDown")
+
+	@Column(columnDefinition = "TEXT", name = "content_MarkDown")
 	private String contentMarkDown;
 
-	public Integer getGrammarid() {
+	public Integer getGrammarId() {
 		return grammarid;
 	}
 
-	public void setGrammarid(Integer baigrammarid) {
-		this.grammarid = baigrammarid;
+	public void setGrammarId(Integer grammarid) {
+		this.grammarid = grammarid;
 	}
 
-	public String getGrammarname() {
+	public String getGrammarName() {
 		return grammarname;
 	}
 
-	public void setGrammarname(String tenbaigrammar) {
-		this.grammarname = tenbaigrammar;
-	}
-
-	public String getGrammarimage() {
-		return grammarimage;
-	}
-
-	public void setGrammarimage(String anhbaigrammar) {
-		this.grammarimage = anhbaigrammar;
+	public void setTenbaigrammar(String grammarname) {
+		this.grammarname = grammarname;
 	}
 
 
@@ -69,21 +59,17 @@ public class Grammar {
 	}
 
 	public Grammar() {
-		
+
 	}
 
-	public Grammar(Integer grammarid, String grammarname, String grammarimage, String contentHTML,
-			String contentMarkDown) {
+	public Grammar(Integer grammarid, String grammarname, String contentHTML, String contentMarkDown) {
 		super();
 		this.grammarid = grammarid;
 		this.grammarname = grammarname;
-		this.grammarimage = grammarimage;
+
 		this.contentHTML = contentHTML;
 		this.contentMarkDown = contentMarkDown;
 	}
 
-
-	
-	
 
 }

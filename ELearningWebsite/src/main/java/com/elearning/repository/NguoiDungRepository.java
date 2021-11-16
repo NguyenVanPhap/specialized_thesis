@@ -8,13 +8,13 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.elearning.entities.NguoiDung;
-import com.elearning.entities.VaiTro;
+import com.elearning.entities.Role;
 
 public interface NguoiDungRepository extends JpaRepository<NguoiDung, Long> {
 
 	NguoiDung findByEmail(String email);
 	
-	Page<NguoiDung> findByVaiTro(VaiTro vaiTro, Pageable of);
+	Page<NguoiDung> findByVaiTro(Role vaiTro, Pageable of);
 
-	List<NguoiDung> findByVaiTro(VaiTro vaiTro);	
+	List<NguoiDung> findByVaiTro(Role vaiTro);	
 }

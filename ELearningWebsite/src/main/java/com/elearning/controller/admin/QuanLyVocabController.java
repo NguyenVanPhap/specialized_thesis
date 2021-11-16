@@ -24,10 +24,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.elearning.entities.BaiTapTuVung;
-import com.elearning.entities.NoiDungBaiTapTuVung;
-import com.elearning.service.BaiTapTuVungService;
-import com.elearning.service.NoiDungBaiTapTuVungService;
+import com.elearning.entities.Vocabulary;
+import com.elearning.entities.VocabularyContent;
+import com.elearning.service.VocabularyService;
+import com.elearning.service.DetailVocabularyService;
 
 @Controller
 @RequestMapping("/admin")
@@ -36,9 +36,9 @@ public class QuanLyVocabController {
     @Autowired
     private HttpServletRequest request;
     @Autowired
-    BaiTapTuVungService baitaptuvungService;
+    VocabularyService baitaptuvungService;
     @Autowired
-    NoiDungBaiTapTuVungService noidungbaitaptuvungService;
+    DetailVocabularyService noidungbaitaptuvungService;
 
     @RequestMapping("/vocab/saveVocab")
     public String uploadingPost(
@@ -46,7 +46,7 @@ public class QuanLyVocabController {
             , @RequestParam("file_listen") MultipartFile[] file_listens
             , @RequestParam("file_Excel") MultipartFile file_excel
             , @RequestParam("file_imageVocab") MultipartFile file_imageVocab
-            , @ModelAttribute("baitaptuvung") BaiTapTuVung baitaptuvung, BindingResult result
+            , @ModelAttribute("baitaptuvung") Vocabulary baitaptuvung, BindingResult result
             , RedirectAttributes redirectAttrs
     ) throws IOException {
 
@@ -75,7 +75,7 @@ public class QuanLyVocabController {
         }
 
         //save to db baitaptuvung
-        baitaptuvung.setAnhbaituvung(file_imageVocab.getOriginalFilename());
+        baitaptuvung.setImage(file_imageVocab.getOriginalFilename());
         baitaptuvungService.save(baitaptuvung);
 
         // save content from file excel to noi_dung_bai_tu_vung
@@ -83,12 +83,12 @@ public class QuanLyVocabController {
 
         try {
 
-            List<NoiDungBaiTapTuVung> noidungbttuvungList = new ArrayList<NoiDungBaiTapTuVung>();
+            List<VocabularyContent> noidungbttuvungList = new ArrayList<VocabularyContent>();
             XSSFWorkbook workbook = new XSSFWorkbook(file_excel.getInputStream());
             XSSFSheet worksheet = workbook.getSheetAt(0);
 
             for (int i = 0; i < worksheet.getPhysicalNumberOfRows(); i++) {
-                NoiDungBaiTapTuVung noidungbaitaptuvung = new NoiDungBaiTapTuVung();
+                VocabularyContent noidungbaitaptuvung = new VocabularyContent();
 
                 XSSFRow row = worksheet.getRow(i);
 
@@ -108,7 +108,7 @@ public class QuanLyVocabController {
 
         } catch (Exception e) {
             System.out.println("Error: " + e);
-            String error = "Có lỗi xảy ra, update or add again, id =" + baitaptuvung.getBaitaptuvungid();
+            String error = "Có lỗi xảy ra, update or add again, id =" + baitaptuvung.getVocabularyId();
             redirectAttrs.addFlashAttribute("error", error);
             redirectAttrs.addFlashAttribute("errorInfo", e);
 

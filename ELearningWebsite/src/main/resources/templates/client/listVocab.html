@@ -116,6 +116,7 @@
 
 </head>
 
+
 <body>
 
 
@@ -156,14 +157,14 @@
 							<table>
 								<tr>
 									<td>
-										<img class="imageVocab" th:src="@{/images/vocab/${list.anhbaivocab}}">
+										<img class="imageVocab" th:src="@{/images/vocab/${list.getImage}}">
 									</td>
 									<td>
 										<div class="lead">
-											<h6 th:text="${list.tenbaituvung}"></h4>
+											<h6 th:text="${list.getVocabularyName}"></h4>
 										</div>
 										<div>
-											<a th:href="@{/detailVocab?idVocab=}+${list.baitaptuvungid}" class="btn btn-primary">Chi tiết</a>
+											<a th:href="@{/detailVocab?idVocab=}+${list.getVocabularyId}" class="btn btn-primary">Chi tiết</a>
 										</div>
 									</td>
 								</tr>

@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.elearning.entities.NguoiDung;
-import com.elearning.entities.VaiTro;
+import com.elearning.entities.Role;
 import com.elearning.service.NguoiDungService;
 import com.elearning.service.SecurityService;
 import com.elearning.validator.NguoiDungValidator;
@@ -46,7 +46,7 @@ public class RegisterController {
 			return "register";
 		}
 		System.out.println("ok2");
-		nguoiDung.setVaiTro(VaiTro.ROLE_MEMBER);
+		nguoiDung.setVaiTro(Role.ROLE_MEMBER);
 		nguoiDungService.saveUser(nguoiDung);
 		//securityService.autologin(nguoiDung.getEmail(), nguoiDung.getConfirmPassword());
 		System.out.println("ok3");

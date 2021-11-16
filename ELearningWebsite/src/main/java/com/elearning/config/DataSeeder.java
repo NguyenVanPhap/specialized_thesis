@@ -7,7 +7,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import com.elearning.entities.NguoiDung;
-import com.elearning.entities.VaiTro;
+import com.elearning.entities.Role;
 import com.elearning.repository.NguoiDungRepository;
 
 @Component
@@ -28,7 +28,7 @@ public class DataSeeder implements ApplicationListener<ContextRefreshedEvent> {
 			admin.setPassword(passwordEncoder.encode("123456"));
 			admin.setHoTen("Nguyễn Văn Pháp");
 			admin.setSoDienThoai("123456789");
-			admin.setVaiTro(VaiTro.ROLE_ADMIN);
+			admin.setVaiTro(Role.ROLE_ADMIN);
 			userRepository.save(admin);
 		}
 
@@ -39,7 +39,7 @@ public class DataSeeder implements ApplicationListener<ContextRefreshedEvent> {
 			member.setSoDienThoai("123456789");
 			member.setEmail("member@gmail.com");
 			member.setPassword(passwordEncoder.encode("123456"));
-			member.setVaiTro(VaiTro.ROLE_MEMBER);
+			member.setVaiTro(Role.ROLE_MEMBER);
 			userRepository.save(member);
 		}
 	}

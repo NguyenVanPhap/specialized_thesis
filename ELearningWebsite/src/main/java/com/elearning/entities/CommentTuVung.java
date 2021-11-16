@@ -50,7 +50,7 @@ public class CommentTuVung {
 	@JoinColumn(name="baitaptuvungid",nullable= false)
 	@OnDelete(action = OnDeleteAction.CASCADE)
 	@JsonIgnore
-	private BaiTapTuVung baitaptuvung;
+	private Vocabulary baitaptuvung;
 
 	
 	public CommentTuVung() {
@@ -59,7 +59,7 @@ public class CommentTuVung {
 	
 
 	public CommentTuVung(Integer cmtvocabularyid, String cmtvocabularycontent, Date ngaycomment, NguoiDung nguoidung,
-			BaiTapTuVung baitaptuvung) {
+			Vocabulary baitaptuvung) {
 		super();
 		this.cmtvocabularyid = cmtvocabularyid;
 		this.cmtvocabularycontent = cmtvocabularycontent;
@@ -103,11 +103,11 @@ public class CommentTuVung {
 		this.nguoidung = nguoidung;
 	}
 
-	public BaiTapTuVung getBaitaptuvung() {
+	public Vocabulary getBaitaptuvung() {
 		return baitaptuvung;
 	}
 
-	public void setBaitaptuvung(BaiTapTuVung baitaptuvung) {
+	public void setBaitaptuvung(Vocabulary baitaptuvung) {
 		this.baitaptuvung = baitaptuvung;
 	}
 

@@ -8,18 +8,18 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "bai_grammar")
-public class BaiGrammar {
+@Table(name = "grammar")
+public class Grammar {
 	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "baigrammarid", nullable = false)
-	private Integer baigrammarid;
+	@Column(name = "grammarid", nullable = false)
+	private Integer grammarid;
 	
-	@Column(name = "tenbaigrammar")
-	private String tenbaigrammar;
+	@Column(name = "grammarname")
+	private String grammarname;
 	
-	@Column(name = "anhbaigrammar")
-	private String anhbaigrammar;
+	@Column(name = "grammarimage")
+	private String grammarimage;
 	
 	@Column(columnDefinition = "TEXT",name="content_HTML")
 	private String contentHTML;
@@ -27,28 +27,28 @@ public class BaiGrammar {
 	@Column(columnDefinition = "TEXT",name="content_MarkDown")
 	private String contentMarkDown;
 
-	public Integer getBaigrammarid() {
-		return baigrammarid;
+	public Integer getGrammarid() {
+		return grammarid;
 	}
 
-	public void setBaigrammarid(Integer baigrammarid) {
-		this.baigrammarid = baigrammarid;
+	public void setGrammarid(Integer baigrammarid) {
+		this.grammarid = baigrammarid;
 	}
 
-	public String getTenbaigrammar() {
-		return tenbaigrammar;
+	public String getGrammarname() {
+		return grammarname;
 	}
 
-	public void setTenbaigrammar(String tenbaigrammar) {
-		this.tenbaigrammar = tenbaigrammar;
+	public void setGrammarname(String tenbaigrammar) {
+		this.grammarname = tenbaigrammar;
 	}
 
-	public String getAnhbaigrammar() {
-		return anhbaigrammar;
+	public String getGrammarimage() {
+		return grammarimage;
 	}
 
-	public void setAnhbaigrammar(String anhbaigrammar) {
-		this.anhbaigrammar = anhbaigrammar;
+	public void setGrammarimage(String anhbaigrammar) {
+		this.grammarimage = anhbaigrammar;
 	}
 
 
@@ -68,16 +68,16 @@ public class BaiGrammar {
 		this.contentMarkDown = contentMarkDown;
 	}
 
-	public BaiGrammar() {
+	public Grammar() {
 		
 	}
 
-	public BaiGrammar(Integer baigrammarid, String tenbaigrammar, String anhbaigrammar, String contentHTML,
+	public Grammar(Integer grammarid, String grammarname, String grammarimage, String contentHTML,
 			String contentMarkDown) {
 		super();
-		this.baigrammarid = baigrammarid;
-		this.tenbaigrammar = tenbaigrammar;
-		this.anhbaigrammar = anhbaigrammar;
+		this.grammarid = grammarid;
+		this.grammarname = grammarname;
+		this.grammarimage = grammarimage;
 		this.contentHTML = contentHTML;
 		this.contentMarkDown = contentMarkDown;
 	}

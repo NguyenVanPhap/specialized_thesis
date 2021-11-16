@@ -1,13 +1,13 @@
 package com.elearning.entities;
 
 
-public enum VaiTro {
+public enum Role {
 
 	ROLE_MEMBER(1), ROLE_ADMIN(2);
 	
 	private int value;
 	
-	VaiTro(int value) {
+	Role(int value) {
 		this.value = value;
 	}
 
@@ -19,8 +19,8 @@ public enum VaiTro {
 		this.value = value;
 	}
 	
-    public static VaiTro findByAbbr(int item) {
-        for (VaiTro object : values()) {
+    public static Role findByAbbr(int item) {
+        for (Role object : values()) {
             if (object.value == item) {
                 return object;
             }

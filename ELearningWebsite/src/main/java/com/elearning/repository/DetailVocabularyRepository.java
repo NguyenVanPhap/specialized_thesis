@@ -9,8 +9,8 @@ import com.elearning.entities.*;
 
 
 @Repository
-public interface NoiDungBaiTapTuVungRepository extends JpaRepository<NoiDungBaiTapTuVung, Integer> {
+public interface DetailVocabularyRepository extends JpaRepository<VocabularyContent, Integer> {
 
-    List<NoiDungBaiTapTuVung> findByBaitaptuvung(BaiTapTuVung baitaptuvung);
+    List<VocabularyContent> findByBaitaptuvung(Vocabulary baitaptuvung);
 
 }

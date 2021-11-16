@@ -4,17 +4,17 @@ import java.util.List;
 
 import org.springframework.data.domain.Page;
 
-import com.elearning.entities.BaiGrammar;
+import com.elearning.entities.Grammar;
 
 public interface GrammarService {
-	void save(BaiGrammar baigrammar);
-	List<BaiGrammar> getBaiGrammar(int id);
+	void save(Grammar baigrammar);
+	List<Grammar> getBaiGrammar(int id);
 	
-	Page<BaiGrammar> getBaiGrammar(int page, int limit);
+	Page<Grammar> getBaiGrammar(int page, int limit);
 	
-	List<BaiGrammar> getAllBaiGrammar();
+	List<Grammar> getAllBaiGrammar();
 	void delete(int id);
 	
-	List<BaiGrammar> searchListBaiGrammar(String search);
+	List<Grammar> searchListBaiGrammar(String search);
 
 }

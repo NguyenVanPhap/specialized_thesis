@@ -53,13 +53,13 @@
 			$('#btnComment').click(function () {
 
 				var test = $("#contentComment").val();
-				var baitaptuvungId = $("#id_bai_grammar").val();
+				var grammarid = $("#id_bai_grammar").val();
 				var baseUrl = $('#baseUrl').val();
 
 				$.ajax({
 					dataType: "json",
 					type: 'POST',
-					url: baseUrl + "/grammar/ajaxCmtGram/" + test + "/" + baitaptuvungId,
+					url: baseUrl + "/grammar/ajaxCmtGram/" + test + "/" + grammarid,
 
 					success: function (result) {
 
@@ -118,7 +118,7 @@
 
 			<div class="col-sm-9">
 				<div class="blog-post">
-					<h5 style="text-align: left; color: black" th:text="${baigrammar.getTenbaigrammar()}">Chủ đề:</h5>
+					<h5 style="text-align: left; color: black" th:text="${baigrammar.getGrammarname()}">Chủ đề:</h5>
 					<!-- -->
 					<div class="postmetadata">
 						<ul>

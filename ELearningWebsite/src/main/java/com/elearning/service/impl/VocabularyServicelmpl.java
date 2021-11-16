@@ -7,24 +7,24 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
-import com.elearning.entities.BaiGrammar;
-import com.elearning.entities.BaiTapTuVung;
-import com.elearning.repository.BaiTapTuVungRepository;
+import com.elearning.entities.Grammar;
+import com.elearning.entities.Vocabulary;
+import com.elearning.repository.VocabularyRepository;
 import com.elearning.repository.GrammarRepository;
-import com.elearning.service.BaiTapTuVungService;
+import com.elearning.service.VocabularyService;
 
 @Service
-public class BaiTapTuVungServicelmpl implements BaiTapTuVungService{
+public class VocabularyServicelmpl implements VocabularyService{
 	@Autowired
-	BaiTapTuVungRepository baitaptuvungRepository;
+	VocabularyRepository baitaptuvungRepository;
 
     @Override
-    public List<BaiTapTuVung> findAll() {
-        return (List<BaiTapTuVung>) baitaptuvungRepository.findAll();
+    public List<Vocabulary> findAll() {
+        return (List<Vocabulary>) baitaptuvungRepository.findAll();
     }
 
     @Override
-    public void save(BaiTapTuVung baitaptuvung) {
+    public void save(Vocabulary baitaptuvung) {
         baitaptuvungRepository.save(baitaptuvung);
     }
 
@@ -34,24 +34,24 @@ public class BaiTapTuVungServicelmpl implements BaiTapTuVungService{
     }
 
     @Override
-    public Page<BaiTapTuVung> getBaiTapTuVung(int page, int size) {
+    public Page<Vocabulary> getBaiTapTuVung(int page, int size) {
         return baitaptuvungRepository.findAll(PageRequest.of(page, size));
         //return baitaptuvungRepository.f
 
     }
 
     @Override
-    public Optional<BaiTapTuVung> getBaiTuVungById(Integer id) {
+    public Optional<Vocabulary> getBaiTuVungById(Integer id) {
         return baitaptuvungRepository.findById(id);
     }
 
     @Override
-    public List<BaiTapTuVung> getBaiTapTuVung(int id) {
-        return baitaptuvungRepository.findByBaitaptuvungid(id);
+    public List<Vocabulary> getBaiTapTuVung(int id) {
+        return baitaptuvungRepository.findByVocabularyid(id);
     }
 
     @Override
-    public List<BaiTapTuVung> searchListBaiTapTuVung(String search) {
+    public List<Vocabulary> searchListBaiTapTuVung(String search) {
         return baitaptuvungRepository.searchVocab(search);
     }
 }

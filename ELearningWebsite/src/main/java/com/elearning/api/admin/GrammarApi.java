@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.elearning.entities.BaiGrammar;
+import com.elearning.entities.Grammar;
 import com.elearning.service.GrammarService;
 
 @RestController
@@ -33,7 +33,7 @@ public class GrammarApi {
 	@GetMapping("/loadGrammar")
 	public List<String> showAllGrammar() {
 
-		List<BaiGrammar> list = baigrammarService.getAllBaiGrammar();
+		List<Grammar> list = baigrammarService.getAllBaiGrammar();
 
 		List<String> response = new ArrayList<String>();
 
@@ -42,8 +42,8 @@ public class GrammarApi {
 //					+ "'anhbaithithu':'"+list.get(i).getAnhbaithithu()+			"',"
 //					+ "'tenbaithithu':'"+list.get(i).getTenbaithithu()+			"'}";
 
-			String json = "baithithuid:" + list.get(i).getBaigrammarid() + "," + "anhbaithithu:"
-					+ list.get(i).getAnhbaigrammar() + "," + "tenbaithithu:" + list.get(i).getTenbaigrammar();
+			String json = "baithithuid:" + list.get(i).getGrammarid() + "," + "anhbaithithu:"
+					+ list.get(i).getGrammarimage() + "," + "tenbaithithu:" + list.get(i).getGrammarname();
 
 			response.add(json);
 		}
@@ -61,10 +61,10 @@ public class GrammarApi {
 	// get info Grammar ->edit Grammar
 	@RequestMapping(value = "/infoGrammar/{idBaiGrammar}")
 	public String infoGrammarById(@PathVariable("idBaiGrammar") int id) {
-		BaiGrammar baiGrammar = baigrammarService.getBaiGrammar(id).get(0);
+		Grammar baiGrammar = baigrammarService.getBaiGrammar(id).get(0);
 		
-		String json = "name==" + baiGrammar.getTenbaigrammar() + "|" + "anhbaigrammar=="
-				+ baiGrammar.getAnhbaigrammar() + "|" + "content==" + baiGrammar.getContentMarkDown();
+		String json = "name==" + baiGrammar.getGrammarname() + "|" + "anhbaigrammar=="
+				+ baiGrammar.getGrammarimage() + "|" + "content==" + baiGrammar.getContentMarkDown();
 		
 		return json;
 	}
@@ -82,17 +82,17 @@ public class GrammarApi {
 
 		String rootDirectory = request.getSession().getServletContext().getRealPath("/");
 
-		BaiGrammar baigrammar = new BaiGrammar();
+		Grammar baigrammar = new Grammar();
 		baigrammarService.save(baigrammar);
 
 		try {	
 			// save file upload to local folder
-			Path pathImage = Paths.get(rootDirectory + "/resources/file/images/grammar/" + "" + baigrammar.getBaigrammarid() + "."
+			Path pathImage = Paths.get(rootDirectory + "/resources/file/images/grammar/" + "" + baigrammar.getGrammarid() + "."
 					+ file_image.getOriginalFilename());
 			file_image.transferTo(new File(pathImage.toString()));
-			baigrammar.setAnhbaigrammar(baigrammar.getBaigrammarid() + "." + file_image.getOriginalFilename());
+			baigrammar.setGrammarimage(baigrammar.getGrammarid() + "." + file_image.getOriginalFilename());
 
-			baigrammar.setTenbaigrammar(name);
+			baigrammar.setGrammarname(name);
 			baigrammar.setContentMarkDown(contentMarkdown);
 			baigrammar.setContentHTML(contentHtml);
 
@@ -120,18 +120,18 @@ public class GrammarApi {
 		List<String> response = new ArrayList<String>();
 
 		String rootDirectory = request.getSession().getServletContext().getRealPath("/");
-		BaiGrammar baigrammar = baigrammarService.getBaiGrammar(id).get(0);
+		Grammar baigrammar = baigrammarService.getBaiGrammar(id).get(0);
 		baigrammarService.save(baigrammar);
 		try {	
 			// save file upload to local folder
 			if(!file_image.isEmpty()) {
-			Path pathImage = Paths.get(rootDirectory + "/resources/file/images/grammar/" + "" + baigrammar.getBaigrammarid() + "."
+			Path pathImage = Paths.get(rootDirectory + "/resources/file/images/grammar/" + "" + baigrammar.getGrammarid() + "."
 					+ file_image.getOriginalFilename());
 			file_image.transferTo(new File(pathImage.toString()));
-			baigrammar.setAnhbaigrammar(baigrammar.getBaigrammarid() + "." + file_image.getOriginalFilename());
+			baigrammar.setGrammarimage(baigrammar.getGrammarid() + "." + file_image.getOriginalFilename());
 			}
 			
-			baigrammar.setTenbaigrammar(name);
+			baigrammar.setGrammarname(name);
 			baigrammar.setContentMarkDown(contentMarkdown);
 			baigrammar.setContentHTML(contentHtml);
 

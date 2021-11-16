@@ -22,22 +22,22 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.elearning.entities.BaiGrammar;
-import com.elearning.entities.BaiTapTuVung;
-import com.elearning.entities.NoiDungBaiTapTuVung;
+import com.elearning.entities.Grammar;
+import com.elearning.entities.Vocabulary;
+import com.elearning.entities.VocabularyContent;
 import com.elearning.entities.CommentTuVung;
 import com.elearning.entities.NguoiDung;
-import com.elearning.service.BaiTapTuVungService;
+import com.elearning.service.VocabularyService;
 import com.elearning.service.NguoiDungService;
-import com.elearning.service.NoiDungBaiTapTuVungService;
+import com.elearning.service.DetailVocabularyService;
 
 @Controller
 public class vocabController {
 	@Autowired
-	BaiTapTuVungService baitaptuvungService;
+	VocabularyService baitaptuvungService;
 	
 	@Autowired
-    NoiDungBaiTapTuVungService noidungbaitaptuvungService;
+    DetailVocabularyService noidungbaitaptuvungService;
 
 	@Autowired
 	private NguoiDungService nguoiDungService;
@@ -52,7 +52,7 @@ public class vocabController {
 
         // default value lấy từ kết quả đầu tiên
 
-        Page<BaiTapTuVung> list = baitaptuvungService.getBaiTapTuVung(page - 1, 4);
+        Page<Vocabulary> list = baitaptuvungService.getBaiTapTuVung(page - 1, 4);
         int totalPage = list.getTotalPages();
 
         List<Integer> pagelist = new ArrayList<Integer>();
@@ -87,15 +87,15 @@ public class vocabController {
     @GetMapping("/detailVocab")
     public String DetalVocab(@RequestParam int idVocab, Model model) {
 
-    	Optional<BaiTapTuVung> bttuvung = baitaptuvungService.getBaiTuVungById(idVocab);
+    	Optional<Vocabulary> bttuvung = baitaptuvungService.getBaiTuVungById(idVocab);
 
-        List<NoiDungBaiTapTuVung> list = noidungbaitaptuvungService.getListBaiTapTuVung(bttuvung.get());
+        List<VocabularyContent> list = noidungbaitaptuvungService.getListBaiTapTuVung(bttuvung.get());
 
-        List<BaiTapTuVung> baitaptuvung = baitaptuvungService.getBaiTapTuVung(idVocab);
+        List<Vocabulary> baitaptuvung = baitaptuvungService.getBaiTapTuVung(idVocab);
 //        List<CommentTuVung> listCmt = cmttuvungService.findByBaiTapTuVung(baitaptuvung.get(0));
 
 //        model.addAttribute("listcomment", listCmt);
-        model.addAttribute("idBaiTuVung", list.get(0).getBaitaptuvung().getBaitaptuvungid());
+        model.addAttribute("vocabularyid", list.get(0).getBaitaptuvung().getVocabularyId());
         model.addAttribute("bttuvung", bttuvung.get());
         model.addAttribute("listCauHoi", list);
 //        model.addAttribute("countCmt", listCmt.size());
@@ -110,7 +110,7 @@ public class vocabController {
         // default value lấy từ kết quả đầu tiên
 
         if (search.equals("all")) {
-            Page<BaiTapTuVung> list = baitaptuvungService.getBaiTapTuVung(page - 1, 4);
+            Page<Vocabulary> list = baitaptuvungService.getBaiTapTuVung(page - 1, 4);
             int totalPage = list.getTotalPages();
             model.addAttribute("totalPage", totalPage);
             model.addAttribute("listData", list.getContent());
@@ -140,7 +140,7 @@ public class vocabController {
             model.addAttribute("pageList", pagelist);
             model.addAttribute("search", search);
         } else {
-            List<BaiTapTuVung> list = baitaptuvungService.searchListBaiTapTuVung(search);
+            List<Vocabulary> list = baitaptuvungService.searchListBaiTapTuVung(search);
             model.addAttribute("listData", list);
             model.addAttribute("search", search);
         }

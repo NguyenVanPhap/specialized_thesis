@@ -15,13 +15,13 @@ import org.hibernate.annotations.OnDeleteAction;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-@Table(name = "noi_dung_bai_tu_vung")
-public class NoiDungBaiTapTuVung {
+@Table(name = "vocabularycontent")
+public class VocabularyContent {
 	
 	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "noidungbaituvungid", nullable = false)
-	private Integer noidungbaitaptuvungid;
+	@Column(name = "vocabularycontenid", nullable = false)
+	private Integer vocabularycontenid;
 	
 	@Column(name = "number")
 	private Integer number;
@@ -45,17 +45,17 @@ public class NoiDungBaiTapTuVung {
 	private String sentence;
 	
 	@ManyToOne
-	@JoinColumn(name="baitaptuvungid",nullable= false)
+	@JoinColumn(name="vocabularyid",nullable= false)
 	@OnDelete(action = OnDeleteAction.CASCADE)
 	@JsonIgnore
-	private BaiTapTuVung baitaptuvung;
+	private Vocabulary baitaptuvung;
 
 	public Integer getNoidungbaitaptuvungid() {
-		return noidungbaitaptuvungid;
+		return vocabularycontenid;
 	}
 
 	public void setNoidungbaitaptuvungid(Integer noidungbaitaptuvungid) {
-		this.noidungbaitaptuvungid = noidungbaitaptuvungid;
+		this.vocabularycontenid = noidungbaitaptuvungid;
 	}
 
 	public Integer getNumber() {
@@ -114,11 +114,11 @@ public class NoiDungBaiTapTuVung {
 		this.sentence = sentence;
 	}
 
-	public BaiTapTuVung getBaitaptuvung() {
+	public Vocabulary getBaitaptuvung() {
 		return baitaptuvung;
 	}
 
-	public void setBaitaptuvung(BaiTapTuVung baitaptuvung) {
+	public void setBaitaptuvung(Vocabulary baitaptuvung) {
 		this.baitaptuvung = baitaptuvung;
 	}
 	

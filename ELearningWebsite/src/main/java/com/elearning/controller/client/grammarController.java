@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.elearning.entities.BaiGrammar;
+import com.elearning.entities.Grammar;
 import com.elearning.entities.CommentGrammar;
 import com.elearning.entities.NguoiDung;
 import com.elearning.service.GrammarService;
@@ -53,7 +53,7 @@ public class grammarController {
 
 		// default value lấy từ kết quả đầu tiên
 
-		Page<BaiGrammar> list = baigrammarService.getBaiGrammar(page - 1, 4);
+		Page<Grammar> list = baigrammarService.getBaiGrammar(page - 1, 4);
 
 		int totalPage = list.getTotalPages();
 
@@ -90,7 +90,7 @@ public class grammarController {
 	@GetMapping("/detailGram")
 	public String DetalVocab(@RequestParam int idGram, Model model) {
 
-		BaiGrammar baigrammar = baigrammarService.getBaiGrammar(idGram).get(0);
+		Grammar baigrammar = baigrammarService.getBaiGrammar(idGram).get(0);
 
 		/*
 		 * List<CommentGrammar> listCmt =
@@ -101,7 +101,7 @@ public class grammarController {
 		 * model.addAttribute("countCmt", listCmt.size());
 		 */
 		model.addAttribute("baigrammar", baigrammar);
-		model.addAttribute("idBaiGrammar", baigrammar.getBaigrammarid());
+		model.addAttribute("idBaiGrammar", baigrammar.getGrammarid());
 
 		return "client/GrammarDetail";
 
@@ -142,7 +142,7 @@ public class grammarController {
 		if (search.equals("all"))
 
 		{
-			Page<BaiGrammar> list = baigrammarService.getBaiGrammar(page - 1, 4);
+			Page<Grammar> list = baigrammarService.getBaiGrammar(page - 1, 4);
 			int totalPage = list.getTotalPages();
 
 			model.addAttribute("totalPage", totalPage);
@@ -177,7 +177,7 @@ public class grammarController {
 		}
 
 		else {
-			List<BaiGrammar> list = baigrammarService.searchListBaiGrammar(search);
+			List<Grammar> list = baigrammarService.searchListBaiGrammar(search);
 			model.addAttribute("listData", list);
 			model.addAttribute("search", search);
 		}

@@ -156,17 +156,21 @@
 						<div class="span5" >
 							<table>
 								<tr>
-									<td>
-										<img class="imageGrammar" th:src="@{/images/grammar/${list.anhbaigrammar}}">
-									</td>
+									<!--<td>
+										<img class="imageGrammar" th:src="@{/images/grammar/}+${list.anhbaigrammar}">
+									</td>-->
+									
 									<td>
 										<div class="lead">
-											<h6 th:text="${list.tenbaigrammar}"></h4>
+											<h6 th:text="${list.getGrammarName()}"></h4>
 										</div>
 										<div>
-											<a th:href="@{/detailGram?idGram=}+${list.baigrammarid}" class="btn btn-primary">Chi tiết</a>
+											<a th:href="@{/detailGram?idGram=}+${list.getGrammarId}" class="btn btn-primary">Chi tiết</a>
 										</div>
 									</td>
+									<hr>
+									<br>
+									
 								</tr>
 							</table>							
 						</div>						

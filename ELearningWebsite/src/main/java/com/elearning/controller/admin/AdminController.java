@@ -43,6 +43,10 @@ public class AdminController {
 	public String quanLyGrammar() {
 		return "admin/quanLyGrammar";
 	}
+	@GetMapping("/cources")
+	public String cources() {
+		return "admin/QuanLyKhoahoc";
+	}
 
 	public NguoiDung getSessionUser(HttpServletRequest request) {
 		return (NguoiDung) request.getSession().getAttribute("loggedInUser");

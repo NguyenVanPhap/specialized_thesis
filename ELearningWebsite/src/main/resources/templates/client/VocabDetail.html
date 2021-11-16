@@ -4,8 +4,7 @@
 
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>Hướng dẫn ngữ pháp chi tiết</title>
-
+	<title>Hướng dẫn từ vựng chi tiết</title>
 
 
 	<script th:src="@{/js/html5shiv.js}"></script>
@@ -35,8 +34,6 @@
 
 	<script type="text/javascript" th:src="@{/js/jquery-3.4.1.min.js}"></script>
 
-
-
 	<style type="text/css">
 		.showtext {
 			text-align: auto;
@@ -47,19 +44,19 @@
 		}
 	</style>
 
-	<script type="text/javascript">
+	<!--<script type="text/javascript">
 		$(document).ready(function () {
-			//comment grammar			
+			//comment vocab			
 			$('#btnComment').click(function () {
 
 				var test = $("#contentComment").val();
-				var grammarid = $("#id_bai_grammar").val();
+				var baitaptuvungId = $("#id_bai_tu_v).val();
 				var baseUrl = $('#baseUrl').val();
 
 				$.ajax({
 					dataType: "json",
 					type: 'POST',
-					url: baseUrl + "/grammar/ajaxCmtGram/" + test + "/" + grammarid,
+					url: baseUrl + "/grammar/ajaxCmtGram/" + test + "/" + baitaptuvungId,
 
 					success: function (result) {
 
@@ -81,7 +78,7 @@
 			});
 
 		});
-	</script>
+	</script>-->
 
 
 </head>
@@ -103,51 +100,85 @@
 		<div class="row">
 			<div class="span12">
 				<div class="page-header">
-					<h3>Bài hướng dẫn học ngữ pháp</h3>
+					<h3>Bài hướng dẫn học từ vựng</h3>
 				</div>
 			</div>
 		</div>
 
 		<!-- /. PAGE TITLE-->
-
-
-
-		<div class="row">
-
-			<!--/Start Blog Post-->
-
-			<div class="col-sm-9">
-				<div class="blog-post">
-					<h5 style="text-align: left; color: black" th:text="${baigrammar.getGrammarName()}">Chủ đề:</h5>
-
-					<!-- -->
-					<div class="postmetadata">
-						<ul>
-							<li><i class="icon-user"></i> <a href="#">IT-HCMUTE</a></li>
+	<div class="row">
+	
+	        <!--/Start Blog Post-->
+	
+	        <div class="span9">
+	            <div class="blog-post">
+	                <h2 style="text-align: center; color: blue" th:text="${bttuvung.getVocabularyName()}">Chủ đề:</h2>
+	                <!-- -->
+	                <div class="postmetadata">
+	                    <ul>
+	                        <li><i class="icon-user"></i> <a href="#">IT-HCMUTE</a></li>
 							<li><i class="icon-calendar"></i><a href="#">October, 2021</a></li>
-							<!--<li><i class="icon-comment"></i> <a href="#"> ${countCmt}
-									Comments </a></li>-->
-						</ul>
-					</div>
-					<!--	<img src="@{/images/vocabulary.jpg}" style="height: 330px; width: 870px">-->
-					<div class="row" style="text-align: justify;">
-						<div class="span3"></div>
-						<div class="span9" th:utext="${baigrammar.getContentHTML()}"></div>
+	
+	                    </ul>
+	                </div>
+	
+	                <!--<img
+	                        src="${pageContext.request.contextPath}/resources/static/images/vocabulary.jpg"
+	                        style="height: 330px; width: 870px">-->
+	
+	
+	                <p>
+	                    <!--<c:forEach items="${listCauHoi}" var="list">-->
+	
+	                    <div class="row">
+	                        <div class="span3">
+	                            <b>${list.number}.<span style="color: blue"> ${list.content}
+	                            </span>
+	                            </b> <br> <br> <img
+	                                src="<!--${pageContext.request.contextPath}/resources/static/images/vocab/${list.getImage}-->"
+	                                alt="image not found" style="height: 210px; width: 300px;"/> <br>
+	
+	                            <br>
+	                        </div>
+	                        <div class="span6">
+	                            <br> <br>
+	                <p>
+	                    <b>NAmE:</b> &nbsp; <span style="color: red">${list.transcribe}</span>
+	                </p>
+	
+	                <p>
+	                    <b>Từ loại </b>${list.meaning}
+	                </p>
+	
+	                <p>
+	                    <b>Ví dụ: </b>${list.sentence}
+	                </p>
+	
+	                <audio controls>
+	                    <source
+	                            src="<!--${pageContext.request.contextPath}/resources/file/audio/vocab/${list.audiomp3}-->"
+	                            type="audio/wav">
+	                </audio>
+	
+	                <br>
+	
+	            </div>
+	
+	
+	        </div>
+	        <br>
+	
+	        </c:forEach>
+	
+	        </p>
+	
+	
+	    </div>
+	
+	
+	</div>
 
-					</div>
-				</div>
-			</div>
-
-			<!--/End Blog Post-->
-
-			<!-- Start Categories -->
-			<div class="col-sm-3">
-				<div th:replace="client/include/sidebar::sidebar"> </div>
-			</div>
-
-
-		</div>
-		<!-- End Categories -->
+<!--/End Blog Post-->
 
 
 
@@ -178,7 +209,7 @@
 
 			<th:block sec:authorize="isAuthenticated()">
 				<!--  	<input type="hidden" id="user_id" name="user_id" value="${currentUser.id}"/> -->
-				<input type="hidden" id="id_bai_grammar" value="${idBaiGrammar}" />
+				<input type="hidden" id="id_bai_vocab" value="${vocabularyid}" />
 
 				<div class="blog-spot">
 					<div>

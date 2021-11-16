@@ -9,7 +9,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.elearning.entities.NguoiDung;
-import com.elearning.entities.VaiTro;
+import com.elearning.entities.Role;
 import com.elearning.repository.NguoiDungRepository;
 
 @Service
@@ -49,7 +49,7 @@ public class NguoiDungService {
 		nguoiDungRepo.save(nd);
 	}
 
-	public Page<NguoiDung> findByVaiTro(int page, VaiTro vaiTro) {
+	public Page<NguoiDung> findByVaiTro(int page, Role vaiTro) {
 		return nguoiDungRepo.findByVaiTro(vaiTro, PageRequest.of(page - 1, 6));
 	}
 

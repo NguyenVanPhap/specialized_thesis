@@ -11,6 +11,7 @@ import javax.persistence.Table;
 @Table(name = "grammar")
 public class Grammar {
 	@Id
+
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "grammarid", nullable = false)
 	private Integer grammarid;
@@ -40,6 +41,7 @@ public class Grammar {
 		this.grammarname = grammarname;
 	}
 
+
 	public String getContentHTML() {
 		return contentHTML;
 	}
@@ -64,8 +66,10 @@ public class Grammar {
 		super();
 		this.grammarid = grammarid;
 		this.grammarname = grammarname;
+
 		this.contentHTML = contentHTML;
 		this.contentMarkDown = contentMarkDown;
 	}
+
 
 }

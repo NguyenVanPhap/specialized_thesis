@@ -13,10 +13,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
-import com.elearning.entities.BaiTapTuVung;
+import com.elearning.entities.Vocabulary;
 import com.elearning.entities.NguoiDung;
-import com.elearning.entities.VaiTro;
-import com.elearning.service.NguoiDungService;
+import com.elearning.entities.Role;
+import com.elearning.service.*;
 
 @Controller
 @RequestMapping("/admin")
@@ -26,6 +26,9 @@ public class AdminController {
 	
 	@Autowired
 	NguoiDungService nguoiDungService;
+	
+	@Autowired
+	VocabularyService baitaptuvungService;
 	
 	@ModelAttribute("loggedInUser")
 	public NguoiDung loggedInUser() {
@@ -43,9 +46,17 @@ public class AdminController {
 	public String quanLyGrammar() {
 		return "admin/quanLyGrammar";
 	}
+
 	@GetMapping("/cources")
 	public String cources() {
 		return "admin/QuanLyKhoahoc";
+
+	@GetMapping("/vocab")
+	public String quanLyVocab(Model model) {
+		model.addAttribute("listVocab", baitaptuvungService.findAll());
+		model.addAttribute("vocabbulary", new Vocabulary());
+		return "admin/quanLyVocab";
+
 	}
 
 	public NguoiDung getSessionUser(HttpServletRequest request) {

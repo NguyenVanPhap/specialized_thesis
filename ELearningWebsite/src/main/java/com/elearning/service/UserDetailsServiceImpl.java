@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.elearning.entities.NguoiDung;
-import com.elearning.entities.VaiTro;
+import com.elearning.entities.Role;
 import com.elearning.repository.NguoiDungRepository;
 
 @Service
@@ -33,7 +33,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 		}
 
 		Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
-		VaiTro vaiTro = nguoiDung.getVaiTro();
+		Role vaiTro = nguoiDung.getVaiTro();
 		grantedAuthorities.add(new SimpleGrantedAuthority(vaiTro.name()));
 		return new User(username, nguoiDung.getPassword(), grantedAuthorities);
 	}

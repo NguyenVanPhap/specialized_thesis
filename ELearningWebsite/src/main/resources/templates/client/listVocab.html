@@ -3,7 +3,7 @@
 
 <head>
 	<meta charset="ISO-8859-1">
-	<title>Danh sách bài Grammar</title>
+	<title>Danh sách bài Vocab</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 	<meta charset="utf-8" />
@@ -70,7 +70,7 @@
 			visibility: hidden;
 		}
 
-		.imageGrammar {
+		.imageVocab {
 			float: left;
 			height: 150px;
 			width: 250px;
@@ -78,20 +78,20 @@
 		}
 	</style>
 	<script type="text/javascript">
-		function Search() {
+		function SearchVocab() {
 
 			var baseUrl = document.getElementById('baseUrl').value;
 			var xhttp;
-			var search = document.getElementById('searchGrammar').value;
+			var search = document.getElementById('searchVocab').value;
 
 			//remove special letters
 			var convertSearch = search.replace(/[^a-zA-Z0-9 ]/g, "");
 
 			var url;
 			if (!search == ' ') {
-				url = baseUrl + "/searchGrammar/" + convertSearch;
+				url = baseUrl + "/searchVocab/" + convertSearch;
 			}
-			else url = baseUrl + "/searchGrammar/all";
+			else url = baseUrl + "/searchVocab/all";
 
 
 			if (window.XMLHttpRequest) {
@@ -104,18 +104,18 @@
 			xhttp.onreadystatechange = function () {
 				if (xhttp.readyState == 4) {
 					var data = xhttp.responseText;
-					document.getElementById("resultsearchGrammar").innerHTML = data;
+					document.getElementById("resultsearchVocab").innerHTML = data;
 				}
 			}
 
 			xhttp.open("POST", url, true);
 			xhttp.send();
-
 		}
 	</script>
 
 
 </head>
+
 
 <body>
 
@@ -129,15 +129,15 @@
 		<div>
 			<div class="row">
 				<div class="col-sm-9">
-					<h5>DANH SÁCH BÀI GRAMMAR</h5>
+					<h5>DANH SÁCH BÀI VOCAB</h5>
 				</div>
 			</div>
 			<div class="row">
 				<div class="col-sm-9">
 
 					<div>
-						<input type="text" class="form-control" id="searchGrammar" placeholder="Tìm kiếm bài grammar..."
-							style="width: 400px; margin-top:6px;" name="search" onkeyup="Search()">
+						<input type="text" class="form-control" id="searchVocab" placeholder="Tìm kiếm bài vocab..."
+							style="width: 400px; margin-top:6px;" name="search" onkeyup="SearchVocab()">
 					</div>
 
 				</div>
@@ -145,7 +145,7 @@
 		</div>
 		<hr class="myhr">
 		<!-- /. PAGE TITLE-->
-		<div id="resultsearchGrammar">
+		<div id="resultsearchVocab">
 
 			<div class="row">
 				<div class="col-sm-9">
@@ -156,23 +156,17 @@
 						<div class="span5" >
 							<table>
 								<tr>
-
-									<!--<td>
-										<img class="imageGrammar" th:src="@{/images/grammar/}+${list.anhbaigrammar}">
-									</td>-->
-									
+									<td>
+										<img class="imageVocab" th:src="@{/images/vocab/${list.getImage}}">
+									</td>
 									<td>
 										<div class="lead">
-											<h6 th:text="${list.getGrammarName()}"></h4>
+											<h6 th:text="${list.getVocabularyName}"></h4>
 										</div>
 										<div>
-											<a th:href="@{/detailGram?idGram=}+${list.getGrammarId}" class="btn btn-primary">Chi tiết</a>
-
+											<a th:href="@{/detailVocab?idVocab=}+${list.getVocabularyId}" class="btn btn-primary">Chi tiết</a>
 										</div>
 									</td>
-									<hr>
-									<br>
-									
 								</tr>
 							</table>							
 						</div>						
@@ -209,14 +203,14 @@
 			
 				<div class="paging">
 					
-					<a class="page" style ="background-color: gray;" th:if="${listData.size() != 0}" th:href="@{/listGrammar?page=}+${currentPage-1}">Back</a>
+					<a class="page" style ="background-color: gray;" th:if="${listData.size() != 0}" th:href="@{/listVocab?page=}+${currentPage-1}">Back</a>
 					<a  th:if="${currentPage == 1}"class="current page">1</a>
-					<a class="page" th:if ="${currentPage != 1}" th:href="@{/listGrammar?page=1}">1</a>
+					<a class="page" th:if ="${currentPage != 1}" th:href="@{/listVocab?page=1}">1</a>
 					<th:block th:each="pag : ${pageList}">
 						<a th:if ="${currentPage == pag}"  class="current page" th:text="${pag}"></a>
-						<a th:if ="${currentPage != pag}" th:href="@{/listGrammar?page=}+${pag}" th:text="${pag}"></a>
+						<a th:if ="${currentPage != pag}" th:href="@{/listVocab?page=}+${pag}" th:text="${pag}"></a>
 					</th:block>
-					<a style ="background-color: gray;" th:if="${currentPage != totalPage}" th:href="@{/listGrammar?page=}+${currentPage+1}" class="pageNext page">Next</a>
+					<a style ="background-color: gray;" th:if="${currentPage != totalPage}" th:href="@{/listVocab?page=}+${currentPage+1}" class="pageNext page">Next</a>
 
 				</div>
 			</th:block>

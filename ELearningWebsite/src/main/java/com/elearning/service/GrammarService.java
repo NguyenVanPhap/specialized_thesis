@@ -13,6 +13,7 @@ public interface GrammarService {
 	Page<Grammar> getGrammar(int page, int limit);
 	
 	List<Grammar> getAllGrammar();
+
 	void delete(int id);
 	
 	List<Grammar> searchListBaiGrammar(String search);

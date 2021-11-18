@@ -50,7 +50,7 @@ public class AdminController {
 	@GetMapping("/cources")
 	public String cources() {
 		return "admin/QuanLyKhoahoc";
-
+	}
 	@GetMapping("/vocab")
 	public String quanLyVocab(Model model) {
 		model.addAttribute("listVocab", baitaptuvungService.findAll());

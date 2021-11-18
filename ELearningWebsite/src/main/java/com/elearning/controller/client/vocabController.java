@@ -98,6 +98,7 @@ public class vocabController {
         model.addAttribute("vocabularyid", list.get(0).getBaitaptuvung().getVocabularyId());
         model.addAttribute("bttuvung", bttuvung.get());
         model.addAttribute("listCauHoi", list);
+        
 //        model.addAttribute("countCmt", listCmt.size());
         return "client/VocabDetail";
 

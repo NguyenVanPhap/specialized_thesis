@@ -104,86 +104,104 @@
 				</div>
 			</div>
 		</div>
+		<h2 style="text-align: center" th:text="${bttuvung.getVocabularyName()}">Chủ đề:</h2>
+		<!-- -->
+		<div class="postmetadata">
+			<ul>
+				<li><i class="icon-user"></i> <a href="#">IT-HCMUTE</a></li>
+				<li><i class="icon-calendar"></i><a href="#">October, 2021</a></li>
 
+			</ul>
+		</div>
 		<!-- /. PAGE TITLE-->
-	<div class="row">
-	
-	        <!--/Start Blog Post-->
-	
-	        <div class="span9">
-	            <div class="blog-post">
-	                <h2 style="text-align: center; color: blue" th:text="${bttuvung.getVocabularyName()}">Chủ đề:</h2>
-	                <!-- -->
-	                <div class="postmetadata">
-	                    <ul>
-	                        <li><i class="icon-user"></i> <a href="#">IT-HCMUTE</a></li>
-							<li><i class="icon-calendar"></i><a href="#">October, 2021</a></li>
-	
-	                    </ul>
-	                </div>
-	
-	                <!--<img
+		<div class="row">
+			<div class="col-sm-1">.</div>
+			<div class="col-sm-8">
+				<div class="blog-post">
+
+
+					<!--<img
 	                        src="${pageContext.request.contextPath}/resources/static/images/vocabulary.jpg"
 	                        style="height: 330px; width: 870px">-->
-	
-	
-	                <p>
-	                    <!--<c:forEach items="${listCauHoi}" var="list">-->
-	
-	                    <div class="row">
-	                        <div class="span3">
-	                            <b>${list.number}.<span style="color: blue"> ${list.content}
-	                            </span>
-	                            </b> <br> <br> <img
-	                                src="<!--${pageContext.request.contextPath}/resources/static/images/vocab/${list.getImage}-->"
-	                                alt="image not found" style="height: 210px; width: 300px;"/> <br>
-	
-	                            <br>
-	                        </div>
-	                        <div class="span6">
-	                            <br> <br>
-	                <p>
-	                    <b>NAmE:</b> &nbsp; <span style="color: red">${list.transcribe}</span>
-	                </p>
-	
-	                <p>
-	                    <b>Từ loại </b>${list.meaning}
-	                </p>
-	
-	                <p>
-	                    <b>Ví dụ: </b>${list.sentence}
-	                </p>
-	
-	                <audio controls>
-	                    <source
-	                            src="<!--${pageContext.request.contextPath}/resources/file/audio/vocab/${list.audiomp3}-->"
-	                            type="audio/wav">
-	                </audio>
-	
-	                <br>
-	
-	            </div>
-	
-	
-	        </div>
-	        <br>
-	
-	        </c:forEach>
-	
-	        </p>
-	
-	
-	    </div>
-	
-	
-	</div>
-
-<!--/End Blog Post-->
 
 
 
-		<!-- Start Comment -->
+					<th:block th:each="list : ${listCauHoi}">
+						<div class="span5">
 
+						</div>
+						<div class="row">
+
+							<div class="span6">
+								<h3 th:text="${list.getNumber()}"></h3>
+								<h4 th:text="${list.getContent()}">
+								</h4>
+
+								<p>
+									<b>NAmE:</b> &nbsp; <span style="color: red"
+										th:text="${list.getTranscribe()}"></span>
+								</p>
+
+								<p>
+									<b>Từ loại </b><span th:text="${list.getMeaning()}"></span>
+								</p>
+
+								<p>
+									<b>Ví dụ: </b><span th:text="${list.getSentence()}"></span>
+								</p>
+
+								<audio controls>
+									<source th:src="@{/file/audio/vocab/}+${list.getAudiomp3()}" type="audio/wav">
+								</audio>
+
+								<br>
+
+							</div>
+
+
+
+						</div>
+						<br>
+						<hr>
+					</th:block>
+
+				</div>
+
+
+			</div>
+
+			<!--/End Blog Post-->
+
+			<div class="col-sm-3">
+				<div th:replace="client/include/sidebar::sidebar"> </div>
+				<!--<div class="side-bar" style="padding-left: 0px;height:100%">
+
+						<h5>DANH MỤC</h5>
+						
+						<table style="padding-left: 0px;height:100% ">
+							<tr>
+								<td style="width:5% ;background-color: gainsboro;"></td>
+								<td style="vertical-align:top">
+									<ul class="nav-list" style="">
+										<li class="myli" ><a href="/webtoeic/listening">Luyện bài nghe</a></li>
+										<li class="myli"><a href="/webtoeic/reading">Luyện bài đọc</a> <br></li>
+										<li class="myli"><a href="/webtoeic/listExam">Bài thi thử</a></li>
+										<li class="myli"><a href="/webtoeic/listGrammar">Học ngữ pháp</a></li>
+										<li class="myli"><a href="/webtoeic/listVocab">Học từ vựng</a></li>
+									</ul>
+								</td>
+							</tr>
+						</table>
+						
+					</div>-->
+
+			</div>
+
+			<!-- Start Comment -->
+		</div>
+		<div class="row">
+			<hr class="myhr">
+			<br></div>
 		<div class="row">
 
 			<th:block sec:authorize="isAnonymous()">
@@ -238,10 +256,11 @@
 			</div>-->
 		</div>
 		<!-- End Comment -->
+
+		<!-- End Page Container -->
+		<br>
+		<br>
 	</div>
-	<!-- End Page Container -->
-	<br>
-	<br>
 	<!-- footer section -->
 	<section class="">
 		<div th:replace="client/include/footer::footer"> </div>

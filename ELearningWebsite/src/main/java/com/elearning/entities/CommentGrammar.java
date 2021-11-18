@@ -82,11 +82,11 @@ public class CommentGrammar {
 	}
 
 	public Grammar getBaigrammar() {
-		return baigrammar;
+		return grammar;
 	}
 
 	public void setBaigrammar(Grammar baigrammar) {
-		this.baigrammar = baigrammar;
+		this.grammar = baigrammar;
 
 	}
 

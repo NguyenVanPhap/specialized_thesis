@@ -27,7 +27,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.elearning.entities.Vocabulary;
 import com.elearning.entities.VocabularyContent;
 import com.elearning.service.VocabularyService;
-import com.elearning.service.DetailVocabularyService;
+import com.elearning.service.VocabularyDetailService;
 
 @Controller
 @RequestMapping("/admin")
@@ -36,9 +36,9 @@ public class QuanLyVocabController {
     @Autowired
     private HttpServletRequest request;
     @Autowired
-    VocabularyService baitaptuvungService;
+    VocabularyService vocabularyService;
     @Autowired
-    DetailVocabularyService noidungbaitaptuvungService;
+    VocabularyDetailService vocabularydetailService;
 
     @RequestMapping("/vocab/saveVocab")
     public String uploadingPost(
@@ -46,7 +46,7 @@ public class QuanLyVocabController {
             , @RequestParam("file_listen") MultipartFile[] file_listens
             , @RequestParam("file_Excel") MultipartFile file_excel
             , @RequestParam("file_imageVocab") MultipartFile file_imageVocab
-            , @ModelAttribute("baitaptuvung") Vocabulary baitaptuvung, BindingResult result
+            , @ModelAttribute("vocabulary") Vocabulary vocabulary, BindingResult result
             , RedirectAttributes redirectAttrs
     ) throws IOException {
 
@@ -74,41 +74,41 @@ public class QuanLyVocabController {
 
         }
 
-        //save to db baitaptuvung
-        baitaptuvung.setImage(file_imageVocab.getOriginalFilename());
-        baitaptuvungService.save(baitaptuvung);
+        //save to db vocabulary
+        vocabulary.setImage(file_imageVocab.getOriginalFilename());
+        vocabularyService.save(vocabulary);
 
         // save content from file excel to noi_dung_bai_tu_vung
 
 
         try {
 
-            List<VocabularyContent> noidungbttuvungList = new ArrayList<VocabularyContent>();
+            List<VocabularyContent> vocabularycontentList = new ArrayList<VocabularyContent>();
             XSSFWorkbook workbook = new XSSFWorkbook(file_excel.getInputStream());
             XSSFSheet worksheet = workbook.getSheetAt(0);
 
             for (int i = 0; i < worksheet.getPhysicalNumberOfRows(); i++) {
-                VocabularyContent noidungbaitaptuvung = new VocabularyContent();
+                VocabularyContent vocabularycontetn = new VocabularyContent();
 
                 XSSFRow row = worksheet.getRow(i);
 
-                noidungbaitaptuvung.setNumber((int) row.getCell(0).getNumericCellValue());
-                noidungbaitaptuvung.setContent(row.getCell(1).getStringCellValue());
-                noidungbaitaptuvung.setTranscribe(row.getCell(2).getStringCellValue());
-                noidungbaitaptuvung.setImage(row.getCell(3).getStringCellValue());
-                noidungbaitaptuvung.setAudiomp3(row.getCell(4).getStringCellValue());
-                noidungbaitaptuvung.setMeaning(row.getCell(5).getStringCellValue());
-                noidungbaitaptuvung.setSentence(row.getCell(6).getStringCellValue());
-                noidungbaitaptuvung.setBaitaptuvung(baitaptuvung);
+                vocabularycontetn.setNumber((int) row.getCell(0).getNumericCellValue());
+                vocabularycontetn.setContent(row.getCell(1).getStringCellValue());
+                vocabularycontetn.setTranscribe(row.getCell(2).getStringCellValue());
+                vocabularycontetn.setImage(row.getCell(3).getStringCellValue());
+                vocabularycontetn.setAudiomp3(row.getCell(4).getStringCellValue());
+                vocabularycontetn.setMeaning(row.getCell(5).getStringCellValue());
+                vocabularycontetn.setSentence(row.getCell(6).getStringCellValue());
+                vocabularycontetn.setVocabulary(vocabulary);
 
-                noidungbttuvungList.add(noidungbaitaptuvung);
-                noidungbaitaptuvungService.save(noidungbaitaptuvung);
+                vocabularycontentList.add(vocabularycontetn);
+                vocabularydetailService.save(vocabularycontetn);
             }
 
 
         } catch (Exception e) {
             System.out.println("Error: " + e);
-            String error = "Có lỗi xảy ra, update or add again, id =" + baitaptuvung.getVocabularyId();
+            String error = "Có lỗi xảy ra, update or add again, id =" + vocabulary.getVocabularyId();
             redirectAttrs.addFlashAttribute("error", error);
             redirectAttrs.addFlashAttribute("errorInfo", e);
 
@@ -133,7 +133,7 @@ public class QuanLyVocabController {
     public String edit(@PathVariable Integer id, Model model) {
 
 
-        baitaptuvungService.delete(id);
+        vocabularyService.delete(id);
         return "redirect:/admin/vocab";
 //	        return "admin/quanLyVocab";    
     }

@@ -48,14 +48,14 @@ public class VocabularyContent {
 	@JoinColumn(name="vocabularyid",nullable= false)
 	@OnDelete(action = OnDeleteAction.CASCADE)
 	@JsonIgnore
-	private Vocabulary baitaptuvung;
+	private Vocabulary vocabulary;
 
-	public Integer getNoidungbaitaptuvungid() {
+	public Integer getVocabularyContentId() {
 		return vocabularycontenid;
 	}
 
-	public void setNoidungbaitaptuvungid(Integer noidungbaitaptuvungid) {
-		this.vocabularycontenid = noidungbaitaptuvungid;
+	public void setVocabularyContentId(Integer vocabularycontentid) {
+		this.vocabularycontenid = vocabularycontentid;
 	}
 
 	public Integer getNumber() {
@@ -114,12 +114,12 @@ public class VocabularyContent {
 		this.sentence = sentence;
 	}
 
-	public Vocabulary getBaitaptuvung() {
-		return baitaptuvung;
+	public Vocabulary getVocabulary() {
+		return vocabulary;
 	}
 
-	public void setBaitaptuvung(Vocabulary baitaptuvung) {
-		this.baitaptuvung = baitaptuvung;
+	public void setVocabulary(Vocabulary vocabulary) {
+		this.vocabulary = vocabulary;
 	}
 	
 	

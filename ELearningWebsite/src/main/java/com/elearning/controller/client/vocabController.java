@@ -29,15 +29,15 @@ import com.elearning.entities.CommentTuVung;
 import com.elearning.entities.NguoiDung;
 import com.elearning.service.VocabularyService;
 import com.elearning.service.NguoiDungService;
-import com.elearning.service.DetailVocabularyService;
+import com.elearning.service.VocabularyDetailService;
 
 @Controller
 public class vocabController {
 	@Autowired
-	VocabularyService baitaptuvungService;
+	VocabularyService vocabularyService;
 	
 	@Autowired
-    DetailVocabularyService noidungbaitaptuvungService;
+    VocabularyDetailService detailvocabulary;
 
 	@Autowired
 	private NguoiDungService nguoiDungService;
@@ -52,7 +52,7 @@ public class vocabController {
 
         // default value lấy từ kết quả đầu tiên
 
-        Page<Vocabulary> list = baitaptuvungService.getBaiTapTuVung(page - 1, 4);
+        Page<Vocabulary> list = vocabularyService.getVocabulary(page - 1, 4);
         int totalPage = list.getTotalPages();
 
         List<Integer> pagelist = new ArrayList<Integer>();
@@ -87,16 +87,16 @@ public class vocabController {
     @GetMapping("/detailVocab")
     public String DetalVocab(@RequestParam int idVocab, Model model) {
 
-    	Optional<Vocabulary> bttuvung = baitaptuvungService.getBaiTuVungById(idVocab);
+    	Optional<Vocabulary> vocab = vocabularyService.getVocabularyById(idVocab);
 
-        List<VocabularyContent> list = noidungbaitaptuvungService.getListBaiTapTuVung(bttuvung.get());
+        List<VocabularyContent> list = detailvocabulary.getListVocabulary(vocab.get());
 
-        List<Vocabulary> baitaptuvung = baitaptuvungService.getBaiTapTuVung(idVocab);
+        List<Vocabulary> baitaptuvung = vocabularyService.getVocabulary(idVocab);
 //        List<CommentTuVung> listCmt = cmttuvungService.findByBaiTapTuVung(baitaptuvung.get(0));
 
 //        model.addAttribute("listcomment", listCmt);
-        model.addAttribute("vocabularyid", list.get(0).getBaitaptuvung().getVocabularyId());
-        model.addAttribute("bttuvung", bttuvung.get());
+        model.addAttribute("vocabularyid", list.get(0).getVocabulary().getVocabularyId());
+        model.addAttribute("vocab", vocab.get());
         model.addAttribute("listCauHoi", list);
         
 //        model.addAttribute("countCmt", listCmt.size());
@@ -111,7 +111,7 @@ public class vocabController {
         // default value lấy từ kết quả đầu tiên
 
         if (search.equals("all")) {
-            Page<Vocabulary> list = baitaptuvungService.getBaiTapTuVung(page - 1, 4);
+            Page<Vocabulary> list = vocabularyService.getVocabulary(page - 1, 4);
             int totalPage = list.getTotalPages();
             model.addAttribute("totalPage", totalPage);
             model.addAttribute("listData", list.getContent());
@@ -141,7 +141,7 @@ public class vocabController {
             model.addAttribute("pageList", pagelist);
             model.addAttribute("search", search);
         } else {
-            List<Vocabulary> list = baitaptuvungService.searchListBaiTapTuVung(search);
+            List<Vocabulary> list = vocabularyService.searchListVocabulary(search);
             model.addAttribute("listData", list);
             model.addAttribute("search", search);
         }

@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.elearning.entities.Grammar;
-import com.elearning.entities.KhoaHoc;
-import com.elearning.service.KhoaHocService;
+import com.elearning.entities.Course;
+import com.elearning.service.CourseService;
 
 
 @Controller
@@ -22,12 +22,12 @@ import com.elearning.service.KhoaHocService;
 public class courseController {
 
 	@Autowired
-	private KhoaHocService khoahocService;
+	private CourseService courseService;
 
 	@GetMapping("")
 	public String course(Model model) {
 
-		List<KhoaHoc> listkKhoaHocs = khoahocService.getAllKhoaHoc();
+		List<Course> listkKhoaHocs = courseService.getAllCourse();
 		model.addAttribute("listData", listkKhoaHocs);
 		return "client/list-course";
 
@@ -36,9 +36,9 @@ public class courseController {
 	@GetMapping("/detail")
 	public String DetalVocab(@RequestParam int courseId, Model model) {
 
-		KhoaHoc khoahoc = khoahocService.getKhoaHoc(courseId).get(0);
-		model.addAttribute("course", khoahoc);
-		model.addAttribute("CourseId", khoahoc.getKhoaHocId());
+		Course course = courseService.getCourse(courseId).get(0);
+		model.addAttribute("course", course);
+		model.addAttribute("CourseId", course.getCourseId());
 		return "client/coursedetail";
 
 	}

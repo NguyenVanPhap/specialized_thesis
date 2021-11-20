@@ -87,7 +87,7 @@
 									<div class="box_inner">
 										<div class="box">
 											<p class="title">
-											<h5> <a th:href="@{course/detail?courseId=}+${list.getKhoaHocId()}" th:text="${list.getTenKhoaHoc()}"></a></h5>
+											<h5> <a th:href="@{course/detail?courseId=}+${list.getCourseId()}" th:text="${list.getCourseName()}"></a></h5>
 											</p>
 											<p class="elementcontent" th:text="${list.getContent()}"></p>
 										</div>

@@ -8,15 +8,15 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "KhoaHoc")
-public class KhoaHoc {
+@Table(name = "course")
+public class Course {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "khoahocid", nullable = false)
-	private Integer khoahocid;
+	@Column(name = "courseid", nullable = false)
+	private Integer courseid;
 
-	@Column(name = "tenkhoahoc")
-	private String tenkhoahoc;
+	@Column(name = "coursename")
+	private String coursename;
 
 	@Column(name = "targetuser")
 	private String targetuser;
@@ -26,23 +26,23 @@ public class KhoaHoc {
 	
 	
 	
-	public Integer getKhoaHocId() {
-		return khoahocid;
+	public Integer getCourseId() {
+		return courseid;
 	}
 
-	public void setKhoaHocId(Integer khoahocid) {
-		this.khoahocid = khoahocid;
+	public void setCourseId(Integer courseid) {
+		this.courseid = courseid;
 	}
 
-	public String getTenKhoaHoc() {
-		return tenkhoahoc;
+	public String getCourseName() {
+		return coursename;
 	}
 
-	public void setTenKhoHoc(String tenkhoahoc) {
-		this.tenkhoahoc = tenkhoahoc;
+	public void setCourseName(String coursename) {
+		this.coursename = coursename;
 	}
 
-	public KhoaHoc() {
+	public Course() {
 
 	}
 
@@ -63,10 +63,10 @@ public class KhoaHoc {
 		this.content = content;
 	}
 
-	public KhoaHoc(Integer khoahocid, String tenkhoahoc, String targetuser) {
+	public Course(Integer courseid, String coursename, String targetuser) {
 		super();
-		this.khoahocid = khoahocid;
-		this.tenkhoahoc = tenkhoahoc;
+		this.courseid = courseid;
+		this.coursename = coursename;
 		this.targetuser = targetuser;
 	}
 

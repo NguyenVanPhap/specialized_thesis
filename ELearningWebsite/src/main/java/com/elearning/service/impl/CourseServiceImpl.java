@@ -8,34 +8,34 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
-import com.elearning.entities.KhoaHoc;
-import com.elearning.repository.KhoaHocRepository;
-import com.elearning.service.KhoaHocService;
+import com.elearning.entities.Course;
+import com.elearning.repository.CourseRepository;
+import com.elearning.service.CourseService;
 
 @Service
-public class KhoaHocServiceImpl implements KhoaHocService {
+public class CourseServiceImpl implements CourseService {
 
 	@Autowired
-	KhoaHocRepository khoaHocRepo;
+	CourseRepository khoaHocRepo;
 
 	@Override
-	public void save(KhoaHoc baigrammar) {
+	public void save(Course baigrammar) {
 		khoaHocRepo.save(baigrammar);
 	}
 
 	@Override
-	public List<KhoaHoc> getKhoaHoc(int id) {
-		return khoaHocRepo.findByKhoahocid(id);
+	public List<Course> getCourse(int id) {
+		return khoaHocRepo.findByCourseid(id);
 	}
 
 	@Override
-	public Page<KhoaHoc> getKhoaHoc(int page, int size) {
+	public Page<Course> getCourse(int page, int size) {
 		return khoaHocRepo.findAll(PageRequest.of(page, size));
 
 	}
 
 	@Override
-	public List<KhoaHoc> getAllKhoaHoc() {
+	public List<Course> getAllCourse() {
 		return khoaHocRepo.findAll();
 	}
 

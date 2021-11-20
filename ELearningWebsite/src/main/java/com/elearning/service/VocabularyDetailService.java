@@ -5,10 +5,10 @@ import java.util.List;
 import com.elearning.entities.Vocabulary;
 import com.elearning.entities.VocabularyContent;
 
-public interface DetailVocabularyService {
-	void save(VocabularyContent noidungbaitaptuvung);
+public interface VocabularyDetailService {
+	void save(VocabularyContent vocabularycontent);
 
     void delete(Integer id);
 
-    List<VocabularyContent> getListBaiTapTuVung(Vocabulary baitaptuvung);
+    List<VocabularyContent> getListVocabulary(Vocabulary vocabulary);
 }

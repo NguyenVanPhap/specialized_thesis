@@ -27,7 +27,7 @@ import com.elearning.entities.Vocabulary;
 //import com.elearning.entities.CauHoiBaiThiThu;
 import com.elearning.entities.VocabularyContent;
 import com.elearning.service.VocabularyService;
-import com.elearning.service.DetailVocabularyService;
+import com.elearning.service.VocabularyDetailService;
 
 @RestController
 @RequestMapping("/api/admin/vocab")
@@ -37,20 +37,20 @@ public class VocabApi {
     private HttpServletRequest request;
 
     @Autowired
-    VocabularyService baitaptuvungService;
+    VocabularyService vocabularyService;
     @Autowired
-    DetailVocabularyService noidungbaitaptuvungService;
+    VocabularyDetailService vocabularydetailService;
 
     @GetMapping("/loadVocab")
     public List<String> showAllVocab() {
 
-        List<Vocabulary> list = baitaptuvungService.findAll();
+        List<Vocabulary> list = vocabularyService.findAll();
 
         List<String> response = new ArrayList<String>();
 
         for (int i = 0; i < list.size(); i++) {
-            String json = "baitaptuvungid:" + list.get(i).getVocabularyId() + "," + "anhbaituvung:"
-                    + list.get(i).getImage() + "," + "tenbaituvung:" + list.get(i).getVocabularyName();
+            String json = "vocabularyid:" + list.get(i).getVocabularyId() + "," + "image:"
+                    + list.get(i).getImage() + "," + "vocabularyname:" + list.get(i).getVocabularyName();
 
             response.add(json);
         }
@@ -61,7 +61,7 @@ public class VocabApi {
 
     @RequestMapping(value = "/delete/{idBaiVocab}")
     public String deleteById(@PathVariable("idBaiVocab") int id) {
-        baitaptuvungService.delete(id);
+        vocabularyService.delete(id);
         return "success";
     }
 
@@ -75,43 +75,43 @@ public class VocabApi {
         List<String> response = new ArrayList<String>();
         String rootDirectory = request.getSession().getServletContext().getRealPath("/");
 
-        Vocabulary bttuvung = new Vocabulary();
-        baitaptuvungService.save(bttuvung);
+        Vocabulary vocabulary = new Vocabulary();
+        vocabularyService.save(vocabulary);
 
         // System.out.println("id="+baithithu.getBaithithuid());
         try {
             // save file upload to local folder
             Path pathExcel = Paths.get(rootDirectory + "/resources/file/excel/" + "vocab."
-                    + bttuvung.getVocabularyId() + "." + file_excel.getOriginalFilename());
+                    + vocabulary.getVocabularyId() + "." + file_excel.getOriginalFilename());
             file_excel.transferTo(new File(pathExcel.toString()));
 
             Path pathImage = Paths.get(rootDirectory + "/resources/file/images/vocab/" + ""
-                    + bttuvung.getVocabularyId() + "." + file_image.getOriginalFilename());
+                    + vocabulary.getVocabularyId() + "." + file_image.getOriginalFilename());
             file_image.transferTo(new File(pathImage.toString()));
 
             for (MultipartFile single_image : file_image_question) {
                 Path pathImageQuestion = Paths.get(rootDirectory + "/resources/file/images/vocab/" + ""
-                        + bttuvung.getVocabularyId() + "." + single_image.getOriginalFilename());
+                        + vocabulary.getVocabularyId() + "." + single_image.getOriginalFilename());
                 single_image.transferTo(new File(pathImageQuestion.toString()));
             }
 
             for (MultipartFile single_listening : file_listening) {
                 Path pathListening = Paths.get(rootDirectory + "/resources/file/audio/vocab/" + ""
-                        + bttuvung.getVocabularyId() + "." + single_listening.getOriginalFilename());
+                        + vocabulary.getVocabularyId() + "." + single_listening.getOriginalFilename());
                 single_listening.transferTo(new File(pathListening.toString()));
             }
 
-            bttuvung.setVocabularyName(name);
-            bttuvung.setImage(bttuvung.getVocabularyId() + "." + file_image.getOriginalFilename());
-            baitaptuvungService.save(bttuvung);
+            vocabulary.setVocabularyName(name);
+            vocabulary.setImage(vocabulary.getVocabularyId() + "." + file_image.getOriginalFilename());
+            vocabularyService.save(vocabulary);
 
             // save data from file excel
 
             VocabApi btt = new VocabApi();
-            List<VocabularyContent> listCauHoiFull = btt.getListFromExcel(pathExcel.toString(), bttuvung);
+            List<VocabularyContent> listCauHoiFull = btt.getListFromExcel(pathExcel.toString(), vocabulary);
 
             for (int i = 0; i < listCauHoiFull.size(); i++) {
-                noidungbaitaptuvungService.save(listCauHoiFull.get(i));
+                vocabularydetailService.save(listCauHoiFull.get(i));
             }
 
         } catch (Exception e) {
@@ -126,9 +126,9 @@ public class VocabApi {
     // get info Vocab ->edit Vocab
     @RequestMapping(value = "/infoVocab/{idBaiVocab}")
     public String infoVocabById(@PathVariable("idBaiVocab") int id) {
-        Vocabulary bttuvung = baitaptuvungService.getBaiTapTuVung(id).get(0);
+        Vocabulary vocabulary = vocabularyService.getVocabulary(id).get(0);
 
-        return bttuvung.getVocabularyName();
+        return vocabulary.getVocabularyName();
     }
 
     @PostMapping(value = "/update")
@@ -142,42 +142,42 @@ public class VocabApi {
         List<String> response = new ArrayList<String>();
         String rootDirectory = request.getSession().getServletContext().getRealPath("/");
 
-        Vocabulary bttuvung = baitaptuvungService.getBaiTapTuVung(id).get(0);
+        Vocabulary vocabulary = vocabularyService.getVocabulary(id).get(0);
 
         // System.out.println("id="+baithithu.getBaithithuid());
         try {
             // save file upload to local folder
             Path pathExcel = Paths.get(rootDirectory + "/resources/file/excel/" + "vocab."
-                    + bttuvung.getVocabularyId() + "." + file_excel.getOriginalFilename());
+                    + vocabulary.getVocabularyId() + "." + file_excel.getOriginalFilename());
             file_excel.transferTo(new File(pathExcel.toString()));
 
             Path pathImage = Paths.get(rootDirectory + "/resources/file/images/vocab/" + ""
-                    + bttuvung.getVocabularyId() + "." + file_image.getOriginalFilename());
+                    + vocabulary.getVocabularyId() + "." + file_image.getOriginalFilename());
             file_image.transferTo(new File(pathImage.toString()));
 
             for (MultipartFile single_image : file_image_question) {
                 Path pathImageQuestion = Paths.get(rootDirectory + "/resources/file/images/vocab/" + ""
-                        + bttuvung.getVocabularyId() + "." + single_image.getOriginalFilename());
+                        + vocabulary.getVocabularyId() + "." + single_image.getOriginalFilename());
                 single_image.transferTo(new File(pathImageQuestion.toString()));
             }
 
             for (MultipartFile single_listening : file_listening) {
                 Path pathListening = Paths.get(rootDirectory + "/resources/file/audio/vocab/" + ""
-                        + bttuvung.getVocabularyId() + "." + single_listening.getOriginalFilename());
+                        + vocabulary.getVocabularyId() + "." + single_listening.getOriginalFilename());
                 single_listening.transferTo(new File(pathListening.toString()));
             }
 
-            bttuvung.setVocabularyName(name);
-            bttuvung.setImage(bttuvung.getVocabularyId() + "." + file_image.getOriginalFilename());
-            baitaptuvungService.save(bttuvung);
+            vocabulary.setVocabularyName(name);
+            vocabulary.setImage(vocabulary.getVocabularyId() + "." + file_image.getOriginalFilename());
+            vocabularyService.save(vocabulary);
 
             // save data from file excel
 
             VocabApi btt = new VocabApi();
-            List<VocabularyContent> listCauHoiFull = btt.getListFromExcel(pathExcel.toString(), bttuvung);
+            List<VocabularyContent> listCauHoiFull = btt.getListFromExcel(pathExcel.toString(), vocabulary);
 
             for (int i = 0; i < listCauHoiFull.size(); i++) {
-                noidungbaitaptuvungService.save(listCauHoiFull.get(i));
+                vocabularydetailService.save(listCauHoiFull.get(i));
             }
 
         } catch (Exception e) {
@@ -188,7 +188,7 @@ public class VocabApi {
         return response;
     }
 
-    public List<VocabularyContent> getListFromExcel(String path_file_excel, Vocabulary bttuvung) {
+    public List<VocabularyContent> getListFromExcel(String path_file_excel, Vocabulary vocabulary) {
         List<VocabularyContent> list = new ArrayList<>();
 
         try {
@@ -197,36 +197,36 @@ public class VocabApi {
             XSSFSheet worksheet = workbook.getSheetAt(0);
 
             for (int i = 1; i < worksheet.getPhysicalNumberOfRows(); i++) {
-                VocabularyContent noidungbaitaptuvung = new VocabularyContent();
+                VocabularyContent vocabularycontent = new VocabularyContent();
 
                 XSSFRow row = worksheet.getRow(i);
 
                 if (row.getCell(0) != null)
-                    noidungbaitaptuvung.setNumber((int) row.getCell(0).getNumericCellValue());
+                    vocabularycontent.setNumber((int) row.getCell(0).getNumericCellValue());
 
                 if (row.getCell(1) != null)
-                    noidungbaitaptuvung.setContent(row.getCell(1).getStringCellValue());
+                    vocabularycontent.setContent(row.getCell(1).getStringCellValue());
 
                 if (row.getCell(2) != null)
-                    noidungbaitaptuvung.setTranscribe(row.getCell(2).getStringCellValue());
+                    vocabularycontent.setTranscribe(row.getCell(2).getStringCellValue());
 
                 if (row.getCell(3) != null)
-                    noidungbaitaptuvung.setImage(
-                            bttuvung.getVocabularyId() + "." + row.getCell(3).getStringCellValue().toString());
+                    vocabularycontent.setImage(
+                    		vocabulary.getVocabularyId() + "." + row.getCell(3).getStringCellValue().toString());
 
                 if (row.getCell(4) != null)
-                    noidungbaitaptuvung
-                            .setAudiomp3(bttuvung.getVocabularyId() + "." + row.getCell(4).getStringCellValue());
+                	vocabularycontent
+                            .setAudiomp3(vocabulary.getVocabularyId() + "." + row.getCell(4).getStringCellValue());
 
                 if (row.getCell(5) != null)
-                    noidungbaitaptuvung.setMeaning(row.getCell(5).getStringCellValue());
+                	vocabularycontent.setMeaning(row.getCell(5).getStringCellValue());
 
                 if (row.getCell(6) != null)
-                    noidungbaitaptuvung.setSentence(row.getCell(6).getStringCellValue());
+                	vocabularycontent.setSentence(row.getCell(6).getStringCellValue());
 
-                noidungbaitaptuvung.setBaitaptuvung(bttuvung);
+                vocabularycontent.setVocabulary(vocabulary);
 
-                list.add(noidungbaitaptuvung);
+                list.add(vocabularycontent);
             }
 
         } catch (Exception e) {

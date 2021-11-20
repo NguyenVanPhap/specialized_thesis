@@ -16,42 +16,42 @@ import com.elearning.service.VocabularyService;
 @Service
 public class VocabularyServicelmpl implements VocabularyService{
 	@Autowired
-	VocabularyRepository baitaptuvungRepository;
+	VocabularyRepository vocabularyRepository;
 
     @Override
     public List<Vocabulary> findAll() {
-        return (List<Vocabulary>) baitaptuvungRepository.findAll();
+        return (List<Vocabulary>) vocabularyRepository.findAll();
     }
 
     @Override
-    public void save(Vocabulary baitaptuvung) {
-        baitaptuvungRepository.save(baitaptuvung);
+    public void save(Vocabulary vocabulary) {
+        vocabularyRepository.save(vocabulary);
     }
 
     @Override
     public void delete(Integer id) {
-        baitaptuvungRepository.deleteById(id);
+        vocabularyRepository.deleteById(id);
     }
 
     @Override
-    public Page<Vocabulary> getBaiTapTuVung(int page, int size) {
-        return baitaptuvungRepository.findAll(PageRequest.of(page, size));
-        //return baitaptuvungRepository.f
+    public Page<Vocabulary> getVocabulary(int page, int size) {
+        return vocabularyRepository.findAll(PageRequest.of(page, size));
+        //return vocabularyRepository.f
 
     }
 
     @Override
-    public Optional<Vocabulary> getBaiTuVungById(Integer id) {
-        return baitaptuvungRepository.findById(id);
+    public Optional<Vocabulary> getVocabularyById(Integer id) {
+        return vocabularyRepository.findById(id);
     }
 
     @Override
-    public List<Vocabulary> getBaiTapTuVung(int id) {
-        return baitaptuvungRepository.findByVocabularyid(id);
+    public List<Vocabulary> getVocabulary(int id) {
+        return vocabularyRepository.findByVocabularyid(id);
     }
 
     @Override
-    public List<Vocabulary> searchListBaiTapTuVung(String search) {
-        return baitaptuvungRepository.searchVocab(search);
+    public List<Vocabulary> searchListVocabulary(String search) {
+        return vocabularyRepository.searchVocab(search);
     }
 }

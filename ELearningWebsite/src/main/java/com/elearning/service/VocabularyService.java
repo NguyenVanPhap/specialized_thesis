@@ -10,17 +10,17 @@ import com.elearning.entities.Vocabulary;
 public interface VocabularyService {
 	List<Vocabulary> findAll();
 
-    void save(Vocabulary baitaptuvung);
+    void save(Vocabulary vocabulary);
 
     void delete(Integer id);
 
-    Page<Vocabulary> getBaiTapTuVung(int page, int limit);
+    Page<Vocabulary> getVocabulary(int page, int limit);
 
-    Optional<Vocabulary> getBaiTuVungById(Integer id);
+    Optional<Vocabulary> getVocabularyById(Integer id);
 
-    List<Vocabulary> getBaiTapTuVung(int id);
+    List<Vocabulary> getVocabulary(int id);
 
-    List<Vocabulary> searchListBaiTapTuVung(String search);
+    List<Vocabulary> searchListVocabulary(String search);
     
     //List<BaiTapTuVung> getAllBaiTapTuVung();
 

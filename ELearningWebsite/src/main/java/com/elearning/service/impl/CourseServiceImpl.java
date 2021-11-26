@@ -16,32 +16,32 @@ import com.elearning.service.CourseService;
 public class CourseServiceImpl implements CourseService {
 
 	@Autowired
-	CourseRepository khoaHocRepo;
+	CourseRepository courseRepo;
 
 	@Override
-	public void save(Course baigrammar) {
-		khoaHocRepo.save(baigrammar);
+	public void save(Course course) {
+		courseRepo.save(course);
 	}
 
 	@Override
 	public List<Course> getCourse(int id) {
-		return khoaHocRepo.findByCourseid(id);
+		return courseRepo.findByCourseid(id);
 	}
 
 	@Override
 	public Page<Course> getCourse(int page, int size) {
-		return khoaHocRepo.findAll(PageRequest.of(page, size));
+		return courseRepo.findAll(PageRequest.of(page, size));
 
 	}
 
 	@Override
 	public List<Course> getAllCourse() {
-		return khoaHocRepo.findAll();
+		return courseRepo.findAll();
 	}
 
 	@Override
 	public void delete(int id) {
-		khoaHocRepo.deleteById(id);
+		courseRepo.deleteById(id);
 	}
 
 	/*

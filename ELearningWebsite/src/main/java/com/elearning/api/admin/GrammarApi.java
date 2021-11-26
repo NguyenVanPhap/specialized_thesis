@@ -35,15 +35,9 @@ public class GrammarApi {
 
 		List<Grammar> list = baigrammarService.getAllGrammar();
 
-
 		List<String> response = new ArrayList<String>();
 
 		for (int i = 0; i < list.size(); i++) {
-//			String json ="{"+"'baithithuid':"+"'"+list.get(i).getBaithithuid()+	"',"
-//					+ "'anhbaithithu':'"+list.get(i).getAnhbaithithu()+			"',"
-//					+ "'tenbaithithu':'"+list.get(i).getTenbaithithu()+			"'}";
-
-
 			String json = "baithithuid:" + list.get(i).getGrammarId() + "," + "tenbaithithu:"
 					+ list.get(i).getGrammarName();
 
@@ -67,22 +61,18 @@ public class GrammarApi {
 
 		String json = "name==" + baiGrammar.getGrammarName() + "|" + "content==" + baiGrammar.getContentMarkDown();
 
-
 		return json;
 	}
 
 	@PostMapping(value = "/save")
 	@ResponseBody
-	public List<String> addBaiGrammar(@RequestParam("name") String name,
+	public List<String> addBaiGrammar(@RequestParam("grammarName") String name,
 			@RequestParam("contentMarkdown") String contentMarkdown, @RequestParam("contentHtml") String contentHtml) {
 		List<String> response = new ArrayList<String>();
-		String rootDirectory = request.getSession().getServletContext().getRealPath("/");
 
 		Grammar baigrammar = new Grammar();
-		baigrammarService.save(baigrammar);
 		try {
 			baigrammar.setTenbaigrammar(name);
-
 			baigrammar.setContentMarkDown(contentMarkdown);
 			baigrammar.setContentHTML(contentHtml);
 			baigrammarService.save(baigrammar);
@@ -106,7 +96,6 @@ public class GrammarApi {
 		baigrammarService.save(baigrammar);
 		try {
 			baigrammar.setTenbaigrammar(name);
-
 			baigrammar.setContentMarkDown(contentMarkdown);
 			baigrammar.setContentHTML(contentHtml);
 

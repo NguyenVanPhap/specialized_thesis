@@ -77,20 +77,29 @@ $(document).ready(function() {
 	}
 
 
+	$(document).on('click', '.btnAddnewGram', function(event) {
+
+		$('#btnUpdate').hide();
+		$('#btnAddNewGrammar').show();
+		var modal = $('#grammarModal');
+		$('#grammarModal #idGrammarModal').val("");
+		modal.find('.modal-body #nameGrammar').val("");
+		modal.find('.modal-header #titleModal').text("Thêm mới bài ngữ pháp");
+		simplemde.value("wiriting someshing here");
+	});
 	//add new baigrammar
 
 	$('#btnAddNewGrammar').click(function() {
 		// formData: nameBaiThiThu,file_Excel, file_Image, file_imageQuestion, file_Listening
-		var formData = new FormData();
 
-		var file_image = $('#file_Image_Grammar')[0].files[0];
+		var formData = new FormData();
 		var name = $('#nameGrammar').val();
 		var contentMarkdown = simplemde.value(); //get from textarea markdown
 		var contentHTML = simplemde.options.previewRender(contentMarkdown);
 
 
-		formData.append("file_image", file_image);
-		formData.append("name", name);
+
+		formData.append("grammarName", name);
 		formData.append("contentMarkdown", contentMarkdown);
 		formData.append("contentHtml", contentHTML);
 
@@ -201,7 +210,7 @@ $(document).ready(function() {
 			var contentHTML = simplemde.options.previewRender(contentMarkdown);
 
 
-			var file_image;
+		
 
 			formData.append("idGrammar", idBaiGrammar);
 			formData.append("name", name);

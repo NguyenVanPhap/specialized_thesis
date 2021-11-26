@@ -25,7 +25,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.elearning.entities.Grammar;
 import com.elearning.entities.Vocabulary;
 import com.elearning.entities.VocabularyContent;
-import com.elearning.entities.CommentTuVung;
 import com.elearning.entities.NguoiDung;
 import com.elearning.service.VocabularyService;
 import com.elearning.service.NguoiDungService;

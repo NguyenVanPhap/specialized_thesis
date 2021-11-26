@@ -18,24 +18,23 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
 		integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
-	<script th:src="@{/js/admin/quanLyGrammar.js}"></script>
+	<script th:src="@{/js/admin/quanLyKhoaHoc.js}"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<link th:href="@{/css/adminheader.css}" rel="stylesheet" />
 </head>
 
 <body>
-	<header>
+	
 		<div th:replace="admin/include/header::header"> </div>
-	</header>
+
 
 
 	<div class="container-fluid">
-		
 		<div class="col-md-1"></div>
 		<div class="col-md-10 animated bounce">
-			<h3 class="page-header">Quản lý bài hướng dẫn Grammar</h3>
-			<button class="btn btn-success btnAddnewGram" data-toggle="modal" data-target="#grammarModal">Thêm
+			<h3 class="page-header">Quản lý khóa học</h3>
+			<button class="btn btn-success btnOpenAddNewCourse" data-toggle="modal" data-target="#courseModal">Thêm
 				mới</button>
 			<h4 style="color: red" id="info-success"></h4>
 			<hr />
@@ -43,9 +42,10 @@
 				<thead>
 					<tr>
 						<th>ID</th>
-						<th>Tên bài Grammar </th>
-						<th>Ảnh</th>
-						<th></th>
+						<th style="width:20%">Tên khóa học </th>
+						<th style="width:25%">Nội dung</th>
+						<th style="width:25%">Đối tượng</th>
+						<th style="width:20%">Thao tác</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -54,7 +54,7 @@
 		</div>
 
 		<!-- Modal -->
-		<div class="modal fade" id="grammarModal" style="background-color: transparent;" tabindex="-1" role="dialog"
+		<div class="modal fade" id="courseModal" style="background-color: transparent;" tabindex="-1" role="dialog"
 			aria-labelleby="myModalLable">
 			<div class="modal-dialog modal-lg" role="document">
 				<div class="modal-content">
@@ -62,34 +62,41 @@
 						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 							<span aria-hidden="true">&times;</span>
 						</button>
-						<h4 class="modal-title" id="titleModal">Thêm mới bài Grammar</h4>
+						<h4 class="modal-title" id="titleModal">Thêm mới Khóa học</h4>
 					</div>
 
 					<div class="modal-body">
-						<input style="display:none" id="idGrammarModal">
+						<input style="display:none" id="idCourseModal">
 
 						<div class="row">
 							<span class="bg-danger" id="vocab_errors"></span>
 
 							<div class="form-group col-md-6">
-								<label>Tên bài grammar</label> <input id="nameGrammar" class="form-control">
+								<label>Tên khóa học</label> <input id="nameCourse" class="form-control">
 
 							</div>
 
 
 							<div class="form-group col-md-12">
-								<label for="contenGramar">Chỉnh sửa nội dung bài Grammar:</label>
+								<label>Chỉnh sửa nội dung khóa học:</label>
 
-								<textarea id="markdown-editor"></textarea>
+								<textarea rows="7" cols="90" id="CourseContent"></textarea>
+							</div>
+							<div class="form-group col-md-12">
+								<label>Chỉnh sửa đối tượng khóa học:</label>
+
+								<textarea rows="7" cols="90" id="CourseTargetUser"></textarea>
 							</div>
 						</div>
 					</div>
 
 					<div class="modal-footer">
 						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-						<button type="button" id="btnAddNewGrammar" class="btn btn-primary">Xác nhận</button>
+						<button type="button" id="btnAddNewCourse" class="btn btn-primary">Xác nhận</button>
 						<button type="button" style="display:none;" id="btnUpdate" class="btn btn-primary">Cập
 							nhật</button>
+						<button type="button" style="display:none;" id="btnCourseDetail" class="btn btn-primary">
+							Chi tiết</button>
 					</div>
 				</div>
 			</div>

@@ -21,6 +21,7 @@
 	<script th:src="@{/js/admin/quanLyVocab.js}"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 	 <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	 	<link th:href="@{/css/adminheader.css}" rel="stylesheet" />
 </head>
 
 <body>
@@ -30,8 +31,9 @@
 
 
 	<div class="container-fluid">
-		<div th:replace="admin/include/sidebar::sidebar"> </div>
-		<div class="col-md-9 animated bounce">
+		
+		<div class="col-md-1"></div>
+		<div class="col-md-10 animated bounce">
 			<h3 class="page-header">Quản lý bài hướng dẫn Vocab</h3>
 			<button class="btn btn-success btnAddVocab" data-toggle="modal" data-target="#vocabModal">Thêm
 				mới</button>

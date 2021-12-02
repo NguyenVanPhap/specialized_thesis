@@ -81,22 +81,22 @@ public class VocabApi {
         // System.out.println("id="+baithithu.getBaithithuid());
         try {
             // save file upload to local folder
-            Path pathExcel = Paths.get(rootDirectory + "/resources/file/excel/" + "vocab."
+            Path pathExcel = Paths.get(rootDirectory + "/static/file/excel/" + "vocab."
                     + vocabulary.getVocabularyId() + "." + file_excel.getOriginalFilename());
             file_excel.transferTo(new File(pathExcel.toString()));
 
-            Path pathImage = Paths.get(rootDirectory + "/resources/file/images/vocab/" + ""
+            Path pathImage = Paths.get(rootDirectory + "/static/file/images/vocab/" + ""
                     + vocabulary.getVocabularyId() + "." + file_image.getOriginalFilename());
             file_image.transferTo(new File(pathImage.toString()));
 
             for (MultipartFile single_image : file_image_question) {
-                Path pathImageQuestion = Paths.get(rootDirectory + "/resources/file/images/vocab/" + ""
+                Path pathImageQuestion = Paths.get(rootDirectory + "/static/file/images/vocab/" + ""
                         + vocabulary.getVocabularyId() + "." + single_image.getOriginalFilename());
                 single_image.transferTo(new File(pathImageQuestion.toString()));
             }
 
             for (MultipartFile single_listening : file_listening) {
-                Path pathListening = Paths.get(rootDirectory + "/resources/file/audio/vocab/" + ""
+                Path pathListening = Paths.get(rootDirectory + "/static/file/audio/vocab/" + ""
                         + vocabulary.getVocabularyId() + "." + single_listening.getOriginalFilename());
                 single_listening.transferTo(new File(pathListening.toString()));
             }
@@ -147,22 +147,22 @@ public class VocabApi {
         // System.out.println("id="+baithithu.getBaithithuid());
         try {
             // save file upload to local folder
-            Path pathExcel = Paths.get(rootDirectory + "/resources/file/excel/" + "vocab."
+            Path pathExcel = Paths.get(rootDirectory + "/static/file/excel/" + "vocab."
                     + vocabulary.getVocabularyId() + "." + file_excel.getOriginalFilename());
             file_excel.transferTo(new File(pathExcel.toString()));
 
-            Path pathImage = Paths.get(rootDirectory + "/resources/file/images/vocab/" + ""
+            Path pathImage = Paths.get(rootDirectory + "/static/file/images/vocab/" + ""
                     + vocabulary.getVocabularyId() + "." + file_image.getOriginalFilename());
             file_image.transferTo(new File(pathImage.toString()));
 
             for (MultipartFile single_image : file_image_question) {
-                Path pathImageQuestion = Paths.get(rootDirectory + "/resources/file/images/vocab/" + ""
+                Path pathImageQuestion = Paths.get(rootDirectory + "/static/file/images/vocab/" + ""
                         + vocabulary.getVocabularyId() + "." + single_image.getOriginalFilename());
                 single_image.transferTo(new File(pathImageQuestion.toString()));
             }
 
             for (MultipartFile single_listening : file_listening) {
-                Path pathListening = Paths.get(rootDirectory + "/resources/file/audio/vocab/" + ""
+                Path pathListening = Paths.get(rootDirectory + "/static/file/audio/vocab/" + ""
                         + vocabulary.getVocabularyId() + "." + single_listening.getOriginalFilename());
                 single_listening.transferTo(new File(pathListening.toString()));
             }

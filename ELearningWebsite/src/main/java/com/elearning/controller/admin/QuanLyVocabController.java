@@ -55,21 +55,21 @@ public class QuanLyVocabController {
 
         String rootDirectory = request.getSession().getServletContext().getRealPath("/");
 
-        Path pathExcel = Paths.get(rootDirectory + "/resources/file/excel/" + file_excel.getOriginalFilename() + ".xlsx");
+        Path pathExcel = Paths.get(rootDirectory + "/static/file/excel/" + file_excel.getOriginalFilename() + ".xlsx");
         file_excel.transferTo(new File(pathExcel.toString()));
 
-        Path path_file_imageVocab = Paths.get(rootDirectory + "/resources/file/images/vocab/" + file_imageVocab.getOriginalFilename());
+        Path path_file_imageVocab = Paths.get(rootDirectory + "/static/file/images/vocab/" + file_imageVocab.getOriginalFilename());
         file_imageVocab.transferTo(new File(path_file_imageVocab.toString()));
 
 
         for (MultipartFile file_imageQuestion : file_imageQuestions) {
-            Path pathImage = Paths.get(rootDirectory + "/resources/file/images/vocab/" + file_imageQuestion.getOriginalFilename());
+            Path pathImage = Paths.get(rootDirectory + "/static/file/images/vocab/" + file_imageQuestion.getOriginalFilename());
             file_imageQuestion.transferTo(new File(pathImage.toString()));
         }
 
         for (MultipartFile file_listen : file_listens) {
 
-            Path pathAudio = Paths.get(rootDirectory + "/resources/file/audio/vocab/" + file_listen.getOriginalFilename());
+            Path pathAudio = Paths.get(rootDirectory + "/static/file/audio/vocab/" + file_listen.getOriginalFilename());
             file_listen.transferTo(new File(pathAudio.toString()));
 
         }

@@ -179,9 +179,9 @@
 
 			<div class="row">
 				<div class="col-sm-9">
-					<div style="background-color: white;" >
+					<div style="background-color: white;">
 						<h3 th:text="${course.getCourseName()}"></h3>
-						
+
 						<hr>
 						<h4 class="panel-title">
 							<a data-toggle="collapse" href="#" class="collapsed" aria-expanded="true">
@@ -195,9 +195,9 @@
 								<i class="fa fa-minus-square" aria-hidden="true"></i>
 								Bạn sẽ học được những gì </a>
 						</h4>
-						
+
 						<p class='list-item' th:text="${course.getContent()}">
-							</p>
+						</p>
 					</div>
 					<br>
 
@@ -234,57 +234,14 @@
 															Bài 2: Tư thế cầm đàn và khởi động
 														</li>
 													</div>
-
-													<div class='list-item'>
-														<li>
-															Bài 3: Tư thế cầm đàn và khởi động
-														</li>
-													</div>
-
-													<div class='list-item'>
-														<li>
-															Ride to a horse and
-															write your experience
-														</li>
-													</div>
-
-													<div class='list-item'>
-														<li>
-															Watch movie 'Godfather'
-															at night
-														</li>
-													</div>
-
-													<div class='list-item'>
-														<li>
-															Go for a trip with bike
-														</li>
-													</div>
-
-													<div class='list-item'>
-														<li>
-															Buy a sumsung headset
-														</li>
-													</div>
-
-													<div class='list-item'>
-														<li>
-															Listen music for one hour
-														</li>
-													</div>
-
-													<div class='list-item'>
-														<li>
-															Go for a Night
-															out on bicycle
-														</li>
-													</div>
-
-													<div class='list-item'>
-														<li>
-															Go for a morning walk
-														</li>
-													</div>
+													
+													<th:block th:if="${listLesson}" th:each="list : ${listLesson}">
+														<div class='list-item'>
+															<li>
+																<a th:text="${list.getLessonName()}"></a>
+															</li>
+														</div>
+													</th:block>
 												</ul>
 											</div>
 											<a>

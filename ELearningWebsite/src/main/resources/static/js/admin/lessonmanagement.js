@@ -7,44 +7,45 @@ $(document).ready(function() {
 	//default. load all object baiGrammar
 	window.onload = function() {
 		loadAllLesson();
-		
+
 		// creat markdown
 		simplemde = new SimpleMDE({
 			element: document.getElementById("markdown-editor"),
 			spellChecker: false,
 		});
-		
+
 	};
 
 
-	
+
 	function loadAllLesson() {
 		let searchParams = new URLSearchParams(window.location.search);
-		currentCourseId =searchParams.get('courseId');
+		currentCourseId = searchParams.get('courseId');
 		$.ajax({
 			dataType: 'json',
 			type: 'GET',
-			url: "http://localhost:8080/api/admin/lesson/loadCourseLesson/"+currentCourseId,
+			url: "http://localhost:8080/api/admin/lesson/loadCourseLesson/" + currentCourseId,
 
 			success: function(data) {
 
 				//convert array to json type
 				var jsonArray = new Array();
-				var fields, id, courseId,lessonName, videoPath ;
+				var fields, id, courseId, lessonName, videoPath;
+				console.log(data[0]);
 				for (var i = 0; i < data.length; i++) {
 					var jsonObject = new Object();
-					fields = data[i].split(',');
+					fields = data[i].split('|||');
 
-					id = fields[0].split(':');
+					id = fields[0].split('==');
 					jsonObject.lessonId = id[1];
 
-					courseId = fields[1].split(':');
+					courseId = fields[1].split('==');
 					jsonObject.courseId = courseId[1];
-					
-					lessonName = fields[2].split(':');
+
+					lessonName = fields[2].split('==');
 					jsonObject.lessonName = lessonName[1];
 
-					videoPath = fields[3].split(':');
+					videoPath = fields[3].split('==');
 					jsonObject.videoPath = videoPath[1];
 
 					jsonArray.push(jsonObject);
@@ -60,12 +61,14 @@ $(document).ready(function() {
 					trHTML += '<tr><td class= "center">' + jsonArr[i].lessonId + '</td>'
 						+ '<td class= "center">' + jsonArr[i].lessonName + '</td>'
 
-						
-						+ '<td class= "center">' + jsonArr[i].videoPath + '</td>'
 
 						+ '<td class = "center"> <a id="edit.' + jsonArr[i].lessonId + ' "'
 
 						+ 'class="yellow editLesson"><button class="btn btn-warning">Cập nhật</button></a> '
+
+						+ '<a id="demo===' + jsonArr[i].videoPath + ' "'
+
+						+ 'class="demoLesson"><button class="btn btn-warning">Demo</button></a> '
 
 						+ ' <a id="delete.' + jsonArr[i].lessonId + ' "'
 
@@ -103,7 +106,7 @@ $(document).ready(function() {
 		formData.append("lessonName", LessonName);
 		formData.append("videoPath", VideoPath);
 		formData.append("courseId", currentCourseId);
-		
+
 		$.ajax({
 			data: formData,
 			type: 'POST',
@@ -125,7 +128,26 @@ $(document).ready(function() {
 
 		});
 	});
-	// delete Lesson	
+	// demo Lesson	
+	function convert_youtube(input) {
+		var regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+		var match = input.match(regExp);
+		src = "//www.youtube.com/embed/" + match[2];
+		return src;
+	}
+	$(document).on('click', '.demoLesson', function() {
+		var demoId = $(this).attr('id');
+		var fields = demoId.split('===');
+		var lessonvideoPath = fields[1];
+
+		var src = convert_youtube(lessonvideoPath);
+		console.log(src, lessonvideoPath);
+		var modal = $('#demoLessonModal');
+		modal.find('.modal-body #ifrdemolessonSrc').attr('src', src);
+		$('#demoLessonModal').modal('show');
+
+	});
+	// Delete Lesson	
 	$(document).on('click', '.deleteLesson', function() {
 		var deleteId = $(this).attr('id');
 		var fields = deleteId.split('.');
@@ -159,18 +181,18 @@ $(document).ready(function() {
 			success: function(data) {
 
 				var jsonObject = new Object();
-				fields = data.split(',');
+				fields = data.split('|||');
 
-				id = fields[0].split(':');
+				id = fields[0].split('==');
 				jsonObject.lessonId = id[1];
 
-				courseId = fields[1].split(':');
+				courseId = fields[1].split('==');
 				jsonObject.courseId = courseId[1];
-				
-				lessonName = fields[2].split(':');
+
+				lessonName = fields[2].split('==');
 				jsonObject.lessonName = lessonName[1];
 
-				videoPath = fields[3].split(':');
+				videoPath = fields[3].split('==');
 				jsonObject.videoPath = videoPath[1];
 				//set data for modal
 
@@ -194,24 +216,21 @@ $(document).ready(function() {
 			}
 
 		});
-		
+
 		$('#btnLessonDetail').click(function() {
-			window.location.href = "/admin/Lesson/"+ LessonId;
+			window.location.href = "/admin/lesson/" + LessonId;
 		});
 
 		$('#btnUpdate').click(function() {
 
 			var formData = new FormData();
-			var LessonName = $('#nameLesson').val();
+			var LessonName = $('#lessonName').val();
 			var LessonVideoPath = $('#lessonVideoPath').val();
-	
 
-			formData.append("LessonId", LessonId);
+
+			formData.append("lessonId", LessonId);
 			formData.append("lessonName", LessonName);
 			formData.append("videoPath", LessonVideoPath);
-			
-
-
 			$.ajax({
 				data: formData,
 				type: 'POST',

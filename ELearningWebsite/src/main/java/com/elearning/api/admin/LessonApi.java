@@ -37,8 +37,9 @@ public class LessonApi {
 		List<String> response = new ArrayList<String>();
 
 		for (int i = 0; i < list.size(); i++) {
-			String json = "lessonid:" + list.get(i).getLessonId() + "," + "courseid:" + list.get(i).getCourseId() + ","
-					+ "lessonname:" + list.get(i).getLessonName() + "," + "videopath:" + list.get(i).getVideoPath();
+			String json = "lessonid==" + list.get(i).getLessonId() + "|||" + "courseid==" + list.get(i).getCourseId()
+					+ "|||" + "lessonname==" + list.get(i).getLessonName() + "|||" + "videopath=="
+					+ list.get(i).getVideoPath();
 
 			response.add(json);
 		}
@@ -52,48 +53,47 @@ public class LessonApi {
 	public String infoLessonById(@PathVariable("lessonId") int id) {
 		Lesson lesson = lessonService.getLesson(id).get(0);
 
-		String json = "lessonid:" + lesson.getLessonId() + "," + "courseid:" + lesson.getCourseId() +","+ "lessonname:"
-				+ lesson.getLessonName() + "," + "videopath:" + lesson.getVideoPath();
+		String json = "lessonid==" + lesson.getLessonId() + "|||" + "courseid==" + lesson.getCourseId() + "|||"
+				+ "lessonname==" + lesson.getLessonName() + "|||" + "videopath==" + lesson.getVideoPath();
 
 		return json;
 	}
 
 	@PostMapping(value = "/save")
 	@ResponseBody
-	public List<String> add(@RequestParam("lessonName") String lessonName,
+	public List<String> add(@RequestParam("lessonName") String lessonName, @RequestParam("courseId") Integer courseId,
 			@RequestParam("videoPath") String videoPath) {
 		List<String> response = new ArrayList<String>();
 
 		Lesson lesson = new Lesson();
 		lessonService.save(lesson);
 		try {
+			lesson.setCourseId(courseId);
 			lesson.setLessonName(lessonName);
 			lesson.setVideoPath(videoPath);
 			lessonService.save(lesson);
 		} catch (Exception e) {
 			response.add(e.toString());
-			System.out.println("ErrorAddLesson:" + e);
+			System.out.println("ErrorAddLesson==" + e);
 		}
 		return response;
 	}
 
 	@PostMapping(value = "/update")
 	@ResponseBody
-	public List<String> updatelesson(@RequestParam("lessonid") Integer lessonId,
-			@RequestParam("courseid") Integer courseId, @RequestParam("lessonname") String lessonName,
-			@RequestParam("videopath") String videoPath) {
+	public List<String> updatelesson(@RequestParam("lessonId") Integer lessonId,
+			@RequestParam("lessonName") String lessonName, @RequestParam("videoPath") String videoPath) {
 
 		List<String> response = new ArrayList<String>();
 		Lesson lesson = lessonService.getLesson(lessonId).get(0);
 		lessonService.save(lesson);
 		try {
 			lesson.setLessonName(lessonName);
-			lesson.setCourseId(courseId);
 			lesson.setVideoPath(videoPath);
 			lessonService.save(lesson);
 		} catch (Exception e) {
 			response.add(e.toString());
-			System.out.println("ErrorAddLesson:" + e);
+			System.out.println("ErrorAddLesson==" + e);
 
 		}
 		return response;

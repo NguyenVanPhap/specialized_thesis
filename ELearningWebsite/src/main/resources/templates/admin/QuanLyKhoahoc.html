@@ -25,8 +25,8 @@
 </head>
 
 <body>
-	
-		<div th:replace="admin/include/header::header"> </div>
+
+	<div th:replace="admin/include/header::header"> </div>
 
 
 
@@ -71,11 +71,14 @@
 						<div class="row">
 							<span class="bg-danger" id="vocab_errors"></span>
 
+							<div sty class="form-group col-md-6">
+								<label>ID</label> <input id="idCourse" class="form-control">
+
+							</div>
 							<div class="form-group col-md-6">
 								<label>Tên khóa học</label> <input id="nameCourse" class="form-control">
 
 							</div>
-
 
 							<div class="form-group col-md-12">
 								<label>Chỉnh sửa nội dung khóa học:</label>

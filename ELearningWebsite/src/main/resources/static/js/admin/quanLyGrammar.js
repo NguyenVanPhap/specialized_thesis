@@ -200,7 +200,7 @@ $(document).ready(function() {
 
 
 
-		$('#btnUpdate').click(function() {
+		$('#btnUpdate').unbind().click(function() {
 
 			var formData = new FormData();
 

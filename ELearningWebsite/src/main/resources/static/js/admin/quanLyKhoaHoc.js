@@ -204,7 +204,7 @@ $(document).ready(function() {
 			window.location.href = "/admin/coursedetail?courseId="+ courseId;
 		});
 
-		$('#btnUpdate').click(function() {
+		$('#btnUpdate').unbind().click(function() {
 
 			var formData = new FormData();
 			var courseName = $('#nameCourse').val();

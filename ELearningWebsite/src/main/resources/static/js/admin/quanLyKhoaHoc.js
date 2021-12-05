@@ -32,24 +32,24 @@ $(document).ready(function() {
 				var fields, id, courseName, targetuser, content;
 				for (var i = 0; i < data.length; i++) {
 					var jsonObject = new Object();
-					fields = data[i].split(',');
+					fields = data[i].split('|@|');
 
-					id = fields[0].split(':');
+					id = fields[0].split('===');
 					jsonObject.courseId = id[1];
 
-					courseName = fields[1].split(':');
+					courseName = fields[1].split('===');
 					jsonObject.courseName = courseName[1];
 
-					targetuser = fields[2].split(':');
+					targetuser = fields[2].split('===');
 					jsonObject.targetuser = targetuser[1];
 
-					content = fields[3].split(':');
+					content = fields[3].split('===');
 					jsonObject.content = content[1];
 
 					jsonArray.push(jsonObject);
 				}
 
-
+				console.log(jsonArray);
 				var jsonArr = JSON.parse(JSON.stringify(jsonArray));
 
 				var trHTML = "";
@@ -59,11 +59,11 @@ $(document).ready(function() {
 						+ '<td class= "center">' + jsonArr[i].courseName + '</td>'
 
 						+ '<td class= "center">' + jsonArr[i].content + '</td>'
-						+ '<td class= "center">' + jsonArr[i].targetuser + '</td>'
+						+ '<td class= "center ">' + jsonArr[i].targetuser + '</td>'
 
 						+ '<td class = "center"> <a id="edit.' + jsonArr[i].courseId + ' "'
 
-						+ 'class="yellow editCourse"><button class="btn btn-warning">Cập nhật</button></a> '
+						+ 'class="yellow editCourse "><button class="btn btn-warning">Cập nhật</button></a> '
 
 						+ ' <a id="delete.' + jsonArr[i].courseId + ' "'
 

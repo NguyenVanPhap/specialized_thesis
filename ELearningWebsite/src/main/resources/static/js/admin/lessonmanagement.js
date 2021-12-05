@@ -221,7 +221,7 @@ $(document).ready(function() {
 			window.location.href = "/admin/lesson/" + LessonId;
 		});
 
-		$('#btnUpdate').click(function() {
+		$('#btnUpdate').unbind().click(function() {
 
 			var formData = new FormData();
 			var LessonName = $('#lessonName').val();

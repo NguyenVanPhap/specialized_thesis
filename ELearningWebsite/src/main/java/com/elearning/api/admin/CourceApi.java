@@ -34,8 +34,8 @@ public class CourceApi {
 		List<Course> list = courseService.getAllCourse();
 		List<String> response = new ArrayList<String>();
 		for (int i = 0; i < list.size(); i++) {
-			String json = "courseId:" + list.get(i).getCourseId() + "," + "courseName:" + list.get(i).getCourseName()
-					+ "," + "targetuser:" + list.get(i).getTargetUser() + "," + "content:" + list.get(i).getContent();
+			String json = "courseId===" + list.get(i).getCourseId() + "|@|" + "courseName===" + list.get(i).getCourseName()
+					+ "|@|" + "targetuser===" + list.get(i).getTargetUser() + "|@|" + "content===" + list.get(i).getContent();
 			response.add(json);
 		}
 		return response;

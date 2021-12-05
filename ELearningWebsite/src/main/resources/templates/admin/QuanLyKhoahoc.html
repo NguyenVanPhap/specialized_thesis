@@ -22,6 +22,15 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<link th:href="@{/css/adminheader.css}" rel="stylesheet" />
+
+	<style type="text/css">
+		.elementcontent {
+			-webkit-line-clamp: 3;
+			-webkit-box-orient: vertical;
+			overflow: hidden;
+			display: -webkit-box;
+		}
+	</style>
 </head>
 
 <body>
@@ -71,14 +80,11 @@
 						<div class="row">
 							<span class="bg-danger" id="vocab_errors"></span>
 
-							<div sty class="form-group col-md-6">
-								<label>ID</label> <input id="idCourse" class="form-control">
-
-							</div>
 							<div class="form-group col-md-6">
 								<label>Tên khóa học</label> <input id="nameCourse" class="form-control">
 
 							</div>
+
 
 							<div class="form-group col-md-12">
 								<label>Chỉnh sửa nội dung khóa học:</label>

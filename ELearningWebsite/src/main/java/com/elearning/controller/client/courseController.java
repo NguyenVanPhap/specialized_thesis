@@ -48,9 +48,15 @@ public class courseController {
 
 	}
 
-	@GetMapping("/lesson")
-	public String lesson() {
-		return "client/lesson";
+	@GetMapping("/learning")
+	public String lesson(@RequestParam int courseId,@RequestParam int start, Model model) {
+		List<Lesson> listLesson = lessonService.getCourseLesson(courseId);
+		Course course = courseService.getCourse(courseId).get(0);
+		model.addAttribute("course", course);
+		model.addAttribute("listLesson", listLesson);
+		model.addAttribute("CourseId", course.getCourseId());
+		model.addAttribute("currentLessonId", start);
+		return "client/learning";
 
 	}
 }

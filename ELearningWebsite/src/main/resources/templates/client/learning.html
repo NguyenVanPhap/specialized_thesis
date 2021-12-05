@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 
 <head>
 	<meta charset="UTF-8">
@@ -36,8 +36,66 @@
 
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-
+	<script th:src="@{/js/client/course.js}"></script>
 	<script type="text/javascript" th:src="@{/js/jquery-3.4.1.min.js}"></script>
+	<style type="text/css">
+		ol {
+			counter-reset: li;
+			/* Initiate a counter */
+			list-style: none;
+			/* Remove default numbering */
+			*list-style: decimal;
+			/* Keep using default numbering for IE6/7 */
+			font: 15px 'trebuchet MS', 'lucida sans';
+			padding: 0;
+			margin-bottom: 4em;
+			text-shadow: 0 1px 0 rgba(255, 255, 255, .5);
+		}
+
+		ol ol {
+			margin: 0 0 0 2em;
+			/* Add some left margin for inner lists */
+		}
+
+		.rounded-list a {
+			position: relative;
+			display: block;
+			padding: .4em .4em .4em 2em;
+			*padding: .4em;
+			margin: .5em 0;
+			background: #ddd;
+			color: #444;
+			text-decoration: none;
+			border-radius: .3em;
+			transition: all .3s ease-out;
+		}
+
+		.rounded-list a:hover {
+			background: #eee;
+		}
+
+		.rounded-list a:hover:before {
+			transform: rotate(360deg);
+		}
+
+		.rounded-list a:before {
+			content: counter(li);
+			counter-increment: li;
+			position: absolute;
+			left: -1.3em;
+			top: 50%;
+			margin-top: -1.3em;
+			background: #87ceeb;
+			height: 2em;
+			width: 2em;
+			line-height: 2em;
+			border: .3em solid #fff;
+			text-align: center;
+			font-weight: bold;
+			border-radius: 2em;
+			transition: all .3s ease-out;
+		}
+	</style>
 
 </head>
 
@@ -49,13 +107,14 @@
 
 	<div class="page__js-course">
 		<div class="page__js-course-wrap">
-
+			<h3 class="page-header" style="display: none;" id="StartId"
+				th:text="${currentLessonId}"></h3>
 			<div class="page__js-course-app">
 				<div class="page__js-course-app-video">
 					<div class="page__js-course-app-video-content-wrap">
 						<div class="page__js-course-app-video-content">
-							<iframe width="560" height="315" src="https://www.youtube.com/embed/R6plN3FvzFY"
-								title="YouTube video player" frameborder="0"
+							<iframe width="560" height="315" id="ifrdemolessonSrc" title="YouTube video player"
+								frameborder="0"
 								allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
 								allowfullscreen></iframe>
 						</div>
@@ -65,8 +124,8 @@
 							<span class="page__js-course-app-video-header-item-content description-tab">Nội dung</span>
 							<span class="page__js-course-app-video-header-item-about description-tab isclick">Tổng
 								quan</span>
-							<span class="page__js-course-app-video-header-item-note description-tab">Ghi chú</span>
-							<span class="page__js-course-app-video-header-item-relate description-tab">Liên quan</span>
+							<!--<span class="page__js-course-app-video-header-item-note description-tab">Ghi chú</span>
+							<span class="page__js-course-app-video-header-item-relate description-tab">Liên quan</span>-->
 						</div>
 						<div class="page__js-course-app-list-respon description-pane">
 							<div class="page__js-course-app-list-header">
@@ -100,16 +159,16 @@
 							class="page__js-course-app-video-description-wrap-content description-pane isopen-description">
 							<div class="page__js-course-app-video-description-sub">
 								<span class="page__js-course-app-video-description-sub-text">Tham gia nhóm
-									<a href="https://www.facebook.com/groups/f8official/"> Học lập trình tại F8 </a>
+									<a href="https://www.facebook.com/groups/f8official/"> Học lập trình tại Award </a>
 									trên Facebook để cùng nhau trao đổi trong quá trình học tập ❤️</span>
 								<span class="page__js-course-app-video-description-sub-text">Các bạn subscribe kênh
 									Youtube
-									<a href="https://www.youtube.com/c/F8VNOfficial"> F8 Official </a>
+									<a href="https://www.youtube.com/c/F8VNOfficial"> Award Official </a>
 									để nhận thông báo khi có các bài học mới nhé ❤️</span>
 							</div>
 
 							<div class="page__js-course-app-video-description-social">
-								<h3 class="page__js-course-app-video-description-comment-quantity">8 hỏi đáp</h3>
+								<h3 class="page__js-course-app-video-description-comment-quantity">Hỏi đáp</h3>
 								<div class="page__js-course-app-video-description-social-link">
 									CHIA SẺ
 									<div class="page__js-course-app-video-description-social-icon fb">
@@ -153,48 +212,11 @@
 							</div>
 
 							<div class="page__js-course-app-video-description-footer">
-								<h2>Fullstack.edu.vn</h2>
-								<span>Made with <i class="fas fa-heart"></i> . Powered by F8</span>
+								<h2>Award.edu.vn</h2>
+								<span>Made with <i class="fas fa-heart"></i> . Powered by Award</span>
 							</div>
 						</div>
 
-						<div class="page__js-course-app-video-description-wrap-note description-pane">
-							<div class="page__js-course-app-video-description-wrap-content-note-button">
-								<div class="page__js-course-app-video-description-wrap-content-note-button-wrap">
-									<span>Tạo ghi chú tại 00:00</span>
-									<i class="fas fa-plus-circle"></i>
-								</div>
-							</div>
-
-							<div class="page__js-course-app-video-description-wrap-content-note-time">
-								<span class="page__js-course-app-video-description-wrap-content-note-current">Trong
-									chương trình hiện tại
-									<i class="fas fa-chevron-down"></i>
-								</span>
-								<span class="page__js-course-app-video-description-wrap-content-note-new">Mới nhất
-									<i class="fas fa-chevron-down"></i>
-								</span>
-							</div>
-
-							<div class="page__js-course-app-video-description-wrap-content-note-item">
-								<img src="https://fullstack.edu.vn/assets/images/no_note_yet.svg" alt="">
-								<h3>Bạn chưa có ghi chú nào</h3>
-								<p>Hãy ghi chép để nhớ những gì bạn đã học!</p>
-							</div>
-
-							<div class="page__js-course-app-video-description-footer">
-								<h2>Fullstack.edu.vn</h2>
-								<span>Made with <i class="fas fa-heart"></i> . Powered by F8</span>
-							</div>
-						</div>
-
-
-						<div class="page__js-course-app-video-description-wrap-relate description-pane">
-							<div class="page__js-course-app-video-description-footer">
-								<h2>Fullstack.edu.vn</h2>
-								<span>Made with <i class="fas fa-heart"></i> . Powered by F8</span>
-							</div>
-						</div>
 					</div>
 					<div class="page__js-course-app-video-display-btn">
 						<i class="fas fa-arrow-left"></i>
@@ -204,81 +226,26 @@
 				<div class="page__js-course-app-list">
 					<div class="page__js-course-app-list-header">
 						<div class="page__js-course-app-list-heading">
-							<span class="page__js-course-app-list-heading-text">HTML,CSS từ Zero đến Hero</span>
-							<button class="page__js-course-app-list-hidden-btn" style="position:relative">
-								<i class="fas fa-arrow-right"></i>
-							</button>
+							<span class="page__js-course-app-list-heading-text"
+								th:text="${course.getCourseName()}"></span>
+
 						</div>
 						<span class="page__js-course-app-list-header-progress">
-							Hoàn thành
-							<strong class="page__js-course-app-list-current-progress">113</strong>/<strong
-								class="page__js-course-app-list-total-progress">113</strong>
-							bài học
-							<strong class="page__js-course-app-list-percent-progress">(100%)</strong>
+
 						</span>
-					</div>
-					<div class="page__js-course-app-list-content">
-						<div class="page__js-course-app-list-wrap">
-							<div class="page__js-course-app-list-item-wrap">
-								<div class="">
-									<div class="page__js-course-app-list-content-title">
-										<span class="page__js-course-app-list-content-title-heading">Phần 1: Giới
-											thiệu</span>
-										<div class="page__js-course-app-list-content-title-description">
-											<span class="page__js-course-app-list-content-title-current-course">2/2 |
-												06:28</span>
-										</div>
-									</div>
+						<div class="page__js-course-app-list-heading" style="padding-left: 10%;">
+							<ol class="rounded-list">
+								<th:block th:if="${listLesson}" th:each="list : ${listLesson}">
 
-									<div class="page__js-course-app-list-content-item undefined" dataset="1">
-										<div class="page__js-course-app-list-content-item-icon">
-											<i class="fas fa-check"></i>
-										</div>
-										<div class="page__js-course-app-list-content-item-link">
-											<span class="page__js-course-app-list-content-item-text">1. Làm được gì sau
-												khóa học?</span>
-											<span class="page__js-course-app-list-content-item-time">
-												<i class="fas fa-play-circle"></i>
-												04:20
-											</span>
-										</div>
-									</div>
-									<div class="page__js-course-app-list-content-practice" style="display: flex;">
+									<li><a href="#" class="leaningLesson" th:id="${list.getLessonId()}"
+											th:text="${list.getLessonName()}"></a></li>
+								</th:block>
 
-
-									</div>
-
-									<div class="page__js-course-app-list-content-item undefined" dataset="2">
-										<div class="page__js-course-app-list-content-item-icon">
-											<i class="fas fa-check"></i>
-										</div>
-										<div class="page__js-course-app-list-content-item-link">
-											<span class="page__js-course-app-list-content-item-text">2. HTML, CSS là
-												gì?</span>
-											<span class="page__js-course-app-list-content-item-time">
-												<i class="fas fa-play-circle"></i>
-												04:20
-											</span>
-										</div>
-									</div>
-									<div class="page__js-course-app-list-content-practice" style="display: flex;">
-										<span class="page__js-course-app-list-content-practice-text">Bài tập</span>
-										<div class="page__js-course-app-list-content-practice-icon">
-											<i class="fas fa-check"></i>
-										</div>
-										<div class="page__js-course-app-list-content-practice-icon">
-											<i class="fas fa-check"></i>
-										</div>
-									</div>
-
-								</div>
-								<div class="page__js-course-app-list-content-practice-icon">
-									<i class="fas fa-check"></i>
-								</div>
-							</div>
-
+							</ol>
 						</div>
 					</div>
+
+
 				</div>
 			</div>
 		</div>

@@ -147,7 +147,7 @@ public class VocabApi {
         // System.out.println("id="+baithithu.getBaithithuid());
         try {
             // save file upload to local folder
-            Path pathExcel = Paths.get(rootDirectory + "/static/file/excel/" + "vocab."
+            Path pathExcel = Paths.get(rootDirectory + "/static/file/excel/vocab" + "vocab."
                     + vocabulary.getVocabularyId() + "." + file_excel.getOriginalFilename());
             file_excel.transferTo(new File(pathExcel.toString()));
 

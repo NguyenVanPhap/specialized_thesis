@@ -70,6 +70,7 @@ public class AdminController {
 		return "admin/quanLyVocab";
 
 	}
+	
 
 	public NguoiDung getSessionUser(HttpServletRequest request) {
 		return (NguoiDung) request.getSession().getAttribute("loggedInUser");

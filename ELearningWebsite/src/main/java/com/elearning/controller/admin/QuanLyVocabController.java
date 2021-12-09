@@ -55,7 +55,7 @@ public class QuanLyVocabController {
 
         String rootDirectory = request.getSession().getServletContext().getRealPath("/");
 
-        Path pathExcel = Paths.get(rootDirectory + "/static/file/excel/" + file_excel.getOriginalFilename() + ".xlsx");
+        Path pathExcel = Paths.get(rootDirectory + "/static/file/excel/vocab" + file_excel.getOriginalFilename() + ".xlsx");
         file_excel.transferTo(new File(pathExcel.toString()));
 
         Path path_file_imageVocab = Paths.get(rootDirectory + "/static/file/images/vocab/" + file_imageVocab.getOriginalFilename());

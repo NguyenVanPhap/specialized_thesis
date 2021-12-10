@@ -136,7 +136,11 @@
 								<h3 th:text="${list.getNumber()}"></h3>
 								<h4 th:text="${list.getContent()}">
 								</h4>
+								
 
+							<img
+                                th:src="@{/static/file/images/vocab/}+${list.getImage()}"
+                                alt="image not found" style="height: 210px; width: 300px;"/>
 								<p>
 									<b>NAmE:</b> &nbsp; <span style="color: red"
 										th:text="${list.getTranscribe()}"></span>

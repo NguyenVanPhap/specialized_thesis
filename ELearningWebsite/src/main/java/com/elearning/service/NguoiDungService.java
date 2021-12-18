@@ -50,7 +50,7 @@ public class NguoiDungService {
 	}
 
 	public Page<NguoiDung> findByVaiTro(int page, Role vaiTro) {
-		return nguoiDungRepo.findByVaiTro(vaiTro, PageRequest.of(page - 1, 6));
+		return nguoiDungRepo.findByVaiTro(vaiTro, PageRequest.of(page - 1, 10));
 	}
 
 	public void deleteById(long id) {

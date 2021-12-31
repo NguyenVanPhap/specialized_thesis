@@ -74,7 +74,6 @@ public class AdminController {
 		model.addAttribute("listRole", Role.values());
 		return "admin/accountmanagement";
 	}
-
 	public NguoiDung getSessionUser(HttpServletRequest request) {
 		return (NguoiDung) request.getSession().getAttribute("loggedInUser");
 

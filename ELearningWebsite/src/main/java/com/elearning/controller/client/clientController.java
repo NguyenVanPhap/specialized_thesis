@@ -55,4 +55,10 @@ public class clientController {
 		//model.addAttribute("listslidebanner", slideBannerService.findAll());
 		return "client/home";
 	}
+	
+	@GetMapping(value = "/profile")
+	public String profile(Model model, HttpServletRequest request, @AuthenticationPrincipal OAuth2User oauth2User) {
+		model.addAttribute("user", getSessionUser(request));
+		return "client/profile";
+	}
 }

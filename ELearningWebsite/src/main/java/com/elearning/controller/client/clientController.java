@@ -16,8 +16,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import com.elearning.entities.NguoiDung;
 import com.elearning.service.NguoiDungService;
@@ -55,10 +57,25 @@ public class clientController {
 		//model.addAttribute("listslidebanner", slideBannerService.findAll());
 		return "client/home";
 	}
-	
 	@GetMapping(value = "/profile")
 	public String profile(Model model, HttpServletRequest request, @AuthenticationPrincipal OAuth2User oauth2User) {
 		model.addAttribute("user", getSessionUser(request));
 		return "client/profile";
 	}
+	@GetMapping(value = "/profile/update")
+	public String updateProfile(Model model, @AuthenticationPrincipal OAuth2User oauth2User, HttpServletRequest request) {
+		model.addAttribute("user", getSessionUser(request));
+		return "client/updateProfile";
+	}
+	
+	@PostMapping("/profile/update")
+    public String updateNguoiDung(@ModelAttribute NguoiDung user, HttpServletRequest request) {
+        NguoiDung currentUser = getSessionUser(request);
+        currentUser.setDiaChi(user.getDiaChi());
+        currentUser.setHoTen(user.getHoTen());
+        currentUser.setSoDienThoai(user.getSoDienThoai());
+        nguoiDungService.updateUser(currentUser);
+        return "redirect:/profile";
+//        return "redirect:/client/updateProfile";
+    }
 }

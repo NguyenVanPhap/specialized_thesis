@@ -33,6 +33,11 @@ public class AdminController {
 	@Autowired
 	VocabularyService baitaptuvungService;
 
+	public NguoiDung getSessionUser(HttpServletRequest request) {
+		return (NguoiDung) request.getSession().getAttribute("loggedInUser");
+
+	}
+
 	@ModelAttribute("loggedInUser")
 	public NguoiDung loggedInUser() {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -74,8 +79,10 @@ public class AdminController {
 		model.addAttribute("listRole", Role.values());
 		return "admin/accountmanagement";
 	}
-	public NguoiDung getSessionUser(HttpServletRequest request) {
-		return (NguoiDung) request.getSession().getAttribute("loggedInUser");
 
+	@GetMapping("/test")
+	public String Test() {
+		return "admin/grammarmanagement";
 	}
+
 }

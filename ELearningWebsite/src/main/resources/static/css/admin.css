@@ -1,7 +1,15 @@
 body {
-  padding-top: 80px;
+  font-family:sans-serif;
+font-size: 1.4rem;
   color: #48494a;
-  background-image: url(../images/body-bg.jpg);
+ background-color: #ffffff;
+  /*background-image: url(../images/body-bg.jpg);*/
+}
+
+
+*{
+  font-family:sans-serif;
+  font-size: 1.4rem;
 }
 .modal-backdrop {
   position: fixed;

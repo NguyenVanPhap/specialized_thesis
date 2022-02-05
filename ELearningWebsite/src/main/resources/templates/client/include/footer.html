@@ -13,50 +13,55 @@
 
 	<div th:fragment="footer">
 		<!-- Site footer -->
-		<footer class="site-footer">
-			<div class="container">
-				<div class="row">
-					<div class="col-sm-12 col-md-6">
-						<h6>About</h6>
-						<p class="text-justify">The Place You can learn Every Trusted Knowledge.</p>
-					</div>
+		<footer id="mu-footer">
+			<!-- start footer top -->
+			<div class="mu-footer-top">
+				<div class="container">
+					<div class="mu-footer-top-area">
+						<div class="row">
+							<div class="col-lg-3 col-md-3 col-sm-3">
+								<div class="mu-footer-widget">
+									<h4>Danh mục</h4>
+									<ul>
+										<li><a href="#">Từ vựng</a></li>
+										<li><a href="">Ngữ pháp</a></li>
 
-					<div class="col-xs-6 col-md-3">
-						<h6>Danh mục</h6>
-						<ul class="footer-links">
-							<li><a th:href="@{/}">Khóa học</a></li>
-							<li><a th:href="@{/}">Luyện tập</a></li>
-							<li><a th:href="@{/}">Tài liệu</a></li>
-							
-						</ul>
-					</div>
+									</ul>
+								</div>
+							</div>
+							<div class="col-lg-3 col-md-3 col-sm-3">
+								<div class="mu-footer-widget">
+									<h4>Tài khoản</h4>
+									<ul>
+										<li><a href="">Get Started</a></li>
+										<li><a href="#">My Questions</a></li>
+										<li><a href="">Download Files</a></li>
 
-					<div class="col-xs-6 col-md-3">
-						<h6>Tài khoản</h6>
-						<ul class="footer-links">
-							<li><a th:href="@{/}">Hồ sơ</a></li>
-							<li><a th:href="@{/}">Góc học tập</a></li>
-			
-						</ul>
-					</div>
-				</div>
-				<hr>
-			</div>
-			<div class="container">
-				<div class="row">
-					<div class="col-md-8 col-sm-6 col-xs-12">
-						<p class="copyright-text">Copyright &copy; 2017 All Rights Reserved by
-							<a href="#">Scanfcode</a>.
-						</p>
-					</div>
-
-					<div class="col-md-4 col-sm-6 col-xs-12">
-						<ul class="social-icons">
-							<li><a class="facebook" href="#"><i class="fa fa-facebook"></i></a></li>
-							<li><a class="twitter" href="#"><i class="fa fa-twitter"></i></a></li>
-							<li><a class="dribbble" href="#"><i class="fa fa-dribbble"></i></a></li>
-							<li><a class="linkedin" href="#"><i class="fa fa-linkedin"></i></a></li>
-						</ul>
+									</ul>
+								</div>
+							</div>
+							<div class="col-lg-3 col-md-3 col-sm-3">
+								<div class="mu-footer-widget">
+									<h4>News letter</h4>
+									<p>Get latest update, news & academic offers</p>
+									<form class="mu-subscribe-form">
+										<input type="email" placeholder="Type your Email">
+										<button class="mu-subscribe-btn" type="submit">Subscribe!</button>
+									</form>
+								</div>
+							</div>
+							<div class="col-lg-3 col-md-3 col-sm-3">
+								<div class="mu-footer-widget">
+									<h4>Contact</h4>
+									<address>
+										<p>P.O. Box 320, Ross, California 9495, USA</p>
+										<p>Phone: (415) 453-1568 </p>
+										<p>Website: www.markups.io</p>
+										<p>Email: info@markups.io</p>
+									</address>
+								</div>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>

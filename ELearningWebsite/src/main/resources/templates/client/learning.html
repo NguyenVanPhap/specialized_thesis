@@ -27,6 +27,8 @@
 	<link th:href="@{/css/responsive.css}" rel="stylesheet" />
 	<link rel="stylesheet" th:href="@{/css/css-circular-prog-bar.css}">
 
+	<link rel="stylesheet" th:href="@{/css/header/header.css}">
+
 	<link th:href="@{/css/style.css}" rel="stylesheet" />
 
 	<script th:src="@{/js/jquery-1.js}"></script>
@@ -107,8 +109,7 @@
 
 	<div class="page__js-course">
 		<div class="page__js-course-wrap">
-			<h3 class="page-header" style="display: none;" id="StartId"
-				th:text="${currentLessonId}"></h3>
+			<h3 class="page-header" style="display: none;" id="StartId" th:text="${currentLessonId}"></h3>
 			<div class="page__js-course-app">
 				<div class="page__js-course-app-video">
 					<div class="page__js-course-app-video-content-wrap">

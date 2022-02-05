@@ -22,6 +22,8 @@
 	<link th:href="@{/css/responsive.css}" rel="stylesheet" />
 	<link rel="stylesheet" th:href="@{/css/css-circular-prog-bar.css}">
 
+	<link rel="stylesheet" th:href="@{/css/header/header.css}">
+
 	<link th:href="@{/css/style.css}" rel="stylesheet" />
 
 	<script th:src="@{/js/jquery-1.js}"></script>
@@ -33,7 +35,6 @@
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
 	<script type="text/javascript" th:src="@{/js/jquery-3.4.1.min.js}"></script>
-
 	<style type="text/css">
 		.showtext {
 			text-align: auto;
@@ -136,11 +137,10 @@
 								<h3 th:text="${list.getNumber()}"></h3>
 								<h4 th:text="${list.getContent()}">
 								</h4>
-								
 
-							<img
-                                th:src="@{/static/file/images/vocab/}+${list.getImage()}"
-                                alt="image not found" style="height: 210px; width: 300px;"/>
+
+								<img th:src="@{/static/file/images/vocab/}+${list.getImage()}" alt="image not found"
+									style="height: 210px; width: 300px;" />
 								<p>
 									<b>NAmE:</b> &nbsp; <span style="color: red"
 										th:text="${list.getTranscribe()}"></span>
@@ -155,7 +155,8 @@
 								</p>
 
 								<audio controls>
-									<source th:src="@{/static/file/audio/vocab/}+${list.getAudiomp3()}" type="audio/wav">
+									<source th:src="@{/static/file/audio/vocab/}+${list.getAudiomp3()}"
+										type="audio/wav">
 								</audio>
 
 								<br>

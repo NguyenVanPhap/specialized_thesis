@@ -12,93 +12,112 @@
 <body>
 
 	<div th:fragment="header">
-		<div class="top_container sub_pages" style="height: 200px;">
-			<!-- header section strats -->
-			<header class="header_section">
+		<section class="ftco-section myheader">
+			<div class="wrap">
 				<div class="container">
-					<nav class="navbar navbar-expand-lg custom_nav-container ">
-						<a class="navbar-brand" th:href="@{/}">
-							<img src="${url}/images/logo.png" alt="">
-							<span>
-								Adward
-							</span>
-						</a>
-						<button class="navbar-toggler" type="button" data-toggle="collapse"
-							data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-							aria-expanded="false" aria-label="Toggle navigation">
-							<span class="navbar-toggler-icon"></span>
-						</button>
-
-						<div class="collapse navbar-collapse" id="navbarSupportedContent">
-							<div class="d-flex ml-auto flex-column flex-lg-row align-items-center">
-								<ul class="navbar-nav  ">
-									<li class="nav-item active">
-										<a class="nav-link" th:href="@{/}"> Trang Chủ <span
-												class="sr-only">(current)</span></a>
-									</li>
-									<li class="nav-item">
-										<a class="nav-link" th:href="@{/course}">Khóa học</a>
-									</li>
-									<li class="dropdown nav-item active">
-										<a class="dropdown-toggle nav-link" data-toggle="dropdown">Luyện Tập
-											<b class="caret"></b>
-										</a>
-										<ul class="dropdown-menu">
-											<li><a class="nav-link" th:href="@{/listening/}">Luyện bài nghe</a>
-											</li>
-											<li><a class="nav-link" th:href="@{/reading/}">Luyện bài đọc</a>
-											</li>
-											<li><a class="nav-link" th:href="@{/listGrammar}">Ngữ pháp</a></li>
-											<li><a class="nav-link" th:href="@{/listVocab}">Từ vựng</a></li>
-										</ul>
-									</li>
-
-									
-									<li class="nav-item">
-										<a class="nav-link" href="#">Contact Us</a>
-									</li>
-
-									<th:block sec:authorize="isAnonymous()">
-										<li class="nav-item ">
-											<a class="nav-link" th:href="@{/signin}"> Đăng nhập </a>
-										</li>
-
-										<li class="nav-item">
-											<a class="nav-link" th:href="@{/register}"> Đăng Kí</a>
-										</li>
-
-									</th:block>
-									<th:block sec:authorize="isAuthenticated()">
-
-										<li class="dropdown nav-item active">
-
-											<a th:text="${loggedInUser.hoTen}" class="dropdown-toggle nav-link"
-												data-toggle="dropdown">
-
-												<b class="caret"></b>
-											</a>
-											<ul class="dropdown-menu">
-												<div th:if="${!nguoiDung.loginOauth2 }">
-													<li><a class="nav-link" th:href="@{/profile}">Tài
-															khoản</a></li>
-												</div>
-												<li><a class="nav-link" th:href="@{/signout}">Thoát</a></li>
-											</ul>
-										</li>
-
-									</th:block>
-
-								</ul>
-
-								<form class="form-inline my-2 my-lg-0 ml-0 ml-lg-4 mb-3 mb-lg-0">
-									<button class="btn  my-2 my-sm-0 nav_search-btn" type="submit"></button>
-								</form>
+					<div class="row justify-content-between">
+						<div class="col">
+							<p class="mb-0 phone"><span class="fa fa-phone"></span> <a href="#">+00 1234 567</a></p>
+						</div>
+						<div class="col d-flex justify-content-end">
+							<div class="social-media">
+								<p class="mb-0 d-flex">
+									<a href="#" class="d-flex align-items-center justify-content-center"><span
+											class="fa fa-facebook"><i class="sr-only">Facebook</i></span></a>
+									<a href="#" class="d-flex align-items-center justify-content-center"><span
+											class="fa fa-twitter"><i class="sr-only">Twitter</i></span></a>
+									<a href="#" class="d-flex align-items-center justify-content-center"><span
+											class="fa fa-instagram"><i class="sr-only">Instagram</i></span></a>
+									<a href="#" class="d-flex align-items-center justify-content-center"><span
+											class="fa fa-dribbble"><i class="sr-only">Dribbble</i></span></a>
+								</p>
 							</div>
-					</nav>
+						</div>
+					</div>
 				</div>
-			</header>
-		</div>
-		<hr class="myhr">
+			</div>
+			<nav style="background-color: #483D8B;"
+				class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+				<div class="container">
+					<a class="navbar-brand" th:href="@{/}">Toeic mỗi ngày</a>
+					<form action="#" class="searchform order-sm-start order-lg-last">
+						<div class="form-group d-flex">
+							<input type="text" class="form-control pl-3" placeholder="Search">
+							<button type="submit" placeholder="" class="form-control search"><span
+									class="fa fa-search"></span></button>
+						</div>
+					</form>
+					<div class="order-lg-last">
+						<th:block sec:authorize="isAnonymous()">
+							<ul class="navbar-nav m-auto">
+								<li class="nav-item"><a th:href="@{/signin}" style="color:black" class="nav-link">Đăng
+										nhập</a>
+
+								</li>
+							</ul>
+						</th:block>
+						<th:block sec:authorize="isAuthenticated()">
+
+							<!--<ul class="navbar-nav m-auto">
+								<li class="dropdown nav-item active">
+
+									<a th:text="${loggedInUser.hoTen}" class="dropdown-toggle nav-link"
+										data-toggle="dropdown">
+
+										<b class="caret"></b>
+									</a>
+									<ul class="dropdown-menu">
+										<div th:if="${!nguoiDung.loginOauth2 }">
+											<li><a class="nav-link" th:href="@{/profile}">Tài
+													khoản</a></li>
+										</div>
+										<li><a class="nav-link" th:href="@{/signout}">Thoát</a></li>
+									</ul>
+								</li>
+							</ul>-->
+							<ul class="navbar-nav m-auto">
+								<li class="nav-item dropdown">
+									<a th:text="${loggedInUser.hoTen}" class="nav-link dropdown-toggle" href="#"
+										id="dropdown04" data-toggle="dropdown" aria-haspopup="true"
+										aria-expanded="false"></a>
+									<div class="dropdown-menu" aria-labelledby="dropdown04">
+										<div th:if="${!nguoiDung.loginOauth2 }">
+											<a class="dropdown-item" th:href="@{/profile}">Tài khoản</a>
+										</div>
+										<a class="dropdown-item" th:href="@{/signout}">Thoát</a>
+									</div>
+								</li>
+							</ul>
+
+						</th:block>
+					</div>
+					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav"
+						aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+						<span class="fa fa-bars"></span> Menu
+					</button>
+					<div class="collapse navbar-collapse" id="ftco-nav">
+						<ul class="navbar-nav m-auto">
+							<li class="nav-item active"><a th:href="@{/}" class="nav-link">Home</a></li>
+							<li class="nav-item dropdown">
+								<a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-toggle="dropdown"
+									aria-haspopup="true" aria-expanded="false">Luyện tập</a>
+								<div class="dropdown-menu" aria-labelledby="dropdown04">
+									<a class="dropdown-item" th:href="@{/listVocab}">Từ vựng</a>
+									<a class="dropdown-item" th:href="@{/listGrammar}">Ngữ pháp</a>
+
+								</div>
+							</li>
+							<li class="nav-item"><a th:href="@{/course}" class="nav-link">Khóa học</a></li>
+							<!--<li class="nav-item"><a href="#" class="nav-link">Blog</a></li>
+							<li class="nav-item"><a href="#" class="nav-link">Contact</a></li>-->
+						</ul>
+					</div>
+
+				</div>
+			</nav>
+			<!-- END nav -->
+
+		</section>
 	</div>
 </body>
 

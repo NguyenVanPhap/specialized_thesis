@@ -51,7 +51,7 @@ public class AdminController {
 
 	@GetMapping("/grammar")
 	public String quanLyGrammar() {
-		return "admin/quanLyGrammar";
+		return "admin/grammarmanagement";
 	}
 
 	@GetMapping("/courses")

@@ -75,8 +75,6 @@ $(document).ready(function() {
 
 
 	}
-
-
 	$(document).on('click', '.btnAddnewGram', function(event) {
 
 		$('#btnUpdate').hide();
@@ -85,17 +83,19 @@ $(document).ready(function() {
 		$('#grammarModal #idGrammarModal').val("");
 		modal.find('.modal-body #nameGrammar').val("");
 		modal.find('.modal-header #titleModal').text("Thêm mới bài ngữ pháp");
-		simplemde.value("wiriting someshing here");
+		/*simplemde.value("wiriting someshing here");*/
 	});
 	//add new baigrammar
 
 	$('#btnAddNewGrammar').click(function() {
 		// formData: nameBaiThiThu,file_Excel, file_Image, file_imageQuestion, file_Listening
 
+		var editorData= CKEDITOR.instances['myckeditor'].getData();
+        console.log(" your data is :"+editorData);
 		var formData = new FormData();
 		var name = $('#nameGrammar').val();
-		var contentMarkdown = simplemde.value(); //get from textarea markdown
-		var contentHTML = simplemde.options.previewRender(contentMarkdown);
+		var contentMarkdown = editorData; //get from textarea markdown
+		var contentHTML = editorData;
 
 
 
@@ -179,9 +179,9 @@ $(document).ready(function() {
 				modal.find('.modal-body #nameGrammar').val(jsonObject.tenbaigrammar);
 				modal.find('.modal-header #titleModal').text("Cập nhật bài ngữ pháp");
 
-				simplemde.value(jsonObject.contentgrammar);
+				CKEDITOR.instances['myckeditor'].setData(jsonObject.contentgrammar);
 
-
+				console.log(jsonObject.contentgrammar);
 				//simplemde = null;
 				$('#btnUpdate').show();
 				$('#btnAddNewGrammar').hide();

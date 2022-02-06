@@ -8,6 +8,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import com.elearning.entities.Grammar;
+import com.elearning.helper.ApiRes;
 import com.elearning.repository.GrammarRepository;
 import com.elearning.service.GrammarService;
 
@@ -15,39 +16,38 @@ import com.elearning.service.GrammarService;
 public class GrammarServiceImpl implements GrammarService {
 	@Autowired
 	GrammarRepository baigrammarRepo;
-	
+
 	@Override
 	public void save(Grammar baigrammar) {
 		baigrammarRepo.save(baigrammar);
 	}
-	
+
 	@Override
-
-	public List<Grammar> getGrammar(int id){
-
-		return baigrammarRepo.findByGrammarid(id);
+	public Grammar getInfor(int id) {
+		List<Grammar> lstGrammars = baigrammarRepo.findByGrammarid(id);
+		return lstGrammars.get(0);
 	}
-	
+
 	@Override
-	public Page<Grammar> getGrammar(int page, int size){
+	public Page<Grammar> getGrammar(int page, int size) {
 
 		return baigrammarRepo.findAll(PageRequest.of(page, size));
-		
+
 	}
-	
+
 	@Override
-	public List<Grammar>getAllGrammar(){
+	public List<Grammar> getAllGrammar() {
 		return baigrammarRepo.findAll();
 	}
-	
+
 	@Override
 	public void delete(int id) {
 		baigrammarRepo.deleteById(id);
 	}
-	
+
 	@Override
-	public List<Grammar> searchListBaiGrammar(String search){
+	public List<Grammar> searchListBaiGrammar(String search) {
 		return baigrammarRepo.searchGrammar(search);
-		
+
 	}
 }

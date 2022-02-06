@@ -7,10 +7,12 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -18,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.elearning.entities.Grammar;
+import com.elearning.helper.ApiRes;
 import com.elearning.service.GrammarService;
 
 @RestController
@@ -55,13 +58,13 @@ public class GrammarApi {
 	}
 
 	// get info Grammar ->edit Grammar
-	@RequestMapping(value = "/infoGrammar/{idBaiGrammar}")
-	public String infoGrammarById(@PathVariable("idBaiGrammar") int id) {
-		Grammar baiGrammar = baigrammarService.getGrammar(id).get(0);
 
-		String json = "name==" + baiGrammar.getGrammarName() + "|" + "content==" + baiGrammar.getContentMarkDown();
-
-		return json;
+	@RequestMapping(value = "/infoGrammar/{idBaiGrammar}", method = RequestMethod.GET, consumes = "application/json", produces = "application/json; charset=utf-8")
+	public ResponseEntity<Object>  infoGrammarById(@PathVariable("idBaiGrammar") int id) {
+		ApiRes<Object> apiRes = new ApiRes<Object>();
+		Grammar baiGrammar = baigrammarService.getInfor(id);
+		apiRes.setObject(baiGrammar);
+		return ResponseEntity.ok(apiRes);
 	}
 
 	@PostMapping(value = "/save")
@@ -92,7 +95,7 @@ public class GrammarApi {
 
 		List<String> response = new ArrayList<String>();
 
-		Grammar baigrammar = baigrammarService.getGrammar(id).get(0);
+		Grammar baigrammar = baigrammarService.getInfor(id);
 		baigrammarService.save(baigrammar);
 		try {
 			baigrammar.setTenbaigrammar(name);

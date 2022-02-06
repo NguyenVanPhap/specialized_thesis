@@ -53,9 +53,7 @@ public class grammarController {
 
 		// default value lấy từ kết quả đầu tiên
 
-
 		Page<Grammar> list = baigrammarService.getGrammar(page - 1, 4);
-
 
 		int totalPage = list.getTotalPages();
 
@@ -92,9 +90,7 @@ public class grammarController {
 	@GetMapping("/detailGram")
 	public String DetalVocab(@RequestParam int idGram, Model model) {
 
-
-		Grammar baigrammar = baigrammarService.getGrammar(idGram).get(0);
-
+		Grammar baigrammar = baigrammarService.getInfor(idGram);
 
 		/*
 		 * List<CommentGrammar> listCmt =
@@ -106,7 +102,6 @@ public class grammarController {
 		 */
 		model.addAttribute("baigrammar", baigrammar);
 		model.addAttribute("idBaiGrammar", baigrammar.getGrammarId());
-
 
 		return "client/GrammarDetail";
 

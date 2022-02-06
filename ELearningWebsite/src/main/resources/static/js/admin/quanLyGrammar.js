@@ -2,17 +2,13 @@
 
 
 $(document).ready(function() {
-	var simplemde;
+
 
 	//default. load all object baiGrammar
 	window.onload = function() {
 		loadAllGrammar();
 
-		// creat markdown
-		simplemde = new SimpleMDE({
-			element: document.getElementById("markdown-editor"),
-			spellChecker: false,
-		});
+
 
 	};
 
@@ -90,8 +86,8 @@ $(document).ready(function() {
 	$('#btnAddNewGrammar').click(function() {
 		// formData: nameBaiThiThu,file_Excel, file_Image, file_imageQuestion, file_Listening
 
-		var editorData= CKEDITOR.instances['myckeditor'].getData();
-        console.log(" your data is :"+editorData);
+		var editorData = CKEDITOR.instances['myckeditor'].getData();
+
 		var formData = new FormData();
 		var name = $('#nameGrammar').val();
 		var contentMarkdown = editorData; //get from textarea markdown
@@ -115,7 +111,7 @@ $(document).ready(function() {
 
 				$('#grammarModal').modal('hide');
 				loadAllGrammar();
-				$('#info-success').text("Thêm mới bài grammar thành công");
+				alert("Thêm mới bài grammar thành công");
 
 			},
 
@@ -140,7 +136,7 @@ $(document).ready(function() {
 				url: "http://localhost:8080/api/admin/grammar/delete/" + idBaiGrammar,
 				success: function(data) {
 					loadAllGrammar();
-					$('#info-success').text("Xóa bài grammar thành công");
+					alert("Xóa bài grammar thành công");
 				},
 				error: function(e) {
 					alert("error");
@@ -160,34 +156,34 @@ $(document).ready(function() {
 
 		$.ajax({
 			type: 'GET',
+			contentType: "application/json",
 			url: "http://localhost:8080/api/admin/grammar/infoGrammar/" + idBaiGrammar,
 			success: function(data) {
 
-				var jsonObject = new Object();
+				/*var jsonObject = new Object();
 				fields = data.split('|');
 
 				id = fields[0].split('==');
 				jsonObject.tenbaigrammar = id[1];
 
 				contentgrammar = fields[1].split('==');
-				jsonObject.contentgrammar = contentgrammar[1];
+				jsonObject.contentgrammar = contentgrammar[1];*/
 
 				//set data for modal
 
 				var modal = $('#grammarModal');
 				$('#grammarModal #idGrammarModal').val(idBaiGrammar);
-				modal.find('.modal-body #nameGrammar').val(jsonObject.tenbaigrammar);
+				modal.find('.modal-body #nameGrammar').val(data.object.grammarName);
 				modal.find('.modal-header #titleModal').text("Cập nhật bài ngữ pháp");
 
-				CKEDITOR.instances['myckeditor'].setData(jsonObject.contentgrammar);
-
-				console.log(jsonObject.contentgrammar);
+				modal.find('.modal-body #myckeditor').val(data.object.contentHTML);
+				CKEDITOR.instances['myckeditor'].setData(data.object.contentHTML);
+				console.log(data.object.contentHTML);
+				/*console.log(CKEDITOR.instances['myckeditor'].getData());*/
 				//simplemde = null;
 				$('#btnUpdate').show();
 				$('#btnAddNewGrammar').hide();
 				$('#grammarModal').modal('show');
-
-
 			},
 
 			error: function(e) {
@@ -201,21 +197,13 @@ $(document).ready(function() {
 
 
 		$('#btnUpdate').unbind().click(function() {
-
 			var formData = new FormData();
-
-
 			var name = $('#nameGrammar').val();
-			var contentMarkdown = simplemde.value(); //get from textarea markdown
-			var contentHTML = simplemde.options.previewRender(contentMarkdown);
-
-
-		
-
+			var editorData = CKEDITOR.instances['myckeditor'].getData();
 			formData.append("idGrammar", idBaiGrammar);
 			formData.append("name", name);
-			formData.append("contentMarkdown", contentMarkdown);
-			formData.append("contentHtml", contentHTML);
+			formData.append("contentMarkdown", editorData);
+			formData.append("contentHtml", editorData);
 
 
 			$.ajax({
@@ -229,7 +217,7 @@ $(document).ready(function() {
 
 				success: function(data) {
 					$('#grammarModal').modal('hide');
-					$('#info-success').text("Cập nhật bài grammar thành công");
+					alert("Cập nhật bài grammar thành công");
 					loadAllGrammar();
 
 				},

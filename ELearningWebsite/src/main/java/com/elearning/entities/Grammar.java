@@ -19,6 +19,12 @@ public class Grammar {
 	@Column(name = "grammarname")
 	private String grammarname;
 
+	@Column(name = "file_path")
+	private String filePath;
+
+	@Column(name = "file_name")
+	private String fileName;
+
 	@Column(columnDefinition = "TEXT", name = "content_HTML")
 	private String contentHTML;
 
@@ -37,10 +43,9 @@ public class Grammar {
 		return grammarname;
 	}
 
-	public void setTenbaigrammar(String grammarname) {
-		this.grammarname = grammarname;
+	public void setGrammarName(String grammarName) {
+		this.grammarname = grammarName;
 	}
-
 
 	public String getContentHTML() {
 		return contentHTML;
@@ -58,6 +63,22 @@ public class Grammar {
 		this.contentMarkDown = contentMarkDown;
 	}
 
+	public String getFilePath() {
+		return filePath;
+	}
+
+	public void setFilePath(String filePath) {
+		this.filePath = filePath;
+	}
+
+	public String getFileName() {
+		return fileName;
+	}
+
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
+	}
+
 	public Grammar() {
 
 	}
@@ -71,5 +92,15 @@ public class Grammar {
 		this.contentMarkDown = contentMarkDown;
 	}
 
+	public Grammar(Integer grammarid, String grammarname, String filePath, String fileName, String contentHTML,
+			String contentMarkDown) {
+		super();
+		this.grammarid = grammarid;
+		this.grammarname = grammarname;
+		this.filePath = filePath;
+		this.fileName = fileName;
+		this.contentHTML = contentHTML;
+		this.contentMarkDown = contentMarkDown;
+	}
 
 }

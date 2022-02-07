@@ -60,7 +60,7 @@ public class GrammarApi {
 	// get info Grammar ->edit Grammar
 
 	@RequestMapping(value = "/infoGrammar/{idBaiGrammar}", method = RequestMethod.GET, consumes = "application/json", produces = "application/json; charset=utf-8")
-	public ResponseEntity<Object>  infoGrammarById(@PathVariable("idBaiGrammar") int id) {
+	public ResponseEntity<Object> infoGrammarById(@PathVariable("idBaiGrammar") int id) {
 		ApiRes<Object> apiRes = new ApiRes<Object>();
 		Grammar baiGrammar = baigrammarService.getInfor(id);
 		apiRes.setObject(baiGrammar);
@@ -75,7 +75,7 @@ public class GrammarApi {
 
 		Grammar baigrammar = new Grammar();
 		try {
-			baigrammar.setTenbaigrammar(name);
+			baigrammar.setGrammarName(name);
 			baigrammar.setContentMarkDown(contentMarkdown);
 			baigrammar.setContentHTML(contentHtml);
 			baigrammarService.save(baigrammar);
@@ -91,14 +91,21 @@ public class GrammarApi {
 	@PostMapping(value = "/update")
 	@ResponseBody
 	public List<String> updateBaiGrammar(@RequestParam("idGrammar") int id, @RequestParam("name") String name,
-			@RequestParam("contentMarkdown") String contentMarkdown, @RequestParam("contentHtml") String contentHtml) {
-
+			@RequestParam("contentMarkdown") String contentMarkdown, @RequestParam("contentHtml") String contentHtml,
+			@RequestPart("fileImage") MultipartFile file_image) {
 		List<String> response = new ArrayList<String>();
-
+		String rootDirectory = request.getSession().getServletContext().getRealPath("/");
 		Grammar baigrammar = baigrammarService.getInfor(id);
 		baigrammarService.save(baigrammar);
 		try {
-			baigrammar.setTenbaigrammar(name);
+			Path pathImage = Paths.get(rootDirectory + "/static/file/images/grammar/" + "" + baigrammar.getGrammarId()
+					+ "." + file_image.getOriginalFilename());
+			String localPath = "/static/file/images/grammar/" + "" + baigrammar.getGrammarId() + "."
+					+ file_image.getOriginalFilename();
+			file_image.transferTo(new File(pathImage.toString()));
+			baigrammar.setFileName(file_image.getOriginalFilename());
+			baigrammar.setFilePath(localPath);
+			baigrammar.setGrammarName(name);
 			baigrammar.setContentMarkDown(contentMarkdown);
 			baigrammar.setContentHTML(contentHtml);
 

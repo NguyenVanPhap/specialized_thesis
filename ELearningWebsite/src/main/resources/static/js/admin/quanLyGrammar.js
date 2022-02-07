@@ -175,7 +175,7 @@ $(document).ready(function() {
 				$('#grammarModal #idGrammarModal').val(idBaiGrammar);
 				modal.find('.modal-body #nameGrammar').val(data.object.grammarName);
 				modal.find('.modal-header #titleModal').text("Cập nhật bài ngữ pháp");
-
+				modal.find('.modal-body #previewImage').attr('src', data.object.filePath);
 				modal.find('.modal-body #myckeditor').val(data.object.contentHTML);
 				CKEDITOR.instances['myckeditor'].setData(data.object.contentHTML);
 				console.log(data.object.contentHTML);
@@ -199,6 +199,10 @@ $(document).ready(function() {
 		$('#btnUpdate').unbind().click(function() {
 			var formData = new FormData();
 			var name = $('#nameGrammar').val();
+
+
+			var file_image = $('#file_imageGrammar')[0].files[0];
+			formData.append("fileImage", file_image);
 			var editorData = CKEDITOR.instances['myckeditor'].getData();
 			formData.append("idGrammar", idBaiGrammar);
 			formData.append("name", name);

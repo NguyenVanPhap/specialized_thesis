@@ -199,17 +199,24 @@ $(document).ready(function() {
 		$('#btnUpdate').unbind().click(function() {
 			var formData = new FormData();
 			var name = $('#nameGrammar').val();
+			var file_image;
 
-
-			var file_image = $('#file_imageGrammar')[0].files[0];
-			formData.append("fileImage", file_image);
+			if ($('#file_imageGrammar').get(0).files.length != 0) {
+				file_image = $('#file_imageGrammar')[0].files[0];
+				formData.append("fileImage", file_image);
+			}
+			else {
+				file_image ="test.jpg";
+				formData.append("fileImage", "test.jpg");
+			}
+			
+			/*var file_image = $('#file_imageGrammar')[0].files[0];
+			formData.append("fileImage", file_image);*/
 			var editorData = CKEDITOR.instances['myckeditor'].getData();
 			formData.append("idGrammar", idBaiGrammar);
 			formData.append("name", name);
 			formData.append("contentMarkdown", editorData);
 			formData.append("contentHtml", editorData);
-
-
 			$.ajax({
 				data: formData,
 				type: 'POST',

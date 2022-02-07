@@ -3,7 +3,7 @@
 
 <head>
 	<meta charset="ISO-8859-1">
-	<title>Quản lý Grammar</title>
+	<title>Quản lý khóa học</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 	<script th:src="@{/js/jquery-1.js}"></script>
@@ -25,10 +25,11 @@
 
 	<style type="text/css">
 		.elementcontent {
-			-webkit-line-clamp: 3;
+			-webkit-line-clamp: 5;
 			-webkit-box-orient: vertical;
-			overflow: hidden;
+			overflow-y: auto;
 			display: -webkit-box;
+			padding: 20px 40px;
 		}
 	</style>
 </head>
@@ -53,6 +54,7 @@
 						<th>ID</th>
 						<th style="width:20%">Tên khóa học </th>
 						<th style="width:25%">Nội dung</th>
+						<th style="width:0%"></th>
 						<th style="width:25%">Đối tượng</th>
 						<th style="width:20%">Thao tác</th>
 					</tr>

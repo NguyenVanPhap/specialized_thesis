@@ -58,8 +58,9 @@ $(document).ready(function() {
 					trHTML += '<tr><td class= "center">' + jsonArr[i].courseId + '</td>'
 						+ '<td class= "center">' + jsonArr[i].courseName + '</td>'
 
-						+ '<td class= "center">' + jsonArr[i].content + '</td>'
-						+ '<td class= "center ">' + jsonArr[i].targetuser + '</td>'
+						+ '<td class= "elementcontent">' + jsonArr[i].content + '</td>'
+						+ '<td >'+'</td>'
+						+ '<td class= "elementcontent">' + jsonArr[i].targetuser + '</td>'
 
 						+ '<td class = "center"> <a id="edit.' + jsonArr[i].courseId + ' "'
 

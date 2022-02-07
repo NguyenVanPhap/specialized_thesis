@@ -81,13 +81,17 @@
 								<label>Tên bài grammar</label> <input id="nameGrammar" class="form-control">
 
 							</div>
-
-
+							<div class="form-group col-md-6">
+								<label for="imageGrammar">Hình ảnh:</label>
+								<input type="file" class="form-control" id="file_imageGrammar" name="file_imageGrammar"
+									accept="image/*" onchange="showMyImage(this)" required />
+								<img alt="" src="" class="" id="previewImage" style="height: 100px; width: 150px">
+							</div>
 							<div class="form-group col-md-12">
 								<label for="contenGramar">Chỉnh sửa nội dung bài Grammar:</label>
 
 								<textarea id="myckeditor" name="myckeditor" cols="80" rows="10">
-									
+
 								</textarea>
 							</div>
 						</div>
@@ -104,7 +108,7 @@
 		</div>
 	</div>
 	<script>
-		CKEDITOR.replace('myckeditor',{
+		CKEDITOR.replace('myckeditor', {
 			height: "800px"
 		});
 	</script>

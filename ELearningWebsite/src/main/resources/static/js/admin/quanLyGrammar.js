@@ -29,14 +29,10 @@ $(document).ready(function() {
 				for (var i = 0; i < data.length; i++) {
 					var jsonObject = new Object();
 					fields = data[i].split(',');
-
 					id = fields[0].split(':');
 					jsonObject.baigrammarid = id[1];
-
 					tenbaigrammar = fields[1].split(':');
 					jsonObject.tenbaigrammar = tenbaigrammar[1];
-
-
 					jsonArray.push(jsonObject);
 				}
 
@@ -92,6 +88,9 @@ $(document).ready(function() {
 		var name = $('#nameGrammar').val();
 		var contentMarkdown = editorData; //get from textarea markdown
 		var contentHTML = editorData;
+
+		file_image = $('#file_imageGrammar')[0].files[0];
+		formData.append("fileImage", file_image);
 
 
 
@@ -206,10 +205,10 @@ $(document).ready(function() {
 				formData.append("fileImage", file_image);
 			}
 			else {
-				file_image ="test.jpg";
+				file_image = "test.jpg";
 				formData.append("fileImage", "test.jpg");
 			}
-			
+
 			/*var file_image = $('#file_imageGrammar')[0].files[0];
 			formData.append("fileImage", file_image);*/
 			var editorData = CKEDITOR.instances['myckeditor'].getData();

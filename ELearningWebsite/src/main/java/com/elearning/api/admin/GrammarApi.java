@@ -70,11 +70,21 @@ public class GrammarApi {
 	@PostMapping(value = "/save")
 	@ResponseBody
 	public List<String> addBaiGrammar(@RequestParam("grammarName") String name,
-			@RequestParam("contentMarkdown") String contentMarkdown, @RequestParam("contentHtml") String contentHtml) {
+			@RequestParam("contentMarkdown") String contentMarkdown, @RequestParam("contentHtml") String contentHtml,
+			@RequestPart(value = "fileImage", required = false) MultipartFile file_image) {
 		List<String> response = new ArrayList<String>();
-
+		String rootDirectory = request.getSession().getServletContext().getRealPath("/");
 		Grammar baigrammar = new Grammar();
 		try {
+			if (file_image != null) {
+				Path pathImage = Paths.get(rootDirectory + "/static/file/images/grammar/" + ""
+						+ baigrammar.getGrammarId() + "." + file_image.getOriginalFilename());
+				String localPath = "/static/file/images/grammar/" + "" + baigrammar.getGrammarId() + "."
+						+ file_image.getOriginalFilename();
+				file_image.transferTo(new File(pathImage.toString()));
+				baigrammar.setFileName(file_image.getOriginalFilename());
+				baigrammar.setFilePath(localPath);
+			}
 			baigrammar.setGrammarName(name);
 			baigrammar.setContentMarkDown(contentMarkdown);
 			baigrammar.setContentHTML(contentHtml);

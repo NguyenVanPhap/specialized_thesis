@@ -1,7 +1,8 @@
 package com.elearning.api.admin;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.io.File;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -9,9 +10,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
-
+import org.springframework.web.multipart.MultipartFile;
 import com.elearning.entities.ListeningLecture;
+import com.elearning.helper.ApiRes;
 import com.elearning.service.ListeningLectureService;
 
 @RestController
@@ -40,11 +43,29 @@ public class ListeningLectureAPI {
 		return ResponseEntity.ok(listeninglectureService.getInfor(id));
 	}
 
-	@RequestMapping(value = "/infolisteninglecture/{idBailisteninglecture}", method = RequestMethod.POST, consumes = "application/json", produces = "application/json; charset=utf-8")
+	@RequestMapping(value = "/add/{listeninglectureId}", method = RequestMethod.POST, consumes = "application/json", produces = "application/json; charset=utf-8")
 	public ResponseEntity<Object> addBailisteninglecture(@RequestParam("listeninglectureName") String name,
-			@RequestParam("contentMarkdown") String contentMarkdown, @RequestParam("contentHtml") String contentHtml) {
-		List<String> response = new ArrayList<String>();
+			@RequestParam("contentMarkdown") String contentMarkdown, @RequestParam("contentHtml") String contentHtml,
+			@RequestPart(value = "fileImage", required = false) MultipartFile file_image) {
+		// List<String> response = new ArrayList<String>();
+		String rootDirectory = request.getSession().getServletContext().getRealPath("/");
 		ListeningLecture objlisteninglecture = new ListeningLecture();
+		ApiRes<Object> apiRes = new ApiRes<Object>();
+		try {
+			if (file_image != null) {
+				Path pathImage = Paths.get(rootDirectory + "/static/file/images/grammar/" + ""
+						+ objlisteninglecture.getId() + "." + file_image.getOriginalFilename());
+				String localPath = "/static/file/images/grammar/" + "" + objlisteninglecture.getId() + "."
+						+ file_image.getOriginalFilename();
+				file_image.transferTo(new File(pathImage.toString()));
+				objlisteninglecture.setFileName(file_image.getOriginalFilename());
+				objlisteninglecture.setFilePath(localPath);
+			}
+		} catch (Exception e) {
+			apiRes.setError(true);
+			apiRes.setErrorReason(e.getMessage());
+			return ResponseEntity.ok(apiRes);
+		}
 		objlisteninglecture.setName(name);
 		objlisteninglecture.setContentMarkDown(contentMarkdown);
 		objlisteninglecture.setContentHTML(contentHtml);
@@ -52,10 +73,10 @@ public class ListeningLectureAPI {
 	}
 
 	/*
-	 * @PostMapping(value = "/update")
-	 * 
-	 * @ResponseBody public List<String>
-	 * updateBailisteninglecture(@RequestParam("idlisteninglecture") int id,
+	 * @RequestMapping(value = "/update/{idBailisteninglecture}", method =
+	 * RequestMethod.POST, consumes = "application/json", produces =
+	 * "application/json; charset=utf-8") public List<String>
+	 * update(@RequestParam("idlisteninglecture") int id,
 	 * 
 	 * @RequestParam("name") String name, @RequestParam("contentMarkdown") String
 	 * contentMarkdown,
@@ -91,5 +112,4 @@ public class ListeningLectureAPI {
 	 * 
 	 * return response; }
 	 */
-
 }

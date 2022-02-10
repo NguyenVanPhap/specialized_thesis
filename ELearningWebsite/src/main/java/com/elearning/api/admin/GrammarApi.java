@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -21,6 +22,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.elearning.entities.Grammar;
 import com.elearning.helper.ApiRes;
+import com.elearning.request.BaseReq;
 import com.elearning.service.GrammarService;
 
 @RestController
@@ -35,6 +37,29 @@ public class GrammarApi {
 
 	@GetMapping("/loadGrammar")
 	public List<String> showAllGrammar() {
+
+		List<Grammar> list = baigrammarService.getAllGrammar();
+
+		List<String> response = new ArrayList<String>();
+
+		for (int i = 0; i < list.size(); i++) {
+			String json = "baithithuid:" + list.get(i).getGrammarId() + "," + "tenbaithithu:"
+					+ list.get(i).getGrammarName();
+
+			response.add(json);
+		}
+
+		return response;
+
+	}
+
+	@RequestMapping(value = "/getlist", method = RequestMethod.GET, consumes = "application/json", produces = "application/json")
+	public ResponseEntity<Object> getlist(@RequestParam(defaultValue = "1") int page) {
+		return ResponseEntity.ok(baigrammarService.getGrammar4api(page-1, 4));
+	}
+
+	@GetMapping("/search")
+	public List<String> Search() {
 
 		List<Grammar> list = baigrammarService.getAllGrammar();
 

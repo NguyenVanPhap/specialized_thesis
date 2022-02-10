@@ -16,7 +16,7 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
 		integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
-	<script th:src="@{/js/admin/quanLyGrammar.js}"></script>
+	<script th:src="@{/js/admin/listeninglecture.js}"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<script th:src="@{/plugin/ckeditor/ckeditor.js}"></script>
@@ -26,45 +26,6 @@
 	<link th:href="@{/css/responsive.css}" rel="stylesheet" />
 	<link th:href="@{/css/adminheader.css}" rel="stylesheet" />
 	<!--<link rel="stylesheet" th:href="@{/css/css-circular-prog-bar.css}">-->
-	<style type="text/css">
-		.center {
-			text-align: center;
-		}
-
-		.pagination {
-			display: inline-block;
-		}
-
-		.pagination a {
-			color: black;
-			float: left;
-			padding: 8px 16px;
-			text-decoration: none;
-			transition: background-color .3s;
-			border: 1px solid #ddd;
-			margin: 0 4px;
-		}
-
-		.pagination a.active {
-			background-color: #4CAF50;
-			color: white;
-			border: 1px solid #4CAF50;
-		}
-
-		.pagination a:hover:not(.active) {
-			background-color: #ddd;
-		}
-
-		.myparent {
-			white-space: nowrap;
-		}
-
-		.mychild {
-			display: inline;
-			float: left;
-			padding-right: 2%
-		}
-	</style>
 </head>
 
 <body>
@@ -77,30 +38,11 @@
 
 		<div class="col-md-1"></div>
 		<div class="col-md-10 animated bounce">
-
 			<h1 class="page-header">Quản lý bài hướng dẫn Grammar</h1>
-
 			<button class="btn btn-success btnAddnewGram" data-toggle="modal" data-target="#grammarModal">Thêm
 				mới</button>
-			<!--<h4 style="color: red" id="info-success"></h4>-->
+			<h4 style="color: red" id="info-success"></h4>
 			<hr />
-
-
-			<div class="myparent">
-				<!--<div class="form-group form-inline mychild">
-					<select id="level" class="form-control">
-						<option value="1">300-500</option>
-						<option value="2">500-700</option>
-						<option value="3">700-900</option>
-					</select>
-				</div>-->
-
-				<div class="form-group d-flex mychild" style="width: 30%;">
-					<input type="text" class="form-control pl-3" placeholder="vui lòng nhập tên bài giảng">
-					<button type="submit" style="width:20%" placeholder="" class="form-control search"><span
-							class="fa fa-search"></span></button>
-				</div>
-			</div>
 			<table class="table table-hover nhanHieuTable" id="tableGrammar">
 				<thead>
 					<tr>
@@ -113,21 +55,7 @@
 				<tbody>
 				</tbody>
 			</table>
-			<div class="center">
-				<div class="pagination">
-					<!--<a href="#">&laquo;</a>
-					<a href="#">1</a>
-					<a href="#" class="active">2</a>
-					<a href="#">3</a>
-					<a href="#">4</a>
-					<a href="#">5</a>
-					<a href="#">6</a>
-					<a href="#">&raquo;</a>-->
-				</div>
-			</div>
-
 		</div>
-
 
 
 		<!-- Modal -->
@@ -155,9 +83,8 @@
 							</div>
 							<div class="form-group col-md-6">
 								<label for="imageGrammar">Hình ảnh:</label>
-								<input type="file" title="Click to upload image" class="form-control"
-									id="file_imageGrammar" name="file_imageGrammar" accept="image/*"
-									onchange="showMyImage(this)" required />
+								<input type="file" title = "Click to upload image" class="form-control" id="file_imageGrammar" name="file_imageGrammar"
+									accept="image/*" onchange="showMyImage(this)" required />
 								<!--<label for="file_imageGrammar">Click to upload image</label>-->
 								<img alt="" src="" class="" id="previewImage" style="height: 100px; width: 150px">
 							</div>

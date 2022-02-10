@@ -4,27 +4,23 @@
 $(document).ready(function() {
 
 
-
 	//default. load all object baiGrammar
 	window.onload = function() {
-		loadAllGrammar(1);
+		loadAll();
+
+
 
 	};
-
-
-
-
-	function loadAllGrammar(pageinput) {
+	function loadAll() {
 		$.ajax({
 			dataType: 'json',
 			type: 'GET',
-			contentType: "application/json",
-			url: "http://localhost:8080/api/admin/grammar/getlist" + '?page=' + pageinput,
+			url: "http://localhost:8080/api/admin/listeninglecture/getall",
 
 			success: function(data) {
 
-				//convert array to json type
-				/*var jsonArray = new Array();
+				/*//convert array to json type
+				var jsonArray = new Array();
 				var fields, id, tenbaigrammar;
 				for (var i = 0; i < data.length; i++) {
 					var jsonObject = new Object();
@@ -36,39 +32,25 @@ $(document).ready(function() {
 					jsonArray.push(jsonObject);
 				}*/
 
-				/*var jsonArr = JSON.parse(JSON.stringify(jsonArray));*/
+				var jsonArr = JSON.parse(JSON.stringify(jsonArray));
 
 				var trHTML = "";
-				$.each(data.object.content, function(i, objgrammar) {
+				for (var i = 0; i < jsonArr.length; i++) {
 
-					trHTML += '<tr><td class= "center">' + objgrammar.grammarId + '</td>'
-						+ '<td class= "center">' + objgrammar.grammarName + '</td>'
+					trHTML += '<tr><td class= "center">' + data.object.id + '</td>'
+						+ '<td class= "center">' + data.object.name + '</td>'
 
-
-						+ '<td class = "center"> <a id="edit.' + objgrammar.grammarId + ' "'
+						+ '<td class = "center"> <a id="edit.' + data.object.id + ' "'
 
 						+ 'class="yellow editBaiGrammar"><button class="btn btn-warning">Cập nhật</button></a> '
 
-						+ ' <a id="delete.' + objgrammar.grammarId + ' "'
+						+ ' <a id="delete.' + jsonArr[i].data.object.id + ' "'
 
 						+ 'class="red deleteBaiGrammar" ><button class="btn btn-danger">Xóa</button></a> </td>'
 
 						+ '</tr>';
-				});
+				}
 
-				if (data.object.totalPages > 0) {
-					$('.pagination').empty();
-					for (var numberPage = 1; numberPage <= data.object.totalPages; numberPage++) {
-						var li;
-						if (numberPage == pageinput)
-							li = '<a class="directpage active" id="direct.' + numberPage + '"> ' + numberPage + '</a>';
-						else
-							li = '<a class="directpage" id="direct.' + numberPage + '"> ' + numberPage + '</a>';
-						$('.pagination').append(li);
-					};
-
-
-				};
 				//$('#tableExam').append(trHTML);
 				$('tbody').html(trHTML);
 
@@ -89,14 +71,6 @@ $(document).ready(function() {
 		modal.find('.modal-body #nameGrammar').val("");
 		modal.find('.modal-header #titleModal').text("Thêm mới bài ngữ pháp");
 		/*simplemde.value("wiriting someshing here");*/
-	});
-
-
-	$(document).on('click', '.directpage', function(event) {
-		var directId = $(this).attr('id');
-		var fields = directId.split('.');
-		var page = fields[1];
-		loadAllGrammar(page);
 	});
 	//add new baigrammar
 
@@ -250,9 +224,7 @@ $(document).ready(function() {
 					$('#grammarModal').modal('hide');
 					alert("Cập nhật bài grammar thành công");
 					loadAllGrammar();
-
 				},
-
 				error: function(e) {
 					alert("error");
 					console.log("ERROR: ", e);

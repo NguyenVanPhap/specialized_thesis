@@ -36,6 +36,20 @@ public class GrammarServiceImpl implements GrammarService {
 	}
 
 	@Override
+	public ApiRes<Object> getGrammar4api(int page, int limit) {
+
+		ApiRes<Object> apiRes = new ApiRes<Object>();
+		try {
+			Page<Grammar> lstGrammar = baigrammarRepo.findAll(PageRequest.of(page, limit));
+			apiRes.setObject(lstGrammar);
+		} catch (Exception e) {
+			apiRes.setError(true);
+			apiRes.setErrorReason(e.getMessage());
+		}
+		return apiRes;
+	}
+
+	@Override
 	public List<Grammar> getAllGrammar() {
 		return baigrammarRepo.findAll();
 	}
@@ -50,4 +64,5 @@ public class GrammarServiceImpl implements GrammarService {
 		return baigrammarRepo.searchGrammar(search);
 
 	}
+
 }

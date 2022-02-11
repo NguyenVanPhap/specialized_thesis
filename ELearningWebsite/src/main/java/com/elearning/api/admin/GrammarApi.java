@@ -53,9 +53,10 @@ public class GrammarApi {
 
 	}
 
-	@RequestMapping(value = "/getlist", method = RequestMethod.GET, consumes = "application/json", produces = "application/json")
-	public ResponseEntity<Object> getlist(@RequestParam(defaultValue = "1") int page) {
-		return ResponseEntity.ok(baigrammarService.getGrammar4api(page-1, 4));
+	@RequestMapping(value = "/getlist", method = RequestMethod.POST, consumes = "application/json", produces = "application/json; charset=utf-8")
+	public ResponseEntity<Object> getlist(@RequestBody BaseReq req) {
+
+		return ResponseEntity.ok(baigrammarService.getGrammar4api(req.getPage() - 1, 4, req.getKeyWord()));
 	}
 
 	@GetMapping("/search")

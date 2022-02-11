@@ -15,14 +15,18 @@ $(document).ready(function() {
 
 
 	function loadAllGrammar(pageinput) {
-		$.ajax({
-			dataType: 'json',
-			type: 'GET',
-			contentType: "application/json",
-			url: "http://localhost:8080/api/admin/grammar/getlist" + '?page=' + pageinput,
 
+		var namekey = $('#searchkeyword').val();
+		var datainput = { keyWord: namekey, page: pageinput };
+		console.log(datainput);
+		$.ajax({
+			type: "POST",
+			contentType: "application/json",
+			url: "http://localhost:8080/api/admin/grammar/getlist",
+			data: JSON.stringify(datainput),
 			success: function(data) {
 
+				console.log(data);
 				//convert array to json type
 				/*var jsonArray = new Array();
 				var fields, id, tenbaigrammar;
@@ -90,6 +94,11 @@ $(document).ready(function() {
 		modal.find('.modal-header #titleModal').text("Thêm mới bài ngữ pháp");
 		/*simplemde.value("wiriting someshing here");*/
 	});
+	
+	$(document).on('click', '.searchkeyword', function(event) {
+
+		loadAllGrammar(1);
+	});
 
 
 	$(document).on('click', '.directpage', function(event) {
@@ -155,7 +164,7 @@ $(document).ready(function() {
 				type: 'POST',
 				url: "http://localhost:8080/api/admin/grammar/delete/" + idBaiGrammar,
 				success: function(data) {
-					loadAllGrammar();
+					loadAllGrammar(1);
 					alert("Xóa bài grammar thành công");
 				},
 				error: function(e) {

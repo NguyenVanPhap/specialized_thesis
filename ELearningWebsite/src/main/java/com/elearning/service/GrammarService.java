@@ -16,6 +16,8 @@ public interface GrammarService {
 
 	ApiRes<Object> getGrammar4api(int page, int limit);
 
+	ApiRes<Object> getGrammar4api(int page, int limit, String keywork);
+
 	List<Grammar> getAllGrammar();
 
 	void delete(int id);

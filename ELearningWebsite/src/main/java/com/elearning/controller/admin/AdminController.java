@@ -53,6 +53,11 @@ public class AdminController {
 	public String quanLyGrammar() {
 		return "admin/grammarmanagement";
 	}
+	
+	@GetMapping("/blog")
+	public String quanLyBlog() {
+		return "admin/post";
+	}
 
 	@GetMapping("/courses")
 	public String cources() {

@@ -7,20 +7,32 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
-import com.elearning.entities.ListeningLecture;
+import com.elearning.entities.Post;
 import com.elearning.helper.ApiRes;
-import com.elearning.repository.ListeningLectureRepository;
+import com.elearning.repository.PostRepository;
 
 @Service
-public class ListeningLectureService {
+public class PostService {
 	@Autowired
-	ListeningLectureRepository baiListeningLectureRepo;
+	PostRepository blogRepo;
 
-	public ApiRes<Object> save(ListeningLecture listeningLecture) {
+	public ApiRes<Object> save(Post posts) {
 
 		ApiRes<Object> apiRes = new ApiRes<Object>();
 		try {
-			apiRes.setObject(baiListeningLectureRepo.save(listeningLecture));
+			apiRes.setObject(blogRepo.save(posts));
+		} catch (Exception e) {
+			apiRes.setError(true);
+			apiRes.setErrorReason(e.getMessage());
+		}
+		return apiRes;
+	}
+
+	public ApiRes<Object> getList4api(int page, int limit, String keyword) {
+		ApiRes<Object> apiRes = new ApiRes<Object>();
+		try {
+			Page<Post> lstPost = blogRepo.search4page(keyword, PageRequest.of(page, limit));
+			apiRes.setObject(lstPost);
 		} catch (Exception e) {
 			apiRes.setError(true);
 			apiRes.setErrorReason(e.getMessage());
@@ -31,8 +43,8 @@ public class ListeningLectureService {
 	public ApiRes<Object> getInfor(int id) {
 		ApiRes<Object> apiRes = new ApiRes<Object>();
 		try {
-			List<ListeningLecture> lstListeningLectures = baiListeningLectureRepo.findById(id);
-			apiRes.setObject(lstListeningLectures.get(0));
+			List<Post> lstpostss = blogRepo.findById(id);
+			apiRes.setObject(lstpostss.get(0));
 		} catch (Exception e) {
 			apiRes.setError(true);
 			apiRes.setErrorReason(e.getMessage());
@@ -43,8 +55,8 @@ public class ListeningLectureService {
 	public ApiRes<Object> getList(int page, int size) {
 		ApiRes<Object> apiRes = new ApiRes<Object>();
 		try {
-			Page<ListeningLecture> pageListeningLecture = baiListeningLectureRepo.findAll(PageRequest.of(page, size));
-			apiRes.setObject(pageListeningLecture);
+			Page<Post> pageposts = blogRepo.findAll(PageRequest.of(page, size));
+			apiRes.setObject(pageposts);
 		} catch (Exception e) {
 			apiRes.setError(true);
 			apiRes.setErrorReason(e.getMessage());
@@ -55,8 +67,8 @@ public class ListeningLectureService {
 	public ApiRes<Object> getAll() {
 		ApiRes<Object> apiRes = new ApiRes<Object>();
 		try {
-			List<ListeningLecture> lsListeningLectures = baiListeningLectureRepo.findAll();
-			apiRes.setObject(lsListeningLectures);
+			List<Post> lspostss = blogRepo.findAll();
+			apiRes.setObject(lspostss);
 		} catch (Exception e) {
 			apiRes.setError(true);
 			apiRes.setErrorReason(e.getMessage());
@@ -68,7 +80,7 @@ public class ListeningLectureService {
 	public ApiRes<Object> delete(int id) {
 		ApiRes<Object> apiRes = new ApiRes<Object>();
 		try {
-			baiListeningLectureRepo.deleteById(id);
+			blogRepo.deleteById(id);
 			apiRes.setObject(true);
 		} catch (Exception e) {
 			apiRes.setError(true);
@@ -80,8 +92,8 @@ public class ListeningLectureService {
 	public ApiRes<Object> search(String search) {
 		ApiRes<Object> apiRes = new ApiRes<Object>();
 		try {
-			List<ListeningLecture> lsListeningLectures = baiListeningLectureRepo.search(search);
-			apiRes.setObject(lsListeningLectures);
+			List<Post> lstposts = blogRepo.search(search);
+			apiRes.setObject(lstposts);
 		} catch (Exception e) {
 			apiRes.setError(true);
 			apiRes.setErrorReason(e.getMessage());

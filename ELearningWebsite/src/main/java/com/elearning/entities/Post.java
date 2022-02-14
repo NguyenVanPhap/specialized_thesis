@@ -8,8 +8,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "ListeningLecture")
-public class ListeningLecture {
+@Table(name = "Post")
+public class Post {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "id", nullable = false)
@@ -26,9 +26,6 @@ public class ListeningLecture {
 
 	@Column(columnDefinition = "TEXT", name = "content_HTML")
 	private String contentHTML;
-
-	@Column(columnDefinition = "TEXT", name = "content_MarkDown")
-	private String contentMarkDown;
 
 	@Column(name = "level")
 	private Integer Level;
@@ -73,14 +70,6 @@ public class ListeningLecture {
 		this.contentHTML = contentHTML;
 	}
 
-	public String getContentMarkDown() {
-		return contentMarkDown;
-	}
-
-	public void setContentMarkDown(String contentMarkDown) {
-		this.contentMarkDown = contentMarkDown;
-	}
-
 	public Integer getLevel() {
 		return Level;
 	}
@@ -89,19 +78,18 @@ public class ListeningLecture {
 		Level = level;
 	}
 
-	public ListeningLecture() {
+	public Post() {
 
 	}
 
-	public ListeningLecture(Integer id, String name, String filePath, String fileName, String contentHTML,
-			String contentMarkDown, Integer level) {
+	public Post(Integer id, String name, String filePath, String fileName, String contentHTML,
+			Integer level) {
 		super();
 		Id = id;
 		Name = name;
 		this.filePath = filePath;
 		this.fileName = fileName;
 		this.contentHTML = contentHTML;
-		this.contentMarkDown = contentMarkDown;
 		Level = level;
 	}
 

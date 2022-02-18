@@ -35,6 +35,7 @@
 
 	<script type="text/javascript" th:src="@{/js/jquery-3.4.1.min.js}"></script>
 	<script th:src="@{/js/client/profile.js}"></script>
+	<script th:src="@{js/client/changePassword.js}"></script>
 	<style type="text/css">
 		.from-profile input {
 			border: 0;
@@ -127,8 +128,9 @@
 						thông tin
 					</button>
 				</form>
-				&nbsp;&nbsp;&nbsp;
-				<button class="btn btn-primary btnDoiMatKhau">Đổi mật khẩu</button>
+				&nbsp; &nbsp; &nbsp; <a class="btn btn-danger" data-toggle="modal"
+					data-target="#modalChangePassword">Đổi mật khẩu</a> <br> <br>
+				<br>
 
 			</div>
 
@@ -176,7 +178,49 @@
 		</div>
 		<hr />
 	</div>
+<!-- Modal đổi pass -->
 
+	<div class="modal fade" id="modalChangePassword" tabindex="-1"
+		role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">
+						<b>Thay đổi mật khẩu</b>
+					</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<div class="form-group ">
+						<label style="line-height: 2">Mật khẩu cũ*:</label><br> <label
+							id="oldWarning" style="color: green"></label> <input
+							class="form-control" id="old" name="old" type="password">
+					</div>
+					<div class="form-group ">
+						<label style="line-height: 2">Mật khẩu mới*:</label><br> <label
+							id="new1Warning" style="color: green"></label> <input
+							class="form-control" id="new1" name="new1" type="password">
+					</div>
+					<div class="form-group ">
+						<label style="line-height: 2">Xác nhận lại mật khẩu mới*:</label><br>
+						<label id="new2Warning" style="color: green"></label> <input
+							class="form-control" id="new2" name="new2" type="password">
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary"
+						data-dismiss="modal">Hủy</button>
+					<button type="button" class="btn btn-primary"
+						onClick="changePass()">Đổi mật khẩu</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Modal đổi pass -->
 	</div>
 	<!-- footer section -->
 	<section class="">

@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.oauth2.client.authentication.OAuth2AuthenticationToken;
@@ -20,9 +21,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RequestBody;
+
 
 import com.elearning.entities.NguoiDung;
 import com.elearning.service.NguoiDungService;
+import com.elearning.entities.ResponseObject;
+import com.elearning.dto.*;
 
 @Controller
 @SessionAttributes("loggedInUser")
@@ -30,6 +36,9 @@ public class clientController {
 	
 	@Autowired
 	private NguoiDungService nguoiDungService;
+	
+	@Autowired
+    private BCryptPasswordEncoder passwordEncoder;
 
 	@ModelAttribute("loggedInUser")
 	public NguoiDung loggedInUser() {
@@ -77,5 +86,21 @@ public class clientController {
         nguoiDungService.updateUser(currentUser);
         return "redirect:/profile";
 //        return "redirect:/client/updateProfile";
+    }
+	@GetMapping("/changePassword")
+    public String clientChangePasswordPage() {
+        return "client/passwordChange";
+    }
+	@PostMapping("/updatePassword")
+    @ResponseBody
+    public ResponseObject passwordChange(HttpServletRequest res, @RequestBody PasswordDTO dto) {
+        NguoiDung currentUser = getSessionUser(res);
+        if (!passwordEncoder.matches(dto.getOldPassword(), currentUser.getPassword())) {
+            ResponseObject re = new ResponseObject();
+            re.setStatus("old");
+            return re;
+        }
+        nguoiDungService.changePass(currentUser, dto.getNewPassword());
+        return new ResponseObject();
     }
 }

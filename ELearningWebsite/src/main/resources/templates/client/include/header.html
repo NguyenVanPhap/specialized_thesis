@@ -17,7 +17,8 @@
 				<div class="container">
 					<div class="row justify-content-between">
 						<div class="col">
-							<a style="color: white;" class="navbar-brand" th:href="@{/}">&emsp;&emsp;&emsp;Toeic mỗi ngày</a>
+							<a style="color: white;" class="navbar-brand" th:href="@{/}">&emsp;&emsp;&emsp;Toeic mỗi
+								ngày</a>
 							<!--<p class="mb-0 phone"><span class="fa fa-phone"></span> <a href="#">+00 1234 567</a></p>-->
 						</div>
 						<div class="col d-flex justify-content-end">
@@ -40,7 +41,7 @@
 			<nav style="background-color: #483D8B;"
 				class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
 				<div class="container">
-					
+
 					<form action="#" class="searchform order-sm-start order-lg-last">
 						<div class="form-group d-flex">
 							<input type="text" class="form-control pl-3" placeholder="Search">
@@ -58,24 +59,6 @@
 							</ul>
 						</th:block>
 						<th:block sec:authorize="isAuthenticated()">
-
-							<!--<ul class="navbar-nav m-auto">
-								<li class="dropdown nav-item active">
-
-									<a th:text="${loggedInUser.hoTen}" class="dropdown-toggle nav-link"
-										data-toggle="dropdown">
-
-										<b class="caret"></b>
-									</a>
-									<ul class="dropdown-menu">
-										<div th:if="${!nguoiDung.loginOauth2 }">
-											<li><a class="nav-link" th:href="@{/profile}">Tài
-													khoản</a></li>
-										</div>
-										<li><a class="nav-link" th:href="@{/signout}">Thoát</a></li>
-									</ul>
-								</li>
-							</ul>-->
 							<ul class="navbar-nav m-auto">
 								<li class="nav-item dropdown">
 									<a th:text="${loggedInUser.hoTen}" class="nav-link dropdown-toggle" href="#"
@@ -109,7 +92,15 @@
 								</div>
 							</li>
 							<li class="nav-item"><a th:href="@{/course}" class="nav-link">Khóa học</a></li>
-							<li class="nav-item"><a href="" class="nav-link">Test online</a></li>
+							<li class="nav-item dropdown">
+								<a class="nav-link dropdown-toggle" href="#" id="dropdownstest" data-toggle="dropdown"
+									aria-haspopup="true" aria-expanded="false">Test online</a>
+								<div class="dropdown-menu" aria-labelledby="dropdowntest">
+									<a class="dropdown-item" th:href="@{/test/skill-test}">Skill test</a>
+									<a class="dropdown-item" th:href="@{/test/mini-test}">Mini test</a>
+									<a class="dropdown-item" th:href="@{/test/full-test}">Full test</a>
+								</div>
+							</li>
 							<!--<li class="nav-item"><a href="#" class="nav-link">Blog</a></li>
 							<li class="nav-item"><a href="#" class="nav-link">Contact</a></li>-->
 						</ul>

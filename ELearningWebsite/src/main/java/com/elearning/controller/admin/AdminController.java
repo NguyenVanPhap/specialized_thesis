@@ -51,9 +51,9 @@ public class AdminController {
 
 	@GetMapping("/grammar")
 	public String quanLyGrammar() {
-		return "admin/grammarmanagement";
+		return "admin/grammar";
 	}
-	
+
 	@GetMapping("/blog")
 	public String quanLyBlog() {
 		return "admin/post";
@@ -61,14 +61,14 @@ public class AdminController {
 
 	@GetMapping("/courses")
 	public String cources() {
-		return "admin/QuanLyKhoahoc";
+		return "admin/course";
 	}
 
 	@RequestMapping(value = "/coursedetail")
 	public String CourseDetail(@RequestParam("courseId") int id, Model model) {
 		Course course = courseService.getCourse(id).get(0);
 		model.addAttribute("currentCourse", course);
-		return "admin/lessonmanagement";
+		return "admin/lesson";
 	}
 
 	@GetMapping("/vocab")
@@ -82,12 +82,12 @@ public class AdminController {
 	@GetMapping("/account")
 	public String quanLyTaiKhoan(Model model) {
 		model.addAttribute("listRole", Role.values());
-		return "admin/accountmanagement";
+		return "admin/account";
 	}
 
-	@GetMapping("/test")
-	public String Test() {
-		return "admin/grammarmanagement";
+	@GetMapping("/readingexercise")
+	public String quanLyBaiDocPage() {
+		return "admin/readingexercise";
 	}
 
 }

@@ -11,8 +11,8 @@ import com.elearning.entities.ReadingExercise;
 import com.elearning.service.ReadingExerciseService;
 
 @Controller
-@RequestMapping("/reading")
-public class ReadingExerciseController {
+@RequestMapping("/test/skill-test")
+public class SkillTestController {
 
 	@Autowired
 	private ReadingExerciseService ReadingExerciseService;
@@ -24,9 +24,14 @@ public class ReadingExerciseController {
 		return "client/ReadingExercise/ReadingExercisePart" + partNumber;
 	}
 
+	@GetMapping("/reading")
+	public String Reading(Model model) {
+		return "client/SkillTest/reading";
+	}
+
 	@GetMapping("")
-	public String getAllBaiDocBy(Model model) {
-		return "client/ReadingExercise/listreadingexercise";
+	public String SkillTest(Model model) {
+		return "client/SkillTest/skill-test";
 	}
 
 }

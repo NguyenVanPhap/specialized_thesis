@@ -45,6 +45,11 @@
 			display: inline-block;
 			margin: 10px;
 		}
+
+		.pagetitle {
+			font-weight: bold;
+
+		}
 	</style>
 </head>
 
@@ -56,8 +61,8 @@
 		<!--PAGE TITLE-->
 		<div>
 			<div class="row">
-				<div class="col-sm-9">
-					<h5>DANH SÁCH BÀI Đọc</h5>
+				<div class="col-sm-9 pagetitle" style="width: 20%">
+					<h4 class="pagetitle">SKILL TEST</h4>
 				</div>
 			</div>
 		</div>
@@ -65,75 +70,33 @@
 		<!-- /. PAGE TITLE-->
 		<div class="row">
 			<div class="col-sm-9" style="width: 20%">
-				<div>
-					<div class="inline">
-						<input type="text" class="form-control" id="searchGrammar" placeholder="Tìm kiếm bài grammar..."
-							style="margin-top:6px;" name="search" onkeyup="Search()">
-					</div>
-					<div class="inline" style="width: 20%">
-						<select class="form-control" name="partSearch" id="partSearch">
-							<option value="5">Part 5</option>
-							<option value="6">Part 6</option>
-							<option value="7">Part 7</option>
-						</select>
-					</div>
-					<div class="inline" style="width: 20%">
-						<select class="form-control" name="doKhoSearch" id="doKhoSearch">
-							<option value="1">Mức dễ</option>
-							<option value="2">Mức trung bình</option>
-							<option value="3">Mức khó</option>
-						</select>
-					</div>
-					<button type="button" class="btn btn-primary" id="btnDuyetBaiDoc">Tìm
-						Bài đọc</button>
-				</div>
-				<hr>
-				<!--Blog Post-->
-				<ul class="danhSach" style="text-align: left; padding-left: 45px;">
-				</ul>
-				<p class="hidden" id="pTag">Không có dữ liệu</p>
+				<div class="" data-scroll-reveal="enter from the bottom after 0.4s">
+					<div class="about-div">
+						<i class="fa fa-paper-plane-o fa-4x icon-round-border"></i>
+						<h5>READING</h5>
+						<hr />
+						<hr />
 
-				<div class="pagination">
-					<ul class="ul-pagination"></ul>
+						<a th:href="@{/test/skill-test/reading}" class="btn btn-info btn-set">TRUY CẬP</a>
+					</div>
+				</div>
+				<div class="" data-scroll-reveal="enter from the bottom after 0.5s">
+					<div class="about-div">
+						<i class="fa fa-bolt fa-4x icon-round-border"></i>
+						<h5>LISTENING</h5>
+						<hr />
+						<hr />
+
+						<a href="#" class="btn btn-info btn-set">TRUY CẬP</a>
+					</div>
 				</div>
 			</div>
 			<div class="col-sm-3">
 				<div th:replace="client/include/sidebar::sidebar"> </div>
 
 			</div>
-
-			<!-- /. PAGE TITLE-->
-			<!--<div class="row">
-				<div class="span9">
-					<c:if test="${fn:length(listBaiDoc) == 0 }">
-						<h3>Không tìm thấy dữ liệu</h3>
-					</c:if>
-
-					<c:forEach items="${listBaiDoc}" var="baiDoc" varStatus="loop">
-
-						<div class="span9">
-							<div class="span3">
-								<img class="imageExam" src="<c:url value=" /file/images/baiDocId=${baiDoc.id }.png" />"
-								/>
-							</div>
-							<div class="span1"></div>
-							<div class="span5">
-								<h4 class="content-heading" id="namebaithithu">
-									${baiDoc.tenBaiDoc}</h4>
-								<button class="btn btn-primary openModalExam" value="${baiDoc.id}"
-									id="openModalExam.${loop.index}">
-									Chi tiết</button>
-							</div>
-
-
-						</div>
-
-					</c:forEach>
-
-					<br>
-				</div>
-			</div>-->
 		</div>
+	</div>
 	</div>
 	<br><br><br><br><br><br><br><br>
 	<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>

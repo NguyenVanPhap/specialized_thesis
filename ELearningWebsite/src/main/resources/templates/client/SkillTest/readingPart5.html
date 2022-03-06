@@ -1,0 +1,153 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity">
+
+<head>
+	<meta charset="ISO-8859-1">
+	<title>Luyện bài tập đọc - Part 5</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+	<link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.css}" />
+	<!-- progress barstle -->
+	<link rel="stylesheet" th:href="@{/css/css-circular-prog-bar.css}">
+	<!-- fonts style -->
+	<link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
+	<!-- font wesome stylesheet -->
+	<link rel="stylesheet" th:href="@{https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css}">
+	<link th:href="@{/css/responsive.css}" rel="stylesheet" />
+	<link th:href="@{/css/slick.css}" rel="stylesheet" />
+	<link rel="stylesheet" th:href="@{/css/css-circular-prog-bar.css}">
+	<link rel="stylesheet" th:href="@{/css/header/header.css}">
+	<link rel="stylesheet" th:href="@{/css/reading-skill.css}">
+	<link th:href="@{/css/style.css}" rel="stylesheet" />
+	<script th:src="@{/js/jquery-1.js}"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+		integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+	<script type="text/javascript" th:src="@{/js/jquery-3.4.1.min.js}"></script>
+	<style type="text/css">
+		.hidden {
+			display: none;
+		}
+
+		.error-message {
+			color: red;
+		}
+
+		.radioLabel {
+			float: left;
+		}
+
+		.anchor {
+			display: block;
+			height: 115px;
+			/*same height as header*/
+			margin-top: -115px;
+			/*same height as header*/
+			visibility: hidden;
+		}
+	</style>
+</head>
+
+<body>
+	<div th:replace="client/include/header::header"> </div>
+
+	<div class="container">
+		<!--PAGE TITLE-->
+
+
+		<!-- /. PAGE TITLE-->
+		<div class="row">
+
+
+
+
+
+			<div class="col-sm-9" style="width: 20%">
+
+				<h4 class="pagetitle">LUYỆN ĐỌC PART 5</h4>
+
+				<!--Blog Post-->
+				<div class="blog-post">
+					<h4 th:text="${readingExercise.name}"></h4>
+					<input type="hidden" th:value="${readingExercise.id}" id="readingExerciseId">
+					<div class="postmetadata">
+						<a name="middle">
+							<ul>
+								<li>
+									<div th:if="${readingExercise.level == 1}">
+										Cấp độ - 300-500
+									</div>
+									<div th:if="${readingExercise.level == 2}">
+										Cấp độ - 500-700
+									</div>
+									<div th:if="${readingExercise.level == 3}">
+										Cấp độ - 700-900
+									</div>
+								</li>
+							</ul>
+						</a>
+					</div>
+					<!--<img src="/file/images/baiDocId=${readingExercise.id }.png" />"-->
+					<!--style="width: 300px; height: 150px;">-->
+					<p>Choose the word that best completes the sentence:</p>
+				</div>
+
+				<div class="" style="text-align: left">
+					<div id="cauHoi"></div>
+
+					<div class="pagination" style="text-align: center">
+						<ul class="ul-pagination"></ul>
+					</div>
+					<hr align="center">
+					<div class="span9" style="text-align: center">
+						<button class="btn btn-success" id="btnNopBai">Nộp bài</button>
+						<a class="btn btn-success hidden" id="btnBaiThiKhac" href="/webtoeic/reading">Làm bài thi
+							khác</a>
+					</div>
+
+					<!--/.Pagination-->
+				</div>
+
+			</div>
+
+
+			<div class="col-sm-3">
+				<div th:replace="client/include/sidebar::sidebar"> </div>
+
+			</div>
+		</div>
+	</div>
+	</div>
+	<div class="row col-md-6">
+		<div class="modal fade" id="nopBaiModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+			aria-hidden="true" data-backdrop="static" data-keyboard="false">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLabel">KẾT QUẢ</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<h4 id="ketQuaText"></h4>
+					</div>
+					<div class="modal-footer">
+						<input class="btn btn-danger" id="btnLamLai" type="button" value="Làm lại" />
+						<input class="btn btn-primary" id="btnXemGiaiThich" type="button" value="Xem Giải thích" />
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<jsp:include page="../template/footer.jsp"></jsp:include>
+	<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
+	<script th:src="@{/js/client/skill-test/readingPart5.js}"></script>
+
+</body>
+
+</html>

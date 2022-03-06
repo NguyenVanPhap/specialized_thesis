@@ -16,8 +16,12 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.elearning.entities.QReadingExercise;
+import com.elearning.entities.ReadingExercise;
 import com.elearning.entities.ReadingQuestion;
+import com.elearning.helper.ApiRes;
 import com.elearning.repository.ReadingQuestionRepository;
+import com.querydsl.core.BooleanBuilder;
 
 @Service
 public class ReadingQuestionService {
@@ -25,8 +29,18 @@ public class ReadingQuestionService {
 	@Autowired
 	private ReadingQuestionRepository readingQuestionRepo;
 
-	public Page<ReadingQuestion> findList(int page, int size, long baiTapDocId) {
-		return readingQuestionRepo.findById(baiTapDocId, PageRequest.of(page - 1, size));
+	public ApiRes<Object> findByReadingExerciseId(int page, int size, long readingExerciseId) {
+		ApiRes<Object> apiRes = new ApiRes<Object>();
+		try {
+
+			Page<ReadingQuestion> pageReadingQuestion = readingQuestionRepo.findByReadingExerciseId(readingExerciseId,
+					PageRequest.of(page - 1, size));
+			apiRes.setObject(pageReadingQuestion);
+		} catch (Exception e) {
+			apiRes.setError(true);
+			apiRes.setErrorReason(e.getMessage());
+		}
+		return apiRes;
 	}
 
 	public List<ReadingQuestion> findCauHoiById(long id) {

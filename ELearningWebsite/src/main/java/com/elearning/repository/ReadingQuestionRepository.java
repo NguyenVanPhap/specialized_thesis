@@ -12,5 +12,7 @@ public interface ReadingQuestionRepository extends JpaRepository<ReadingQuestion
 
 	Page<ReadingQuestion> findById(long id, Pageable pageable);
 
+	Page<ReadingQuestion> findByReadingExerciseId(long readingExerciseId, Pageable pageable);
+
 	List<ReadingQuestion> findById(long id);
 }

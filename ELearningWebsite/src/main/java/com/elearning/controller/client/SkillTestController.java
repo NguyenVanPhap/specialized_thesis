@@ -17,11 +17,11 @@ public class SkillTestController {
 	@Autowired
 	private ReadingExerciseService ReadingExerciseService;
 
-	@GetMapping("/part-{partNumber}/{id}")
+	@GetMapping("/reading/part-{partNumber}/{id}")
 	public String baiDocPart(@PathVariable long id, @PathVariable int partNumber, Model model) {
 		ReadingExercise objReadingExercise = ReadingExerciseService.findReadingExerciseById(id).get();
-		model.addAttribute("ReadingExercise", objReadingExercise);
-		return "client/ReadingExercise/ReadingExercisePart" + partNumber;
+		model.addAttribute("readingExercise", objReadingExercise);
+		return "client/SkillTest/readingPart" + partNumber;
 	}
 
 	@GetMapping("/reading")

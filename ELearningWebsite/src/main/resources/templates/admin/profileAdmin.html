@@ -34,8 +34,8 @@
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
 	<script type="text/javascript" th:src="@{/js/jquery-3.4.1.min.js}"></script>
-	<script th:src="@{/js/client/profile.js}"></script>
-	<script th:src="@{js/client/changePassword.js}"></script>
+	<script th:src="@{/js/admin/inforAdmin.js}"></script>
+	<script th:src="@{js/client/passwordAdmin.js}"></script>
 	<style type="text/css">
 		.from-profile input {
 			border: 0;
@@ -104,8 +104,9 @@
 	<!--Header
 ==========================-->
 
-	<div th:replace="client/include/header::header"> </div>
-	<input id="baseUrl" value="${pageContext.request.contextPath}" style="display: none;" />
+    <header>
+        <div th:replace="admin/include/header::header"> </div>
+    </header>
 	<!--/End Headter-->
 
 	<!-- Page container -->
@@ -123,11 +124,8 @@
 						<input type="text" readonly class="form-plaintext" th:value="${user.getHoTen}">
 					</div>
 				</div>
-				<form action="/profile/update" method="get">
-					<button class="btn btn-success btnCapNhatThongTin">Cập nhật
-						thông tin
-					</button>
-				</form>
+				&nbsp; &nbsp; &nbsp; <a class="btn btn-danger" data-toggle="modal"
+                data-target="#modalChangeInformation">Cập Nhật Thông Tin</a>
 				&nbsp; &nbsp; &nbsp; <a class="btn btn-danger" data-toggle="modal"
 					data-target="#modalChangePassword">Đổi mật khẩu</a> <br> <br>
 				<br>
@@ -178,6 +176,70 @@
 		</div>
 		<hr />
 	</div>
+
+<!--Modal change information-->
+
+<!--Modal change information-->
+<div class="modal fade" id="modalChangeInformation" tabindex="-1"
+    role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">
+                    <b>Thay đổi thông tin</b>
+                </h5>
+                <button type="button" class="close" data-dismiss="modal"
+                    aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div>
+                <div>
+                    <input type="hidden" th:value="${user.getId}">
+                </div>
+            </div>
+
+            <!-- <div class="form-group roww">
+                <div class="col-sn-10">
+                    <input type="hidden" class="form-control-plaintext nguoiDungId" th:value="${user.getId}">
+                </div>
+            </div> -->
+            
+            <div class="modal-body">
+                <div class="form-group ">
+                    <p style="line-height: 2">Họ tên:</p><br> <p
+                        id="nameWarning" style="color: green"></p> 
+                    <input class ="form-control" type="text" id="name" th:value="${user.getHoTen}">
+                </div>
+                <div class="form-group ">
+                    <p style="line-height: 2">Email:</p><br> <p
+                        id="emailWarning" style="color: green"></p> 
+                    <input class = "form-control"type="text" readonly id="email" th:value="${user.getEmail}">
+                </div>
+                <div class="form-group ">
+                    <p style="line-height: 2">Số điện thoại:</p><br> <p
+                        id="phoneWarning" style="color: green"></p> 
+                    <input class ="form-control" type="text" id="phone" th:value="${user.getSoDienThoai}">
+                </div>
+                <div class="form-group ">
+                    <p style="line-height: 2">Địa chỉ:</p><br> <p
+                        id="addressWarning" style="color: green"></p> 
+                    <input class="form-control" type="text" id="address" th:value="${user.getDiaChi}">
+                    <!-- <textarea class="form-control" rows="5" cols="29" id="address">${user.diaChi}</textarea> -->
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary"
+                    data-dismiss="modal">Hủy</button>
+                <button type="button" class="btn btn-primary"
+                    onClick="changeInformation()">Xác nhận</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--Model change information-->
+
 <!-- Modal đổi pass -->
 	<div class="modal fade" id="modalChangePassword" tabindex="-1"
 		role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

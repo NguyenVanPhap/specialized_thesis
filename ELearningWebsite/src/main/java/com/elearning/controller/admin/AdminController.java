@@ -11,13 +11,21 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.security.oauth2.client.authentication.OAuth2AuthenticationToken;
+import org.springframework.security.oauth2.core.user.OAuth2User;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 
 import com.elearning.entities.Vocabulary;
+import com.elearning.dto.ResponseObject;
 import com.elearning.entities.Course;
 import com.elearning.entities.NguoiDung;
 import com.elearning.entities.Role;
 import com.elearning.service.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+
 
 @Controller
 @RequestMapping("/admin")
@@ -89,5 +97,37 @@ public class AdminController {
 	public String Test() {
 		return "admin/grammarmanagement";
 	}
+
+	@GetMapping("/profileAdmin")
+	public String profileAdmin(Model model, HttpServletRequest request, @AuthenticationPrincipal OAuth2User oauth2User){
+		model.addAttribute("user", getSessionUser(request));
+		return "admin/profileAdmin";
+	}
+
+	@PostMapping(value="/updateInfo")
+	@ResponseBody
+	public ResponseObject comitChange(HttpServletRequest request, @RequestBody NguoiDung user){
+		NguoiDung currentUser = getSessionUser(request);
+		currentUser.setHoTen(user.getHoTen());
+		currentUser.setSoDienThoai(user.getSoDienThoai());
+		currentUser.setDiaChi(user.getDiaChi());
+		nguoiDungService.updateUser(currentUser);
+		return new ResponseObject();
+
+	}
+	@PostMapping("/updatePassword")
+	@ResponseBody
+	public ResponseObject passwordChange(HttpServletRequest res,@RequestBody PasswordDTO dto) {
+		NguoiDung currentUser = getSessionUser(res);
+		if (!passwordEncoder.matches( dto.getOldPassword(), currentUser.getPassword())) {
+			ResponseObject re = new ResponseObject();
+			re.setStatus("old");
+			return re;
+		}
+		nguoiDungService.changePass(currentUser, dto.getNewPassword());
+		return new ResponseObject();
+	}
+
+	
 
 }

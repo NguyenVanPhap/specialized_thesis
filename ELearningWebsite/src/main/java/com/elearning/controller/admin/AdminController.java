@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.security.oauth2.client.authentication.OAuth2AuthenticationToken;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import com.elearning.entities.Vocabulary;
 import com.elearning.dto.ResponseObject;
@@ -25,6 +26,8 @@ import com.elearning.entities.Role;
 import com.elearning.service.*;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import com.elearning.dto.*;
+import com.elearning.config.*;
 
 
 @Controller
@@ -40,6 +43,9 @@ public class AdminController {
 
 	@Autowired
 	VocabularyService baitaptuvungService;
+
+	@Autowired
+	private BCryptPasswordEncoder passwordEncoder;
 
 	public NguoiDung getSessionUser(HttpServletRequest request) {
 		return (NguoiDung) request.getSession().getAttribute("loggedInUser");

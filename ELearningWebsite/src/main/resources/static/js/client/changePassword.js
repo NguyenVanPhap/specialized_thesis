@@ -39,8 +39,8 @@ function changePass()
 //					window.location.reload();
 					return;
 				}else{
-					alert("Mật khẩu đã thay đổi");
-					window.location.href = "/profile";
+					alert("Mật khẩu đã thay đổi. Bạn đăng nhập lại để xác nhận");
+					window.location.href = "/signin";
 				}
 				
 			},

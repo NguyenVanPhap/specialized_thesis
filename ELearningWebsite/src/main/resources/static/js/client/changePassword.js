@@ -39,7 +39,7 @@ function changePass()
 //					window.location.reload();
 					return;
 				}else{
-					alert("Mật khẩu đã thay đổi. Bạn đăng nhập lại để xác nhận");
+					alert("Mật khẩu đã thay đổi. Vui lòng đăng nhập lại");
 					window.location.href = "/signin";
 				}
 				

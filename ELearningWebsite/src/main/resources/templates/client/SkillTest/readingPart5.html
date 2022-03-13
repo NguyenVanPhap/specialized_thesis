@@ -64,7 +64,7 @@
 
 
 
-			<div class="col-sm-9" style="width: 20%">
+			<div class="col-sm-8" style="width: 20%">
 
 				<h4 class="pagetitle">LUYỆN ĐỌC PART 5</h4>
 
@@ -72,7 +72,7 @@
 				<div class="blog-post">
 					<h4 th:text="${readingExercise.name}"></h4>
 					<input type="hidden" th:value="${readingExercise.id}" id="readingExerciseId">
-					<div class="postmetadata">
+					<!--<div class="postmetadata">
 						<a name="middle">
 							<ul>
 								<li>
@@ -88,7 +88,7 @@
 								</li>
 							</ul>
 						</a>
-					</div>
+					</div>-->
 					<!--<img src="/file/images/baiDocId=${readingExercise.id }.png" />"-->
 					<!--style="width: 300px; height: 150px;">-->
 					<p>Choose the word that best completes the sentence:</p>
@@ -101,11 +101,11 @@
 						<ul class="ul-pagination"></ul>
 					</div>
 					<hr align="center">
-					<div class="span9" style="text-align: center">
+					<!--	<div class="span9" style="text-align: center">
 						<button class="btn btn-success" id="btnNopBai">Nộp bài</button>
 						<a class="btn btn-success hidden" id="btnBaiThiKhac" href="/webtoeic/reading">Làm bài thi
 							khác</a>
-					</div>
+					</div>-->
 
 					<!--/.Pagination-->
 				</div>
@@ -113,9 +113,30 @@
 			</div>
 
 
-			<div class="col-sm-3">
-				<div th:replace="client/include/sidebar::sidebar"> </div>
+			<div class="col-sm-4">
+				<!--<div th:replace="client/include/sidebar::sidebar"> </div>-->
+				<div id="navigation">
 
+					<div class="fix-scrolling">
+						<br>
+						<div>
+							<span id="timeReading">45:00</span>
+						</div>
+						<hr width="60%">
+						<th:block th:each="i : ${#numbers.sequence(1, totalQuestion, 1)}">
+							<div class="numberCircle web-font" th:id="'answer'+${i}" th:text="${i}"></div>
+						</th:block>
+						<!--
+						<c:forEach begin="51" end="100" varStatus="loop">
+							<div class="numberCircle web-font" id="answer${loop.index}">${loop.index}</div>
+						</c:forEach>-->
+						<br> <br> <input type="button" style ="background-color: #0072B5;" class="btn btn-primary" id="btnResultReading" value="Chấm điểm"
+							onclick="clickResutlReading()" /> <input type="button" class="btn btn-danger"
+							id="btnSubmitReading" style="background-color: #D2386C;" value="Nộp bài" onclick="javascript:clickSubmitReading()" /> <br>
+						
+						<hr width="60%">
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -143,6 +164,13 @@
 			</div>
 		</div>
 	</div>
+	
+	<script>
+		function markColorReading(id) {
+			document.getElementById("answer" + id).style.backgroundColor = "#ffc107";
+			console.log("answer" + id);
+		}
+	</script>
 
 	<jsp:include page="../template/footer.jsp"></jsp:include>
 	<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>

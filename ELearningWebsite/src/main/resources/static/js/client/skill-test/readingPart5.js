@@ -3,6 +3,7 @@ $(document).ready(function() {
 	var soCauDung = [];
 	var soCau = 0;
 	ajaxGetForCauHoi(1);
+	startReadingClock();
 	function ajaxGetForCauHoi(page) {
 		var readingExerciseId = $("#readingExerciseId").val();
 		$.ajax({
@@ -19,15 +20,15 @@ $(document).ready(function() {
 						+ '  <div class="span8" style="float:none; display: inline-block;">'
 						+ '   <div class="span4" style="margin-left: 0px">'
 						+ '     <label style="float: left;" class="radio-inline radioLabel">'
-						+ '       <input type="radio" name="' + cauHoi.number + '" id="dapAn_1" value="A">' + cauHoi.answer_1 + '</label></div>'
+						+ '       <input type="radio" onclick="markColorReading(' + cauHoi.number + ')" name="' + cauHoi.number + '" id="dapAn_1" value="A">A. ' + cauHoi.answer_1 + '</label></div>'
 						+ '     <div class="span4" style="margin-left: 0px">'
 						+ '         <label  style="float: left;" class="radio-inline radioLabel">'
-						+ '        <input type="radio" name="' + cauHoi.number + '" id="answer_2" value="B">' + cauHoi.answer_2 + '</label></div>'
+						+ '        <input type="radio" onclick="markColorReading(' + cauHoi.number + ')" name="' + cauHoi.number + '" id="answer_2" value="B">B. ' + cauHoi.answer_2 + '</label></div>'
 						+ '    <div class="span4" style="margin-left:0px">'
 						+ '      <label  style="float: left;" class="radio-inline radioLabel">'
-						+ '       <input type="radio" name="' + cauHoi.number + '" id="answer_3" value="C">' + cauHoi.answer_3 + '</label></div>'
+						+ '       <input type="radio" onclick="markColorReading(' + cauHoi.number + ')" name="' + cauHoi.number + '" id="answer_3" value="C">C.' + cauHoi.answer_3 + '</label></div>'
 						+ '     <div class="span4" style="margin-left: 0px"><label  style="float: left;" class="radio-inline radioLabel">'
-						+ '        <input type="radio" name="' + cauHoi.number + '" id="answer_4" value="D">' + cauHoi.answer_4 + '</label></div>'
+						+ '        <input type="radio" onclick="markColorReading(' + cauHoi.number + ')" name="' + cauHoi.number + '" id="answer_4" value="D">D. ' + cauHoi.answer_4 + '</label></div>'
 						+ '        <input type="radio" name="' + cauHoi.number + '" id="correct_answer" value="' + cauHoi.correct_answer + '" class="hidden">'
 						+ '   </div>'
 					'</div>'
@@ -113,7 +114,44 @@ $(document).ready(function() {
 			});
 		}
 	}
+	///////////////////////
+	var timecheckReading;
+	function startTimerReading(duration, display) {
 
+		var timer = duration, minutes, seconds;
+
+		timecheckReading = setInterval(function() {
+
+			minutes = parseInt(timer / 60, 10)
+			seconds = parseInt(timer % 60, 10);
+
+			minutes = minutes < 10 ? "0" + minutes : minutes;
+			seconds = seconds < 10 ? "0" + seconds : seconds;
+
+			document.getElementById("timeReading").textContent = minutes + ":" + seconds;
+			if (--timer < 0) {
+				clearInterval(timecheckReading);
+				alert("Đã hết thời gian làm bài test");
+				clickSubmitReading();
+			}
+		}, 1000);
+
+
+
+	}
+
+	function startReadingClock() {
+		//change time here
+		//var fortyFiveMinutes = 0.2 * 30;
+		var fortyFiveMinutes = 60 * 45;
+		// display = document.querySelectorAll('#timeReading');
+		// var check = document.getElementById("timeReading").value();
+		//console.log("check:"+check);
+		startTimerReading(fortyFiveMinutes, '45:00');
+	};
+
+
+	/////////////////////
 	$(document).on('click', '.radioLabel', function(event) {
 		var nameRadio = $(this).find('input:radio').attr("name");
 		var dapAnChon = $(this).find('input:radio').val();

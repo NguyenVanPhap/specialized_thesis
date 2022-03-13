@@ -2750,3 +2750,78 @@ a[data-toggle="collapse"] {
 		.pagination a:hover:not(.active) {
 			background-color: #ddd;
 		}
+
+ /*=====================================
+  PAGINATION STYLES 
+  ===================================*/
+		
+/*		.paragraph {
+	white-space: pre-wrap;
+	word-break: break-word;
+	text-align: justify;
+	background: #f3f7fa;
+	color: #222;
+	font-size: 18px;
+	font-family: 'Open Sans';
+}*/
+/*#main {
+	padding-top: 120px;
+	overflow: hidden;
+}
+
+@media ( min-width : 767px) {
+	#navigation {
+		margin-top: 50px;
+		position: fixed;
+	}
+}
+*/
+
+
+.numberCircle {
+	display: inline-block;
+	width: 30px;
+	height: 30px;
+	border-radius: 50%;
+	font-size: 15px;
+	line-height: 25px;
+	text-align: center;
+	border: 2px solid #666;
+	margin: 5px 5px 5px 15px;
+}
+
+#timeReading {
+	font-size: 25px;
+	margin-left: 100px;
+	color: green;
+	font-family: 'Open Sans';
+}
+
+.web-font {
+	font-size: 15px;
+	font-family: 'Arial';
+}
+
+#backhome {
+	margin-left: 25px;
+	text-decoration: none;
+}
+
+#btnSubmitReading {
+	margin-bottom: 15px;
+	margin-left: 15px;
+}
+
+#btnResultReading {
+	margin-bottom: 15px;
+	margin-left: 25px;
+}
+
+.note {
+	text-align: center;
+	margin-left: -35px;
+	margin-top: 10px;
+	}
+	
+
+	

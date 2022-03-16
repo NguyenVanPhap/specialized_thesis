@@ -55,42 +55,14 @@
 
 	<div class="container">
 		<!--PAGE TITLE-->
-
-
 		<!-- /. PAGE TITLE-->
 		<div class="row">
-
-
-
-
-
 			<div class="col-sm-8" style="width: 20%">
-
 				<h4 class="pagetitle">LUYỆN ĐỌC PART 5</h4>
-
 				<!--Blog Post-->
 				<div class="blog-post">
 					<h4 th:text="${readingExercise.name}"></h4>
 					<input type="hidden" th:value="${readingExercise.id}" id="readingExerciseId">
-					<!--<div class="postmetadata">
-						<a name="middle">
-							<ul>
-								<li>
-									<div th:if="${readingExercise.level == 1}">
-										Cấp độ - 300-500
-									</div>
-									<div th:if="${readingExercise.level == 2}">
-										Cấp độ - 500-700
-									</div>
-									<div th:if="${readingExercise.level == 3}">
-										Cấp độ - 700-900
-									</div>
-								</li>
-							</ul>
-						</a>
-					</div>-->
-					<!--<img src="/file/images/baiDocId=${readingExercise.id }.png" />"-->
-					<!--style="width: 300px; height: 150px;">-->
 					<p>Choose the word that best completes the sentence:</p>
 				</div>
 
@@ -101,18 +73,10 @@
 						<ul class="ul-pagination"></ul>
 					</div>
 					<hr align="center">
-					<!--	<div class="span9" style="text-align: center">
-						<button class="btn btn-success" id="btnNopBai">Nộp bài</button>
-						<a class="btn btn-success hidden" id="btnBaiThiKhac" href="/webtoeic/reading">Làm bài thi
-							khác</a>
-					</div>-->
-
 					<!--/.Pagination-->
 				</div>
 
 			</div>
-
-
 			<div class="col-sm-4">
 				<!--<div th:replace="client/include/sidebar::sidebar"> </div>-->
 				<div id="navigation">
@@ -126,13 +90,16 @@
 						<th:block th:each="i : ${#numbers.sequence(1, totalQuestion, 1)}">
 							<div class="numberCircle web-font" th:id="'answer'+${i}" th:text="${i}"></div>
 						</th:block>
-						<!--
-						<c:forEach begin="51" end="100" varStatus="loop">
-							<div class="numberCircle web-font" id="answer${loop.index}">${loop.index}</div>
-						</c:forEach>-->
-						<br> <br> <input type="button" style ="background-color: #0072B5;" class="btn btn-primary" id="btnResultReading" value="Chấm điểm"
-							onclick="clickResutlReading()" /> <input type="button" class="btn btn-danger"
-							id="btnSubmitReading" style="background-color: #D2386C;" value="Nộp bài" onclick="javascript:clickSubmitReading()" /> <br>
+						<br> <br> 
+							<input type="button" style ="background-color: #0072B5;"  id="btnResultReading" value="Làm lại"
+							onclick="clickDoAgain()" /> 
+							
+							<input type="button" 
+							id="btnSubmitExercise" style="background-color: #D2386C;"  value="Nộp bài" 
+							onclick="javascript:clickSubmitReading()" /> 
+							
+							
+							<br>
 						
 						<hr width="60%">
 					</div>
@@ -157,7 +124,7 @@
 					</div>
 					<div class="modal-footer">
 						<input class="btn btn-danger" id="btnLamLai" type="button" value="Làm lại" />
-						<input class="btn btn-primary" id="btnXemGiaiThich" type="button" value="Xem Giải thích" />
+						<input class="btn btn-primary" id="btnViewExplaint" type="button" value="Xem Giải thích" />
 
 					</div>
 				</div>
@@ -169,6 +136,15 @@
 		function markColorReading(id) {
 			document.getElementById("answer" + id).style.backgroundColor = "#ffc107";
 			console.log("answer" + id);
+		}
+		 function UnLoadWindow() {
+            return 'We strongly recommends NOT closing this window yet.'
+        }
+
+         window.onbeforeunload = UnLoadWindow;
+		function clickDoAgain()
+		{
+			window.location.reload();
 		}
 	</script>
 

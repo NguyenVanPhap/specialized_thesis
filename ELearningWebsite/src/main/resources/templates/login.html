@@ -47,7 +47,7 @@
 			
 			<div  th:if="${param.accessDenied != null}">
 				<div class="alert alert-danger">
-					<p>Bạn không có quyền truy cập vào trang này</p>
+					<p>Đăng nhập để tiếp tục</p>
 				</div>
 			</div>
 			
@@ -65,7 +65,7 @@
 				<section class="section">
 					<div class="container">
 						<a class="btn btn-primary" style="margin-top: 10px;"
-							href="/webtoeic/oauth2/authorization/facebook"> <i class="fa fa-facebook-square"></i> Đăng nhập với Facebook
+							th:href="@{/oauth2/authorization/facebook}"> <i class="fa fa-facebook-square"></i> Đăng nhập với Facebook
 						</a>
 					</div>
 				</section>

@@ -2,13 +2,16 @@ package com.elearning.entities;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.OnDelete;
@@ -21,98 +24,94 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
 @Table(name = "comment_grammar")
 public class CommentGrammar {
-	
+
 	@Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "cmtgrammarid", nullable = false)
-	private Integer cmtgrammarid;
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "id", nullable = false)
+	private Integer id;
 	
-	@Column(name = "cmtgrammarcontent")
-	private String cmtgrammarcontent;
-	
-	
+	@Column(name = "content")
+	private String content;
+
 	@Column(name = "time")
 	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
 	@JsonFormat(pattern = "yyyy-MM-dd HH:mm", timezone = "GMT+7")
-	private Date ngaycomment;
-	
-	@ManyToOne
-	@JoinColumn(name="id",nullable= false)
-	@OnDelete(action = OnDeleteAction.CASCADE)
-	@JsonIgnore
-	private NguoiDung nguoidung;
-	
-	@ManyToOne
-	@JoinColumn(name="baigrammarid",nullable= false)
-	@OnDelete(action = OnDeleteAction.CASCADE)
-	@JsonIgnore
+	private Date commentDate;
 
+	private String userName;
+
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "grammarid", nullable = false)
+	@OnDelete(action = OnDeleteAction.CASCADE)
+	@JsonIgnore
 	private Grammar grammar;
 
-	public Integer getCmtgrammarid() {
-		return cmtgrammarid;
+	public Integer getId() {
+		return id;
 	}
 
-	public void setCmtgrammarid(Integer cmtgrammarid) {
-		this.cmtgrammarid = cmtgrammarid;
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
-	public String getCmtgrammarcontent() {
-		return cmtgrammarcontent;
+	public String getContent() {
+		return content;
 	}
 
-	public void setCmtgrammarcontent(String cmtgrammarcontent) {
-		this.cmtgrammarcontent = cmtgrammarcontent;
+	public void setContent(String content) {
+		this.content = content;
 	}
 
-	public Date getNgaycomment() {
-		return ngaycomment;
+	public Date getCommentDate() {
+		return commentDate;
 	}
 
-	public void setNgaycomment(Date ngaycomment) {
-		this.ngaycomment = ngaycomment;
+	public void setCommentDate(Date commentDate) {
+		this.commentDate = commentDate;
 	}
 
-	public NguoiDung getNguoidung() {
-		return nguoidung;
+	public String getUserName() {
+		return userName;
 	}
 
-	public void setNguoidung(NguoiDung nguoidung) {
-		this.nguoidung = nguoidung;
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 
-	public Grammar getBaigrammar() {
+	public Grammar getGrammar() {
 		return grammar;
 	}
 
-	public void setBaigrammar(Grammar baigrammar) {
-		this.grammar = baigrammar;
-
-	}
-
-	
-	public CommentGrammar() {
-		
-	}
-	
-	
-	@Override
-	public String toString() {
-		return "{"+"\"cmtgrammarcontent\":"+"\""+cmtgrammarcontent+"\""
-				+ ","+"\"date\":"+"\""+ngaycomment+"\""
-				+","+"\"nguoidung\":" + "\""+nguoidung.getHoTen() +"\""+"}";
-	}
-	
-	public CommentGrammar(Integer cmtgrammarid, String cmtgrammarcontent, Date ngaycomment, NguoiDung nguoidung,
-			Grammar baigrammar) {
-
-		super();
-		this.cmtgrammarid = cmtgrammarid;
-		this.cmtgrammarcontent = cmtgrammarcontent;
-		this.ngaycomment = ngaycomment;
-		this.nguoidung = nguoidung;
+	public void setGrammar(Grammar grammar) {
 		this.grammar = grammar;
 	}
 
+	@Override
+	public String toString() {
+		return "{"+ "\"idcomment\":" + "\"" + id + "\"" + "\"cmtgrammarcontent\":" + "\"" + content + "\"" + "," + "\"date\":" + "\"" + commentDate + "\""
+				+ "," + "\"nguoidung\":" + "\"" + userName + "\"" + "\"grammar\":" + "\"" + grammar + "\"" + "}";
+	}
+
+	public CommentGrammar() {
+
+	}
+
+	public CommentGrammar(Integer id, String content, Date commentDate, String userName, Grammar grammar) {
+		super();
+		this.id = id;
+		this.content = content;
+		this.commentDate = commentDate;
+		this.userName = userName;
+		this.grammar = grammar;
+	}
+
+	/*
+	 * public CommentGrammar(Integer cmtgrammarid, String cmtgrammarcontent, Date
+	 * ngaycomment, NguoiDung nguoidung, Grammar baigrammar) {
+	 * 
+	 * super(); this.id = cmtgrammarid; this.content = cmtgrammarcontent;
+	 * this.ngaycomment = ngaycomment; this.nguoidung = nguoidung; this.baigrammar =
+	 * baigrammar; }
+	 */
 
 }

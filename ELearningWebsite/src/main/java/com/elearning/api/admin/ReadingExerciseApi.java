@@ -34,10 +34,10 @@ public class ReadingExerciseApi {
 	private ReadingExerciseService readingExerciseService;
 
 	@GetMapping("/getall")
-	public ResponseEntity<Object> findAllByPartAndLevel(@RequestParam(defaultValue = "1") int page,
+	public ResponseEntity<Object> findAllByPartAndLevel(@RequestParam(defaultValue = "1") int page,@RequestParam(defaultValue = "4") int pagesize,
 			@RequestParam(defaultValue = "") String part, @RequestParam(defaultValue = "") String level) {
 		return ResponseEntity
-				.ok(readingExerciseService.findAllListReadingExerciseByPartAndLevelAdmin(page, 2, part, level));
+				.ok(readingExerciseService.findAllListReadingExerciseByPartAndLevelAdmin(page, pagesize, part, level));
 	}
 
 	@GetMapping("/getinfor/{id}")

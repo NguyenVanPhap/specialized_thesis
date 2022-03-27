@@ -9,14 +9,17 @@ $(document).ready(function() {
 		var readingExerciseId = $("#readingExerciseId").val();
 		$.ajax({
 			type: "GET",
-			url: "http://localhost:8080/api/client/reading-exercise/id=" + readingExerciseId + "?page=" + page + "&pagesize=" + 2,
+			url: "http://localhost:8080/api/client/reading-exercise/id=" + readingExerciseId + "?page=" + page + "&pagesize=" + 4,
 			success: function(result) {
 				soCau = result.object.totalElements;
 				console.log(result);
 				var divCauHoi = "";
 				$.each(result.object.content, function(i, cauHoi) {
+					
+					var paragraph = "<h5>" + cauHoi.paragraph +"</h5>";
+					$('#paragraph').html(paragraph);
 					divCauHoi += '<div class="postmetadata" style="margin-left: 0px">'
-						+ '<ul><li style="font-weight: bold"><i class="icon-user"></i>Câu ' + cauHoi.number + ': ' + cauHoi.question + '</li></ul></div>'
+						+ '<ul><li style="font-weight: bold"><i class="icon-user"></i>Câu ' + cauHoi.number + ':' + '</li></ul></div>'
 						+ '<div class="form-group">'
 						+ '  <div class="span8" style="float:none; display: inline-block;">'
 						+ '   <div class="span4" style="margin-left: 0px">'

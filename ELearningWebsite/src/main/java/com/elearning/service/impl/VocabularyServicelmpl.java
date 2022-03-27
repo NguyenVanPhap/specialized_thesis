@@ -54,4 +54,10 @@ public class VocabularyServicelmpl implements VocabularyService{
     public List<Vocabulary> searchListVocabulary(String search) {
         return vocabularyRepository.searchVocab(search);
     }
+
+    @Override
+    public Vocabulary getVocabId(int id){
+        List<Vocabulary> lstVocabs = vocabularyRepository.findByVocabularyid(id);
+        return lstVocabs.get(0);
+    }
 }

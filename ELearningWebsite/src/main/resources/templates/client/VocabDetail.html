@@ -35,6 +35,10 @@
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
 	<script type="text/javascript" th:src="@{/js/jquery-3.4.1.min.js}"></script>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+	<script th:src="@{/js/client/commentvocab.js}"></script>
+	<script th:src="@{/js/client/momentcmt.js}"></script>
 	<style type="text/css">
 		.showtext {
 			text-align: auto;
@@ -44,44 +48,6 @@
 			padding-left: 1em;
 		}
 	</style>
-
-	<!--<script type="text/javascript">
-		$(document).ready(function () {
-			//comment vocab			
-			$('#btnComment').click(function () {
-
-				var test = $("#contentComment").val();
-				var baitaptuvungId = $("#id_bai_tu_v).val();
-				var baseUrl = $('#baseUrl').val();
-
-				$.ajax({
-					dataType: "json",
-					type: 'POST',
-					url: baseUrl + "/grammar/ajaxCmtGram/" + test + "/" + baitaptuvungId,
-
-					success: function (result) {
-
-						var obj = JSON.parse(result);
-
-						var name = "<h4 style='color:red'>" + obj.nguoidung + "</h4> ";
-						var content = "<textarea disabled class='input-xxlarge showtext' rows='3' name='cmtgrammarcontent' >" + obj.cmtgrammarcontent + "</textarea>";
-
-						$('#listcomment').append(name);
-						$('#listcomment').append(content);
-
-					},
-					error: function (e) {
-						alert("error");
-						console.log("ERROR: ", e);
-					}
-				});
-
-			});
-
-		});
-	</script>-->
-
-
 </head>
 
 <body>
@@ -179,35 +145,11 @@
 
 			<div class="col-sm-3">
 				<div th:replace="client/include/sidebar::sidebar"> </div>
-				<!--<div class="side-bar" style="padding-left: 0px;height:100%">
-
-						<h5>DANH MỤC</h5>
-						
-						<table style="padding-left: 0px;height:100% ">
-							<tr>
-								<td style="width:5% ;background-color: gainsboro;"></td>
-								<td style="vertical-align:top">
-									<ul class="nav-list" style="">
-										<li class="myli" ><a href="/webtoeic/listening">Luyện bài nghe</a></li>
-										<li class="myli"><a href="/webtoeic/reading">Luyện bài đọc</a> <br></li>
-										<li class="myli"><a href="/webtoeic/listExam">Bài thi thử</a></li>
-										<li class="myli"><a href="/webtoeic/listGrammar">Học ngữ pháp</a></li>
-										<li class="myli"><a href="/webtoeic/listVocab">Học từ vựng</a></li>
-									</ul>
-								</td>
-							</tr>
-						</table>
-						
-					</div>-->
-
 			</div>
-
-			<!-- Start Comment -->
 		</div>
-		<div class="row">
-			<hr class="myhr">
-			<br></div>
-		<div class="row">
+	</div>
+			<!-- Start Comment -->
+	<div class="row">
 
 			<th:block sec:authorize="isAnonymous()">
 				<form>
@@ -250,22 +192,29 @@
 			</th:block>
 			<!-- Nội dung commnetn -->
 			<h1 id="testajax"></h1>
-			<!--
-			<div id="listcomment">
-				<c:forEach items="${listcomment}" var="list">
+	</div>
 
-					<h4 style="color: red" id="name_member">${list.getNguoidung().getHoTen()}</h4>
-					<textarea disabled class="input-xxlarge showtext" rows="3"
-						name="cmtvocabularycontent">${list.cmtgrammarcontent}</textarea>
-				</c:forEach>
-			</div>-->
+		<div class="row">
+			<div class="col-md-10">
+				<table class="table table-hover " id="tableVocab">
+					<tbody id="lstcommentvocab">
+					</tbody>
+				</table>
+			</div>
 		</div>
 		<!-- End Comment -->
-
 		<!-- End Page Container -->
 		<br>
 		<br>
-	</div>
+	<script>
+		window.onload = function(){
+			let dates = document.querySelectorAll(".my-date > i")
+			for (let i = 0; i< dates.length; i++){
+				let d = dates[i]
+				d.innerText = moment(d.innerText).fromNow()
+			}
+		}
+	</script>
 	<!-- footer section -->
 	<section class="">
 		<div th:replace="client/include/footer::footer"> </div>

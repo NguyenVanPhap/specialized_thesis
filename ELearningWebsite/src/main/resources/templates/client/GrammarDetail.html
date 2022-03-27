@@ -37,7 +37,7 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
 		
 	<script th:src="@{/js/client/commentgrammar.js}"></script>
-
+	<script th:src="@{/js/client/momentcmt.js}"></script>
 	<script type="text/javascript" th:src="@{/js/jquery-3.4.1.min.js}"></script>
 	<style type="text/css">
 		.showtext {
@@ -175,7 +175,7 @@
 		</th:block>
 		<th:block sec:authorize="isAuthenticated()">
 			<!--  	<input type="hidden" id="user_id" name="user_id" value="${currentUser.id}"/> -->
-			<input type="hidden" id="id_bai_grammar" value="${idBaiGrammar}" />
+			<input type="hidden" id="id_bai_grammar" th:value="${baigrammar.getGrammarId()}" />
 
 			<div class="blog-spot">
 				<div>
@@ -209,7 +209,7 @@
 	<!-- End Page Container -->
 	<br>
 	<br>
-	<script>
+	<!-- <script>
 	window.onload = function(){
 		let dates = document.querySelectorAll(".my-date > i")
 		for (let i = 0; i< dates.length; i++){
@@ -217,7 +217,7 @@
 			d.innerText = moment(d.innerText).fromNow()
 		}
 	}
-</script>
+</script> -->
 	<!-- footer section -->
 	<section class="">
 		<div th:replace="client/include/footer::footer"> </div>

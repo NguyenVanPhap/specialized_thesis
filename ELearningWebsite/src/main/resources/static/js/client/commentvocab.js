@@ -11,14 +11,16 @@ $(document).ready(function() {
 				var divCMT = "";
 				$.each(result.object, function(i, objres) {
 					divCMT += '<tr>'
-						+ '<td>'				
+						+ '<td>'	
+						+ '<div class = "row">'			
 						+ '<div class="col-md-2" style="padding: 10px;">'
-						+ '<img class="rounded-circle img-fluid" src="https://lovablemessages.com/wp-content/uploads/2021/12/hinh-nen-3D-cho-dien-thoai-lung-linh-16.jpg" alt="" width="100" height="100">'
+						+ '<img class="circle" src="https://lovablemessages.com/wp-content/uploads/2021/12/hinh-nen-3D-cho-dien-thoai-lung-linh-16.jpg" alt="" width="100" height="100">'
 						+ '</div>'
 						+ '<div class="col-md-10 my-dates">'
 						+ '<h4 style="color: red" id="name_member">' + objres.userName + '</h4>'
 						+ '<p id="contentvocab" name="contentVocabulary">' + objres.contentVocabulary + '</p>'
 						+ '<i name="commentDateVocab">' + objres.commentDateVocab + '</i>'
+						+ '</div>'
 						+ '</div>'
 						+ '<td>'
 						+ '<tr>'

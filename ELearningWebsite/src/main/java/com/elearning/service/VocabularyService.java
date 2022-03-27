@@ -24,5 +24,6 @@ public interface VocabularyService {
     
     //List<BaiTapTuVung> getAllBaiTapTuVung();
 
+    Vocabulary getVocabId(int id);
 
 }

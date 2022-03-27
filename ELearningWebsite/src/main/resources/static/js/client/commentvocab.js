@@ -2,15 +2,12 @@ $(document).ready(function() {
 	ajaxGetComment(1);
 	function ajaxGetComment(page) {
 		let searchParams = new URLSearchParams(window.location.search);
-		var grammarId = searchParams.get('idGram');
-		/*alert(grammarId);*/
-
+		var vocabId = searchParams.get('idVocab');
+		
 		$.ajax({
 			type: "GET",
-			url: "http://localhost:8080/api/comment/grammar/id=" + grammarId + "?page=" + page,
+			url: "http://localhost:8080/api/comment/vocab/id=" + vocabId + "?page=" + page,
 			success: function(result) {
-				soCau = result.totalElements;
-				console.log(result);
 				var divCMT = "";
 				$.each(result.object, function(i, objres) {
 					divCMT += '<tr>'
@@ -20,13 +17,13 @@ $(document).ready(function() {
 						+ '</div>'
 						+ '<div class="col-md-10 my-dates">'
 						+ '<h4 style="color: red" id="name_member">' + objres.userName + '</h4>'
-						+ '<p id="contentgrammar" name="cmtgrammarcontent">' + objres.content + '</p>'
-						+ '<i name="commentdategrammar">' + objres.commentDate + '</i>'
+						+ '<p id="contentvocab" name="contentVocabulary">' + objres.contentVocabulary + '</p>'
+						+ '<i name="commentDateVocab">' + objres.commentDateVocab + '</i>'
 						+ '</div>'
 						+ '<td>'
 						+ '<tr>'
 				});
-				$('#lstcommentgrammar').html(divCMT);
+				$('#lstcommentvocab').html(divCMT);
 			},
 			error: function(e) {
 				alert("Error: ", e);
@@ -38,12 +35,12 @@ $(document).ready(function() {
 	var comment = {};
 	$('#btnComment').click(function(){
 		let searchParams = new URLSearchParams(window.location.search);
-		comment.grammarId = searchParams.get('idGram');
-		comment.content = $('#contentComment').val();
+		comment.vocabularyId = searchParams.get('idVocab');
+		comment.contentVocabulary = $('#contentComment').val();
 		comment.userName = $('#name_member').val();
 		var commentObj = JSON.stringify(comment);
 		$.ajax({
-			url: "http://localhost:8080/api/comment/grammar/add-comment",
+			url: "http://localhost:8080/api/comment/vocab/add-comment",
 			method: 'POST',
 			data: commentObj,
 			contentType: 'application/json; charset = utf-8',

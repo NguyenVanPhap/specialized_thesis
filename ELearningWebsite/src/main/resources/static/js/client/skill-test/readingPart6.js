@@ -4,7 +4,7 @@ $(document).ready(function() {
 	var soCau = 0;
 	ajaxGetForCauHoi(1);
 	startReadingClock();
-	var MapCheckQuestion= new Map();
+	var MapCheckQuestion = new Map();
 	function ajaxGetForCauHoi(page) {
 		var readingExerciseId = $("#readingExerciseId").val();
 		$.ajax({
@@ -14,10 +14,9 @@ $(document).ready(function() {
 				soCau = result.object.totalElements;
 				console.log(result);
 				var divCauHoi = "";
+				var paragraph = '<p style="padding-left:2%">' + result.object.content[0].paragraph + '</p>';
+				$('#paragraph').html(paragraph);
 				$.each(result.object.content, function(i, cauHoi) {
-					
-					var paragraph = "<h5>" + cauHoi.paragraph +"</h5>";
-					$('#paragraph').html(paragraph);
 					divCauHoi += '<div class="postmetadata" style="margin-left: 0px">'
 						+ '<ul><li style="font-weight: bold"><i class="icon-user"></i>Câu ' + cauHoi.number + ':' + '</li></ul></div>'
 						+ '<div class="form-group">'
@@ -35,7 +34,7 @@ $(document).ready(function() {
 						+ '        <input type="radio" onclick="markColorReading(' + cauHoi.number + ')" name="' + cauHoi.number + '" id="answer_4" value="D">D. ' + cauHoi.answer_4 + '</label></div>'
 						+ '        <input type="radio" name="' + cauHoi.number + '" id="correct_answer" value="' + cauHoi.correct_answer + '" class="hidden">'
 						+ '   </div>'
-					'</div>'
+					    +'</div>'
 
 						+ '<hr align="center">';
 				});
@@ -83,7 +82,7 @@ $(document).ready(function() {
 
 	var checkExam = function(nameRadio, dapAnChon) {
 		var dapAnDung = $('input:radio[name=' + nameRadio + '][id="correct_answer"]').val();
-		MapCheckQuestion.set(nameRadio,dapAnChon);
+		MapCheckQuestion.set(nameRadio, dapAnChon);
 		console.log(MapCheckQuestion);
 		if (dapAnDung === dapAnChon) {
 			if (soCauDung.indexOf(nameRadio) == -1) {
@@ -130,10 +129,12 @@ $(document).ready(function() {
 		var baiDocId = $("#readingExerciseId").val();
 		$.ajax({
 			type: "GET",
-			url: "http://localhost:8080/api/client/reading-exercise/id=" + baiDocId + "?page=" + page+ "&pagesize=" + 2,
+			url: "http://localhost:8080/api/client/reading-exercise/id=" + baiDocId + "?page=" + page + "&pagesize=" + 4,
 			success: function(result) {
 				//				soCau = result.totalElements;
 				var divCauHoi = "";
+				var paragraph = "<p>" + result.object.content[0].paragraph + "</p>";
+				$('#paragraph').html(paragraph);
 				$.each(result.object.content, function(i, cauHoi) {
 					divCauHoi +=
 						'<div class="postmetadata" style="margin-left: 0px">'
@@ -142,34 +143,34 @@ $(document).ready(function() {
 						+ '  <div class="span8" style="float:none; display: inline-block;">'
 						+ '   <div class="span4" style="margin-left: 0px">'
 						+ '     <label style="float: left;" class="radio-inline radioLabel">'
-						if(MapCheckQuestion.get(cauHoi.number)=='A')
-							divCauHoi+= '<input type="radio" checked onclick="markColorReading(' + cauHoi.number + ')" name="' + cauHoi.number + '" id="dapAn_1" value="A">A. ' + cauHoi.answer_1 + '</label></div>'
-						else
-							divCauHoi+= '<input type="radio" onclick="markColorReading(' + cauHoi.number + ')" name="' + cauHoi.number + '" id="dapAn_1" value="A">A. ' + cauHoi.answer_1 + '</label></div>'
-						
-						
-						divCauHoi+='     <div class="span4" style="margin-left: 0px">'
+					if (MapCheckQuestion.get(cauHoi.number) == 'A')
+						divCauHoi += '<input type="radio" checked onclick="markColorReading(' + cauHoi.number + ')" name="' + cauHoi.number + '" id="dapAn_1" value="A">A. ' + cauHoi.answer_1 + '</label></div>'
+					else
+						divCauHoi += '<input type="radio" onclick="markColorReading(' + cauHoi.number + ')" name="' + cauHoi.number + '" id="dapAn_1" value="A">A. ' + cauHoi.answer_1 + '</label></div>'
+
+
+					divCauHoi += '     <div class="span4" style="margin-left: 0px">'
 						+ '         <label  style="float: left;" class="radio-inline radioLabel">'
-						if(MapCheckQuestion.get(cauHoi.number)=='B')
-							divCauHoi+= '        <input type="radio" checked onclick="markColorReading(' + cauHoi.number + ')" name="' + cauHoi.number + '" id="answer_2" value="B">B. ' + cauHoi.answer_2 + '</label></div>'
-						else
-							divCauHoi+='        <input type="radio" onclick="markColorReading(' + cauHoi.number + ')" name="' + cauHoi.number + '" id="answer_2" value="B">B. ' + cauHoi.answer_2 + '</label></div>'
-						divCauHoi+='     <div class="span4" style="margin-left: 0px">'
+					if (MapCheckQuestion.get(cauHoi.number) == 'B')
+						divCauHoi += '        <input type="radio" checked onclick="markColorReading(' + cauHoi.number + ')" name="' + cauHoi.number + '" id="answer_2" value="B">B. ' + cauHoi.answer_2 + '</label></div>'
+					else
+						divCauHoi += '        <input type="radio" onclick="markColorReading(' + cauHoi.number + ')" name="' + cauHoi.number + '" id="answer_2" value="B">B. ' + cauHoi.answer_2 + '</label></div>'
+					divCauHoi += '     <div class="span4" style="margin-left: 0px">'
 						+ '         <label  style="float: left;" class="radio-inline radioLabel">'
-						if(MapCheckQuestion.get(cauHoi.number)=='C')
-							divCauHoi+= '        <input type="radio" checked onclick="markColorReading(' + cauHoi.number + ')" name="' + cauHoi.number + '" id="answer_3" value="C">C. ' + cauHoi.answer_3 + '</label></div>'
-						else
-							divCauHoi+='        <input type="radio" onclick="markColorReading(' + cauHoi.number + ')" name="' + cauHoi.number + '" id="answer_3" value="C">C. ' + cauHoi.answer_3 + '</label></div>'
-						
-							
-						divCauHoi+='     <div class="span4" style="margin-left: 0px">'
+					if (MapCheckQuestion.get(cauHoi.number) == 'C')
+						divCauHoi += '        <input type="radio" checked onclick="markColorReading(' + cauHoi.number + ')" name="' + cauHoi.number + '" id="answer_3" value="C">C. ' + cauHoi.answer_3 + '</label></div>'
+					else
+						divCauHoi += '        <input type="radio" onclick="markColorReading(' + cauHoi.number + ')" name="' + cauHoi.number + '" id="answer_3" value="C">C. ' + cauHoi.answer_3 + '</label></div>'
+
+
+					divCauHoi += '     <div class="span4" style="margin-left: 0px">'
 						+ '         <label  style="float: left;" class="radio-inline radioLabel">'
-						if(MapCheckQuestion.get(cauHoi.number)=='D')
-							divCauHoi+= '        <input type="radio" checked onclick="markColorReading(' + cauHoi.number + ')" name="' + cauHoi.number + '" id="answer_4" value="D">D. ' + cauHoi.answer_4 + '</label></div>'
-						else
-							divCauHoi+='        <input type="radio" onclick="markColorReading(' + cauHoi.number + ')" name="' + cauHoi.number + '" id="answer_4" value="D">D. ' + cauHoi.answer_4 + '</label></div>'
-						
-						divCauHoi+= '        <input type="radio" name="' + cauHoi.number + '" id="correct_answer" value="' + cauHoi.correct_answer + '" class="hidden">'
+					if (MapCheckQuestion.get(cauHoi.number) == 'D')
+						divCauHoi += '        <input type="radio" checked onclick="markColorReading(' + cauHoi.number + ')" name="' + cauHoi.number + '" id="answer_4" value="D">D. ' + cauHoi.answer_4 + '</label></div>'
+					else
+						divCauHoi += '        <input type="radio" onclick="markColorReading(' + cauHoi.number + ')" name="' + cauHoi.number + '" id="answer_4" value="D">D. ' + cauHoi.answer_4 + '</label></div>'
+
+					divCauHoi += '        <input type="radio" name="' + cauHoi.number + '" id="correct_answer" value="' + cauHoi.correct_answer + '" class="hidden">'
 						+ '   </div>'
 
 					var stt = cauHoi.number;

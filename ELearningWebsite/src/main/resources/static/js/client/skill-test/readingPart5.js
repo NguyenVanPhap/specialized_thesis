@@ -9,7 +9,7 @@ $(document).ready(function() {
 		var readingExerciseId = $("#readingExerciseId").val();
 		$.ajax({
 			type: "GET",
-			url: "http://localhost:8080/api/client/reading-exercise/id=" + readingExerciseId + "?page=" + page + "&pagesize=" + 2,
+			url: "http://localhost:8080/api/client/reading-exercise/id=" + readingExerciseId + "?page=" + page + "&pagesize=" + 4,
 			success: function(result) {
 				soCau = result.object.totalElements;
 				console.log(result);

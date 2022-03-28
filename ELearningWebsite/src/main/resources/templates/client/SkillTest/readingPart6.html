@@ -4,7 +4,7 @@
 
 <head>
 	<meta charset="ISO-8859-1">
-	<title>Luyện bài tập đọc - Part 5</title>
+	<title>Luyện bài tập đọc - Part 6</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 	<link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.css}" />
@@ -58,22 +58,24 @@
 		<!-- /. PAGE TITLE-->
 		<div class="row">
 			<div class="col-sm-8" style="width: 20%">
-				<h4 class="pagetitle">LUYỆN ĐỌC PART 6</h4>
+				<h4 class="pagetitle" th:text="'LUYỆN ĐỌC PART 6-'+${readingExercise.name}"></h4>
 				<!--Blog Post-->
 				<div class="blog-post">
-					<h4 th:text="${readingExercise.name}"></h4>
+
 					<input type="hidden" th:value="${readingExercise.id}" id="readingExerciseId">
 					<p>Choose the word or phrase that best completes the blanks:</p>
 				</div>
 
 				<div class="" style="text-align: left">
-					<h5 id="paragraph"></h5>
+					<div id="paragraph" style="width:100%;white-space: pre-line;padding:0px;background-color:#FFFACD;">
+
+					</div>
 					<div id="cauHoi"></div>
 
 					<div class="pagination" style="text-align: center">
 						<ul class="ul-pagination"></ul>
 					</div>
-					<hr align="center">
+					<br align="center">
 					<!--/.Pagination-->
 				</div>
 
@@ -150,7 +152,7 @@
 
 	<jsp:include page="../template/footer.jsp"></jsp:include>
 	<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
-	<script th:src="@{/js/client/skill-test/readingPart5.js}"></script>
+	<script th:src="@{/js/client/skill-test/readingPart6.js}"></script>
 
 </body>
 

@@ -25,8 +25,8 @@ public class ReadingExerciseApiClient {
 
 	@GetMapping("/id={readingExerciseId}")
 	public ResponseEntity<Object> getListreadingQuestionByReadingExerciseId(@RequestParam(defaultValue = "1") int page,
-			@PathVariable long readingExerciseId) {
-		return ResponseEntity.ok(readingQuestionService.findByReadingExerciseId(page, 2, readingExerciseId));
+			@RequestParam(defaultValue = "4") int pagesize, @PathVariable long readingExerciseId) {
+		return ResponseEntity.ok(readingQuestionService.findByReadingExerciseId(page, pagesize, readingExerciseId));
 	}
 
 	@GetMapping("/getall")

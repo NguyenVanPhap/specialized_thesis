@@ -9,15 +9,18 @@ $(document).ready(function() {
 		var readingExerciseId = $("#readingExerciseId").val();
 		$.ajax({
 			type: "GET",
-			url: "http://localhost:8080/api/client/reading-exercise/id=" + readingExerciseId + "?page=" + page + "&pagesize=" + 4,
+			url: "http://localhost:8080/api/client/reading-exercise/id=" + readingExerciseId + "?page=" + page + "&pagesize=" + 8,
 			success: function(result) {
 				soCau = result.object.totalElements;
 				console.log(result);
 				var divCauHoi = "";
-				var paragraph = '<p style="padding-left:2%">' + result.object.content[0].paragraph + '</p>';
-				$('#paragraph').html(paragraph);
 				$.each(result.object.content, function(i, cauHoi) {
-					console.log(i);
+
+					if (i % 4 == 0) {
+						divCauHoi += '<div id="paragraph" style="width:100%;white-space: pre-line;padding:0px;background-color:#FFFACD;">'
+							+ '<p style="padding-left:2%">' + cauHoi.paragraph + '</p> </div>';
+
+					}
 					divCauHoi += '<div class="postmetadata" style="margin-left: 0px">'
 						+ '<ul><li style="font-weight: bold"><i class="icon-user"></i>Câu ' + cauHoi.number + ':' + '</li></ul></div>'
 						+ '<div class="form-group">'
@@ -35,7 +38,7 @@ $(document).ready(function() {
 						+ '        <input type="radio" onclick="markColorReading(' + cauHoi.number + ')" name="' + cauHoi.number + '" id="answer_4" value="D">D. ' + cauHoi.answer_4 + '</label></div>'
 						+ '        <input type="radio" name="' + cauHoi.number + '" id="correct_answer" value="' + cauHoi.correct_answer + '" class="hidden">'
 						+ '   </div>'
-					    +'</div>'
+
 
 						+ '<hr align="center">';
 				});

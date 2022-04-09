@@ -160,17 +160,18 @@ $(document).ready(function() {
 	$(document).on('click', '.editBaiPost', function(event) {
 		var editId = $(this).attr('id');
 		var fields = editId.split('.');
-		var idBaiPost = fields[1];
+		var idPost = fields[1];
+
 
 		$.ajax({
 			type: 'GET',
 			contentType: "application/json",
-			url: "http://localhost:8080/api/admin/post/getinfor/" + idBaiPost,
+			url: "http://localhost:8080/api/admin/post/getinfor/" + idPost,
 			success: function(data) {
 
 				var modal = $('#PostModal');
-				$('#PostModal #idPostModal').val(idBaiPost);
-				modal.find('.modal-body #namePost').val(data.object.PostName);
+				$('#PostModal #PostModalId').val(idPost);
+				modal.find('.modal-body #PostName').val(data.object.postName);
 				modal.find('.modal-header #titleModal').text("Cập nhật bài ngữ pháp");
 				modal.find('.modal-body #previewImage').attr('src', data.object.filePath);
 				modal.find('.modal-body #myckeditor').val(data.object.contentHTML);
@@ -190,12 +191,9 @@ $(document).ready(function() {
 
 		});
 
-
-
-
 		$('#btnUpdate').unbind().click(function() {
 			var formData = new FormData();
-			var name = $('#namePost').val();
+			var name = $('#PostName').val();
 			var file_image;
 
 			if ($('#file_imagePost').get(0).files.length != 0) {
@@ -210,8 +208,8 @@ $(document).ready(function() {
 			/*var file_image = $('#file_imagePost')[0].files[0];
 			formData.append("fileImage", file_image);*/
 			var editorData = CKEDITOR.instances['myckeditor'].getData();
-			formData.append("idPost", idBaiPost);
-			formData.append("name", name);
+			formData.append("idPost", idPost);
+			formData.append("postName", name);
 			formData.append("contentHtml", editorData);
 			$.ajax({
 				data: formData,
@@ -225,7 +223,7 @@ $(document).ready(function() {
 				success: function(data) {
 					$('#PostModal').modal('hide');
 					alert("Cập nhật bài Post thành công");
-					loadAll();
+					loadAllPost(1);
 
 				},
 

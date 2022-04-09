@@ -50,7 +50,11 @@ public class PostsApi {
 
 	@RequestMapping(value = "/getinfor/{postId}", method = RequestMethod.GET, consumes = "application/json", produces = "application/json; charset=utf-8")
 	public ResponseEntity<Object> getinfor(@PathVariable("postId") int id) {
-		return ResponseEntity.ok(postService.getInfor(id));
+		// return ResponseEntity.ok(postService.getInfor(id));
+		ApiRes<Object> apiRes = new ApiRes<Object>();
+		Post post = postService.getPostId(id);
+		apiRes.setObject(post);
+		return ResponseEntity.ok(apiRes);
 	}
 	@PostMapping(value = "add")
 	@ResponseBody
@@ -121,4 +125,37 @@ public class PostsApi {
 	 * 
 	 * return response; }
 	 */
+	@PostMapping(value = "update")
+	@ResponseBody
+	public ResponseEntity<Object> update(@RequestParam("idPost") int id,
+		@RequestParam("postName") String name,
+			@RequestParam("contentHtml") String contentHtml,
+			@RequestPart(value = "fileImage", required = false) MultipartFile file_image) {
+		// List<String> response = new ArrayList<String>();
+		String rootDirectory = request.getSession().getServletContext().getRealPath("/");
+		Post objPost = postService.getPostId(id);
+		System.out.println("id" + objPost.getId());
+		ApiRes<Object> apiRes = new ApiRes<Object>();
+		try {
+			if (file_image != null) {
+				Path pathImage = Paths.get(rootDirectory + "/static/file/images/post/" + ""
+						+ objPost.getId() + "." + file_image.getOriginalFilename());
+				String localPath = "/static/file/images/post/" + "" + objPost.getId() + "."
+						+ file_image.getOriginalFilename();
+				file_image.transferTo(new File(pathImage.toString()));
+				objPost.setFileName(file_image.getOriginalFilename());
+				objPost.setFilePath(localPath);
+			}
+		} catch (Exception e) {
+			apiRes.setError(true);
+			apiRes.setErrorReason(e.getMessage());
+			return ResponseEntity.ok(apiRes);
+		}
+		objPost.setName(name);
+		System.out.println("name : " + objPost.getName());
+		objPost.setContentHTML(contentHtml);
+		return ResponseEntity.ok(postService.save(objPost));
+	}
+
+	
 }

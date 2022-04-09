@@ -147,7 +147,6 @@ public class GrammarApi {
 			baigrammar.setGrammarName(name);
 			baigrammar.setContentMarkDown(contentMarkdown);
 			baigrammar.setContentHTML(contentHtml);
-
 			baigrammarService.save(baigrammar);
 
 		} catch (Exception e) {
@@ -155,7 +154,7 @@ public class GrammarApi {
 			System.out.println("ErrorAddGrammar:" + e);
 
 		}
-
+		
 		return response;
 	}
 

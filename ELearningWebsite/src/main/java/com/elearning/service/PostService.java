@@ -100,4 +100,9 @@ public class PostService {
 		}
 		return apiRes;
 	}
+
+	public Post getPostId(int id){
+		List<Post> lstPosts = blogRepo.findById(id);
+		return lstPosts.get(0);
+	}
 }

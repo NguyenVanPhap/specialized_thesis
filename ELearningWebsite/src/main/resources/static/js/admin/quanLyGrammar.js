@@ -258,7 +258,7 @@ $(document).ready(function() {
 				success: function(data) {
 					$('#grammarModal').modal('hide');
 					alert("Cập nhật bài grammar thành công");
-					loadAllGrammar();
+					loadAllGrammar(1);
 
 				},
 

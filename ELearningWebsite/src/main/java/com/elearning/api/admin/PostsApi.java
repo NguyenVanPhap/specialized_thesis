@@ -157,5 +157,9 @@ public class PostsApi {
 		return ResponseEntity.ok(postService.save(objPost));
 	}
 
-	
+	@RequestMapping(value ="/delete/{postId}")
+	public String deletePostById(@PathVariable("postId") int id){
+		postService.delete(id);
+		return "success";
+	}
 }

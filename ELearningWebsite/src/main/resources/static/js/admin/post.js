@@ -133,7 +133,7 @@ $(document).ready(function() {
 	});
 
 	// delete baiPost	
-	$(document).on('click', '.deletePost', function() {
+	$(document).on('click', '.deleteBaiPost', function() {
 		var deleteId = $(this).attr('id');
 		var fields = deleteId.split('.');
 		var idBaiPost = fields[1];

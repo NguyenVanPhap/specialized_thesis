@@ -61,7 +61,6 @@
 				<h4 class="pagetitle" th:text="'LUYỆN ĐỌC PART 5-'+${readingExercise.name}"></h4>
 				<!--Blog Post-->
 				<div class="blog-post">
-					<h4 th:text="${readingExercise.name}"></h4>
 					<input type="hidden" th:value="${readingExercise.id}" id="readingExerciseId">
 					<p>Choose the word that best completes the sentence:</p>
 				</div>
@@ -70,21 +69,21 @@
 					<div id="cauHoi"></div>
 
 					<div class="pagination" style="text-align: center">
+
 						<ul class="ul-pagination"></ul>
 					</div>
-					<hr align="center">
-					<!--/.Pagination-->
+
 				</div>
 
 			</div>
-			<div class="col-sm-4">
+			<div class="col-sm-4 center">
 				<!--<div th:replace="client/include/sidebar::sidebar"> </div>-->
 				<div id="navigation">
 
 					<div class="fix-scrolling">
 						<br>
 						<div>
-							<span id="timeReading">45:00</span>
+							<span style="margin-left:0px" id="timeReading">45:00</span>
 						</div>
 						<hr width="60%">
 						<th:block th:each="i : ${#numbers.sequence(1, totalQuestion, 1)}">
@@ -137,18 +136,20 @@
 			document.getElementById("answer" + id).style.backgroundColor = "#ffc107";
 			console.log("answer" + id);
 		}
-		 function UnLoadWindow() {
-            return 'We strongly recommends NOT closing this window yet.'
-        }
+		function UnLoadWindow() {
+			return 'We strongly recommends NOT closing this window yet.'
+		}
 
-         window.onbeforeunload = UnLoadWindow;
-		function clickDoAgain()
-		{
+		window.onbeforeunload = UnLoadWindow;
+		function clickDoAgain() {
 			window.location.reload();
 		}
 	</script>
 
-	<jsp:include page="../template/footer.jsp"></jsp:include>
+	<!-- footer section -->
+	<section class="">
+		<div th:replace="client/include/footer::footer"> </div>
+	</section>
 	<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
 	<script th:src="@{/js/client/skill-test/readingPart5.js}"></script>
 

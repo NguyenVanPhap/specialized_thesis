@@ -35,9 +35,8 @@ $(document).ready(function() {
 						+ '        <input type="radio" onclick="markColorReading(' + cauHoi.number + ')" name="' + cauHoi.number + '" id="answer_4" value="D">D. ' + cauHoi.answer_4 + '</label></div>'
 						+ '        <input type="radio" name="' + cauHoi.number + '" id="correct_answer" value="' + cauHoi.correct_answer + '" class="hidden">'
 						+ '   </div>'
-					    +'</div>'
-
-						+ '<hr align="center">';
+						+'<hr>'
+						+'</div>'
 				});
 				$('#cauHoi').html(divCauHoi);
 				if (result.object.totalPages > 0) {
@@ -103,6 +102,7 @@ $(document).ready(function() {
 		event.preventDefault();
 		var confirmation = confirm("Bạn chắc chắn nộp bài ?");
 		if (confirmation) {
+			clearInterval(timecheckListening);
 			$("#ketQuaText").html("Số câu đúng của bạn là: " + soCauDung.length + '/' + soCau);
 
 			jQuery.noConflict();

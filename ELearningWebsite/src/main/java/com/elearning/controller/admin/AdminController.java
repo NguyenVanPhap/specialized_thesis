@@ -103,6 +103,11 @@ public class AdminController {
 	public String quanLyBaiDocPage() {
 		return "admin/readingexercise";
 	}
+	
+	@GetMapping("/listeningexercise")
+	public String ListeningExercise() {
+		return "admin/listeningexercise";
+	}
 
 	@GetMapping("/profileAdmin")
 	public String profileAdmin(Model model, HttpServletRequest request, @AuthenticationPrincipal OAuth2User oauth2User){

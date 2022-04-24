@@ -87,7 +87,7 @@
 						<hr />
 						<hr />
 
-						<a href="#" class="btn btn-info btn-set">TRUY CẬP</a>
+						<a th:href="@{/test/skill-test/listening}" class="btn btn-info btn-set">TRUY CẬP</a>
 					</div>
 				</div>
 			</div>
@@ -99,9 +99,11 @@
 	</div>
 	</div>
 	<br><br><br><br><br><br><br><br>
+	<!-- footer section -->
+	<section class="">
+		<div th:replace="client/include/footer::footer"> </div>
+	</section>
 	<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
-	<script th:src="@{/js/client/ReadingExercise/listReadingExercise.js}"></script>
-
 </body>
 
 </html>

@@ -73,14 +73,14 @@
 					<div id="cauHoi"></div>
 
 					<div class="pagination" style="text-align: center">
+						<br>
 						<ul class="ul-pagination"></ul>
 					</div>
-					<br align="center">
 					<!--/.Pagination-->
 				</div>
 
 			</div>
-			<div class="col-sm-4">
+			<div class="col-sm-4 center">
 				<!--<div th:replace="client/include/sidebar::sidebar"> </div>-->
 				<div id="navigation">
 
@@ -150,7 +150,10 @@
 		}
 	</script>
 
-	<jsp:include page="../template/footer.jsp"></jsp:include>
+	<!-- footer section -->
+	<section class="">
+		<div th:replace="client/include/footer::footer"> </div>
+	</section>
 	<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
 	<script th:src="@{/js/client/skill-test/readingPart6.js}"></script>
 

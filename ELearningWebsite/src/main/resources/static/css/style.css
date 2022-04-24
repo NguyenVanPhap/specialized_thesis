@@ -56,6 +56,10 @@ body {
   padding: 0;
 }
 
+.center {
+			text-align: center;
+		}
+		
 .no-border {
   border: none;
 }
@@ -2792,7 +2796,6 @@ a[data-toggle="collapse"] {
 
 #timeReading {
 	font-size: 25px;
-	margin-left: 100px;
 	color: green;
 	font-family: 'Open Sans';
 }

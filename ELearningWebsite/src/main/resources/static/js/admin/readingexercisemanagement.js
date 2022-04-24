@@ -12,9 +12,10 @@ $(document).ready(function() {
 			url: "http://localhost:8080/api/admin/readingexercise/getall" + "?page=" + page + "&level=" + level + "&part=" + part,
 			success: function(result) {
 
+				var baiDocRow ="";
 				$.each(result.object.content, function(i, baiDoc) {
 					//					console.log(baiDoc);
-					var baiDocRow = '<tr style="text-align: center;">' +
+					baiDocRow += '<tr style="text-align: center;">' +
 						'<td width="5%">' + baiDoc.id + '</td>' +
 						'<td>' + baiDoc.name + '</td>';
 					if (baiDoc.part === 5) {
@@ -35,19 +36,20 @@ $(document).ready(function() {
 					$('.baiDocTable tbody').append(baiDocRow);
 				});
 
-				if (result.object.totalPages > 1) {
-					for (var numberPage = 1; numberPage <= result.totalPages; numberPage++) {
-						var li = '<li class="page-item "><a class="pageNumber">' + numberPage + '</a></li>';
+				if (result.object.totalPages > 0) {
+					$('.pagination').empty();
+					for (var numberPage = 1; numberPage <= result.object.totalPages; numberPage++) {
+						var li;
+						if (numberPage == page)
+							li = '<a class="directpage active" id="direct.' + numberPage + '"> ' + numberPage + '</a>';
+						else
+							li = '<a class="directpage" id="direct.' + numberPage + '"> ' + numberPage + '</a>';
 						$('.pagination').append(li);
 					};
 
-					// active page pagination
-					$(".pageNumber").each(function(index) {
-						if ($(this).text() == page) {
-							$(this).parent().removeClass().addClass("page-item active");
-						}
-					});
+
 				};
+				$('tbody').html(baiDocRow);
 			},
 			error: function(e) {
 				alert("Error: ", e);
@@ -56,6 +58,12 @@ $(document).ready(function() {
 		});
 	};
 
+	$(document).on('click', '.directpage', function(event) {
+		var directId = $(this).attr('id');
+		var fields = directId.split('.');
+		var page = fields[1];
+		ajaxGet(page);
+	});
 	// event khi click duyệt bài đọc 
 	$(document).on('click', '#btnDuyetBaiDoc', function(event) {
 		event.preventDefault();
@@ -137,14 +145,7 @@ $(document).ready(function() {
 		var count = $('.baiDocTable tbody').children().length;
 		//    	console.log("số cột " + count);
 		$('.baiDocTable tbody tr').remove();
-		var page = $('li.active').children().text();
-		$('.pagination li').remove();
-		console.log(page);
-		if (count == 1) {
-			ajaxGet(page - 1);
-		} else {
-			ajaxGet(page);
-		}
+		ajaxGet(1);
 
 	};
 

@@ -9,9 +9,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.elearning.entities.ListeningExercise;
+import com.elearning.entities.ListeningQuestion;
 import com.elearning.entities.ReadingExercise;
 import com.elearning.entities.ReadingQuestion;
+import com.elearning.repository.ListeningQuestionRepository;
 import com.elearning.repository.ReadingQuestionRepository;
+import com.elearning.service.ListeningExerciseService;
 import com.elearning.service.ReadingExerciseService;
 import com.elearning.service.ReadingQuestionService;
 
@@ -23,6 +27,11 @@ public class SkillTestController {
 	private ReadingQuestionRepository readingQuestionRepo;
 	@Autowired
 	private ReadingExerciseService ReadingExerciseService;
+
+	@Autowired
+	private ListeningQuestionRepository listeningQuestionRepo;
+	@Autowired
+	private ListeningExerciseService listeningExerciseService;
 
 	@GetMapping("/reading/part-{partNumber}/{id}")
 	public String baiDocPart(@PathVariable long id, @PathVariable int partNumber, Model model) {
@@ -36,9 +45,26 @@ public class SkillTestController {
 		return "client/SkillTest/readingPart" + partNumber;
 	}
 
+	@GetMapping("/listening/part-{partNumber}/{id}")
+	public String listeningExercisePart(@PathVariable long id, @PathVariable int partNumber, Model model) {
+		ListeningExercise objListeningExercise = listeningExerciseService.findListeningExerciseById(id).get();
+		Page<ListeningQuestion> pageListeningQuestion = listeningQuestionRepo.findByListeningExerciseId(id,
+				PageRequest.of(2 - 1, 2));
+		pageListeningQuestion.getTotalElements();
+
+		model.addAttribute("listeningExercise", objListeningExercise);
+		model.addAttribute("totalQuestion", pageListeningQuestion.getTotalElements());
+		return "client/SkillTest/listeningPart" + partNumber;
+	}
+
 	@GetMapping("/reading")
 	public String Reading(Model model) {
 		return "client/SkillTest/reading";
+	}
+
+	@GetMapping("/listening")
+	public String Listening(Model model) {
+		return "client/SkillTest/listening";
 	}
 
 	@GetMapping("")

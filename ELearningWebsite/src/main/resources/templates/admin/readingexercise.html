@@ -30,6 +30,44 @@
 		.error-message {
 			color: red;
 		}
+
+		.center {
+			text-align: center;
+		}
+
+		.pagination {
+			display: inline-block;
+		}
+
+		.pagination a {
+			color: black;
+			float: left;
+			padding: 8px 16px;
+			text-decoration: none;
+			transition: background-color .3s;
+			border: 1px solid #ddd;
+			margin: 0 4px;
+		}
+
+		.pagination a.active {
+			background-color: #4CAF50;
+			color: white;
+			border: 1px solid #4CAF50;
+		}
+
+		.pagination a:hover:not(.active) {
+			background-color: #ddd;
+		}
+
+		.myparent {
+			white-space: nowrap;
+		}
+
+		.mychild {
+			display: inline;
+			float: left;
+			padding-right: 2%
+		}
 	</style>
 </head>
 
@@ -46,7 +84,7 @@
 
 
 			<button class="addReadingExercise" style=" background-color: #4CAF50; color: white;
-				border: 1px solid #4CAF50;">Thêm mới bài Đọc</button>
+				border: 1px solid #4CAF50;">Thêm mới</button>
 			<hr />
 
 			<form class="form-inline" id="searchForm" name="searchObject">
@@ -94,8 +132,10 @@
 
 			</table>
 
-			<ul class="pagination">
-			</ul>
+			<div class="center">
+				<div class="pagination">
+				</div>
+			</div>
 		</div>
 	</div>
 
@@ -156,8 +196,7 @@
 
 								<div class="form-group">
 									<label for="name">Danh sách câu hỏi (Excel):</label>
-									<input type="file" class="form-control" id="fileExel" name="fileExcel"
-										required>
+									<input type="file" class="form-control" id="fileExel" name="fileExcel" required>
 								</div>
 
 								<div class="form-group">

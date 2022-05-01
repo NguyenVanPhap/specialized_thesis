@@ -25,10 +25,13 @@ public class SimpleAuthenticationSuccessHandler implements AuthenticationSuccess
 
 		Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
 		authorities.forEach(authority -> {
-			// nếu quyền có vai trò user, chuyển đến trang "/" nếu login thành công
 			if (authority.getAuthority().equals("ROLE_MEMBER")) {
 				try {
-					redirectStrategy.sendRedirect(request, response, "/");
+					String redirectUrl = (String) request.getSession().getAttribute("url_prior_login");
+					if (redirectUrl != null)
+						redirectStrategy.sendRedirect(request, response, redirectUrl);
+					else
+						redirectStrategy.sendRedirect(request, response, "/");
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

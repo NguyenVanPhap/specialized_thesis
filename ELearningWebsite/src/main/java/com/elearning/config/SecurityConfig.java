@@ -52,6 +52,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		        .antMatchers("/admin").permitAll()
 		        .antMatchers("/test/skill-test/reading/**").hasAnyRole("MEMBER", "ADMIN")
 				.antMatchers("/profile").hasAnyRole("MEMBER, ADMIN")
+				.antMatchers("/course/learning/**").hasAnyRole("MEMBER, ADMIN")
 				.antMatchers("/listExam").hasAnyRole("MEMBER","ADMIN")
 			    .and()
 			.formLogin()
@@ -72,4 +73,3 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	
 
 }
-

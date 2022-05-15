@@ -377,6 +377,26 @@
 	<section class="">
 		<div th:replace="client/include/footer::footer"> </div>
 	</section>
+
+	<div class="row col-md-6">
+		<div class="modal fade" id="nopBaiModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+			aria-hidden="true" data-backdrop="static" data-keyboard="false">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLabel">Đăng kí thành công</h5>
+
+					</div>
+					<div class="modal-body">
+						<h6>Chúc bạn có thời gian học tập vui vẻ tại Toeic mỗi ngày</h6>
+					</div>
+					<div class="modal-footer">
+						<input class="btn btn-danger" id="btnLamLai" type="button" value="Đóng" />
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 	<!-- footer section -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.serializeJSON/2.9.0/jquery.serializejson.js"></script>
 	<script th:src="@{/js/client/coursedetail.js}"></script>

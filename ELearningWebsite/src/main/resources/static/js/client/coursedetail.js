@@ -21,13 +21,8 @@ $(document).ready(function() {
 			enctype: 'multipart/form-data',
 			data: JSON.stringify({ "courseId": currentCourseId }),
 			success: function(response) {
-				console.log(response);
-				if (response.status == "success") {
-					alert("Thêm thành công");
-				} else {
-
-				}
-
+				$('#nopBaiModal').modal('show');
+				location.reload();
 			},
 			error: function(e) {
 				alert("Error!")

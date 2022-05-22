@@ -5,6 +5,10 @@ $(document).ready(function() {
 	
 	var baseUrl=$('#baseUrl').val();
 
+
+	
+
+
 	$(document).on("click", ".openModalFunction", function(event) {
         event.preventDefault();    //prevent default action of <a>
         if ($(this).attr("id") == 'modal1')

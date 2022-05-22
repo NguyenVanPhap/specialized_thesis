@@ -25,6 +25,7 @@ $(document).ready(function() {
 			url: "http://localhost:8080/api/admin/post/getlist",
 			data: JSON.stringify(datainput),
 			success: function(data) {
+				console.log(data);
 
 				var trHTML = "";
 				$.each(data.object.content, function(i, objPost) {
@@ -65,8 +66,6 @@ $(document).ready(function() {
 				console.log("ERROR: ", e);
 			}
 		});
-
-
 	}
 	$(document).on('click', '.btnAddnewGram', function(event) {
 
@@ -78,7 +77,7 @@ $(document).ready(function() {
 		modal.find('.modal-header #titleModal').text("Thêm mới bài ngữ pháp");
 		/*simplemde.value("wiriting someshing here");*/
 	});
-	
+
 	$(document).on('click', '.searchkeyword', function(event) {
 
 		loadAllPost(1);
@@ -99,12 +98,12 @@ $(document).ready(function() {
 		var editorData = CKEDITOR.instances['myckeditor'].getData();
 
 		var formData = new FormData();
-		var name = $('#PostName').val();
+		var postname = $('#PostName').val();
 		var contentHTML = editorData;
 		file_image = $('#file_imagePost')[0].files[0];
 		formData.append("fileImage", file_image);
-		formData.append("postName", name);
-		
+		formData.append("postName", postname);
+
 		formData.append("contentHtml", contentHTML);
 
 		$.ajax({
@@ -172,7 +171,7 @@ $(document).ready(function() {
 				var modal = $('#PostModal');
 				$('#PostModal #PostModalId').val(idPost);
 				modal.find('.modal-body #PostName').val(data.object.postName);
-				modal.find('.modal-header #titleModal').text("Cập nhật bài ngữ pháp");
+				modal.find('.modal-header #titleModal').text("Cập nhật ");
 				modal.find('.modal-body #previewImage').attr('src', data.object.filePath);
 				modal.find('.modal-body #myckeditor').val(data.object.contentHTML);
 				CKEDITOR.instances['myckeditor'].setData(data.object.contentHTML);

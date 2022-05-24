@@ -75,7 +75,7 @@ $(document).ready(function() {
 		$('#PostModal #PostModalId').val("");
 		modal.find('.modal-body #PostName').val("");
 		modal.find('.modal-header #titleModal').text("Thêm mới bài ngữ pháp");
-		/*simplemde.value("wiriting someshing here");*/
+		//simplemde.value("wiriting someshing here");
 	});
 
 	$(document).on('click', '.searchkeyword', function(event) {

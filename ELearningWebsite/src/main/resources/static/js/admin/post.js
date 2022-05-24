@@ -119,7 +119,6 @@ $(document).ready(function() {
 				$('#PostModal').modal('hide');
 				loadAllPost(1);
 				alert("Thêm mới bài viết thành công");
-
 			},
 
 			error: function(e) {

@@ -100,7 +100,7 @@ $(document).ready(function() {
 		event.preventDefault();
 		var confirmation = confirm("Bạn chắc chắn nộp bài ?");
 		if (confirmation) {
-			clearInterval(timecheckListening);
+			// clearInterval(timecheckListening);
 			$("#ketQuaText").html("Số câu đúng của bạn là: " + soCauDung.length + '/' + soCau);
 
 			jQuery.noConflict();
@@ -132,6 +132,7 @@ $(document).ready(function() {
 			success: function(result) {
 				//				soCau = result.totalElements;
 				var divCauHoi = "";
+				
 				$.each(result.object.content, function(i, cauHoi) {
 					divCauHoi +=
 						'<div class="postmetadata" style="margin-left: 0px">'
@@ -182,7 +183,7 @@ $(document).ready(function() {
 					}
 
 					divCauHoi += '</div>'
-						+ '<div class="span4" style="margin-left:0px">'
+						+ '<div class="span4" style="margin-left:0px; white-space: pre-line">'
 						+ '<p>'
 						+ cauHoi.ansExplain + '</p>'
 						+ '</div>'

@@ -67,13 +67,13 @@ $(document).ready(function() {
 			}
 		});
 	}
-	$(document).on('click', '.btnAddnewGram', function(event) {
+	$(document).on('click', '.btnAddNewPost', function(event) {
 
 		$('#btnUpdate').hide();
 		$('#btnAddNewPost').show();
 		var modal = $('#PostModal');
-		$('#PostModal #idPostModal').val("");
-		modal.find('.modal-body #namePost').val("");
+		$('#PostModal #PostModalId').val("");
+		modal.find('.modal-body #PostName').val("");
 		modal.find('.modal-header #titleModal').text("Thêm mới bài ngữ pháp");
 		/*simplemde.value("wiriting someshing here");*/
 	});
@@ -98,11 +98,11 @@ $(document).ready(function() {
 		var editorData = CKEDITOR.instances['myckeditor'].getData();
 
 		var formData = new FormData();
-		var postname = $('#PostName').val();
+		var name = $('#PostName').val();
 		var contentHTML = editorData;
 		file_image = $('#file_imagePost')[0].files[0];
 		formData.append("fileImage", file_image);
-		formData.append("postName", postname);
+		formData.append("postName", name);
 
 		formData.append("contentHtml", contentHTML);
 

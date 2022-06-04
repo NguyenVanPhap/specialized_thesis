@@ -40,7 +40,7 @@ $(document).ready(function () {
             success: function (data) {
                 $('#vocabModal').modal('hide');
                 loadAllVocab();
-
+                alert("Thêm mới bài từ vựng thành công")
                 $('#info-success').text("Thêm mới bài từ vựng thành công");
 
             },

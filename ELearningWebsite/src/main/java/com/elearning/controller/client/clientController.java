@@ -89,6 +89,11 @@ public class clientController {
         return "redirect:/profile";
 //        return "redirect:/client/updateProfile";
     }
+	@GetMapping("/testlogs")
+    public String testLogs() {
+        return "client/testlogs";
+    }
+	
 	@GetMapping("/changePassword")
     public String clientChangePasswordPage() {
         return "client/passwordChange";

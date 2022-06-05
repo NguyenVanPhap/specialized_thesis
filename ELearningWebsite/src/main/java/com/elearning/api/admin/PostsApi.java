@@ -45,7 +45,7 @@ public class PostsApi {
 	@RequestMapping(value = "/getlist", method = RequestMethod.POST, consumes = "application/json", produces = "application/json; charset=utf-8")
 	public ResponseEntity<Object> getlist(@RequestBody BaseReq req) {
 
-		return ResponseEntity.ok(postService.getList4api(req.getPage() - 1, 4, req.getKeyWord()));
+		return ResponseEntity.ok(postService.getList4api(req.getPage() - 1, 6, req.getKeyWord()));
 	}
 
 	@RequestMapping(value = "/getinfor/{postId}", method = RequestMethod.GET, consumes = "application/json", produces = "application/json; charset=utf-8")

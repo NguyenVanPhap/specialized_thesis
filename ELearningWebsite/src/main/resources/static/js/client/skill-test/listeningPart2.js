@@ -208,11 +208,23 @@ $(document).ready(function() {
 					if (soCauDung.indexOf(stt) > -1) {
 						console.log(soCauDung.indexOf(stt) > -1)
 						divCauHoi += '<div class="span4"  style="margin-left:0px;color:green">'
-							+ '<span>Đáp án đúng:' + cauHoi.correct_answer + '</span><br> </div>';
+							+ '<img src="/static/images/check/correct.png">'
+							+ '<span>Correct. Answer:' + cauHoi.correct_answer + '</span><br> </div>';
 					} else {
 						divCauHoi += '<div class="span4" style="margin-left:0px;color:red">'
-							+ '<span>Đáp án đúng:' + cauHoi.correct_answer + '</span><br> </div>';
+							+ '<img src="/static/images/check/nocorrect.png">'
+							+ '<span>That not correct. Answer:' + cauHoi.correct_answer + '</span><br> </div>';
 					}
+
+					divCauHoi += '</div>'
+						+ '<div class="span4" style="margin-left:0px; white-space: pre-line">'
+						+ '<span style="background-color:lightgoldenrodyellow">Script:'
+						+ '<p style="background-color:lightgoldenrodyellow">'
+						+ cauHoi.ansExplain + '</p>'
+						+ '</span>'
+						+ '</div>'
+
+						+ '</div>'
 
 
 				});

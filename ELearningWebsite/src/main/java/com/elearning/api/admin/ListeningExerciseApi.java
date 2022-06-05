@@ -33,7 +33,7 @@ public class ListeningExerciseApi {
 
 	@GetMapping("/getlist")
 	public ResponseEntity<Object> findAllByPartAndLevel(@RequestParam(defaultValue = "1") int page,
-			@RequestParam(defaultValue = "4") int pagesize, @RequestParam(defaultValue = "") String part,
+			@RequestParam(defaultValue = "6") int pagesize, @RequestParam(defaultValue = "") String part,
 			@RequestParam(defaultValue = "") String level) {
 		return ResponseEntity.ok(
 				listeningExerciseService.findAllListListeningExerciseByPartAndlevelAdmin(page, pagesize, part, level));

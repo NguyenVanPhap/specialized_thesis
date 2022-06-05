@@ -35,7 +35,7 @@ public class ReadingExerciseApi {
 
 	@GetMapping("/getall")
 	public ResponseEntity<Object> findAllByPartAndLevel(@RequestParam(defaultValue = "1") int page,
-			@RequestParam(defaultValue = "2") int pagesize,
+			@RequestParam(defaultValue = "6") int pagesize,
 			@RequestParam(defaultValue = "") String part, @RequestParam(defaultValue = "") String level) {
 		return ResponseEntity
 				.ok(readingExerciseService.findAllListReadingExerciseByPartAndLevelAdmin(page, pagesize, part, level));

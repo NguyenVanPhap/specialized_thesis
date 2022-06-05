@@ -91,7 +91,7 @@
 							<span id="timeListening">45:00</span>
 						</div>
 						<hr width="60%">
-						<th:block th:each="i : ${#numbers.sequence(1, totalQuestion, 1)}">
+						<th:block th:each="i : ${#numbers.sequence(7, totalQuestion + 6, 1)}">
 							<div class="numberCircle web-font" th:id="'answer'+${i}" th:text="${i}"></div>
 						</th:block>
 						<br> <br> 

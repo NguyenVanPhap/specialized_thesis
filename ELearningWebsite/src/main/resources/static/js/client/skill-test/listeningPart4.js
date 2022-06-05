@@ -21,15 +21,15 @@ $(document).ready(function() {
 						+ '  <div class="span8" style="float:none; display: inline-block;">'
 						+ '   <div class="span4" style="margin-left: 0px">'
 						+ '     <label style="float: left;" class="radio-inline radioLabel">'
-						+ '       <input type="radio" onclick="markColorListening(' + cauHoi.number + ')" name="' + cauHoi.number + '" id="dapAn_1" value="A">A. ' + '</label></div>'
+						+ '       <input type="radio" onclick="markColorListening(' + cauHoi.number + ')" name="' + cauHoi.number + '" id="dapAn_1" value="A">A. '+ cauHoi.answer_1 + '</label></div>'
 						+ '     <div class="span4" style="margin-left: 0px">'
 						+ '         <label  style="float: left;" class="radio-inline radioLabel">'
-						+ '        <input type="radio" onclick="markColorListening(' + cauHoi.number + ')" name="' + cauHoi.number + '" id="answer_2" value="B">B. ' + '</label></div>'
+						+ '        <input type="radio" onclick="markColorListening(' + cauHoi.number + ')" name="' + cauHoi.number + '" id="answer_2" value="B">B. '+cauHoi.answer_2 + '</label></div>'
 						+ '    <div class="span4" style="margin-left:0px">'
 						+ '      <label  style="float: left;" class="radio-inline radioLabel">'
-						+ '       <input type="radio" onclick="markColorListening(' + cauHoi.number + ')" name="' + cauHoi.number + '" id="answer_3" value="C">C.' + '</label></div>'
-						+ '     <div class="span4" style="margin-left: 0px;display:none"><label  style="float: left;" class="radio-inline radioLabel">'
-						+ '        <input type="radio" onclick="markColorListening(' + cauHoi.number + ')" name="' + cauHoi.number + '" id="answer_4" value="D">D. ' + '</label></div>'
+						+ '       <input type="radio" onclick="markColorListening(' + cauHoi.number + ')" name="' + cauHoi.number + '" id="answer_3" value="C">C.'+ cauHoi.answer_3 + '</label></div>'
+						+ '     <div class="span4" style="margin-left: 0px"><label  style="float: left;" class="radio-inline radioLabel">'
+						+ '        <input type="radio" onclick="markColorListening(' + cauHoi.number + ')" name="' + cauHoi.number + '" id="answer_4" value="D">D. '+ cauHoi.answer_4 + '</label></div>'
 						+ '        <input type="radio" name="' + cauHoi.number + '" id="correct_answer" value="' + cauHoi.correct_answer + '" class="hidden">'
 						+ '   </div>'
 						+ '</div>'
@@ -197,11 +197,11 @@ $(document).ready(function() {
 					divCauHoi += '     <div class="span4" style="margin-left: 0px">'
 						+ '         <label  style="float: left;" class="radio-inline radioLabel">'
 					if (MapCheckQuestion.get(cauHoi.number) == 'D')
-						divCauHoi += '        <input style="display:none" type="radio" checked onclick="markColorListening(' + cauHoi.number + ')" name="' + cauHoi.number + '" id="answer_4" value="D">D. ' + cauHoi.answer_4 + '</label></div>'
+						divCauHoi += '        <input type="radio" checked onclick="markColorListening(' + cauHoi.number + ')" name="' + cauHoi.number + '" id="answer_4" value="D">D. ' + cauHoi.answer_4 + '</label></div>'
 					else
-						divCauHoi += '        <input style="display:none" type="radio" onclick="markColorListening(' + cauHoi.number + ')" name="' + cauHoi.number + '" id="answer_4" value="D">D. ' + cauHoi.answer_4 + '</label></div>'
+						divCauHoi += '        <input type="radio" onclick="markColorListening(' + cauHoi.number + ')" name="' + cauHoi.number + '" id="answer_4" value="D">D. ' + cauHoi.answer_4 + '</label></div>'
 
-					divCauHoi += '        <input style="display:none" type="radio" name="' + cauHoi.number + '" id="correct_answer" value="' + cauHoi.correct_answer + '" class="hidden">'
+					divCauHoi += '        <input type="radio" name="' + cauHoi.number + '" id="correct_answer" value="' + cauHoi.correct_answer + '" class="hidden">'
 						+ '   </div>'
 
 					var stt = cauHoi.number;
@@ -209,11 +209,22 @@ $(document).ready(function() {
 					if (soCauDung.indexOf(stt) > -1) {
 						console.log(soCauDung.indexOf(stt) > -1)
 						divCauHoi += '<div class="span4"  style="margin-left:0px;color:green">'
-							+ '<span>Đáp án đúng:' + cauHoi.correct_answer + '</span><br> </div>';
+							+ '<img src="/static/images/check/correct.png">'
+							+ '<span>Correct. Answer:' + cauHoi.correct_answer + '</span><br> </div>';
 					} else {
 						divCauHoi += '<div class="span4" style="margin-left:0px;color:red">'
-							+ '<span>Đáp án đúng:' + cauHoi.correct_answer + '</span><br> </div>';
+							+ '<img src="/static/images/check/nocorrect.png">'
+							+ '<span>That not correct. Answer:' + cauHoi.correct_answer + '</span><br> </div>';
 					}
+
+					divCauHoi += '</div>'
+						+ '<div class="span4" style="margin-left:0px; white-space: pre-line">'
+						+ '<p style="background-color:lightgoldenrodyellow">'
+						+ cauHoi.script + '</p>'
+						+ '</span>'
+						+ '</div>'
+
+						+ '</div>'
 
 
 				});

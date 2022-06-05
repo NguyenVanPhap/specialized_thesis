@@ -1,5 +1,5 @@
 $(document).ready(function() {
-
+	var timework = "";
 	var soCauDung = [];
 	var soCau = 0;
 	ajaxGetForCauHoi(1);
@@ -9,7 +9,7 @@ $(document).ready(function() {
 		var listeningExerciseId = $("#listeningExerciseId").val();
 		$.ajax({
 			type: "GET",
-			url: "http://localhost:8080/api/client/listening-exercise/id=" + listeningExerciseId + "?page=" + page + "&pagesize=" +3,
+			url: "http://localhost:8080/api/client/listening-exercise/id=" + listeningExerciseId + "?page=" + page + "&pagesize=" + 3,
 			success: function(result) {
 				soCau = result.object.totalElements;
 				console.log(result);
@@ -21,20 +21,20 @@ $(document).ready(function() {
 						+ '  <div class="span8" style="float:none; display: inline-block;">'
 						+ '   <div class="span4" style="margin-left: 0px">'
 						+ '     <label style="float: left;" class="radio-inline radioLabel">'
-						+ '       <input type="radio" onclick="markColorListening(' + cauHoi.number + ')" name="' + cauHoi.number + '" id="dapAn_1" value="A">A. ' +  '</label></div>'
+						+ '       <input type="radio" onclick="markColorListening(' + cauHoi.number + ')" name="' + cauHoi.number + '" id="dapAn_1" value="A">A. ' + '</label></div>'
 						+ '     <div class="span4" style="margin-left: 0px">'
 						+ '         <label  style="float: left;" class="radio-inline radioLabel">'
 						+ '        <input type="radio" onclick="markColorListening(' + cauHoi.number + ')" name="' + cauHoi.number + '" id="answer_2" value="B">B. ' + '</label></div>'
 						+ '    <div class="span4" style="margin-left:0px">'
 						+ '      <label  style="float: left;" class="radio-inline radioLabel">'
-						+ '       <input type="radio" onclick="markColorListening(' + cauHoi.number + ')" name="' + cauHoi.number + '" id="answer_3" value="C">C.' +  '</label></div>'
+						+ '       <input type="radio" onclick="markColorListening(' + cauHoi.number + ')" name="' + cauHoi.number + '" id="answer_3" value="C">C.' + '</label></div>'
 						+ '     <div class="span4" style="margin-left: 0px;display:none"><label  style="float: left;" class="radio-inline radioLabel">'
 						+ '        <input type="radio" onclick="markColorListening(' + cauHoi.number + ')" name="' + cauHoi.number + '" id="answer_4" value="D">D. ' + '</label></div>'
 						+ '        <input type="radio" name="' + cauHoi.number + '" id="correct_answer" value="' + cauHoi.correct_answer + '" class="hidden">'
 						+ '   </div>'
-						+'</div>'
-						+'<hr class="center">'
-					
+						+ '</div>'
+						+ '<hr class="center">'
+
 				});
 				$('#cauHoi').html(divCauHoi);
 				if (result.object.totalPages > 0) {
@@ -102,13 +102,46 @@ $(document).ready(function() {
 		if (confirmation) {
 			clearInterval(timecheckListening);
 			$("#ketQuaText").html("Số câu đúng của bạn là: " + soCauDung.length + '/' + soCau);
-
+			var timew = timework;
+			var score = soCauDung.length * 10 / soCau;
+			var today = new Date();
+			var exerciseName = $("#idexerciseName").text();
+			var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate() + "  " + today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+			Testlogging(exerciseName, score, timew, date, 5)
 			jQuery.noConflict();
 			$('#nopBaiModal').modal('show');
 			/*$('#nopBaiModal').modal('show');*/
 		}
 	});
 
+	function Testlogging(testName, score, time, datework, part) {
+
+		var data = {
+			testName: testName,
+			score: score,
+			time: time,
+			dateWork: datework,
+			testPart: part
+		};
+		console.log(data);
+
+		// do post
+		$.ajax({
+			async: false,
+			type: "POST",
+			contentType: "application/json",
+			url: "http://localhost:8080/api/testlogs/add",
+			enctype: 'multipart/form-data',
+			data: JSON.stringify(data),
+			success: function(response) {
+				console.log("ghi log thành công")
+			},
+			error: function(e) {
+				alert("Error! Lỗi ghi log bài test")
+				console.log("ERROR: ", e);
+			}
+		});
+	};
 	$('#btnLamLai').on("click", function(event) {
 		location.reload();
 	});
@@ -181,7 +214,7 @@ $(document).ready(function() {
 							+ '<span>Đáp án đúng:' + cauHoi.correct_answer + '</span><br> </div>';
 					}
 
-					
+
 				});
 				$('#cauHoi').html(divCauHoi);
 				if (result.object.totalPages > 0) {
@@ -210,6 +243,11 @@ $(document).ready(function() {
 		timecheckListening = setInterval(function() {
 			minutes = parseInt(timer / 60, 10)
 			seconds = parseInt(timer % 60, 10);
+			var minutew=20-minutes-1;
+			var secondsw=60-seconds;
+			minutew = minutew < 10 ? "0" + minutew : minutew;
+			secondsw = secondsw < 10 ? "0" + secondsw : secondsw;
+			timework=minutew+":"+secondsw;
 			minutes = minutes < 10 ? "0" + minutes : minutes;
 			seconds = seconds < 10 ? "0" + seconds : seconds;
 			document.getElementById("timeListening").textContent = minutes + ":" + seconds;
@@ -225,11 +263,11 @@ $(document).ready(function() {
 	function startListeningClock() {
 		//change time here
 		//var fortyFiveMinutes = 0.2 * 30;
-		var fortyFiveMinutes = 60 * 5;
+		var fortyFiveMinutes = 60 * 20;
 		// display = document.querySelectorAll('#timeListening');
 		// var check = document.getElementById("timeListening").value();
 		//console.log("check:"+check);
-		startTimerListening(fortyFiveMinutes, '5:00');
+		startTimerListening(fortyFiveMinutes, '20:00');
 	};
 
 

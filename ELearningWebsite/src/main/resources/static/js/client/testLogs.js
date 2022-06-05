@@ -29,12 +29,12 @@ $(document).ready(function() {
 
 						trHTML += '<tr>'
 							+ '<td>' + STT + ' </td>'
-							+ '<td>Alfreds </td>'
-							+ '<td>Maria Anders</td>'
-							+ '<td>Germany</td>'
-							+ '<td>20:15 30/05/2022</td>'
+							+ '<td>' + objtestlog.testName + '</td>'
+							+ '<td>' + objtestlog.score + '</td>'
+							+ '<td>' + objtestlog.time + '</td>'
+							+ '<td>' + objtestlog.dateWork + '</td>'
 							+ '</tr>';
-						STT++;
+						STT+=1;
 					});
 				}
 

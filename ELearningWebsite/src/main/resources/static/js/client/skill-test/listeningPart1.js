@@ -1,5 +1,5 @@
 $(document).ready(function() {
-
+	var timework = "";
 	var soCauDung = [];
 	var soCau = 0;
 	ajaxGetForCauHoi(1);
@@ -105,13 +105,46 @@ $(document).ready(function() {
 		if (confirmation) {
 			clearInterval(timecheckListening);
 			$("#ketQuaText").html("Số câu đúng của bạn là: " + soCauDung.length + '/' + soCau);
-
+			var timew = timework;
+			var score = soCauDung.length * 10 / soCau;
+			var today = new Date();
+			var exerciseName = $("#idexerciseName").text();
+			var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate() + "  " + today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+			Testlogging(exerciseName, score, timew, date, 5)
 			jQuery.noConflict();
 			$('#nopBaiModal').modal('show');
 
 			/*$('#nopBaiModal').modal('show');*/
 		}
 	});
+	function Testlogging(testName, score, time, datework, part) {
+
+		var data = {
+			testName: testName,
+			score: score,
+			time: time,
+			dateWork: datework,
+			testPart: part
+		};
+		console.log(data);
+
+		// do post
+		$.ajax({
+			async: false,
+			type: "POST",
+			contentType: "application/json",
+			url: "http://localhost:8080/api/testlogs/add",
+			enctype: 'multipart/form-data',
+			data: JSON.stringify(data),
+			success: function(response) {
+				console.log("ghi log thành công")
+			},
+			error: function(e) {
+				alert("Error! Lỗi ghi log bài test")
+				console.log("ERROR: ", e);
+			}
+		});
+	};
 
 	$('#btnLamLai').on("click", function(event) {
 		location.reload();
@@ -217,6 +250,11 @@ $(document).ready(function() {
 		timecheckListening = setInterval(function() {
 			minutes = parseInt(timer / 60, 10)
 			seconds = parseInt(timer % 60, 10);
+			var minutew=5-minutes-1;
+			var secondsw=60-seconds;
+			minutew = minutew < 10 ? "0" + minutew : minutew;
+			secondsw = secondsw < 10 ? "0" + secondsw : secondsw;
+			timework=minutew+":"+secondsw;
 			minutes = minutes < 10 ? "0" + minutes : minutes;
 			seconds = seconds < 10 ? "0" + seconds : seconds;
 			document.getElementById("timeListening").textContent = minutes + ":" + seconds;

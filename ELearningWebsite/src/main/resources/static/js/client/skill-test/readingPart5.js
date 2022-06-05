@@ -1,10 +1,10 @@
 $(document).ready(function() {
-
+	var timework="";
 	var soCauDung = [];
 	var soCau = 0;
 	ajaxGetForCauHoi(1);
 	startReadingClock();
-	var MapCheckQuestion= new Map();
+	var MapCheckQuestion = new Map();
 	function ajaxGetForCauHoi(page) {
 		var readingExerciseId = $("#readingExerciseId").val();
 		$.ajax({
@@ -32,8 +32,8 @@ $(document).ready(function() {
 						+ '        <input type="radio" onclick="markColorReading(' + cauHoi.number + ')" name="' + cauHoi.number + '" id="answer_4" value="D">D. ' + cauHoi.answer_4 + '</label></div>'
 						+ '        <input type="radio" name="' + cauHoi.number + '" id="correct_answer" value="' + cauHoi.correct_answer + '" class="hidden">'
 						+ '   </div>'
-						+'<hr>'
-						+'</div>'
+						+ '<hr>'
+						+ '</div>'
 
 				});
 				$('#cauHoi').html(divCauHoi);
@@ -80,7 +80,7 @@ $(document).ready(function() {
 
 	var checkExam = function(nameRadio, dapAnChon) {
 		var dapAnDung = $('input:radio[name=' + nameRadio + '][id="correct_answer"]').val();
-		MapCheckQuestion.set(nameRadio,dapAnChon);
+		MapCheckQuestion.set(nameRadio, dapAnChon);
 		console.log(MapCheckQuestion);
 		if (dapAnDung === dapAnChon) {
 			if (soCauDung.indexOf(nameRadio) == -1) {
@@ -100,14 +100,50 @@ $(document).ready(function() {
 		event.preventDefault();
 		var confirmation = confirm("Bạn chắc chắn nộp bài ?");
 		if (confirmation) {
-			// clearInterval(timecheckListening);
+			clearInterval(timecheckReading);
 			$("#ketQuaText").html("Số câu đúng của bạn là: " + soCauDung.length + '/' + soCau);
+			var timew = timework;
+			var score = soCauDung.length * 10 / soCau;
+			var today = new Date();
+			var exerciseName = $("#idexerciseName").text();
+			var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate() + "  " + today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+			Testlogging(exerciseName, score, timew, date,5)
 
 			jQuery.noConflict();
 			$('#nopBaiModal').modal('show');
 			/*$('#nopBaiModal').modal('show');*/
 		}
 	});
+
+	function Testlogging(testName, score, time, datework,part) {
+
+		var data = {
+			testName: testName,
+			score: score,
+			time: time,
+			dateWork: datework,
+			testPart: part
+		};
+		console.log(data);
+
+		// do post
+		$.ajax({
+			async: false,
+			type: "POST",
+			contentType: "application/json",
+			url: "http://localhost:8080/api/testlogs/add",
+			enctype: 'multipart/form-data',
+			data: JSON.stringify(data),
+			success: function(response) {
+				console.log("ghi log thành công")
+			},
+			error: function(e) {
+				alert("Error! Lỗi ghi log bài test")
+				console.log("ERROR: ", e);
+			}
+		});
+	};
+
 
 	$('#btnLamLai').on("click", function(event) {
 		location.reload();
@@ -128,11 +164,11 @@ $(document).ready(function() {
 		var baiDocId = $("#readingExerciseId").val();
 		$.ajax({
 			type: "GET",
-			url: "http://localhost:8080/api/client/reading-exercise/id=" + baiDocId + "?page=" + page+ "&pagesize=" + 2,
+			url: "http://localhost:8080/api/client/reading-exercise/id=" + baiDocId + "?page=" + page + "&pagesize=" + 2,
 			success: function(result) {
 				//				soCau = result.totalElements;
 				var divCauHoi = "";
-				
+
 				$.each(result.object.content, function(i, cauHoi) {
 					divCauHoi +=
 						'<div class="postmetadata" style="margin-left: 0px">'
@@ -141,34 +177,34 @@ $(document).ready(function() {
 						+ '  <div class="span8" style="float:none; display: inline-block;">'
 						+ '   <div class="span4" style="margin-left: 0px">'
 						+ '     <label style="float: left;" class="radio-inline radioLabel">'
-						if(MapCheckQuestion.get(cauHoi.number)=='A')
-							divCauHoi+= '<input type="radio" checked onclick="markColorReading(' + cauHoi.number + ')" name="' + cauHoi.number + '" id="dapAn_1" value="A">A. ' + cauHoi.answer_1 + '</label></div>'
-						else
-							divCauHoi+= '<input type="radio" onclick="markColorReading(' + cauHoi.number + ')" name="' + cauHoi.number + '" id="dapAn_1" value="A">A. ' + cauHoi.answer_1 + '</label></div>'
-						
-						
-						divCauHoi+='     <div class="span4" style="margin-left: 0px">'
+					if (MapCheckQuestion.get(cauHoi.number) == 'A')
+						divCauHoi += '<input type="radio" checked onclick="markColorReading(' + cauHoi.number + ')" name="' + cauHoi.number + '" id="dapAn_1" value="A">A. ' + cauHoi.answer_1 + '</label></div>'
+					else
+						divCauHoi += '<input type="radio" onclick="markColorReading(' + cauHoi.number + ')" name="' + cauHoi.number + '" id="dapAn_1" value="A">A. ' + cauHoi.answer_1 + '</label></div>'
+
+
+					divCauHoi += '     <div class="span4" style="margin-left: 0px">'
 						+ '         <label  style="float: left;" class="radio-inline radioLabel">'
-						if(MapCheckQuestion.get(cauHoi.number)=='B')
-							divCauHoi+= '        <input type="radio" checked onclick="markColorReading(' + cauHoi.number + ')" name="' + cauHoi.number + '" id="answer_2" value="B">B. ' + cauHoi.answer_2 + '</label></div>'
-						else
-							divCauHoi+='        <input type="radio" onclick="markColorReading(' + cauHoi.number + ')" name="' + cauHoi.number + '" id="answer_2" value="B">B. ' + cauHoi.answer_2 + '</label></div>'
-						divCauHoi+='     <div class="span4" style="margin-left: 0px">'
+					if (MapCheckQuestion.get(cauHoi.number) == 'B')
+						divCauHoi += '        <input type="radio" checked onclick="markColorReading(' + cauHoi.number + ')" name="' + cauHoi.number + '" id="answer_2" value="B">B. ' + cauHoi.answer_2 + '</label></div>'
+					else
+						divCauHoi += '        <input type="radio" onclick="markColorReading(' + cauHoi.number + ')" name="' + cauHoi.number + '" id="answer_2" value="B">B. ' + cauHoi.answer_2 + '</label></div>'
+					divCauHoi += '     <div class="span4" style="margin-left: 0px">'
 						+ '         <label  style="float: left;" class="radio-inline radioLabel">'
-						if(MapCheckQuestion.get(cauHoi.number)=='C')
-							divCauHoi+= '        <input type="radio" checked onclick="markColorReading(' + cauHoi.number + ')" name="' + cauHoi.number + '" id="answer_3" value="C">C. ' + cauHoi.answer_3 + '</label></div>'
-						else
-							divCauHoi+='        <input type="radio" onclick="markColorReading(' + cauHoi.number + ')" name="' + cauHoi.number + '" id="answer_3" value="C">C. ' + cauHoi.answer_3 + '</label></div>'
-						
-							
-						divCauHoi+='     <div class="span4" style="margin-left: 0px">'
+					if (MapCheckQuestion.get(cauHoi.number) == 'C')
+						divCauHoi += '        <input type="radio" checked onclick="markColorReading(' + cauHoi.number + ')" name="' + cauHoi.number + '" id="answer_3" value="C">C. ' + cauHoi.answer_3 + '</label></div>'
+					else
+						divCauHoi += '        <input type="radio" onclick="markColorReading(' + cauHoi.number + ')" name="' + cauHoi.number + '" id="answer_3" value="C">C. ' + cauHoi.answer_3 + '</label></div>'
+
+
+					divCauHoi += '     <div class="span4" style="margin-left: 0px">'
 						+ '         <label  style="float: left;" class="radio-inline radioLabel">'
-						if(MapCheckQuestion.get(cauHoi.number)=='D')
-							divCauHoi+= '        <input type="radio" checked onclick="markColorReading(' + cauHoi.number + ')" name="' + cauHoi.number + '" id="answer_4" value="D">D. ' + cauHoi.answer_4 + '</label></div>'
-						else
-							divCauHoi+='        <input type="radio" onclick="markColorReading(' + cauHoi.number + ')" name="' + cauHoi.number + '" id="answer_4" value="D">D. ' + cauHoi.answer_4 + '</label></div>'
-						
-						divCauHoi+= '        <input type="radio" name="' + cauHoi.number + '" id="correct_answer" value="' + cauHoi.correct_answer + '" class="hidden">'
+					if (MapCheckQuestion.get(cauHoi.number) == 'D')
+						divCauHoi += '        <input type="radio" checked onclick="markColorReading(' + cauHoi.number + ')" name="' + cauHoi.number + '" id="answer_4" value="D">D. ' + cauHoi.answer_4 + '</label></div>'
+					else
+						divCauHoi += '        <input type="radio" onclick="markColorReading(' + cauHoi.number + ')" name="' + cauHoi.number + '" id="answer_4" value="D">D. ' + cauHoi.answer_4 + '</label></div>'
+
+					divCauHoi += '        <input type="radio" name="' + cauHoi.number + '" id="correct_answer" value="' + cauHoi.correct_answer + '" class="hidden">'
 						+ '   </div>'
 
 					var stt = cauHoi.number;
@@ -187,8 +223,8 @@ $(document).ready(function() {
 						+ '<p>'
 						+ cauHoi.ansExplain + '</p>'
 						+ '</div>'
-						
-					+'</div>'
+
+						+ '</div>'
 				});
 				$('#cauHoi').html(divCauHoi);
 				if (result.object.totalPages > 0) {
@@ -217,15 +253,23 @@ $(document).ready(function() {
 		timecheckReading = setInterval(function() {
 			minutes = parseInt(timer / 60, 10)
 			seconds = parseInt(timer % 60, 10);
+			var minutew=18-minutes-1;
+			var secondsw=60-seconds;
+			minutew = minutew < 10 ? "0" + minutew : minutew;
+			secondsw = secondsw < 10 ? "0" + secondsw : secondsw;
+			timework=minutew+":"+secondsw;
 			minutes = minutes < 10 ? "0" + minutes : minutes;
 			seconds = seconds < 10 ? "0" + seconds : seconds;
 			document.getElementById("timeReading").textContent = minutes + ":" + seconds;
+			
+		
 			if (--timer < 0) {
 				clearInterval(timecheckReading);
 				alert("Đã hết thời gian làm bài test");
 
 			}
 		}, 1000);
+		
 	}
 
 	function startReadingClock() {

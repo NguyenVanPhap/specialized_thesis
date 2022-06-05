@@ -34,7 +34,8 @@ public class ReadingExerciseApi {
 	private ReadingExerciseService readingExerciseService;
 
 	@GetMapping("/getall")
-	public ResponseEntity<Object> findAllByPartAndLevel(@RequestParam(defaultValue = "1") int page,@RequestParam(defaultValue = "2") int pagesize,
+	public ResponseEntity<Object> findAllByPartAndLevel(@RequestParam(defaultValue = "1") int page,
+			@RequestParam(defaultValue = "2") int pagesize,
 			@RequestParam(defaultValue = "") String part, @RequestParam(defaultValue = "") String level) {
 		return ResponseEntity
 				.ok(readingExerciseService.findAllListReadingExerciseByPartAndLevelAdmin(page, pagesize, part, level));
@@ -72,18 +73,15 @@ public class ReadingExerciseApi {
 	// lưu ảnh của bài đọc vào thư mục
 	private void saveFileForreadingExercise(ReadingExercise objReadingExercise, HttpServletRequest request)
 			throws IllegalStateException, IOException {
-		/*
-		 * MultipartFile fileImage = objReadingExercise.getImage(); MultipartFile
-		 * fileExcel = objReadingExercise.getFileExcel(); String rootDirectory =
-		 * request.getSession().getServletContext().getRealPath("/"); Path pathImage =
-		 * Paths.get(rootDirectory + "/resources/file/images/readingExerciseId=" +
-		 * objReadingExercise.getId() + ".png"); Path pathExcel =
-		 * Paths.get(rootDirectory + "/resources/file/excel/readingExerciseId=" +
-		 * objReadingExercise.getId() + ".xlsx"); fileImage.transferTo(new
-		 * File(pathImage.toString())); fileExcel.transferTo(new
-		 * File(pathExcel.toString()));
-		 */
 
+		MultipartFile fileImage = objReadingExercise.getImage();
+		MultipartFile fileExcel = objReadingExercise.getFileExcel();
+		String rootDirectory = request.getSession().getServletContext().getRealPath("/");
+		Path pathImage = Paths.get(rootDirectory + "/static/file/images/reading/readingExerciseId=" +
+				objReadingExercise.getId() + ".png");
+		Path pathExcel = Paths.get(rootDirectory + "/static/file/excel/reading/readingExerciseId=" +
+				objReadingExercise.getId() + ".xlsx");
+		fileImage.transferTo(new File(pathImage.toString()));
+		fileExcel.transferTo(new File(pathExcel.toString()));
 	}
-
 }

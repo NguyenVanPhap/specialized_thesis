@@ -6,7 +6,6 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.*;
 
-
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.poi.xssf.usermodel.XSSFRow;
@@ -42,28 +41,28 @@ public class QuanLyVocabController {
 
     @RequestMapping("/vocab/saveVocab")
     public String uploadingPost(
-            @RequestParam("file_imageQuestion") MultipartFile[] file_imageQuestions
-            , @RequestParam("file_listen") MultipartFile[] file_listens
-            , @RequestParam("file_Excel") MultipartFile file_excel
-            , @RequestParam("file_imageVocab") MultipartFile file_imageVocab
-            , @ModelAttribute("vocabulary") Vocabulary vocabulary, BindingResult result
-            , RedirectAttributes redirectAttrs
-    ) throws IOException {
-
+            @RequestParam("file_imageQuestion") MultipartFile[] file_imageQuestions,
+            @RequestParam("file_listen") MultipartFile[] file_listens,
+            @RequestParam("file_Excel") MultipartFile file_excel,
+            @RequestParam("file_imageVocab") MultipartFile file_imageVocab,
+            @ModelAttribute("vocabulary") Vocabulary vocabulary, BindingResult result, RedirectAttributes redirectAttrs)
+            throws IOException {
 
         // save file to folder local
 
         String rootDirectory = request.getSession().getServletContext().getRealPath("/");
 
-        Path pathExcel = Paths.get(rootDirectory + "/static/file/excel/vocab" + file_excel.getOriginalFilename() + ".xlsx");
+        Path pathExcel = Paths
+                .get(rootDirectory + "/static/file/excel/vocab/" + file_excel.getOriginalFilename() + ".xlsx");
         file_excel.transferTo(new File(pathExcel.toString()));
 
-        Path path_file_imageVocab = Paths.get(rootDirectory + "/static/file/images/vocab/" + file_imageVocab.getOriginalFilename());
+        Path path_file_imageVocab = Paths
+                .get(rootDirectory + "/static/file/images/vocab/" + file_imageVocab.getOriginalFilename());
         file_imageVocab.transferTo(new File(path_file_imageVocab.toString()));
 
-
         for (MultipartFile file_imageQuestion : file_imageQuestions) {
-            Path pathImage = Paths.get(rootDirectory + "/static/file/images/vocab/" + file_imageQuestion.getOriginalFilename());
+            Path pathImage = Paths
+                    .get(rootDirectory + "/static/file/images/vocab/" + file_imageQuestion.getOriginalFilename());
             file_imageQuestion.transferTo(new File(pathImage.toString()));
         }
 
@@ -74,12 +73,11 @@ public class QuanLyVocabController {
 
         }
 
-        //save to db vocabulary
+        // save to db vocabulary
         vocabulary.setImage(file_imageVocab.getOriginalFilename());
         vocabularyService.save(vocabulary);
 
         // save content from file excel to noi_dung_bai_tu_vung
-
 
         try {
 
@@ -105,7 +103,6 @@ public class QuanLyVocabController {
                 vocabularydetailService.save(vocabularycontetn);
             }
 
-
         } catch (Exception e) {
             System.out.println("Error: " + e);
             String error = "Có lỗi xảy ra, update or add again, id =" + vocabulary.getVocabularyId();
@@ -119,24 +116,21 @@ public class QuanLyVocabController {
         }
 
         return "redirect:/admin/vocab";
-//		 return "admin/quanLyVocab";
+        // return "admin/quanLyVocab";
     }
 
-
-//	 @RequestMapping(value="/editVocab/{id}")    
-//	    public String edit(@PathVariable int id, Model model){    
-//	        
-//	        return "empeditform";    
-//	    }    
+    // @RequestMapping(value="/editVocab/{id}")
+    // public String edit(@PathVariable int id, Model model){
+    //
+    // return "empeditform";
+    // }
 
     @RequestMapping(value = "/deleteVocab/{id}")
     public String edit(@PathVariable Integer id, Model model) {
 
-
         vocabularyService.delete(id);
         return "redirect:/admin/vocab";
-//	        return "admin/quanLyVocab";    
+        // return "admin/quanLyVocab";
     }
-
 
 }

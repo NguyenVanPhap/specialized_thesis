@@ -87,7 +87,7 @@ $(document).ready(function() {
 		var baiDocId = $(this).parent().find('input').val();
 		$('#formReadingExercise').removeClass().addClass("updateForm");
 		$('#formReadingExercise #btnSubmit').removeClass().addClass("btn btn-primary btnUpdateForm");
-		var href = "http://localhost:8080/webtoeic/api/admin/readingexercise/" + baiDocId;
+		var href = "http://localhost:8080/api/admin/readingexercise/" + baiDocId;
 		$.get(href, function(baiDoc) {
 			console.log(baiDoc);
 			$('#id').val(baiDoc.id);
@@ -95,9 +95,9 @@ $(document).ready(function() {
 			$('#level').val(baiDoc.level);
 			$('#partToeic').val(baiDoc.part);
 			$('#script').val(baiDoc.script);
-			$("img").attr("src", "http://localhost:8080/webtoeic/file/images/baiDocId=" + baiDoc.id + ".png");
+			$("img").attr("src", "http://localhost:8080/file/images/reading/baiDocId=" + baiDoc.id + ".png");
 			$("#previewImage").removeClass("hidden");
-			$("#linkExcel").attr("href", "http://localhost:8080/webtoeic/file/excel/baiDocId=" + baiDoc.id + ".xlsx");
+			$("#linkExcel").attr("href", "http://localhost:8080/file/excel/reading/baiDocId=" + baiDoc.id + ".xlsx");
 			$("#linkExcel").removeClass("hidden");
 		});
 		$('#baiDocModal').modal();

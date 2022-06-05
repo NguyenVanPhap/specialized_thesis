@@ -98,11 +98,11 @@ $(document).ready(function() {
 			$('#script').val(listeningExercise.script);
 
 			//            $('#photolisteningExercise').val("http://localhost:8080/file/images/baiNgheId="+ baiNghe.id+".png");
-			$("img").attr("src", "http://localhost:8080/file/images/listeningExerciseId=" + listeningExercise.id + ".png");
+			$("img").attr("src", "http://localhost:8080/static/file/images/listening/"+"part " + listeningExercise.part + "listeningExerciseId=" + listeningExercise.id + ".png");
 			$("#previewImage").removeClass("hidden");
-			$("#previewAudio").attr("src", "http://localhost:8080/file/audio/listeningExerciseId=" + listeningExercise.id + ".mp3");
+			$("#previewAudio").attr("src", "http://localhost:8080/static/file/audio/listening/"+"part " + listeningExercise.part + "listeningExerciseId=" + listeningExercise.id + ".mp3");
 			$("#previewAudio").removeClass("hidden");
-			$("#linkExcel").attr("href", "http://localhost:8080/file/excel/listeningExerciseId=" + listeningExercise.id + ".xlsx");
+			$("#linkExcel").attr("href", "http://localhost:8080/static/file/excel/listening/"+"part " + listeningExercise.part + "listeningExerciseId=" + listeningExercise.id + ".xlsx");
 			$("#linkExcel").removeClass("hidden");
 		});
 		$('#listeningExerciseModal').modal();

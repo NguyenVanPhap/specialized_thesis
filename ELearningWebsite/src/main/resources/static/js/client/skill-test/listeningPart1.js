@@ -18,7 +18,7 @@ $(document).ready(function() {
 					divCauHoi += '<div class="postmetadata" style="margin-left: 0px">'
 						+ '<ul><li style="font-weight: bold"><i class="icon-user"></i>Câu ' + cauHoi.number + ': ' + cauHoi.question + '</li></ul></div>'
 						+ '<div class="center">'
-						+ '<img style="height:400px;width:430px" src="/static/file/images/listening/listeningQuestionId=' + cauHoi.id + '.png" alt="Italian Trulli">'
+						+ '<img style="height:400px;width:430px" src="/static/file/images/listening/'+'listeningQuestionId=' + cauHoi.id + '.png" alt="Image not found">'
 						+ '</div>'
 						+ '<div class="form-group">'
 						+ '  <div class="span8" style="float:none; display: inline-block;">'

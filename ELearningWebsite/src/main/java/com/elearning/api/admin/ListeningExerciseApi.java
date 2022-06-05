@@ -73,11 +73,16 @@ public class ListeningExerciseApi {
 		MultipartFile fileAudio = bn.getAudio();
 		MultipartFile fileExcel = bn.getFileExcelQuestion();
 		String rootDirectory = request.getSession().getServletContext().getRealPath("/");
-		Path pathAudio = Paths.get(rootDirectory + "/static/file/audio/baiNgheId=" + bn.getId() + ".mp3");
-		Path pathExcel = Paths.get(rootDirectory + "/static/file/excel/baiNgheId=" + bn.getId() + ".xlsx");
+		Path pathAudio = Paths
+				.get(rootDirectory + "/static/file/audio/listening/" + "part " + bn.getPart() + "."
+						+ "listeningExerciseId="
+						+ bn.getId() + ".mp3");
+		Path pathExcel = Paths
+				.get(rootDirectory + "/static/file/excel/listening/" + "part " + bn.getPart() + "."
+						+ "listeningExerciseId="
+						+ bn.getId() + ".xlsx");
 		fileAudio.transferTo(new File(pathAudio.toString()));
 		fileExcel.transferTo(new File(pathExcel.toString()));
-
 	}
 
 }

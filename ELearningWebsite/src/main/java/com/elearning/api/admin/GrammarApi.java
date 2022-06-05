@@ -101,6 +101,7 @@ public class GrammarApi {
 		List<String> response = new ArrayList<String>();
 		String rootDirectory = request.getSession().getServletContext().getRealPath("/");
 		Grammar baigrammar = new Grammar();
+		baigrammarService.save(baigrammar);
 		try {
 			if (file_image != null) {
 				Path pathImage = Paths.get(rootDirectory + "/static/file/images/grammar/" + ""

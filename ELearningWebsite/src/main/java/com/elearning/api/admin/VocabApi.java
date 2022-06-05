@@ -68,9 +68,9 @@ public class VocabApi {
     @PostMapping(value = "/save", consumes = "multipart/form-data")
     @ResponseBody
     public List<String> addBaiThiThu(@RequestParam("file_excel") MultipartFile file_excel,
-                                     @RequestParam("file_image") MultipartFile file_image, @RequestParam("name") String name,
-                                     @RequestParam("file_image_question") MultipartFile[] file_image_question,
-                                     @RequestParam("file_listening") MultipartFile[] file_listening) {
+            @RequestParam("file_image") MultipartFile file_image, @RequestParam("name") String name,
+            @RequestParam("file_image_question") MultipartFile[] file_image_question,
+            @RequestParam("file_listening") MultipartFile[] file_listening) {
 
         List<String> response = new ArrayList<String>();
         String rootDirectory = request.getSession().getServletContext().getRealPath("/");
@@ -81,7 +81,7 @@ public class VocabApi {
         // System.out.println("id="+baithithu.getBaithithuid());
         try {
             // save file upload to local folder
-            Path pathExcel = Paths.get(rootDirectory + "/static/file/excel/" + "vocab."
+            Path pathExcel = Paths.get(rootDirectory + "/static/file/excel/vocab/" + ""
                     + vocabulary.getVocabularyId() + "." + file_excel.getOriginalFilename());
             file_excel.transferTo(new File(pathExcel.toString()));
 
@@ -134,10 +134,10 @@ public class VocabApi {
     @PostMapping(value = "/update")
     @ResponseBody
     public List<String> updateBaiVocab(@RequestParam("vocabId") int id, @RequestParam("name") String name,
-                                       @RequestParam("file_image") MultipartFile file_image,
-                                       @RequestParam("file_image_question") MultipartFile[] file_image_question,
-                                       @RequestParam("file_listening") MultipartFile[] file_listening,
-                                       @RequestParam("file_excel") MultipartFile file_excel) {
+            @RequestParam("file_image") MultipartFile file_image,
+            @RequestParam("file_image_question") MultipartFile[] file_image_question,
+            @RequestParam("file_listening") MultipartFile[] file_listening,
+            @RequestParam("file_excel") MultipartFile file_excel) {
 
         List<String> response = new ArrayList<String>();
         String rootDirectory = request.getSession().getServletContext().getRealPath("/");
@@ -147,7 +147,7 @@ public class VocabApi {
         // System.out.println("id="+baithithu.getBaithithuid());
         try {
             // save file upload to local folder
-            Path pathExcel = Paths.get(rootDirectory + "/static/file/excel/vocab" + "vocab."
+            Path pathExcel = Paths.get(rootDirectory + "/static/file/excel/vocab/" + ""
                     + vocabulary.getVocabularyId() + "." + file_excel.getOriginalFilename());
             file_excel.transferTo(new File(pathExcel.toString()));
 
@@ -212,17 +212,17 @@ public class VocabApi {
 
                 if (row.getCell(3) != null)
                     vocabularycontent.setImage(
-                    		vocabulary.getVocabularyId() + "." + row.getCell(3).getStringCellValue().toString());
+                            vocabulary.getVocabularyId() + "." + row.getCell(3).getStringCellValue().toString());
 
                 if (row.getCell(4) != null)
-                	vocabularycontent
+                    vocabularycontent
                             .setAudiomp3(vocabulary.getVocabularyId() + "." + row.getCell(4).getStringCellValue());
 
                 if (row.getCell(5) != null)
-                	vocabularycontent.setMeaning(row.getCell(5).getStringCellValue());
+                    vocabularycontent.setMeaning(row.getCell(5).getStringCellValue());
 
                 if (row.getCell(6) != null)
-                	vocabularycontent.setSentence(row.getCell(6).getStringCellValue());
+                    vocabularycontent.setSentence(row.getCell(6).getStringCellValue());
 
                 vocabularycontent.setVocabulary(vocabulary);
 

@@ -68,7 +68,7 @@
 
 				<div class="center">
 					<audio controls id="myaudio">
-						<source th:src="@{/static/file/audio/}+'baiNgheId='+${listeningExercise.id}+'.mp3'" type="audio/wav">
+						<source th:src="@{/static/file/audio/listening/}+ 'part ' + ${listeningExercise.part} + '.'+'listeningExerciseId='+${listeningExercise.id}+'.mp3'" type="audio/wav">
 					</audio>
 
 

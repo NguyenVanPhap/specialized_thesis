@@ -67,7 +67,7 @@
 
 				<div class="center">
 					<audio controls>
-						<source th:src="@{/static/file/audio/}+'baiNgheId='+${listeningExercise.id}+'.mp3'" type="audio/wav">
+						<source th:src="@{/static/file/audio/listening/}+ 'part ' + ${listeningExercise.part} + '.'+'listeningExerciseId='+${listeningExercise.id}+'.mp3'" type="audio/wav">
 					</audio>
 				</div>
 				<div class="" style="text-align: left">

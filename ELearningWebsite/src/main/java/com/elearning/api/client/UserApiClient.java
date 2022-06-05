@@ -32,8 +32,6 @@ public class UserApiClient {
 	private NguoiDungService nguoiDungService;
 	@Autowired
 	private UserCourseService userCourseService;
-	@Autowired
-	private NguoiDungService courseService;
 
 	public NguoiDung getSessionUser(HttpServletRequest request) {
 		NguoiDung nguoiDung = (NguoiDung) request.getSession().getAttribute("loggedInUser");

@@ -255,7 +255,7 @@ $(document).ready(function() {
 		timecheckListening = setInterval(function() {
 			minutes = parseInt(timer / 60, 10)
 			seconds = parseInt(timer % 60, 10);
-			var minutew=20-minutes-1;
+			var minutew=9-minutes-1;
 			var secondsw=60-seconds;
 			minutew = minutew < 10 ? "0" + minutew : minutew;
 			secondsw = secondsw < 10 ? "0" + secondsw : secondsw;
@@ -275,11 +275,11 @@ $(document).ready(function() {
 	function startListeningClock() {
 		//change time here
 		//var fortyFiveMinutes = 0.2 * 30;
-		var fortyFiveMinutes = 60 * 20;
+		var fortyFiveMinutes = 60 * 9;
 		// display = document.querySelectorAll('#timeListening');
 		// var check = document.getElementById("timeListening").value();
 		//console.log("check:"+check);
-		startTimerListening(fortyFiveMinutes, '20:00');
+		startTimerListening(fortyFiveMinutes, '9:00');
 	};
 
 

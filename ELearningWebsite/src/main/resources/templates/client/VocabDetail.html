@@ -36,9 +36,8 @@
 
 	<script type="text/javascript" th:src="@{/js/jquery-3.4.1.min.js}"></script>
 
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.3/moment.min.js"></script>
 	<script th:src="@{/js/client/commentvocab.js}"></script>
-	<script th:src="@{/js/client/momentcmt.js}"></script>
 	<style type="text/css">
 		.showtext {
 			text-align: auto;
@@ -53,6 +52,42 @@
 			border-radius:50%;
 			-moz-border-radius:50%;
 			-webkit-border-radius:50%;
+		}
+		.stt{
+			width: 50px;
+			height: 50px;
+			border-radius: 50px;
+			font-size: 20px;
+			color: #fff;
+			line-height: 50px;
+			text-align: center;
+			background-color: #e8a930;
+		} 
+		.tuvung{
+			width: 100%;
+			padding: 10px 0 10px 0;
+			border-bottom: 1px solid #EEEEEE;
+			height: 100%;
+			color: #444;
+			display: flex;
+		}
+		.anh{
+			width: 31%;
+		}
+		.content{
+			width: 61%;
+		}
+		.trong{
+			width: 1%;
+		}
+		.imgs{
+			width: 200px;
+			height: 150px;
+			max-width: 100%;
+		}
+		.namevocab{
+			font-size: medium;
+			font-weight: bold;
 		}
 	</style>
 </head>
@@ -78,74 +113,49 @@
 				</div>
 			</div>
 		</div>
-		<h2 style="text-align: center" th:text="${vocab.getVocabularyName()}">Chủ đề:</h2>
+		<h2 style="text-align: center; color: #b10021;" th:text="${vocab.getVocabularyName()}">Chủ đề:</h2>
 		<!-- -->
 		<div class="postmetadata">
 			<ul>
 				<li><i class="icon-user"></i> <a href="#">IT-HCMUTE</a></li>
-				<li><i class="icon-calendar"></i><a href="#">October, 2021</a></li>
-
+				<li><i class="icon-calendar"></i><a href="#" id="current-time"></a></li>	
 			</ul>
 		</div>
 		<!-- /. PAGE TITLE-->
 		<div class="row">
-			<div class="col-sm-1">.</div>
 			<div class="col-sm-8">
 				<div class="blog-post">
-
-
-					<!--<img
-	                        src="${pageContext.request.contextPath}/resources/static/images/vocabulary.jpg"
-	                        style="height: 330px; width: 870px">-->
-
-
-
 					<th:block th:each="list : ${listCauHoi}">
-						<div class="span5">
-
-						</div>
-						<div class="row">
-
-							<div class="span6">
-								<h3 th:text="${list.getNumber()}"></h3>
-								<h4 th:text="${list.getContent()}">
+						<div class="tuvung">
+								<div class="stt">
+									<p th:text="${list.getNumber()}"></p>
+								</div>
+								<div class="trong"></div>
+								<div class="anh">
+									<img class="imgs" th:src="@{/static/file/images/vocab/}+${list.getImage()}" alt="image not found"/>
+								</div>
+								<div class="content">
+									<p>
+										<span style="color: blue; font-size: 16px; font-size: medium; font-weight: bold;" th:text="${list.getContent()}"></span>
+										<span style="color: red" th:text="${list.getTranscribe()}"></span>
+									</p>
 								</h4>
-
-
-								<img th:src="@{/static/file/images/vocab/}+${list.getImage()}" alt="image not found"
-									style="height: 210px; width: 300px;" />
-								<p>
-									<b>NAmE:</b> &nbsp; <span style="color: red"
-										th:text="${list.getTranscribe()}"></span>
-								</p>
-
 								<p>
 									<b>Từ loại </b><span th:text="${list.getMeaning()}"></span>
 								</p>
-
 								<p>
 									<b>Ví dụ: </b><span th:text="${list.getSentence()}"></span>
 								</p>
-
 								<audio controls>
 									<source th:src="@{/static/file/audio/vocab/}+${list.getAudiomp3()}"
 										type="audio/wav">
 								</audio>
 
 								<br>
-
-							</div>
-
-
-
+								</div>								
 						</div>
-						<br>
-						<hr>
 					</th:block>
-
 				</div>
-
-
 			</div>
 
 			<!--/End Blog Post-->
@@ -215,12 +225,25 @@
 		<br>
 	<script>
 		window.onload = function(){
-			let dates = document.querySelectorAll(".my-date > i")
+			let dates = document.querySelectorAll(".date-comment > i")
 			for (let i = 0; i< dates.length; i++){
 				let d = dates[i]
 				d.innerText = moment(d.innerText).fromNow()
 			}
 		}
+		var curDate = new Date();
+		
+		// Ngày hiện tại
+		var curDay = curDate.getDate();
+	
+		// Tháng hiện tại
+		var curMonth = curDate.getMonth() + 1;
+		
+		// Năm hiện tại
+		var curYear = curDate.getFullYear();
+	
+		// Gán vào thẻ HTML
+		document.getElementById('current-time').innerHTML = "Date: "+curDay + "-" + curMonth + "-" + curYear;
 	</script>
 	<!-- footer section -->
 	<section class="">

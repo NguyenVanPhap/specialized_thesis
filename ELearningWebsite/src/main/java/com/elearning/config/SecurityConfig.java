@@ -12,23 +12,21 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
-
 @Configuration
 @EnableWebSecurity
-public class SecurityConfig extends WebSecurityConfigurerAdapter{
-	
+public class SecurityConfig extends WebSecurityConfigurerAdapter {
+
 	@Autowired
 	private AuthenticationSuccessHandler successHandler;
-	
+
 	@Autowired
 	private UserDetailsService userDetailsService;
 
-	
 	@Bean
 	public BCryptPasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
 	}
-	
+
 	@Bean
 	@Override
 	protected AuthenticationManager authenticationManager() throws Exception {
@@ -40,36 +38,35 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	public void configureGlobal(AuthenticationManagerBuilder builder) throws Exception {
 		builder.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
 	}
-	
-	
+
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http
-		    .csrf().disable()
-		    .authorizeRequests()
-		        .antMatchers("/register").permitAll()
-		        .antMatchers("/").permitAll()
-		        .antMatchers("/admin").permitAll()
-		        .antMatchers("/test/skill-test/reading/**").hasAnyRole("MEMBER", "ADMIN")
+				.csrf().disable()
+				.authorizeRequests()
+				.antMatchers("/register").permitAll()
+				.antMatchers("/").permitAll()
+				.antMatchers("/admin").permitAll()
+				.antMatchers("/test/skill-test/reading/**").hasAnyRole("MEMBER", "ADMIN")
+				.antMatchers("/test/skill-test/listening/**").hasAnyRole("MEMBER", "ADMIN")
 				.antMatchers("/profile").hasAnyRole("MEMBER, ADMIN")
 				.antMatchers("/course/learning/**").hasAnyRole("MEMBER, ADMIN")
-				.antMatchers("/listExam").hasAnyRole("MEMBER","ADMIN")
-			    .and()
-			.formLogin()
-			    .loginPage("/login")
-			    .usernameParameter("email")
+				.antMatchers("/listExam").hasAnyRole("MEMBER", "ADMIN")
+				.and()
+				.formLogin()
+				.loginPage("/login")
+				.usernameParameter("email")
 				.passwordParameter("password")
 				.successHandler(successHandler)
 				.failureUrl("/signin?error")
-			    .and()
-			 .logout()
-			    .logoutUrl("/signout")
-			    .logoutSuccessUrl("/")
-			    .and()
-	         .rememberMe().key("uniqueAndSecret").rememberMeParameter("remember-me")
-	            .and()
-			.exceptionHandling().accessDeniedPage("/signin?accessDenied");
+				.and()
+				.logout()
+				.logoutUrl("/signout")
+				.logoutSuccessUrl("/")
+				.and()
+				.rememberMe().key("uniqueAndSecret").rememberMeParameter("remember-me")
+				.and()
+				.exceptionHandling().accessDeniedPage("/signin?accessDenied");
 	}
-	
 
 }

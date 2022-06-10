@@ -196,9 +196,9 @@ $(document).ready(function() {
 					divCauHoi += '     <div class="span4" style="margin-left: 0px">'
 						+ '         <label  style="float: left;" class="radio-inline radioLabel">'
 					if (MapCheckQuestion.get(cauHoi.number) == 'D')
-						divCauHoi += '        <input style="display:none" type="radio" checked onclick="markColorListening(' + cauHoi.number + ')" name="' + cauHoi.number + '" id="answer_4" value="D">D. ' + cauHoi.answer_4 + '</label></div>'
+						divCauHoi += '        <input style="display:none" type="radio" checked  name="' + cauHoi.number + '" id="answer_4" value="D">' + '</label></div>'
 					else
-						divCauHoi += '        <input style="display:none" type="radio" onclick="markColorListening(' + cauHoi.number + ')" name="' + cauHoi.number + '" id="answer_4" value="D">D. ' + cauHoi.answer_4 + '</label></div>'
+						divCauHoi += '        <input style="display:none" type="radio"  name="' + cauHoi.number + '" id="answer_4" value="D"> '  + '</label></div>'
 
 					divCauHoi += '        <input style="display:none" type="radio" name="' + cauHoi.number + '" id="correct_answer" value="' + cauHoi.correct_answer + '" class="hidden">'
 						+ '   </div>'

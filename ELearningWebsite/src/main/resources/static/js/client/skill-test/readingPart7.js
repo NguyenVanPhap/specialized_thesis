@@ -22,7 +22,7 @@ $(document).ready(function() {
 
 					}
 					divCauHoi += '<div class="postmetadata" style="margin-left: 0px">'
-						+ '<ul><li style="font-weight: bold"><i class="icon-user"></i>Câu ' + cauHoi.number + ':' + '</li></ul></div>'
+						+ '<ul><li style="font-weight: bold"><i class="icon-user"></i>Câu ' + cauHoi.number +': ' + cauHoi.question + '</li></ul></div>'
 						+ '<div class="form-group">'
 						+ '  <div class="span8" style="float:none; display: inline-block;">'
 						+ '   <div class="span4" style="margin-left: 0px">'

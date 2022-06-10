@@ -24,6 +24,7 @@ public class ReadingQuestion {
 	private String answer_3;
 	private String answer_4;
 	private String correct_answer;
+	@Column(columnDefinition = "TEXT")
 	private String ansExplain;
 
 	@Column(columnDefinition = "TEXT")

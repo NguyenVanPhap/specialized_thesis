@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import com.elearning.entities.NguoiDung;
 
 import com.elearning.entities.UserCourse;
+import com.elearning.service.CourseService;
 import com.elearning.service.NguoiDungService;
 import com.elearning.service.UserCourseService;
 
@@ -32,6 +33,9 @@ public class UserApiClient {
 	private NguoiDungService nguoiDungService;
 	@Autowired
 	private UserCourseService userCourseService;
+
+	@Autowired
+	private CourseService courseService;
 
 	public NguoiDung getSessionUser(HttpServletRequest request) {
 		NguoiDung nguoiDung = (NguoiDung) request.getSession().getAttribute("loggedInUser");
@@ -65,6 +69,20 @@ public class UserApiClient {
 
 		}
 		return ResponseEntity.ok(userCourseService.findByUserId(longUserId));
+	}
+
+	@GetMapping("/course/getlist")
+	public ResponseEntity<Object> getListcourse(HttpServletRequest request) {
+		long longUserId = -1;
+		try {
+			NguoiDung user = getSessionUser(request);
+			longUserId = user.getId();
+
+		} catch (Exception e) {
+
+		}
+		System.out.println(longUserId);
+		return ResponseEntity.ok(courseService.findByUserId(longUserId));
 	}
 
 	@PostMapping(value = "/course/add")

@@ -9,6 +9,8 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import com.elearning.entities.Course;
+import com.elearning.entities.UserCourse;
+import com.elearning.helper.ApiRes;
 import com.elearning.repository.CourseRepository;
 import com.elearning.service.CourseService;
 
@@ -42,6 +44,18 @@ public class CourseServiceImpl implements CourseService {
 	@Override
 	public void delete(int id) {
 		courseRepo.deleteById(id);
+	}
+
+	public ApiRes<Object> findByUserId(long UserId) {
+		ApiRes<Object> apiRes = new ApiRes<Object>();
+		try {
+			List<Course> lstUserCourses = courseRepo.findByUserId(UserId);
+			apiRes.setObject(lstUserCourses);
+		} catch (Exception ex) {
+			apiRes.setError(true);
+			apiRes.setErrorReason(ex.getMessage());
+		}
+		return apiRes;
 	}
 
 	/*

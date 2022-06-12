@@ -1,5 +1,6 @@
 package com.elearning.controller.client;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.PostConstruct;
@@ -10,10 +11,12 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.oauth2.client.authentication.OAuth2AuthenticationToken;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
@@ -28,15 +31,18 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import com.elearning.entities.Course;
 import com.elearning.entities.GrammarExercise;
 import com.elearning.entities.GrammarQuestion;
 import com.elearning.entities.ListeningExercise;
 import com.elearning.entities.ListeningQuestion;
 import com.elearning.entities.NguoiDung;
+import com.elearning.service.CourseService;
 import com.elearning.service.GrammarExerciseService;
 import com.elearning.service.GrammarQuestionService;
 import com.elearning.service.NguoiDungService;
 import com.elearning.entities.ResponseObject;
+import com.elearning.repository.CourseRepository;
 import com.elearning.repository.GrammarQuestionRepository;
 import com.elearning.dto.*;
 
@@ -45,12 +51,15 @@ import com.elearning.dto.*;
 public class clientController {
 
 	@Autowired
+	CourseRepository courseRepo;
+	@Autowired
 	private NguoiDungService nguoiDungService;
 	@Autowired
 	private GrammarExerciseService grammarExerciseService;
 	@Autowired
 	private GrammarQuestionRepository grammarQuestionRepository;
-
+	@Autowired
+	private CourseService courseService;
 	@Autowired
 	private BCryptPasswordEncoder passwordEncoder;
 
@@ -108,6 +117,31 @@ public class clientController {
 	@GetMapping("/testlogs")
 	public String testLogs() {
 		return "client/testlogs";
+	}
+
+	@GetMapping("mycourse")
+	public String mycourse(Model model, HttpServletRequest request) {
+		long longUserId = -1;
+		try {
+			Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+			String username = "";
+			if (principal instanceof UserDetails) {
+				username = ((UserDetails) principal).getUsername();
+			} else {
+				username = principal.toString();
+			}
+			NguoiDung user = nguoiDungService.findByEmail(username);
+			longUserId = user.getId();
+
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		System.out.println(longUserId);
+
+		List<Course> listkKhoaHocs = courseRepo.findByUserId(longUserId);
+		model.addAttribute("listData", listkKhoaHocs);
+		return "client/mycourse";
+
 	}
 
 	@GetMapping("/changePassword")

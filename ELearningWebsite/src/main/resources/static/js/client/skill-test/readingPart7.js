@@ -16,11 +16,18 @@ $(document).ready(function() {
 				var divCauHoi = "";
 				$.each(result.object.content, function(i, cauHoi) {
 
-					if (i % 4 == 0) {
-						divCauHoi += '<div id="paragraph" style="width:100%;white-space: pre-line;padding:0px;background-color:#FFFACD;">'
-							+ '<p style="padding-left:2%">' + cauHoi.paragraph + '</p> </div>';
+					// if (i % 2 == 0 || i % 3 == 0 || i ) {
+					// 	divCauHoi += '<div id="paragraph" style="width:100%;white-space: pre-line;padding:0px;background-color:#FFFACD;">'
+					// 		+ '<p style="padding-left:2%">' + cauHoi.paragraph + '</p> </div>';
 
-					}
+					// }
+					divCauHoi += '</div>'
+						+ '<div class="span4" style="width:100%;white-space: pre-line;padding:0px;background-color:#FFFACD;">'
+						+ '<p>'
+						+ cauHoi.paragraph + '</p>'
+						+ '</div>'
+
+						+ '</div>'
 					divCauHoi += '<div class="postmetadata" style="margin-left: 0px">'
 						+ '<ul><li style="font-weight: bold"><i class="icon-user"></i>Câu ' + cauHoi.number +': ' + cauHoi.question + '</li></ul></div>'
 						+ '<div class="form-group">'

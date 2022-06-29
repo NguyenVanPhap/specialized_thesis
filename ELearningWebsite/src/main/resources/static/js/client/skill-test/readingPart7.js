@@ -112,7 +112,7 @@ $(document).ready(function() {
 		event.preventDefault();
 		var confirmation = confirm("Bạn chắc chắn nộp bài ?");
 		if (confirmation) {
-			clearInterval(timecheckListening);
+			clearInterval(timecheckReading);
 			$("#ketQuaText").html("Số câu đúng của bạn là: " + soCauDung.length + '/' + soCau);
 			var timew = timework;
 			var score = soCauDung.length * 10 / soCau;
@@ -120,6 +120,7 @@ $(document).ready(function() {
 			var exerciseName = $("#idexerciseName").text();
 			var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate() + "  " + today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
 			Testlogging(exerciseName, score, timew, date, 5)
+
 			jQuery.noConflict();
 			$('#nopBaiModal').modal('show');
 			/*$('#nopBaiModal').modal('show');*/
@@ -177,9 +178,17 @@ $(document).ready(function() {
 			success: function(result) {
 				//				soCau = result.totalElements;
 				var divCauHoi = "";
-				var paragraph = "<p>" + result.object.content[0].paragraph + "</p>";
-				$('#paragraph').html(paragraph);
+				// var paragraph = "<p>" + result.object.content[0].paragraph + "</p>";
+				// $('#paragraph').html(paragraph);
 				$.each(result.object.content, function(i, cauHoi) {
+					divCauHoi += '</div>'
+						+ '<div class="span4" style="width:100%;white-space: pre-line;padding:0px;background-color:#FFFACD;">'
+						+ '<p>'
+						+ cauHoi.paragraph + '</p>'
+						+ '</div>'
+
+						+ '</div>'
+						
 					divCauHoi +=
 						'<div class="postmetadata" style="margin-left: 0px">'
 						+ '<ul><li style="font-weight: bold"><i class="icon-user"></i>Câu ' + cauHoi.number + ': ' + cauHoi.question + '</li></ul></div>'
@@ -231,8 +240,8 @@ $(document).ready(function() {
 					}
 
 					divCauHoi += '</div>'
-						+ '<div class="span4" style="margin-left:0px">'
-						+ '<span style="background-color:lightgoldenrodyellow">Giải thích:'
+						+ '<div class="span4" style="margin-left:0px ;white-space: pre-line">'
+						+ '<span style="background-color:lightgoldenrodyellow"> <b> Giải thích: </b>'
 						+ '<p style="background-color:lightgoldenrodyellow">'
 						+ cauHoi.ansExplain + '</p>'
 						+ '</span>'

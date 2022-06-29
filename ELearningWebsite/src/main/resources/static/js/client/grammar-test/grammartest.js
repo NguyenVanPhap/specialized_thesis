@@ -164,7 +164,7 @@ $(document).ready(function() {
 		var baiDocId = $("#readingExerciseId").val();
 		$.ajax({
 			type: "GET",
-			url: "http://localhost:8080/api/client/reading-exercise/id=" + baiDocId + "?page=" + page + "&pagesize=" + 2,
+			url: "http://localhost:8080/api/client/grammar-exercise/id=" + baiDocId + "?page=" + page + "&pagesize=" + 6,
 			success: function(result) {
 				//				soCau = result.totalElements;
 				var divCauHoi = "";
@@ -222,7 +222,7 @@ $(document).ready(function() {
 
 					divCauHoi += '</div>'
 						+ '<div class="span4" style="margin-left:0px; white-space: pre-line">'
-						+ '<span style="background-color:lightgoldenrodyellow">Giải thích:'
+						+ '<span style="background-color:lightgoldenrodyellow"><b> Giải thích: </b>'
 						+ '<p style="background-color:lightgoldenrodyellow">'
 						+ cauHoi.ansExplain + '</p>'
 						+ '</span>'

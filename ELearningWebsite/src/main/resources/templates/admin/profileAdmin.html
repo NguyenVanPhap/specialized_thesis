@@ -208,23 +208,23 @@
             
             <div class="modal-body">
                 <div class="form-group ">
-                    <p style="line-height: 2">Họ tên:</p><br> <p
-                        id="nameWarning" style="color: green"></p> 
+                    <span style="line-height: 2">Họ tên:</span>
+					<span id="nameWarning" style="color: green"></span> 
                     <input class ="form-control" type="text" id="name" th:value="${user.getHoTen}">
                 </div>
                 <div class="form-group ">
-                    <p style="line-height: 2">Email:</p><br> <p
-                        id="emailWarning" style="color: green"></p> 
+                    <span style="line-height: 2">Email:</span>
+					<p id="emailWarning" style="color: green"></span> 
                     <input class = "form-control"type="text" readonly id="email" th:value="${user.getEmail}">
                 </div>
                 <div class="form-group ">
-                    <p style="line-height: 2">Số điện thoại:</p><br> <p
-                        id="phoneWarning" style="color: green"></p> 
+                    <span style="line-height: 2">Số điện thoại:</span>
+					<span id="phoneWarning" style="color: green"></span> 
                     <input class ="form-control" type="text" id="phone" th:value="${user.getSoDienThoai}">
                 </div>
                 <div class="form-group ">
-                    <p style="line-height: 2">Địa chỉ:</p><br> <p
-                        id="addressWarning" style="color: green"></p> 
+                    <span style="line-height: 2">Địa chỉ:</span>
+					<span id="addressWarning" style="color: green"></span> 
                     <input class="form-control" type="text" id="address" th:value="${user.getDiaChi}">
                     <!-- <textarea class="form-control" rows="5" cols="29" id="address">${user.diaChi}</textarea> -->
                 </div>

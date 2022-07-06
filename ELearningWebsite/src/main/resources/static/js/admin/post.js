@@ -102,7 +102,7 @@ $(document).ready(function() {
 		var contentHTML = editorData;
 		file_image = $('#file_imagePost')[0].files[0];
 		formData.append("fileImage", file_image);
-		formData.append("postName", name);
+		formData.append("PostName", name);
 
 		formData.append("contentHtml", contentHTML);
 
@@ -169,9 +169,9 @@ $(document).ready(function() {
 
 				var modal = $('#PostModal');
 				$('#PostModal #PostModalId').val(idPost);
-				modal.find('.modal-body #PostName').val(data.object.postName);
+				modal.find('.modal-body #PostName').val(data.object.name);
 				modal.find('.modal-header #titleModal').text("Cập nhật ");
-				modal.find('.modal-body #previewImage').attr('src', data.object.filePath);
+				modal.find('.modal-body #previewImage').attr('src', data.object.file_image);
 				modal.find('.modal-body #myckeditor').val(data.object.contentHTML);
 				CKEDITOR.instances['myckeditor'].setData(data.object.contentHTML);
 				console.log(data.object.contentHTML);
@@ -207,7 +207,7 @@ $(document).ready(function() {
 			formData.append("fileImage", file_image);*/
 			var editorData = CKEDITOR.instances['myckeditor'].getData();
 			formData.append("idPost", idPost);
-			formData.append("postName", name);
+			formData.append("PostName", name);
 			formData.append("contentHtml", editorData);
 			$.ajax({
 				data: formData,

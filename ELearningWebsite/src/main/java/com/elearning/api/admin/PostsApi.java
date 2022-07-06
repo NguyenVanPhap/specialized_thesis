@@ -59,7 +59,7 @@ public class PostsApi {
 
 	@PostMapping(value = "add", consumes = "multipart/form-data")
 	@ResponseBody
-	public ResponseEntity<Object> add(@RequestParam("postName") String name,
+	public ResponseEntity<Object> add(@RequestParam("PostName") String name,
 			@RequestParam("contentHtml") String contentHtml,
 			@RequestPart(value = "fileImage", required = false) MultipartFile file_image) {
 		// List<String> response = new ArrayList<String>();
@@ -89,7 +89,6 @@ public class PostsApi {
 			apiRes.setErrorReason(e.getMessage());
 			return ResponseEntity.ok(apiRes);
 		}
-		System.out.println("ig:" + objPost.getId());
 		objPost.setName(name);
 		objPost.setContentHTML(contentHtml);
 		System.out.println("name add post:" + objPost.getName());
@@ -139,7 +138,7 @@ public class PostsApi {
 	@PostMapping(value = "update")
 	@ResponseBody
 	public ResponseEntity<Object> update(@RequestParam("idPost") int id,
-			@RequestParam("postName") String name,
+			@RequestParam("PostName") String name,
 			@RequestParam("contentHtml") String contentHtml,
 			@RequestPart(value = "fileImage", required = false) MultipartFile file_image) {
 		// List<String> response = new ArrayList<String>();

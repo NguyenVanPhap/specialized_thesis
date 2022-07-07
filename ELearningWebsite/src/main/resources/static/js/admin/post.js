@@ -99,11 +99,13 @@ $(document).ready(function() {
 
 		var formData = new FormData();
 		var name = $('#PostName').val();
+		var contentMarkdown = editorData; //get from textarea markdown
 		var contentHTML = editorData;
 		file_image = $('#file_imagePost')[0].files[0];
-		formData.append("fileImage", file_image);
-		formData.append("PostName", name);
 
+		formData.append("file_image", file_image);
+		formData.append("PostName", name);
+		formData.append("contentMarkdown", contentMarkdown);
 		formData.append("contentHtml", contentHTML);
 
 		$.ajax({
@@ -196,11 +198,11 @@ $(document).ready(function() {
 
 			if ($('#file_imagePost').get(0).files.length != 0) {
 				file_image = $('#file_imagePost')[0].files[0];
-				formData.append("fileImage", file_image);
+				formData.append("file_image", file_image);
 			}
 			else {
 				file_image = "test.jpg";
-				formData.append("fileImage", "test.jpg");
+				formData.append("file_image", "test.jpg");
 			}
 
 			/*var file_image = $('#file_imagePost')[0].files[0];
@@ -208,6 +210,7 @@ $(document).ready(function() {
 			var editorData = CKEDITOR.instances['myckeditor'].getData();
 			formData.append("idPost", idPost);
 			formData.append("PostName", name);
+			formData.append("contentMarkdown", editorData);
 			formData.append("contentHtml", editorData);
 			$.ajax({
 				data: formData,

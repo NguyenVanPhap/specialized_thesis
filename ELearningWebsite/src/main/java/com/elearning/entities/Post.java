@@ -18,17 +18,14 @@ public class Post {
 	@Column(name = "name")
 	private String Name;
 
-	@Column(name = "file_path")
-	private String filePath;
-
-	@Column(name = "file_name")
-	private String fileName;
-
 	@Column(columnDefinition = "TEXT", name = "content_HTML")
 	private String contentHTML;
 
-	@Column(name = "level")
-	private Integer Level;
+	@Column(columnDefinition = "TEXT", name = "content_MarkDown")
+	private String contentMarkDown;
+
+	@Column(name = "image")
+	private String image;
 
 	public Integer getId() {
 		return Id;
@@ -46,22 +43,6 @@ public class Post {
 		Name = name;
 	}
 
-	public String getFilePath() {
-		return filePath;
-	}
-
-	public void setFilePath(String filePath) {
-		this.filePath = filePath;
-	}
-
-	public String getFileName() {
-		return fileName;
-	}
-
-	public void setFileName(String fileName) {
-		this.fileName = fileName;
-	}
-
 	public String getContentHTML() {
 		return contentHTML;
 	}
@@ -70,27 +51,32 @@ public class Post {
 		this.contentHTML = contentHTML;
 	}
 
-	public Integer getLevel() {
-		return Level;
+	public String getContentMarkDown() {
+		return contentMarkDown;
 	}
 
-	public void setLevel(Integer level) {
-		Level = level;
+	public void setContentMarkDown(String contentMarkDown) {
+		this.contentMarkDown = contentMarkDown;
+	}
+
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
 	}
 
 	public Post() {
 
 	}
 
-	public Post(Integer id, String name, String filePath, String fileName, String contentHTML,
-			Integer level) {
+	public Post(Integer id, String name, String contentHTML, String contentMarkDown, String image) {
 		super();
 		Id = id;
-		Name = name;
-		this.filePath = filePath;
-		this.fileName = fileName;
 		this.contentHTML = contentHTML;
-		Level = level;
+		this.contentMarkDown = contentMarkDown;
+		this.image = image;
 	}
 
 }

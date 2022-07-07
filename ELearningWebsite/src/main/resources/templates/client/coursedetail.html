@@ -3,7 +3,7 @@
 
 <head>
 	<meta charset="ISO-8859-1">
-	<title>Chi tiết khóa học</title>
+	<title th:text="${course.getCourseName()}"></title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<script th:src="@{/js/jquery-1.js}"></script>
 
@@ -180,7 +180,7 @@
 			visibility: hidden;
 		}
 
-		.imageGrammar {
+		.imageCourse {
 			float: left;
 			height: 150px;
 			width: 250px;
@@ -216,16 +216,16 @@
 
 			var baseUrl = document.getElementById('baseUrl').value;
 			var xhttp;
-			var search = document.getElementById('searchGrammar').value;
+			var search = document.getElementById('searchCourse').value;
 
 			//remove special letters
 			var convertSearch = search.replace(/[^a-zA-Z0-9 ]/g, "");
 
 			var url;
 			if (!search == ' ') {
-				url = baseUrl + "/searchGrammar/" + convertSearch;
+				url = baseUrl + "/searchCourse/" + convertSearch;
 			}
-			else url = baseUrl + "/searchGrammar/all";
+			else url = baseUrl + "/searchCourse/all";
 
 
 			if (window.XMLHttpRequest) {
@@ -238,7 +238,7 @@
 			xhttp.onreadystatechange = function () {
 				if (xhttp.readyState == 4) {
 					var data = xhttp.responseText;
-					document.getElementById("resultsearchGrammar").innerHTML = data;
+					document.getElementById("resultsearchCourse").innerHTML = data;
 				}
 			}
 
@@ -269,7 +269,7 @@
 		</div>
 
 		<!-- /. PAGE TITLE-->
-		<div id="resultsearchGrammar">
+		<div id="resultsearchCourse">
 
 			<div class="row">
 				<div class="col-sm-9">

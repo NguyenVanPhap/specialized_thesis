@@ -68,7 +68,7 @@
 			visibility: hidden;
 		}
 
-		.imageGrammar {
+		.imageBlog {
 			float: left;
 			height: 150px;
 			width: 250px;
@@ -113,7 +113,7 @@
 			background-color: #ffffff;
 		}
 
-        .imageVocab {
+        .imageBlog {
 			float: left;
 			height: 150px;
 			width: 250px;
@@ -203,7 +203,7 @@
 									<div class="box_inner">
 										<div class="box">
 											<p class="title">
-                                            <img class="imageVocab" th:src="@{/static/file/images/post/}+${list.getImage()}">
+                                            <img class="imageBlog" th:src="@{/static/file/images/post/}+${list.getImage()}">
 											<h5> <a th:href="@{/detailBlog?idBlog=}+${list.getId()}"
 													th:text="${list.getName()}"></a></h5>
 											</p>					

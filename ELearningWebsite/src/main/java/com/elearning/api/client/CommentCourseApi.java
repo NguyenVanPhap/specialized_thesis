@@ -85,7 +85,6 @@ public class CommentCourseApi {
         comment.setContentCmtCourse(newComment.getContentCmtCourse());
         comment.setCourse(course);
 
-        System.out.println("comment:" + comment.getContentCmtCourse());
         return ResponseEntity.ok(commentCourseService.save(comment));
     }
 }

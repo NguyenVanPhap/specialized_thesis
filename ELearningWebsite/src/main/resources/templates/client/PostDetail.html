@@ -4,7 +4,7 @@
 
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title th:text="${baiblog.getName()}"></title>
+	<title th:text="${baipost.getName()}"></title>
 
 
 
@@ -36,8 +36,8 @@
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
 		
-	<!-- <script th:src="@{/js/client/commentgrammar.js}"></script>
-	<script th:src="@{/js/client/momentcmt.js}"></script> -->
+	<script th:src="@{/js/client/commentpost.js}"></script>
+	<script th:src="@{/js/client/momentcmt.js}"></script>
 	<script type="text/javascript" th:src="@{/js/jquery-3.4.1.min.js}"></script>
 	<style type="text/css">
 		.showtext {
@@ -94,11 +94,11 @@
 		<div class="row">
 			<div class="span12">
 				<div class="page-header">
-					<h4 class="pagetitle">Bài hướng dẫn học ngữ pháp</h4>
+					<h4 class="pagetitle" th:text="${baipost.getName()}"></h4>
 				</div>
 			</div>
 
-			<a class="hidden" id="currentblog" th:text="${baiblog.getId()}" th:value="${baiblog.getId()}"></a>
+			<a class="hidden" id="currentpost" th:text="${baipost.getPostId()}" th:value="${baipost.getPostId()}"></a>
 		</div>
 
 		<!-- /. PAGE TITLE-->
@@ -111,7 +111,7 @@
 
 			<div class="col-sm-9">
 				<div class="blog-post">
-					<h3 style="text-align: center; color: black" th:text="${baiblog.getName()}"></h3>
+					<h3 style="text-align: center; color: black" th:text="${baipost.getName()}"></h3>
 
 
 					<!-- <div class="postmetadata">
@@ -123,7 +123,7 @@
 						<img src="@{/images/vocabulary.jpg}" style="height: 330px; width: 870px"> -->
 					<div class="row" style="text-align: justify;">
 						<div class="span3"></div>
-						<div class="span9" th:utext="${baiblog.getContentHTML()}"></div>
+						<div class="span9" th:utext="${baipost.getContentHTML()}"></div>
 
 					</div>
 				</div>
@@ -161,7 +161,7 @@
 		</th:block>
 		<th:block sec:authorize="isAuthenticated()">
 			<!--  	<input type="hidden" id="user_id" name="user_id" value="${currentUser.id}"/> -->
-			<input type="hidden" id="id_bai_blog" th:value="${baiblog.getId()}" />
+			<input type="hidden" id="id_bai_post" th:value="${baipost.getPostId()}" />
 
 			<div class="blog-spot">
 				<div>
@@ -185,8 +185,8 @@
 
 	<div class="row">
 		<div class="col-md-10">
-			<table class="table table-hover " id="tableblog">
-				<tbody id="lstcommentblog">
+			<table class="table table-hover " id="tablepost">
+				<tbody id="lstcommenpost">
 				</tbody>
 			</table>
 		</div>

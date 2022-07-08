@@ -85,9 +85,9 @@ public class CommentCourse {
 
     @Override
     public String toString() {
-        return "{" + "\"idcomment\":" + "\"" + id + "\"" + "\"cmtgrammarcontent\":" + "\"" + contentCmtCourse + "\""
+        return "{" + "\"idcomment\":" + "\"" + id + "\"" + "\"cmtcoursecontent\":" + "\"" + contentCmtCourse + "\""
                 + "," + "\"date\":" + "\"" + commentDateCourse + "\""
-                + "," + "\"nguoidung\":" + "\"" + userName + "\"" + "\"grammar\":" + "\"" + course + "\"" + "}";
+                + "," + "\"nguoidung\":" + "\"" + userName + "\"" + "\"course\":" + "\"" + course + "\"" + "}";
     }
 
     public CommentCourse() {

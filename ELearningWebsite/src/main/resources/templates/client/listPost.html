@@ -68,7 +68,7 @@
 			visibility: hidden;
 		}
 
-		.imageBlog {
+		.imagePost{
 			float: left;
 			height: 150px;
 			width: 250px;
@@ -112,29 +112,22 @@
 		.mybackground {
 			background-color: #ffffff;
 		}
-
-        .imageBlog {
-			float: left;
-			height: 150px;
-			width: 250px;
-			margin-bottom: 25px;
-		}
 	</style>
 	<script type="text/javascript">
 		function Search() {
 
 			var baseUrl = document.getElementById('baseUrl').value;
 			var xhttp;
-			var search = document.getElementById('searchBlog').value;
+			var search = document.getElementById('searchPost').value;
 
 			//remove special letters
 			var convertSearch = search.replace(/[^a-zA-Z0-9 ]/g, "");
 
 			var url;
 			if (!search == ' ') {
-				url = baseUrl + "/searchBlog/" + convertSearch;
+				url = baseUrl + "/searchPost/" + convertSearch;
 			}
-			else url = baseUrl + "/searchBlog/all";
+			else url = baseUrl + "/searchPost/all";
 
 
 			if (window.XMLHttpRequest) {
@@ -147,7 +140,7 @@
 			xhttp.onreadystatechange = function () {
 				if (xhttp.readyState == 4) {
 					var data = xhttp.responseText;
-					document.getElementById("resultsearchBlog").innerHTML = data;
+					document.getElementById("resultsearchPost").innerHTML = data;
 				}
 			}
 
@@ -179,7 +172,7 @@
 				<div class="col-sm-9">
 
 					<div>
-						<input type="text" class="form-control" id="searchBlog" placeholder="Tìm kiếm bài Blog..."
+						<input type="text" class="form-control" id="searchPost" placeholder="Tìm kiếm bài Blog..."
 							style="width: 400px; margin-top:6px;" name="search" onkeyup="Search()">
 					</div>
 
@@ -188,7 +181,7 @@
 		</div>
 		<hr class="myhr">
 		<!-- /. PAGE TITLE-->
-		<div id="resultsearchBlog">
+		<div id="resultsearchPost">
 
 			<div class="row">
 				<div class="col-sm-9">
@@ -203,8 +196,8 @@
 									<div class="box_inner">
 										<div class="box">
 											<p class="title">
-                                            <img class="imageBlog" th:src="@{/static/file/images/post/}+${list.getImage()}">
-											<h5> <a th:href="@{/detailBlog?idBlog=}+${list.getId()}"
+                                            <img class="imagePost" th:src="@{/static/file/images/post/}+${list.getImage()}">
+											<h5> <a th:href="@{/detailPost?idPost=}+${list.getPostId()}"
 													th:text="${list.getName()}"></a></h5>
 											</p>					
 										</div>
@@ -227,14 +220,14 @@
 			
 				<div class="pagination">
 					
-					<a class="page" style ="background-color: gray;" th:if="${listData.size() != 0}" th:href="@{/listBlog?page=}+${currentPage-1}">Back</a>
+					<a class="page" style ="background-color: gray;" th:if="${listData.size() != 0}" th:href="@{/listPost?page=}+${currentPage-1}">Back</a>
 					<a  th:if="${currentPage == 1}"class="current page">1</a>
-					<a class="page" th:if ="${currentPage != 1}" th:href="@{/listBlog?page=1}">1</a>
+					<a class="page" th:if ="${currentPage != 1}" th:href="@{/listPost?page=1}">1</a>
 					<th:block th:each="pag : ${pageList}">
 						<a th:if ="${currentPage == pag}"  class="active current page" th:text="${pag}"></a>
-						<a th:if ="${currentPage != pag}" th:href="@{/listBlog?page=}+${pag}" th:text="${pag}"></a>
+						<a th:if ="${currentPage != pag}" th:href="@{/listPost?page=}+${pag}" th:text="${pag}"></a>
 					</th:block>
-					<a style ="background-color: gray;" th:if="${currentPage != totalPage}" th:href="@{/listBlog?page=}+${currentPage+1}" class="pageNext page">Next</a>
+					<a style ="background-color: gray;" th:if="${currentPage != totalPage}" th:href="@{/listPost?page=}+${currentPage+1}" class="pageNext page">Next</a>
 
 				</div>
 			</th:block>

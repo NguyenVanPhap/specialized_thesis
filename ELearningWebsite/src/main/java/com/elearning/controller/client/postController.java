@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.elearning.entities.NguoiDung;
 import com.elearning.entities.Post;
-import com.elearning.service.NguoiDungService;
 import com.elearning.service.PostService;
 
 import org.springframework.ui.Model;
@@ -25,15 +24,12 @@ public class postController {
     @Autowired
     PostService postService;
 
-    @Autowired
-    private NguoiDungService nguoiDungService;
-
     @ModelAttribute("loggedInUser")
     public NguoiDung getSessionUser(HttpServletRequest request) {
         return (NguoiDung) request.getSession().getAttribute("loggedInUser");
     }
 
-    @GetMapping("/listBlog")
+    @GetMapping("/listPost")
     public String getPage(@RequestParam(defaultValue = "1") int page, Model model) {
 
         // defaut value lay tu ket qua dau tien
@@ -67,19 +63,17 @@ public class postController {
         model.addAttribute("listData", list.getContent());
         model.addAttribute("currentPage", page);
 
-        return "client/listBlog";
+        return "client/listPost";
     }
 
-    @GetMapping("/detailBlog")
-    public String DetailBlog(@RequestParam(value = "idBlog") int idBlog, Model model) {
+    @GetMapping("/detailPost")
+    public String DetailBlog(@RequestParam(value = "idPost") int idPost, Model model) {
 
-        Post baiblog = postService.getInfor(idBlog);
-        System.out.println("id blog:" + baiblog.getId());
+        Post baipost = postService.getInfor(idPost);
 
-        model.addAttribute("baiblog", baiblog);
-        model.addAttribute("idBaiBlog", baiblog.getId());
+        model.addAttribute("baipost", baipost);
+        model.addAttribute("idBaiPost", baipost.getPostId());
 
-        return "client/BlogDetail";
-
+        return "client/PostDetail";
     }
 }

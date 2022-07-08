@@ -17,7 +17,7 @@ $(document).ready(function() {
 						+ '<td>'
 						+ '<div class = "row">'				
 						+ '<div class="col-md-2" style="padding: 10px;">'
-						+ '<img class="circle" src="/static/images/avatardefault.jpg" alt="" width="100%" height="100%">'
+						+ '<img class="circle" src="/static/images/avatardefault.jpg" alt="" width="50%" height="100%">'
 						+ '</div>'
 						+ '<div class="col-md-10 box">'
 						+ '<span id="name_member" class ="name-right">' 

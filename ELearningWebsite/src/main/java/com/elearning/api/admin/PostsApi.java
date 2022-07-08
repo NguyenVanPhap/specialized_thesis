@@ -150,7 +150,8 @@ public class PostsApi {
 			return ResponseEntity.ok(apiRes);
 		}
 		objPost.setName(name);
-		objPost.setImage(objPost.getPostId() + "." + file_image.getOriginalFilename());
+		// objPost.setImage(objPost.getPostId() + "." +
+		// file_image.getOriginalFilename());
 		objPost.setContentMarkDown(contentMarkdown);
 		objPost.setContentHTML(contentHtml);
 		return ResponseEntity.ok(postService.save(objPost));

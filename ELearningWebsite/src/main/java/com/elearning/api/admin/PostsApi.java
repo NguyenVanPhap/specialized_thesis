@@ -70,7 +70,7 @@ public class PostsApi {
 		try {
 			// save file upload to local folder
 			Path pathImage = Paths.get(rootDirectory, "/static/file/images/post/" + ""
-					+ objPost.getId() + "." + file_image.getOriginalFilename());
+					+ objPost.getPostId() + "." + file_image.getOriginalFilename());
 			file_image.transferTo(new File(pathImage.toString()));
 			// objPost.setImage(objPost.getId() + "." + file_image.getOriginalFilename());
 		} catch (Exception e) {
@@ -79,7 +79,7 @@ public class PostsApi {
 			return ResponseEntity.ok(apiRes);
 		}
 		objPost.setName(name);
-		objPost.setImage(objPost.getId() + "." + file_image.getOriginalFilename());
+		objPost.setImage(objPost.getPostId() + "." + file_image.getOriginalFilename());
 		objPost.setContentMarkDown(contentMarkdown);
 		objPost.setContentHTML(contentHtml);
 		return ResponseEntity.ok(postService.save(objPost));
@@ -140,7 +140,7 @@ public class PostsApi {
 		try {
 			if (file_image != null) {
 				Path pathImage = Paths.get(rootDirectory + "/static/file/images/post/" + ""
-						+ objPost.getId() + "." + file_image.getOriginalFilename());
+						+ objPost.getPostId() + "." + file_image.getOriginalFilename());
 				file_image.transferTo(new File(pathImage.toString()));
 				// objPost.setImage(file_image.getOriginalFilename());
 			}
@@ -150,7 +150,7 @@ public class PostsApi {
 			return ResponseEntity.ok(apiRes);
 		}
 		objPost.setName(name);
-		objPost.setImage(objPost.getId() + "." + file_image.getOriginalFilename());
+		objPost.setImage(objPost.getPostId() + "." + file_image.getOriginalFilename());
 		objPost.setContentMarkDown(contentMarkdown);
 		objPost.setContentHTML(contentHtml);
 		return ResponseEntity.ok(postService.save(objPost));

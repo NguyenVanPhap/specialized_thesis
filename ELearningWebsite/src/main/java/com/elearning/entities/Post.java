@@ -12,8 +12,8 @@ import javax.persistence.Table;
 public class Post {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "id", nullable = false)
-	private Integer Id;
+	@Column(name = "postid", nullable = false)
+	private Integer postid;
 
 	@Column(name = "name")
 	private String Name;
@@ -27,12 +27,12 @@ public class Post {
 	@Column(name = "image")
 	private String image;
 
-	public Integer getId() {
-		return Id;
+	public Integer getPostId() {
+		return postid;
 	}
 
-	public void setId(Integer id) {
-		Id = id;
+	public void setPostId(Integer postid) {
+		this.postid = postid;
 	}
 
 	public String getName() {
@@ -71,9 +71,9 @@ public class Post {
 
 	}
 
-	public Post(Integer id, String name, String contentHTML, String contentMarkDown, String image) {
+	public Post(Integer postid, String name, String contentHTML, String contentMarkDown, String image) {
 		super();
-		Id = id;
+		this.postid = postid;
 		this.contentHTML = contentHTML;
 		this.contentMarkDown = contentMarkDown;
 		this.image = image;

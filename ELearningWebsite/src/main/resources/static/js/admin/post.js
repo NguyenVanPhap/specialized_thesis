@@ -30,15 +30,15 @@ $(document).ready(function() {
 				var trHTML = "";
 				$.each(data.object.content, function(i, objPost) {
 
-					trHTML += '<tr><td class= "center">' + objPost.id + '</td>'
+					trHTML += '<tr><td class= "center">' + objPost.postId + '</td>'
 						+ '<td class= "center">' + objPost.name + '</td>'
 
 
-						+ '<td class = "center"> <a id="edit.' + objPost.id + ' "'
+						+ '<td class = "center"> <a id="edit.' + objPost.postId + ' "'
 
 						+ 'class="yellow editBaiPost"><button class="btn btn-warning">Cập nhật</button></a> '
 
-						+ ' <a id="delete.' + objPost.id + ' "'
+						+ ' <a id="delete.' + objPost.postId + ' "'
 
 						+ 'class="red deleteBaiPost" ><button class="btn btn-danger">Xóa</button></a> </td>'
 

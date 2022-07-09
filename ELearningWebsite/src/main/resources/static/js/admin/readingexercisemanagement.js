@@ -30,7 +30,7 @@ $(document).ready(function() {
 					}
 
 					baiDocRow += '<td>' + '<input type="hidden" value=' + baiDoc.id + '>'
-						+ '  <button class="btn btn-primary btnUpdateReadingExercise" >Cập nhật</button>'
+						// + '  <button class="btn btn-primary btnUpdateReadingExercise" >Cập nhật</button>'
 						+ '   <button class="btn btn-danger btnDeleteReadingExercise">Xóa</button></td>'
 					'</tr>';
 					$('.baiDocTable tbody').append(baiDocRow);
@@ -95,9 +95,9 @@ $(document).ready(function() {
 			$('#level').val(baiDoc.level);
 			$('#partToeic').val(baiDoc.part);
 			$('#script').val(baiDoc.script);
-			$("img").attr("src", "http://localhost:8080/file/images/reading/baiDocId=" + baiDoc.id + ".png");
+			$("img").attr("src", "http://localhost:8080/static/file/images/reading/baiDocId=" + baiDoc.id + ".png");
 			$("#previewImage").removeClass("hidden");
-			$("#linkExcel").attr("href", "http://localhost:8080/file/excel/reading/baiDocId=" + baiDoc.id + ".xlsx");
+			$("#linkExcel").attr("href", "http://localhost:8080/static/file/excel/reading/baiDocId=" + baiDoc.id + ".xlsx");
 			$("#linkExcel").removeClass("hidden");
 		});
 		$('#baiDocModal').modal();

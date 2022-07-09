@@ -8,7 +8,7 @@ $(document).ready(function() {
 		StartLessonId = searchParams.get('start');
 		$.ajax({
 			type: 'GET',
-			url: "http://localhost:8080/api/admin/lesson/infoLesson/" + StartLessonId,
+			url: "/api/admin/lesson/infoLesson/" + StartLessonId,
 			success: function(data) {
 
 				var jsonObject = new Object();
@@ -52,7 +52,7 @@ $(document).ready(function() {
 		var fields, id, courseId, lessonName, videoPath;
 		$.ajax({
 			type: 'GET',
-			url: "http://localhost:8080/api/admin/lesson/infoLesson/" + loadingId,
+			url: "/api/admin/lesson/infoLesson/" + loadingId,
 			success: function(data) {
 
 				var jsonObject = new Object();

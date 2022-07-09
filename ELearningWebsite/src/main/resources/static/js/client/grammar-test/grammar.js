@@ -5,7 +5,7 @@ $(document).ready(function() {
 		var part = $("#partSearch").val();
 		$.ajax({
 			type: "GET",
-			url: "http://localhost:8080/api/client/grammar-exercise/getall" + "?page=" + page + "&level=" + level,
+			url: "/api/client/grammar-exercise/getall" + "?page=" + page + "&level=" + level,
 			success: function(result) {
 				if (result.error == false) {
 					$("#pTag").removeClass().addClass("hidden");

@@ -1,5 +1,6 @@
 function changeInformation()
 {
+	var domain = location.protocol + '//' + location.host;
 	var name = document.getElementById("name").value;
 	var phone = document.getElementById("phone").value;
 	var address = document.getElementById("address").value;
@@ -38,7 +39,7 @@ function changeInformation()
 			type: "POST",	
 			data: data,	
 			contentType : "application/json",
-			url: "http://localhost:8080/admin/updateInfo",
+			url: "/admin/updateInfo",
 			success: function(result){
 				alert("Thông tin đã cập nhật");
 				window.location.href = "/admin/profileAdmin";

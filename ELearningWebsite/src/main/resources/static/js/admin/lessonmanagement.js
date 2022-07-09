@@ -2,6 +2,7 @@
 
 
 $(document).ready(function() {
+	var domain = location.protocol + '//' + location.host;
 	var simplemde;
 	var currentCourseId;
 	//default. load all object baiGrammar
@@ -24,7 +25,7 @@ $(document).ready(function() {
 		$.ajax({
 			dataType: 'json',
 			type: 'GET',
-			url: "http://localhost:8080/api/admin/lesson/loadCourseLesson/" + currentCourseId,
+			url: "/api/admin/lesson/loadCourseLesson/" + currentCourseId,
 
 			success: function(data) {
 
@@ -110,7 +111,7 @@ $(document).ready(function() {
 		$.ajax({
 			data: formData,
 			type: 'POST',
-			url: "http://localhost:8080/api/admin/lesson/save",
+			url: "/api/admin/lesson/save",
 			enctype: 'multipart/form-data',
 			contentType: false,
 			cache: false,
@@ -156,7 +157,7 @@ $(document).ready(function() {
 		if (confirm("Bạn muốn xóa bài học này?")) {
 			$.ajax({
 				type: 'POST',
-				url: "http://localhost:8080/api/admin/lesson/delete/" + lessonId,
+				url: domain + "/api/admin/lesson/delete/" + lessonId,
 				success: function(data) {
 					loadAllLesson();
 					alert("Xóa bài học thành công");
@@ -177,7 +178,7 @@ $(document).ready(function() {
 		var LessonId = fields[1];
 		$.ajax({
 			type: 'GET',
-			url: "http://localhost:8080/api/admin/lesson/infoLesson/" + LessonId,
+			url: "/api/admin/lesson/infoLesson/" + LessonId,
 			success: function(data) {
 
 				var jsonObject = new Object();
@@ -234,7 +235,7 @@ $(document).ready(function() {
 			$.ajax({
 				data: formData,
 				type: 'POST',
-				url: "http://localhost:8080/api/admin/lesson/update",
+				url: "/api/admin/lesson/update",
 				enctype: 'multipart/form-data',
 				contentType: false,
 				cache: false,

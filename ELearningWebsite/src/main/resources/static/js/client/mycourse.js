@@ -20,7 +20,7 @@ $(document).ready(function() {
 		$.ajax({
 			type: "GET",
 			contentType: "application/json",
-			url: "http://localhost:8080/api/client/user/course/getlist",
+			url: "/api/client/user/course/getlist",
 			success: function(data) {
 				console.log(data);
 				var trHTML = "";

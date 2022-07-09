@@ -1,7 +1,7 @@
 $(document).ready(function() {
 	var changeImage = false;
 	var changeExcel = false;
-
+	var domain = location.protocol + '//' + location.host;
 
 	ajaxGet(1);
 	function ajaxGet(page) {
@@ -9,10 +9,10 @@ $(document).ready(function() {
 		var part = $("#partSearch").val();
 		$.ajax({
 			type: "GET",
-			url: "http://localhost:8080/api/admin/grammarexercise/getall" + "?page=" + page + "&level=" + level + "&part=" + part,
+			url: "/api/admin/grammarexercise/getall" + "?page=" + page + "&level=" + level + "&part=" + part,
 			success: function(result) {
 
-				var baiDocRow ="";
+				var baiDocRow = "";
 				$.each(result.object.content, function(i, baiDoc) {
 					//					console.log(baiDoc);
 					baiDocRow += '<tr style="text-align: center;">' +
@@ -87,7 +87,7 @@ $(document).ready(function() {
 		var baiDocId = $(this).parent().find('input').val();
 		$('#formReadingExercise').removeClass().addClass("updateForm");
 		$('#formReadingExercise #btnSubmit').removeClass().addClass("btn btn-primary btnUpdateForm");
-		var href = "http://localhost:8080/api/admin/gramarexercise/" + baiDocId;
+		var href = domain + "/api/admin/gramarexercise/" + baiDocId;
 		$.get(href, function(baiDoc) {
 			console.log(baiDoc);
 			$('#id').val(baiDoc.id);
@@ -95,9 +95,9 @@ $(document).ready(function() {
 			$('#level').val(baiDoc.level);
 			$('#partToeic').val(baiDoc.part);
 			$('#script').val(baiDoc.script);
-			$("img").attr("src", "http://localhost:8080/static/file/images/grammarexercise/grammarExerciseId=" + baiDoc.id + ".png");
+			$("img").attr("src", domain + "/file/images/reading/baiDocId=" + baiDoc.id + ".png");
 			$("#previewImage").removeClass("hidden");
-			$("#linkExcel").attr("href", "http://localhost:8080/static/file/excel/grammarexercise/grammarExerciseId=" + baiDoc.id + ".xlsx");
+			$("#linkExcel").attr("href", domain + "/file/excel/reading/baiDocId=" + baiDoc.id + ".xlsx");
 			$("#linkExcel").removeClass("hidden");
 		});
 		$('#baiDocModal').modal();
@@ -119,7 +119,7 @@ $(document).ready(function() {
 		if (confirmation) {
 			$.ajax({
 				type: "DELETE",
-				url: "http://localhost:8080/api/admin/grammarexercise/delete/" + baiDocId,
+				url: domain + "/api/admin/readingexercise/delete/" + baiDocId,
 				success: function(resultMsg) {
 					resetDataForDelete();
 					alert("Xóa thành công");
@@ -262,7 +262,7 @@ $(document).ready(function() {
 			async: false,
 			type: "POST",
 			contentType: "application/json",
-			url: "http://localhost:8080/api/admin/grammarexercise/add",
+			url: domain + "/api/admin/grammarexercise/add",
 			enctype: 'multipart/form-data',
 			data: formData,
 			// prevent jQuery from automatically transforming the data into a
@@ -291,7 +291,7 @@ $(document).ready(function() {
 			async: false,
 			type: "POST",
 			contentType: "application/json",
-			url: "http://localhost:8080/webtoeic/api/admin/grammarexercise/update/" + id,
+			url: "/api/admin/grammarexercise/update/" + id,
 			enctype: 'multipart/form-data',
 			data: formData,
 			// prevent jQuery from automatically transforming the data into a

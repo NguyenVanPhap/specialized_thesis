@@ -4,7 +4,7 @@
 $(document).ready(function() {
 
 
-
+	var domain = location.protocol + '//' + location.host;
 	//default. load all object baiGrammar
 	window.onload = function() {
 		loadAllGrammar(1);
@@ -22,7 +22,7 @@ $(document).ready(function() {
 		$.ajax({
 			type: "POST",
 			contentType: "application/json",
-			url: "http://localhost:8080/api/admin/grammar/getlist",
+			url: "/api/admin/grammar/getlist",
 			data: JSON.stringify(datainput),
 			success: function(data) {
 
@@ -94,7 +94,7 @@ $(document).ready(function() {
 		modal.find('.modal-header #titleModal').text("Thêm mới bài ngữ pháp");
 		/*simplemde.value("wiriting someshing here");*/
 	});
-	
+
 	$(document).on('click', '.searchkeyword', function(event) {
 
 		loadAllGrammar(1);
@@ -131,7 +131,7 @@ $(document).ready(function() {
 		$.ajax({
 			data: formData,
 			type: 'POST',
-			url: "http://localhost:8080/api/admin/grammar/save",
+			url: domain + "/api/admin/grammar/save",
 			enctype: 'multipart/form-data',
 			contentType: false,
 			cache: false,
@@ -162,7 +162,7 @@ $(document).ready(function() {
 		if (confirm("Bạn muốn xóa bài grammar này?")) {
 			$.ajax({
 				type: 'POST',
-				url: "http://localhost:8080/api/admin/grammar/delete/" + idBaiGrammar,
+				url: domain + "/api/admin/grammar/delete/" + idBaiGrammar,
 				success: function(data) {
 					loadAllGrammar(1);
 					alert("Xóa bài grammar thành công");
@@ -186,7 +186,7 @@ $(document).ready(function() {
 		$.ajax({
 			type: 'GET',
 			contentType: "application/json",
-			url: "http://localhost:8080/api/admin/grammar/infoGrammar/" + idBaiGrammar,
+			url: "/api/admin/grammar/infoGrammar/" + idBaiGrammar,
 			success: function(data) {
 
 				/*var jsonObject = new Object();
@@ -249,7 +249,7 @@ $(document).ready(function() {
 			$.ajax({
 				data: formData,
 				type: 'POST',
-				url: "http://localhost:8080/api/admin/grammar/update",
+				url: "/api/admin/grammar/update",
 				enctype: 'multipart/form-data',
 				contentType: false,
 				cache: false,

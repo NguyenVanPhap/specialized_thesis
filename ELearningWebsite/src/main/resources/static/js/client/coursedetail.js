@@ -17,7 +17,7 @@ $(document).ready(function() {
 			async: false,
 			type: "POST",
 			contentType: "application/json",
-			url: "http://localhost:8080/api/user/client/course/add",
+			url: "/api/user/client/course/add",
 			enctype: 'multipart/form-data',
 			data: JSON.stringify({ "courseId": currentCourseId }),
 			success: function(response) {

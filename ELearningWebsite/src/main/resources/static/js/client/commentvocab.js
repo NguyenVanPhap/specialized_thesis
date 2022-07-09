@@ -6,7 +6,7 @@ $(document).ready(function() {
 		
 		$.ajax({
 			type: "GET",
-			url: "http://localhost:8080/api/comment/vocab/id=" + vocabId + "?page=" + page,
+			url: "/api/comment/vocab/id=" + vocabId + "?page=" + page,
 			success: function(result) {
 				var divCMT = "";
 				$.each(result.object, function(i, objres) {
@@ -46,7 +46,7 @@ $(document).ready(function() {
 		comment.userName = $('#name_member').val();
 		var commentObj = JSON.stringify(comment);
 		$.ajax({
-			url: "http://localhost:8080/api/comment/vocab/add-comment",
+			url: "/api/comment/vocab/add-comment",
 			method: 'POST',
 			data: commentObj,
 			contentType: 'application/json; charset = utf-8',

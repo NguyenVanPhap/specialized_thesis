@@ -3,7 +3,7 @@
 
 $(document).ready(function() {
 
-
+	var domain = location.protocol + '//' + location.host;
 
 	//default. load all object baiPost
 	window.onload = function() {
@@ -22,7 +22,7 @@ $(document).ready(function() {
 		$.ajax({
 			type: "POST",
 			contentType: "application/json",
-			url: "http://localhost:8080/api/admin/post/getlist",
+			url: "/api/admin/post/getlist",
 			data: JSON.stringify(datainput),
 			success: function(data) {
 				console.log(data);
@@ -111,7 +111,7 @@ $(document).ready(function() {
 		$.ajax({
 			data: formData,
 			type: 'POST',
-			url: "http://localhost:8080/api/admin/post/add",
+			url: "/api/admin/post/add",
 			enctype: 'multipart/form-data',
 			contentType: false,
 			cache: false,
@@ -141,7 +141,7 @@ $(document).ready(function() {
 		if (confirm("Bạn muốn xóa bài Post này?")) {
 			$.ajax({
 				type: 'POST',
-				url: "http://localhost:8080/api/admin/post/delete/" + idBaiPost,
+				url: domain + "/api/admin/post/delete/" + idBaiPost,
 				success: function(data) {
 					loadAllPost(1);
 					alert("Xóa bài Post thành công");
@@ -166,7 +166,7 @@ $(document).ready(function() {
 		$.ajax({
 			type: 'GET',
 			contentType: "application/json",
-			url: "http://localhost:8080/api/admin/post/getinfor/" + idPost,
+			url: "/api/admin/post/getinfor/" + idPost,
 			success: function(data) {
 
 				var modal = $('#PostModal');
@@ -215,7 +215,7 @@ $(document).ready(function() {
 			$.ajax({
 				data: formData,
 				type: 'POST',
-				url: "http://localhost:8080/api/admin/post/update",
+				url: "/api/admin/post/update",
 				enctype: 'multipart/form-data',
 				contentType: false,
 				cache: false,

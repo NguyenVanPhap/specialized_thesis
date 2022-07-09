@@ -18,7 +18,7 @@ $(document).ready(function() {
 		$.ajax({
 			type: "POST",
 			contentType: "application/json",
-			url: "http://localhost:8080/api/testlogs/getbyuser" + "?page=" + pageinput,
+			url: "/api/testlogs/getbyuser" + "?page=" + pageinput,
 			success: function(data) {
 
 				console.log(data);

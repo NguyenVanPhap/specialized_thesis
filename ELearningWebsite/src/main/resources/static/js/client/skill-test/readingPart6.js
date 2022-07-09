@@ -9,7 +9,7 @@ $(document).ready(function() {
 		var readingExerciseId = $("#readingExerciseId").val();
 		$.ajax({
 			type: "GET",
-			url: "http://localhost:8080/api/client/reading-exercise/id=" + readingExerciseId + "?page=" + page + "&pagesize=" + 4,
+			url: "/api/client/reading-exercise/id=" + readingExerciseId + "?page=" + page + "&pagesize=" + 4,
 			success: function(result) {
 				soCau = result.object.totalElements;
 				console.log(result);
@@ -133,7 +133,7 @@ $(document).ready(function() {
 			async: false,
 			type: "POST",
 			contentType: "application/json",
-			url: "http://localhost:8080/api/testlogs/add",
+			url: "/api/testlogs/add",
 			enctype: 'multipart/form-data',
 			data: JSON.stringify(data),
 			success: function(response) {
@@ -164,7 +164,7 @@ $(document).ready(function() {
 		var baiDocId = $("#readingExerciseId").val();
 		$.ajax({
 			type: "GET",
-			url: "http://localhost:8080/api/client/reading-exercise/id=" + baiDocId + "?page=" + page + "&pagesize=" + 4,
+			url: "/api/client/reading-exercise/id=" + baiDocId + "?page=" + page + "&pagesize=" + 4,
 			success: function(result) {
 				//				soCau = result.totalElements;
 				var divCauHoi = "";

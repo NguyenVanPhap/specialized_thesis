@@ -9,7 +9,7 @@ $(document).ready(function() {
 		var listeningExerciseId = $("#listeningExerciseId").val();
 		$.ajax({
 			type: "GET",
-			url: "http://localhost:8080/api/client/listening-exercise/id=" + listeningExerciseId + "?page=" + page + "&pagesize=" + 3,
+			url: "/api/client/listening-exercise/id=" + listeningExerciseId + "?page=" + page + "&pagesize=" + 3,
 			success: function(result) {
 				soCau = result.object.totalElements;
 				console.log(result);
@@ -130,7 +130,7 @@ $(document).ready(function() {
 			async: false,
 			type: "POST",
 			contentType: "application/json",
-			url: "http://localhost:8080/api/testlogs/add",
+			url: "/api/testlogs/add",
 			enctype: 'multipart/form-data',
 			data: JSON.stringify(data),
 			success: function(response) {
@@ -161,7 +161,7 @@ $(document).ready(function() {
 		var baiDocId = $("#listeningExerciseId").val();
 		$.ajax({
 			type: "GET",
-			url: "http://localhost:8080/api/client/listening-exercise/id=" + baiDocId + "?page=" + page + "&pagesize=" + 3,
+			url: "/api/client/listening-exercise/id=" + baiDocId + "?page=" + page + "&pagesize=" + 3,
 			success: function(result) {
 				//				soCau = result.totalElements;
 				var divCauHoi = "";
@@ -198,7 +198,7 @@ $(document).ready(function() {
 					if (MapCheckQuestion.get(cauHoi.number) == 'D')
 						divCauHoi += '        <input style="display:none" type="radio" checked  name="' + cauHoi.number + '" id="answer_4" value="D">' + '</label></div>'
 					else
-						divCauHoi += '        <input style="display:none" type="radio"  name="' + cauHoi.number + '" id="answer_4" value="D"> '  + '</label></div>'
+						divCauHoi += '        <input style="display:none" type="radio"  name="' + cauHoi.number + '" id="answer_4" value="D"> ' + '</label></div>'
 
 					divCauHoi += '        <input style="display:none" type="radio" name="' + cauHoi.number + '" id="correct_answer" value="' + cauHoi.correct_answer + '" class="hidden">'
 						+ '   </div>'
@@ -255,11 +255,11 @@ $(document).ready(function() {
 		timecheckListening = setInterval(function() {
 			minutes = parseInt(timer / 60, 10)
 			seconds = parseInt(timer % 60, 10);
-			var minutew=9-minutes-1;
-			var secondsw=60-seconds;
+			var minutew = 9 - minutes - 1;
+			var secondsw = 60 - seconds;
 			minutew = minutew < 10 ? "0" + minutew : minutew;
 			secondsw = secondsw < 10 ? "0" + secondsw : secondsw;
-			timework=minutew+":"+secondsw;
+			timework = minutew + ":" + secondsw;
 			minutes = minutes < 10 ? "0" + minutes : minutes;
 			seconds = seconds < 10 ? "0" + seconds : seconds;
 			document.getElementById("timeListening").textContent = minutes + ":" + seconds;

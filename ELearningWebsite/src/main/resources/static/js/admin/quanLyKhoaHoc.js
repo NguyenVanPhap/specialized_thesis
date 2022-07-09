@@ -3,7 +3,7 @@
 
 $(document).ready(function() {
 	var simplemde;
-
+	var domain = location.protocol + '//' + location.host;
 	//default. load all object baiGrammar
 	window.onload = function() {
 		loadAllCourse();
@@ -23,7 +23,7 @@ $(document).ready(function() {
 		$.ajax({
 			dataType: 'json',
 			type: 'GET',
-			url: "http://localhost:8080/api/admin/course/loadCources",
+			url: "/api/admin/course/loadCources",
 
 			success: function(data) {
 
@@ -59,7 +59,7 @@ $(document).ready(function() {
 						+ '<td class= "center">' + jsonArr[i].courseName + '</td>'
 
 						+ '<td class= "elementcontent">' + jsonArr[i].content + '</td>'
-						+ '<td >'+'</td>'
+						+ '<td >' + '</td>'
 						+ '<td class= "elementcontent">' + jsonArr[i].targetuser + '</td>'
 
 						+ '<td class = "center"> <a id="edit.' + jsonArr[i].courseId + ' "'
@@ -108,7 +108,7 @@ $(document).ready(function() {
 		$.ajax({
 			data: formData,
 			type: 'POST',
-			url: "http://localhost:8080/api/admin/course/save",
+			url: "/api/admin/course/save",
 			enctype: 'multipart/form-data',
 			contentType: false,
 			cache: false,
@@ -139,7 +139,7 @@ $(document).ready(function() {
 		if (confirm("Bạn muốn xóa khóa học này?")) {
 			$.ajax({
 				type: 'POST',
-				url: "http://localhost:8080/api/admin/course/delete/" + courseId,
+				url: "/api/admin/course/delete/" + courseId,
 				success: function(data) {
 					loadAllCourse();
 					alert("Xóa khóa học thành công");
@@ -160,7 +160,7 @@ $(document).ready(function() {
 		var courseId = fields[1];
 		$.ajax({
 			type: 'GET',
-			url: "http://localhost:8080/api/admin/course/infoCourse/" + courseId,
+			url: "/api/admin/course/infoCourse/" + courseId,
 			success: function(data) {
 
 				var jsonObject = new Object();
@@ -200,9 +200,9 @@ $(document).ready(function() {
 			}
 
 		});
-		
+
 		$('#btnCourseDetail').click(function() {
-			window.location.href = "/admin/coursedetail?courseId="+ courseId;
+			window.location.href = "/admin/coursedetail?courseId=" + courseId;
 		});
 
 		$('#btnUpdate').unbind().click(function() {
@@ -222,7 +222,7 @@ $(document).ready(function() {
 			$.ajax({
 				data: formData,
 				type: 'POST',
-				url: "http://localhost:8080/api/admin/course/update",
+				url: "/api/admin/course/update",
 				enctype: 'multipart/form-data',
 				contentType: false,
 				cache: false,

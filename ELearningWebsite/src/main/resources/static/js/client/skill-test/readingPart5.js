@@ -1,5 +1,5 @@
 $(document).ready(function() {
-	var timework="";
+	var timework = "";
 	var soCauDung = [];
 	var soCau = 0;
 	ajaxGetForCauHoi(1);
@@ -9,7 +9,7 @@ $(document).ready(function() {
 		var readingExerciseId = $("#readingExerciseId").val();
 		$.ajax({
 			type: "GET",
-			url: "http://localhost:8080/api/client/reading-exercise/id=" + readingExerciseId + "?page=" + page + "&pagesize=" + 4,
+			url: "/api/client/reading-exercise/id=" + readingExerciseId + "?page=" + page + "&pagesize=" + 4,
 			success: function(result) {
 				soCau = result.object.totalElements;
 				console.log(result);
@@ -107,7 +107,7 @@ $(document).ready(function() {
 			var today = new Date();
 			var exerciseName = $("#idexerciseName").text();
 			var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate() + "  " + today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
-			Testlogging(exerciseName, score, timew, date,5)
+			Testlogging(exerciseName, score, timew, date, 5)
 
 			jQuery.noConflict();
 			$('#nopBaiModal').modal('show');
@@ -115,7 +115,7 @@ $(document).ready(function() {
 		}
 	});
 
-	function Testlogging(testName, score, time, datework,part) {
+	function Testlogging(testName, score, time, datework, part) {
 
 		var data = {
 			testName: testName,
@@ -131,7 +131,7 @@ $(document).ready(function() {
 			async: false,
 			type: "POST",
 			contentType: "application/json",
-			url: "http://localhost:8080/api/testlogs/add",
+			url: "/api/testlogs/add",
 			enctype: 'multipart/form-data',
 			data: JSON.stringify(data),
 			success: function(response) {
@@ -164,7 +164,7 @@ $(document).ready(function() {
 		var baiDocId = $("#readingExerciseId").val();
 		$.ajax({
 			type: "GET",
-			url: "http://localhost:8080/api/client/reading-exercise/id=" + baiDocId + "?page=" + page + "&pagesize=" + 2,
+			url: "/api/client/reading-exercise/id=" + baiDocId + "?page=" + page + "&pagesize=" + 2,
 			success: function(result) {
 				//				soCau = result.totalElements;
 				var divCauHoi = "";
@@ -257,23 +257,23 @@ $(document).ready(function() {
 		timecheckReading = setInterval(function() {
 			minutes = parseInt(timer / 60, 10)
 			seconds = parseInt(timer % 60, 10);
-			var minutew=18-minutes-1;
-			var secondsw=60-seconds;
+			var minutew = 18 - minutes - 1;
+			var secondsw = 60 - seconds;
 			minutew = minutew < 10 ? "0" + minutew : minutew;
 			secondsw = secondsw < 10 ? "0" + secondsw : secondsw;
-			timework=minutew+":"+secondsw;
+			timework = minutew + ":" + secondsw;
 			minutes = minutes < 10 ? "0" + minutes : minutes;
 			seconds = seconds < 10 ? "0" + seconds : seconds;
 			document.getElementById("timeReading").textContent = minutes + ":" + seconds;
-			
-		
+
+
 			if (--timer < 0) {
 				clearInterval(timecheckReading);
 				alert("Đã hết thời gian làm bài test");
 
 			}
 		}, 1000);
-		
+
 	}
 
 	function startReadingClock() {

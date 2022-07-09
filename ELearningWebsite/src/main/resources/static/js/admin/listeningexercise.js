@@ -1,5 +1,6 @@
 $(document).ready(function() {
 
+	var domain = location.protocol + '//' + location.host;
 	var changeImage = false;
 	var changeExcel = false;
 	var changeAudio = false;
@@ -10,7 +11,7 @@ $(document).ready(function() {
 		var part = $("#partSearch").val();
 		$.ajax({
 			type: "GET",
-			url: "http://localhost:8080/api/admin/listeningexercise/getlist" + "?page=" + page + "&level=" + level + "&part=" + part,
+			url: "/api/admin/listeningexercise/getlist" + "?page=" + page + "&level=" + level + "&part=" + part,
 			success: function(result) {
 				console.log(result)
 				var listeningExerciseRow = "";
@@ -88,7 +89,7 @@ $(document).ready(function() {
 		var listeningExerciseId = $(this).parent().find('input').val();
 		$('#formListeningExercise').removeClass().addClass("updateForm");
 		$('#formListeningExercise #btnSubmit').removeClass().addClass("btn btn-primary btnUpdateForm");
-		var href = "http://localhost:8080/api/admin/listeningexercise/" + listeningExerciseId;
+		var href = domain + "/api/admin/listeningexercise/" + listeningExerciseId;
 		$.get(href, function(ListeningExercise) {
 			console.log(listeningExercise);
 			$('#id').val(listeningExercise.id);
@@ -97,12 +98,12 @@ $(document).ready(function() {
 			$('#phanThi').val(listeningExercise.part);
 			$('#script').val(listeningExercise.script);
 
-			//            $('#photolisteningExercise').val("http://localhost:8080/file/images/baiNgheId="+ baiNghe.id+".png");
-			$("img").attr("src", "http://localhost:8080/static/file/images/listening/"+"part " + listeningExercise.part + "listeningExerciseId=" + listeningExercise.id + ".png");
+			//            $('#photolisteningExercise').val(domain+"/file/images/baiNgheId="+ baiNghe.id+".png");
+			$("img").attr("src", domain + "/static/file/images/listening/" + "part " + listeningExercise.part + "listeningExerciseId=" + listeningExercise.id + ".png");
 			$("#previewImage").removeClass("hidden");
-			$("#previewAudio").attr("src", "http://localhost:8080/static/file/audio/listening/"+"part " + listeningExercise.part + "listeningExerciseId=" + listeningExercise.id + ".mp3");
+			$("#previewAudio").attr("src", domain + "/static/file/audio/listening/" + "part " + listeningExercise.part + "listeningExerciseId=" + listeningExercise.id + ".mp3");
 			$("#previewAudio").removeClass("hidden");
-			$("#linkExcel").attr("href", "http://localhost:8080/static/file/excel/listening/"+"part " + listeningExercise.part + "listeningExerciseId=" + listeningExercise.id + ".xlsx");
+			$("#linkExcel").attr("href", domain + "/static/file/excel/listening/" + "part " + listeningExercise.part + "listeningExerciseId=" + listeningExercise.id + ".xlsx");
 			$("#linkExcel").removeClass("hidden");
 		});
 		$('#listeningExerciseModal').modal();
@@ -123,7 +124,7 @@ $(document).ready(function() {
 		if (confirmation) {
 			$.ajax({
 				type: "DELETE",
-				url: "http://localhost:8080/api/admin/listeningexercise/delete/" + listeningExerciseId,
+				url: "/api/admin/listeningexercise/delete/" + listeningExerciseId,
 				success: function(resultMsg) {
 					resetDataForDelete();
 					alert("Xóa thành công");
@@ -308,7 +309,7 @@ $(document).ready(function() {
 			async: false,
 			type: "POST",
 			contentType: "application/json",
-			url: "http://localhost:8080/api/admin/listeningexercise/save",
+			url: domain + "/api/admin/listeningexercise/save",
 			enctype: 'multipart/form-data',
 			data: formData,
 			// prevent jQuery from automatically transforming the data into a
@@ -336,7 +337,7 @@ $(document).ready(function() {
 			async: false,
 			type: "POST",
 			contentType: "application/json",
-			url: "http://localhost:8080/api/admin/listeningexercise/update/" + id,
+			url: "/api/admin/listeningexercise/update/" + id,
 			enctype: 'multipart/form-data',
 			data: formData,
 			// prevent jQuery from automatically transforming the data into a

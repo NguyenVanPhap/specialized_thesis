@@ -4,9 +4,10 @@
 $(document).ready(function() {
 
 
-
+	var domain = location.protocol + '//' + location.host;
 	//default. load all object baiGrammar
 	window.onload = function() {
+
 		loadAllGrammar(1);
 
 	};
@@ -22,7 +23,7 @@ $(document).ready(function() {
 		$.ajax({
 			type: "POST",
 			contentType: "application/json",
-			url: "http://localhost:8080/api/admin/grammar/getlist",
+			url: domain + "/api/admin/grammar/getlist",
 			data: JSON.stringify(datainput),
 			success: function(data) {
 				console.log(data);
@@ -30,11 +31,11 @@ $(document).ready(function() {
 				var index = 0;
 				$.each(data.object.content, function(i, objgrammar) {
 					if (index < 7) {
-						indexval=index+1;
+						indexval = index + 1;
 						var idname = "#post" + indexval;
 
 						$(idname).text(objgrammar.grammarName);
-						$(idname).attr("href", "/detailGram?idGram="+objgrammar.grammarId)
+						$(idname).attr("href", "/detailGram?idGram=" + objgrammar.grammarId)
 						index++;
 					}
 

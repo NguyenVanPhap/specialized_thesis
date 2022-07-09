@@ -1,5 +1,6 @@
 $(document).ready(function() {
 
+	var domain = location.protocol + '//' + location.host;
 	// load first when coming page
 	ajaxGet(1);
 
@@ -12,7 +13,7 @@ $(document).ready(function() {
 			type: "GET",
 			data: data,
 			contentType: "application/json",
-			url: "http://localhost:8080/api/admin/tai-khoan/all" + '?page=' + page,
+			url:"/api/admin/tai-khoan/all" + '?page=' + page,
 			success: function(result) {
 				$.each(result.content, function(i, taiKhoan) {
 					var taiKhoanRow = '<tr>' +
@@ -82,7 +83,7 @@ $(document).ready(function() {
 			async: false,
 			type: "POST",
 			contentType: "application/json",
-			url: "http://localhost:8080/api/admin/tai-khoan/save",
+			url:"/api/admin/tai-khoan/save",
 			enctype: 'multipart/form-data',
 			data: data,
 			success: function(response) {
@@ -114,7 +115,7 @@ $(document).ready(function() {
 		if (confirmation) {
 			$.ajax({
 				type: "DELETE",
-				url: "http://localhost:8080/api/admin/tai-khoan/delete/" + taiKhoanId,
+				url:"/api/admin/tai-khoan/delete/" + taiKhoanId,
 				success: function(resultMsg) {
 					alert("Xóa thành công")
 					resetData();

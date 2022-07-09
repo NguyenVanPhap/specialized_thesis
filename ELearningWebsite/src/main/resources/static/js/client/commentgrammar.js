@@ -7,7 +7,7 @@ $(document).ready(function() {
 
 		$.ajax({
 			type: "GET",
-			url: "http://localhost:8080/api/comment/grammar/id=" + grammarId + "?page=" + page,
+			url: "/api/comment/grammar/id=" + grammarId + "?page=" + page,
 			success: function(result) {
 				soCau = result.totalElements;
 				console.log(result);
@@ -45,7 +45,7 @@ $(document).ready(function() {
 		comment.userName = $('#name_member').val();
 		var commentObj = JSON.stringify(comment);
 		$.ajax({
-			url: "http://localhost:8080/api/comment/grammar/add-comment",
+			url: "/api/comment/grammar/add-comment",
 			method: 'POST',
 			data: commentObj,
 			contentType: 'application/json; charset = utf-8',

@@ -18,14 +18,12 @@ public class Course {
 	@Column(name = "coursename")
 	private String coursename;
 
-	@Column(name = "targetuser")
+	@Column(columnDefinition = "TEXT")
 	private String targetuser;
 
-	@Column(name = "content")
+	@Column(columnDefinition = "TEXT")
 	private String content;
-	
-	
-	
+
 	public Integer getCourseId() {
 		return courseid;
 	}
@@ -54,7 +52,6 @@ public class Course {
 		this.targetuser = targetuser;
 	}
 
-	
 	public String getContent() {
 		return content;
 	}

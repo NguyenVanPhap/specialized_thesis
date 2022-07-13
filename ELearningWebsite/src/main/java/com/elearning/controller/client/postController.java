@@ -33,7 +33,7 @@ public class postController {
     public String getPage(@RequestParam(defaultValue = "1") int page, Model model) {
 
         // defaut value lay tu ket qua dau tien
-        Page<Post> list = postService.getPost(page - 1, 4);
+        Page<Post> list = postService.getPost(page - 1, 6);
 
         int totalPage = list.getTotalPages();
 

@@ -29,7 +29,7 @@ $(document).ready(function() {
 						+ '<td>'
 						+ '<tr>'
 				});
-				$('#lstcommentpost').html(divCMT);
+				$('#lstcommenpost').html(divCMT);
 			},
 			error: function(e) {
 				alert("Error: ", e);
